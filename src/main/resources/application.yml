@@ -1,0 +1,18 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /talent_recruitment
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: wxb
+    password: wxb207116
+    url: jdbc:mysql://localhost:3306/userdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=utf8
+  thymeleaf:
+    prefix: classpath:/templates/
+  mvc:
+    static-path-pattern: /static/**
+  jpa:
+    show-sql: true
+
