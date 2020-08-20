@@ -54,7 +54,7 @@
 
 		<input type="hidden" id="resubmitToken" value="" />
 		<div class="login_box">
-			<form id="loginForm" action="index.html">
+			<form id="loginForm" th:action="@{'tologin'}" method="post">
 				<ul class="register_radio clearfix">
 					<li>
 						企&nbsp;&nbsp;业
@@ -71,9 +71,7 @@
 				<label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked" name="autoLogin" /> 记住我</label>
 				<a href="reset.html" class="fr" target="_blank">忘记密码？</a>
 
-				<!--<input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录" />-->
-				<a style="color:#fff;margin-left:80px;" href="index.html" class="submitLogin" title="登 &nbsp; &nbsp; 录" onclick="javascript:return formCheck()"/>登 &nbsp; &nbsp; 录</a>
-
+				<input type="submit" style="color:#fff;margin-left:80px;" class="submitLogin" title="登 &nbsp; &nbsp; 录" onclick="javascript:return formCheck()">
 
 				<input type="hidden" id="callback" name="callback" value=""/>
 				<input type="hidden" id="authType" name="authType" value=""/>
@@ -105,18 +103,28 @@
 	});
 
 	function formCheck() {
-		var str = document.getElementById('email').value;
-		if (str==""){
+		var email = document.getElementById('email').value;
+		var password = document.getElementById('password').value;
+		var type = document.getElementsByName('type');
+		if (email === ""){
 			swal({
 				title: "邮箱不能为空！！",
-				text: "请输入有效的邮箱地址，如：youxiang@163.com",
+				text: "请输入邮箱",
 				type: "error",
 				confirmButtonColor: "#011d56"
 			});
 			return false;
 		}
-
-		if (str.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) == -1){
+		if (password === ""){
+			swal({
+				title: "密码不能为空！！",
+				text: "请输入密码",
+				type: "error",
+				confirmButtonColor: "#011d56"
+			});
+			return false;
+		}
+		if (email.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) === -1){
 			swal({
 				title: "邮箱格式错误！！",
 				text: "请输入有效的邮箱地址，如：youxiang@163.com",
@@ -125,71 +133,19 @@
 			});
 			return false;
 		}
-		return true;
-
-
-
-
+		for (var i = 0; i < type.length; i++) {
+			if (type[i].checked) {
+				return true;
+			}
+		}
+		swal({
+			title: "未选择登录身份！！",
+			text: "请选择登录身份，企业/个人",
+			type: "error",
+			confirmButtonColor: "#011d56"
+		});
+		return false;
 	}
-
-	// $(function(){
-	// 	//验证表单
-	// 	$("#loginForm").validate({
-	// 		/* onkeyup: false,
-    //        focusCleanup:true, */
-	// 		rules: {
-	// 			email: {
-	// 				required: true,
-	// 				email: true
-	// 			},
-	// 			password: {
-	// 				required: true
-	// 			}
-	// 		},
-	// 		messages: {
-	// 			email: {
-	// 				required: "请输入登录邮箱地址",
-	// 				email: "请输入有效的邮箱地址，如：vivi@lagou.com"
-	// 			},
-	// 			password: {
-	// 				required: "请输入密码"
-	// 			}
-	// 		},
-	// 		submitHandler:function(form){
-	// 			if($('#remember').prop("checked")){
-	// 				$('#remember').val(1);
-	// 			}else{
-	// 				$('#remember').val(null);
-	// 			}
-	// 			var email = $('#email').val();
-	// 			var password = $('#password').val();
-	// 			var remember = $('#remember').val();
-	//
-	// 			var callback = $('#callback').val();
-	// 			var authType = $('#authType').val();
-	// 			var signature = $('#signature').val();
-	// 			var timestamp = $('#timestamp').val();
-	//
-	// 			$(form).find(":submit").attr("disabled", true);
-	// 			$.ajax({
-	// 				type:'POST',
-	// 				data:{email:email,password:password,autoLogin:remember, callback:callback, authType:authType, signature:signature, timestamp:timestamp},
-	// 				url:ctx+'/user/login.json'
-	// 			}).done(function(result) {
-	// 				if(result.success){
-	// 					if(result.content.loginToUrl){
-	// 						window.location.href=result.content.loginToUrl;
-	// 					}else{
-	// 						window.location.href=ctx+'/';
-	// 					}
-	// 				}else{
-	// 					$('#beError').text(result.msg).show();
-	// 				}
-	// 				$(form).find(":submit").attr("disabled", false);
-	// 			});
-	// 		}
-	// 	});
-	// })
 </script>
 
 </body>
