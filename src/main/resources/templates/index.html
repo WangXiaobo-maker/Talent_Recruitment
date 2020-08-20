@@ -25,9 +25,12 @@
       <div class="wrapper">
         <img alt="logo" th:src="@{static/img/logo.png}"><br><br>
         <form action="" method="post">
-           <input type="image"
-                  th:src="@{static/img/next.png}"
-                  width="80px"/>
+           <a th:href="@{'/home'}">
+               <img th:src="@{static/img/next.png}" style="width: 80px"/>
+<!--               <input type="image"-->
+<!--                     th:src="@{static/img/next.png}"-->
+<!--                     width="80px" />-->
+           </a>
         </form>
       </div>
     </main>
