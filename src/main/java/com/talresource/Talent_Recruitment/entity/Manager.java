@@ -8,6 +8,7 @@ public class Manager {
     public Manager() {
     }
 
+
     public Manager(String managerName, String MPassword) {
         ManagerName = managerName;
         this.MPassword = MPassword;

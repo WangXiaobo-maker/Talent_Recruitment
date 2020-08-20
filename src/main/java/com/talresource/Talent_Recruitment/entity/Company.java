@@ -36,6 +36,7 @@ public class Company {
         CompanyInfo = companyInfo;
     }
 
+
     public int getCompanyID() {
         return CompanyID;
     }
