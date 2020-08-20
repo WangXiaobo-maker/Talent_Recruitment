@@ -13,7 +13,6 @@ public class User {
     public User() {
     }
 
-
     public User(String userName, String UPassword, String nickName, String sex,
                 String birth, String userPhone, String userEmail) {
         UserName = userName;

@@ -10,5 +10,4 @@ public interface TestDao {
     @Select("select * from user")
     User selectAllUser();
 
-
 }
