@@ -234,35 +234,33 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 .citymore_arrow{position:absolute;right:0;top:10px;}
 /* .wp_cl{margin-top:-33px !important;*margin:0 0 10px -10px !important;} */
 /*login.html*/
-#login_bg{ background: url(img/bgwall.png) center 100px no-repeat;overflow:hidden;}
-.login_wrapper{ width:640px; margin:0 auto;color:#777;font-size:16px;padding-top:110px;}
+.login_wrapper{ width:640px; margin:0 auto;color:#777;font-size:16px;padding-top:100px;
+    position:absolute; top:40%; left:50%; z-index:101; transform:translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);}
 .login_header{position:relative; margin-bottom:20px;}
 .login_header img{margin:30px 0 0 20px;}
 #cloud_s{position:absolute; left:375px; top:15px;}
 #cloud_m{position:absolute; left:470px; top:-35px;}
-.login_box{min-height:150px; background:#eafffd; padding:40px; overflow:hidden;}
+.login_box{min-height:150px; background:#FFFFFF; padding:40px; overflow:hidden;}
 .login_box_btm{background: url(img/login_btm.png) repeat-x; height:10px;}
 #loginForm{width:360px; margin:0; border-right:1px dashed #999; float:left;}
-#loginForm a{color:#019875; }
-#loginForm input#email{width:296px;font-size:16px; color:#777; border:none;}
-#loginForm input#password{width:296px;font-size:16px; color:#777;  border:none;}
-#loginForm input:focus{border:2px solid #fff;-webkit-box-shadow: 0px 0px 4px #b5f0e7;-moz-box-shadow: 0px 0px 4px #b5f0e7;box-shadow: 0px 0px 4px #b5f0e7;}
+#loginForm a{color:#011d56;}
+#loginForm input#email{width:296px;font-size:16px; color:#777; border:1px solid #011d56;}
+#loginForm input#password{width:296px;font-size:16px; color:#777;  border:1px solid #011d56;}
+#loginForm input:focus{border:2px solid #011d56;-webkit-box-shadow: 0px 0px 4px #011d56;-moz-box-shadow: 0px 0px 4px #011d56;box-shadow: 0px 0px 4px #011d56;}
 #loginForm .fr{color:#777; margin-right:45px;}
 #loginForm .fr:hover{color:#019875;}
 #loginForm label{vertical-align:top;}
 /**add nancy**/
 .registerJianJu{ *height:36px;} 
 #loginForm input[type="checkbox"]{margin-bottom:20px;border:none;background:none}
-#submitLogin{width:155px; height:46px;font-size:16px; line-height:46px; clear:both; float:left; background:#019875; color:#fff; border:none; text-align:center;}
-.submitLogin{width:155px; height:46px;font-size:16px; line-height:46px; clear:both; float:left; background:#019875; color:#fff; border:none; text-align:center;}
+#submitLogin{width:155px; height:46px;font-size:20px; line-height:46px; clear:both; float:left; background:#011d56; color:#fff; border:none; text-align:center;}
+.submitLogin{width:155px; height:46px;font-size:20px; line-height:46px; clear:both; float:left; background:#011d56; color:#fff; border:none; text-align:center;}
 
 #submitLogin:hover{ background:#00694e;}
-.login_right{*width:170px; float:left;margin:10px 0 0 30px;line-height:30px;}
-.registor_now{color:#019875;background:url(img/registor_now.png) right center no-repeat; padding-right:24px; float:left; height:30px;line-height:30px;}
+.login_right{*width:170px; float:left;margin:20px 0 0 50px;line-height:30px;}
+.registor_now{color:#011d56;background:url(img/registor_now.png) right center no-repeat; background-size:18px,18px; padding-right:24px; float:left; height:30px;line-height:30px;}
 .registor_now:hover{color:#019875; text-decoration:underline;}
-.login_others{ clear:both; margin:70px 0 10px 0;}
-.icon_wb{width:54px; height:54px; float:left; background:url(img/wbqq.png) left top no-repeat; margin:0 30px 0 10px;}
-.icon_qq{width:54px; height:54px; float:left; background:url(img/wbqq.png) right top no-repeat;}
 .login_wrapper input[type="text"],.login_wrapper input[type="password"]{margin:0 0 20px 0; border:none;}
 .login_wrapper span.error{margin:-10px 0 10px 0; }
 #loginForm input[type="text"],#loginForm input[type="password"]{margin:0 0 20px 0;}
@@ -271,7 +269,7 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 .login_box h2{font-size:18px;font-weight:normal;color:#555;margin:0 0 15px 0;}
 .login_box h3{font-size:20px;font-weight:normal;color:#555;margin:0 0 25px 0;}
 .register_radio{list-style:none; margin:0 0 20px 0; padding:0;}
-.register_radio li{width:148px; height:42px; font-size:18px; color:#555; text-align:center; line-height:42px;float:left; background:#fff; margin:15px 11px 0 0; border:2px solid #fafafa; cursor:pointer; position:relative;}
+.register_radio li{width:148px; height:42px; font-size:18px; color: #FFFFFF; text-align:center; line-height:42px;float:left; background:#011d56; margin:15px 11px 0 0; border:2px solid #011d56; cursor:pointer; position:relative;}
 .register_radio li:hover{border:2px solid #93b7bb;}
 .register_radio li.current{border:2px solid #93b7bb;}
 .register_radio li em{ background:url(img/s_choose.png) no-repeat; width:31px; height:32px; position:absolute; right:-1px; top:-1px;}
