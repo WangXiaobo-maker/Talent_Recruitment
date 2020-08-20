@@ -1,5 +1,9 @@
 package com.talresource.Talent_Recruitment.entity;
 
+/**
+ * 公司实体
+ */
+
 public class Company {
     private int CompanyID;
     private String CPassword;

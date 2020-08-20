@@ -1,5 +1,9 @@
 package com.talresource.Talent_Recruitment.entity;
 
+/**
+ * 普通用户实体
+ */
+
 public class User {
     private int UserID;
     private String UserName;

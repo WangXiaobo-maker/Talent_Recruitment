@@ -1,5 +1,9 @@
 package com.talresource.Talent_Recruitment.entity;
 
+/**
+ * 管理员实体
+ */
+
 public class Manager {
     private int ManagerID;
     private String ManagerName;
