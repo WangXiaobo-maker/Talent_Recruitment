@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>test Page 1</title>
+</head>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
+<script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
+
+<body>
+<table class="table table-striped" data-toggle="table" data-search="true"
+       data-pagination="true" data-page-size="10" data-striped="true"
+       data-classes="table table-no-border">
+    <thead>
+    <tr>
+        <th class="col_1">工作</th>
+        <th >发布时间</th>
+        <th class="col_2">热度</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="job : ${JobListByHeat}">
+        <th th:text="${job.JobName}"></th>
+        <th th:text="${job.JobPublishDate}"></th>
+        <th th:text="${job.JobHeat}"></th>
+    </tr>
+    </tbody>
+</table>
+<input type ="text" id="t1" value="" /><input type ="button" value="确定" onclick="okclick()">
+<script>
+    function okclick()
+    {
+        var str = document.getElementById('t1').value;
+        if (str==""||baistr==null){
+            swal("请输入内容", "Error", "error")
+        }else{
+            swal("你好！")
+        }
+    }
+</script>
+</body>
+</html>

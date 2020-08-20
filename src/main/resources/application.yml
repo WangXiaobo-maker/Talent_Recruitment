@@ -11,6 +11,7 @@ spring:
     url: jdbc:mysql://localhost:3306/talresourcedb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=utf8
   thymeleaf:
     prefix: classpath:/templates/
+    mode: LEGACYHTML5
   mvc:
     static-path-pattern: /static/**
 

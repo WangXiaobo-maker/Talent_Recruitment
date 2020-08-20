@@ -7,7 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class controller {
 
     @RequestMapping("/index")
-    public String test() {
+    public String test1() {
         return "register";
     }
+
+    @RequestMapping("/index2")
+    public String test2(){
+        return "login";
+    }
+
 }

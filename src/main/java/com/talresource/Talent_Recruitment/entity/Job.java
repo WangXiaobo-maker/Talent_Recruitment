@@ -16,8 +16,16 @@ public class Job {
     private String JobPublishDate;
     private String JobFamily;
     private String JobHr;
+    private int JobHeat;
 
 
+    public int getJobHeat() {
+        return JobHeat;
+    }
+
+    public void setJobHeat(int jobHeat) {
+        JobHeat = jobHeat;
+    }
 
     public int getJobID() {
         return JobID;

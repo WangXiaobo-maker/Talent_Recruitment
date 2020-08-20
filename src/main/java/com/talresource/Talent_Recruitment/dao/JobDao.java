@@ -11,4 +11,8 @@ public interface JobDao {
 
     @Select("select * from job")
     List<Job> selectAllJob();
+
+    @Select("select * from job order by JobPublishDate DESC limit 5")
+    List<Job> selectJobByHeat();
+
 }
