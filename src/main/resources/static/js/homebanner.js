@@ -7,7 +7,7 @@ window.onload = function() {
     var index = 1;
     var timer;
 
-//animate 函数，在当前left值得基础上向右移动 offset px,如果向左移动距离超过图六位置就变为图一位置，向右移动距离超过图二位置就变为图七位置
+    //animate 函数，在当前left值得基础上向右移动 offset px,如果向左移动距离超过图六位置就变为图一位置，向右移动距离超过图二位置就变为图七位置
     function animate(offset) {
         var newLeft = parseInt(list.style.left) + offset;
         list.style.left = newLeft + 'px';
@@ -19,19 +19,19 @@ window.onload = function() {
         }
     }
 
-//将当前显示图片对应的小圆点样式改变
+    //将当前显示图片对应的小圆点样式改变
     function buttonsShow() {
-//将所有的小圆点的样式清除
+        //将所有的小圆点的样式清除
         for (var i = 0; i < buttons.length; i++) {
             if (buttons[i].className == "on") {
                 buttons[i].className = "";
             }
         }
-//数组从0开始，故index需要-1
+        //数组从0开始，故index需要-1
         buttons[index - 1].className = "on";
     }
 
-//点击产生查看前一张效果，animate移动距离改变，小圆点显示改变，当index=1时还要查看前一张时，index变为5
+    //点击产生查看前一张效果，animate移动距离改变，小圆点显示改变，当index=1时还要查看前一张时，index变为5
     prev.onclick = function () {
         index -= 1;
         if (index < 1) {
@@ -41,7 +41,7 @@ window.onload = function() {
         animate(1024);
     };
 
-//点击产生查看后一张效果，animate移动距离改变，小圆点显示改变
+    //点击产生查看后一张效果，animate移动距离改变，小圆点显示改变
     next.onclick = function () {
         index += 1;
         if (index > 5) {
@@ -51,15 +51,15 @@ window.onload = function() {
         buttonsShow();
     };
 
-//通过定时器调用next.onclick（）实现每两秒滚动一次
+    //通过定时器调用next.onclick（）实现每两秒滚动一次
     function play() {
-//重复执行的定时器
+        //重复执行的定时器
         timer = setInterval(function () {
             next.onclick();
-        }, 3000)
+        }, 2000)
     }
 
-//清除定时器实现停止滚动
+    //清除定时器实现停止滚动
     function stop() {
         clearInterval(timer);
     }
@@ -67,10 +67,10 @@ window.onload = function() {
     container.onmouseout = play; //在鼠标离开onmouseover时，开始每两秒滚动一次
     play(); //在onload后就调用play()
 
-//为每个小按钮添加onclick事件，当点击按钮时会跳动到按钮对应的图片
+    //为每个小按钮添加onclick事件，当点击按钮时会跳动到按钮对应的图片
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].onclick = function() {
-//当前图片点击当前的小圆点不执行以下代码。
+            //当前图片点击当前的小圆点不执行以下代码。
             if (this.className == "on") {
                 return;
             }

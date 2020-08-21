@@ -8,7 +8,7 @@ public class controller {
 
     @RequestMapping("/index")
     public String test1() {
-        return "index";
+        return "companyRegisterInfo";
     }
 
     @RequestMapping("/index2")
