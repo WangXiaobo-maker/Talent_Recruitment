@@ -13,6 +13,7 @@ public class Company {
     private String CompanyAddress;
     private String CompanyCulture;
     private String CompanyInfo;
+    private int CompanyHeat;
 
     public Company() {
     }
@@ -38,6 +39,14 @@ public class Company {
         CompanyAddress = companyAddress;
         CompanyCulture = companyCulture;
         CompanyInfo = companyInfo;
+    }
+
+    public int getCompanyHeat() {
+        return CompanyHeat;
+    }
+
+    public void setCompanyHeat(int companyHeat) {
+        CompanyHeat = companyHeat;
     }
 
     public int getCompanyID() {
