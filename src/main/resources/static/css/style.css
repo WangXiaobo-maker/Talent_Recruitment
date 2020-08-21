@@ -140,6 +140,19 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 #home_banner:hover .arrow{display:block;}
 #next{left:964px;}
 
+/*新闻网页标题*/
+#home_banner1{width:1024px;height:400px;position:relative;margin:-100px 0 18px; overflow:hidden;}
+#news_title{text-align:center;width:100%;height:300px;background: url(../img/news_title.png);position:relative;}
+#news_title_div1{text-align:center;width:100%;height:200px;}
+#news_title_div2{text-align:center;width:100%;height:90px;}
+#news_title_div3{text-align:center;width:100%;height:100px;}
+
+/*新闻网页具体新闻*/
+#news_context_ul{text-align: center;height: 200px;}
+#news_context_li{position: relative;margin: 0 auto;height: 200px;}
+.news_context_div_l{float:left;width:300px;height: 200px;}
+.news_context_div_r{float:right;width:600px;margin-left:30px;height: 200px;text-align:left;}
+
 ul.hotabbing{font-size: 0;background:#f6f6f6;}
 ul.hotabbing li{cursor:pointer;display:inline-block;*display:inline;*zoom:1;padding:7px 20px;font-size:18px;color:#999;}
 ul.hotabbing li.current{border-top:3px solid #89b0de;background:#fff;color:#333;}
