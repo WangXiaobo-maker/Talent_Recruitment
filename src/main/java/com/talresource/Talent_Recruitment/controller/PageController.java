@@ -11,12 +11,12 @@ public class PageController {
         return "home";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/RedirLogin")
     public String login(){
         return "login";
     }
 
-    @RequestMapping("/register")
+    @RequestMapping("/RedirRegister")
     public String register(){
         return "register";
     }

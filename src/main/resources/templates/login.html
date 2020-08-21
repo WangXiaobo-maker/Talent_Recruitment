@@ -71,7 +71,7 @@
 				<label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked" name="autoLogin" /> 记住我</label>
 				<a href="reset.html" class="fr" target="_blank">忘记密码？</a>
 
-				<input type="submit" style="color:#fff;margin-left:80px;" class="submitLogin" title="登 &nbsp; &nbsp; 录" onclick="javascript:return formCheck()">
+				<input type="submit" style="color:#fff;margin-left:80px;" class="submitLogin" value="登 &nbsp; &nbsp; 录" onclick="javascript:return formCheck()">
 
 				<input type="hidden" id="callback" name="callback" value=""/>
 				<input type="hidden" id="authType" name="authType" value=""/>
@@ -81,7 +81,7 @@
 			<div class="login_right"><br>
 				<img th:src="@{static/img/login_ico.png}" width="130" height="120"/><br>
 				<div>还没有帐号？</div>
-				<a  th:href="@{'/register'}"  class="registor_now">立即注册</a>
+				<a  th:href="@{'/RedirRegister'}"  class="registor_now">立即注册</a>
 			</div>
 		</div>
 	</div>

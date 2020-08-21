@@ -68,7 +68,9 @@ var youdao_conv_id = 271546;
             	<label class="fl registerJianJu" for="checkbox">
             		<input type="checkbox" id="checkbox" name="checkbox" checked  class="checkbox valid" />我已阅读并同意<a href="h/privacy.html" target="_blank">《无限创想用户协议》</a>
            		</label>
-                <input style="margin-left:80px;" type="submit" id="submitLogin" value="注 &nbsp; &nbsp; 册" />
+				<input type="submit" style="color:#fff;margin-left:80px;" class="submitLogin" value="注 &nbsp; &nbsp; 册" onclick="javascript:return formCheck()">
+
+<!--				<input style="margin-left:80px;" type="submit" id="submitLogin" value="注 &nbsp; &nbsp; 册" />-->
                 
                 <input type="hidden" id="callback" name="callback" value=""/>
                 <input type="hidden" id="authType" name="authType" value=""/>
@@ -78,7 +80,7 @@ var youdao_conv_id = 271546;
             <div class="login_right"><br>
 				<img th:src="@{static/img/login_ico.png}" width="130" height="120"/><br>
             	<div>已有帐号</div>
-            	<a  th:href="@{'/login'}"  class="registor_now">直接登录</a>
+            	<a  th:href="@{'/RedirLogin'}"  class="registor_now">直接登录</a>
             </div>
         </div>
     </div>
@@ -102,85 +104,53 @@ var youdao_conv_id = 271546;
     	$('#email').focus(function(){
     		$('#beError').hide();
     	});
-    	//验证表单
-	    	 $("#loginForm").validate({
-	    	        rules: {
-	    	        	type:{
-	    	        		required: true
-	    	        	},
-			    	   	email: {
-			    	    	required: true,
-			    	    	email: true
-			    	   	},
-			    	   	password: {
-			    	    	required: true,
-			    	    	rangelength: [6,16]
-			    	   	},
-			    	   	checkbox:{required:true}
-			    	},
-			    	messages: {
-			    		type:{
-	    	        		required:"请选择使用无限创想的目的"
-	    	        	},
-			    	 	email: {
-			    	    	required: "请输入常用邮箱地址",
-			    	    	email: "请输入有效的邮箱地址，如：vivi@lagou.com"
-			    	   	},
-			    	   	password: {
-			    	    	required: "请输入密码",
-			    	    	rangelength: "请输入6-16位密码，字母区分大小写"
-			    	   	},
-			    	   	checkbox: {
-			    	    	required: "请接受无限创想用户协议"
-			    	   	}
-			    	},
-			    	errorPlacement:function(label, element){/*
-			    		if(element.attr("type") == "radio"){
-			    			label.insertAfter($(element).parents('ul')).css('marginTop','-20px');
-			    		}else if(element.attr("type") == "checkbox"){
-			    			label.inserresult.contenttAfter($(element).parent()).css('clear','left');
-			    		}else{
-			    			label.insertAfter(element);
-			    		} */
-			    		/*modify nancy*/
-			    		if(element.attr("type") == "radio"){
-			    			label.insertAfter($(element).parents('ul')).css('marginTop','-20px');
-			    		}else if(element.attr("type") == "checkbox"){
-			    			label.insertAfter($(element).parent()).css('clear','left');
-			    		}else{
-			    			label.insertAfter(element);
-			    		};	
-			    	},
-			    	submitHandler:function(form){
-			    		var type =$('input[type="radio"]:checked',form).val();
-			    		var email =$('#email').val();
-			    		var password =$('#password').val();
-			    		var resubmitToken = $('#resubmitToken').val();
-			    		
-			    		var callback = $('#callback').val();
-			    		var authType = $('#authType').val();
-			    		var signature = $('#signature').val();
-			    		var timestamp = $('#timestamp').val();
-			    		
-			    		$(form).find(":submit").attr("disabled", true);
 
-			            $.ajax({
-			            	type:'POST',
-			            	data: {email:email,password:password,type:type,resubmitToken:resubmitToken, callback:callback, authType:authType, signature:signature, timestamp:timestamp},
-			            	url:ctx+'/user/register.json',
-			            	dataType:'json'
-			            }).done(function(result) {
-		            		$('#resubmitToken').val(result.resubmitToken);
-			            	if(result.success){
-			            		window.location.href=result.content;			            		
-			            	}else{
-								$('#beError').text(result.msg).show();
-			            	}
-			            	$(form).find(":submit").attr("disabled", false);			           		
-			            });
-			        }  
-	    	});
-    });
+		function formCheck() {
+			var email = document.getElementById('email').value;
+			var password = document.getElementById('password').value;
+			var type = document.getElementsByName('type');
+			if (email === ""){
+				swal({
+					title: "邮箱不能为空！！",
+					text: "请输入邮箱",
+					type: "error",
+					confirmButtonColor: "#011d56"
+				});
+				return false;
+			}
+			if (password === ""){
+				swal({
+					title: "密码不能为空！！",
+					text: "请输入密码",
+					type: "error",
+					confirmButtonColor: "#011d56"
+				});
+				return false;
+			}
+			if (email.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) === -1){
+				swal({
+					title: "邮箱格式错误！！",
+					text: "请输入有效的邮箱地址，如：youxiang@163.com",
+					type: "error",
+					confirmButtonColor: "#011d56"
+				});
+				return false;
+			}
+			for (var i = 0; i < type.length; i++) {
+				if (type[i].checked) {
+					return true;
+				}
+			}
+			swal({
+				title: "未选择登录身份！！",
+				text: "请选择登录身份，企业/个人",
+				type: "error",
+				confirmButtonColor: "#011d56"
+			});
+			return false;
+		}
+
+	});
     </script>
 </body>
 </html>
