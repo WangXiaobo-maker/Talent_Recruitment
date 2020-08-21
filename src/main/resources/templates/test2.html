@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>图片测试</title>
+</head>
+<body>
+
+
+<!--<table class="table table-striped" data-toggle="table" data-search="true"-->
+<!--       data-pagination="true" data-page-size="10" data-striped="true"-->
+<!--       data-classes="table table-no-border">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th class="col_1">资讯</th>-->
+<!--        <th >图片</th>-->
+<!--        <th class="col_2">内容</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="news : ${newsList}">-->
+<!--        <th th:text="${news.NewsTitle}"></th>-->
+<!--        <th><img th:src="@{'static/img/' + ${news.NewsImg}}"></th>-->
+<!--        <th th:text="${news.NewsContent}"></th>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+
+
+<ul th:each="news : ${newsList}">
+    <li th:each="entry : ${news}" th:text="${news.NewsTitle}" ></li>
+    <li th:each="entry : ${news}" > <img th:src="@{'static/img/' + ${news.NewsImg}}" > </li>
+    <li th:each="entry : ${news}" th:text="${news.NewsContent}"></li>
+</ul>
+
+</body>
+</html>

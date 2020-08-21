@@ -81,7 +81,7 @@
 			<div class="login_right"><br>
 				<img th:src="@{static/img/login_ico.png}" width="130" height="120"/><br>
 				<div>还没有帐号？</div>
-				<a  th:href="@{'/RedirRegister'}"  class="registor_now">立即注册</a>
+				<a  th:href="@{'/redirRegister'}"  class="registor_now">立即注册</a>
 			</div>
 		</div>
 	</div>
@@ -96,11 +96,11 @@
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function(e) {
-		$('.register_radio li input').click(function (e) {
-			$(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
-		});
-	});
+	// $(document).ready(function(e) {
+	// 	$('.register_radio li input').click(function (e) {
+	// 		$(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
+	// 	});
+	// });
 
 	function formCheck() {
 		var email = document.getElementById('email').value;

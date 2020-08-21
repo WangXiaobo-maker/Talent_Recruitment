@@ -84,7 +84,7 @@ var youdao_conv_id = 271546;
             <div class="login_right"><br>
 				<img th:src="@{static/img/login_ico.png}" width="130" height="120"/><br>
             	<div>已有帐号</div>
-            	<a  th:href="@{'/RedirLogin'}"  class="registor_now">直接登录</a>
+            	<a  th:href="@{'/redirLogin'}"  class="registor_now">直接登录</a>
             </div>
         </div>
     </div>
@@ -99,11 +99,11 @@ var youdao_conv_id = 271546;
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function(e) {
-		$('.register_radio li input').click(function (e) {
-			$(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
-		});
-	});
+	// $(document).ready(function(e) {
+	// 	$('.register_radio li input').click(function (e) {
+	// 		$(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
+	// 	});
+	// });
 
 	function formCheck() {
 		var email = document.getElementById('email').value;

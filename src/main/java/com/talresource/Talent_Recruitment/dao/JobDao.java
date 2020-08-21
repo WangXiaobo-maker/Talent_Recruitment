@@ -2,6 +2,7 @@ package com.talresource.Talent_Recruitment.dao;
 
 import com.talresource.Talent_Recruitment.entity.Job;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -15,4 +16,10 @@ public interface JobDao {
     @Select("select * from job order by JobPublishDate DESC limit 5")
     List<Job> selectJobByHeat();
 
+    @Select("select * from job where (JobName like CONCAT('%',#{JobName},'%')) " +
+            "or (JobFamily like CONCAT('%',#{JobFamily},'%')) " +
+            "order by JobFamily")
+    List<Job> TestJobList(@Param("JobName") String JobName, @Param("JobFamily") String JobFamily);
+
 }
+//"ORDER BY   REPLACE(JobName,'${JobName}=','')  "

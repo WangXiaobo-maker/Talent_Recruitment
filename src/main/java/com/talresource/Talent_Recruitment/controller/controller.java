@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class controller {
 
-    @RequestMapping("/index")
+    @RequestMapping("/reInfo")
     public String test1() {
         return "companyRegisterInfo";
     }

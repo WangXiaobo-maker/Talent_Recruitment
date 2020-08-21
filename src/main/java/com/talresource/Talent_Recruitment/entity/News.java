@@ -9,6 +9,16 @@ public class News {
     private String NewsTitle;
     private String NewsPublishDate;
     private String NewsContent;
+    private String NewsImg;
+
+
+    public String getNewsImg() {
+        return NewsImg;
+    }
+
+    public void setNewsImg(String newsImg) {
+        NewsImg = newsImg;
+    }
 
     public int getNewsID() {
         return NewsID;

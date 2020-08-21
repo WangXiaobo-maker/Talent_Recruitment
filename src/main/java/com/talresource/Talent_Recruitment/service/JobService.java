@@ -16,8 +16,16 @@ public class JobService {
     private JobDao jobDao;
 
     @Transactional
+    public List<Job> selectAllJob(){
+        return jobDao.selectAllJob();
+    }
+
     public List<Job> selectJobByHeat(){
         return jobDao.selectJobByHeat();
+    }
+
+    public List<Job> TestJobList(String JobName, String JobFamily){
+        return jobDao.TestJobList(JobName, JobFamily);
     }
 
 }

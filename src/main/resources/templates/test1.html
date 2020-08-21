@@ -28,6 +28,80 @@
     </tbody>
 </table>
 <input type ="text" id="t1" value="" /><input type ="button" value="确定" onclick="okclick()">
+
+
+<br><br>
+
+<form th:action="@{'/jobTest2'}" method="post">
+    <input type="text"  name="JobName" value="" tabindex="1" placeholder="JobName" />
+    <input type="text"  name="JobFamily" value="" tabindex="1" placeholder="JobFamily" />
+    <input type="submit" value="提交">
+</form>
+
+<br><br>
+
+<table class="table table-striped" data-toggle="table" data-search="true"
+       data-pagination="true" data-page-size="10" data-striped="true"
+       data-classes="table table-no-border">
+    <thead>
+    <tr>
+        <th class="col_1">工作</th>
+        <th >发布时间</th>
+        <th class="col_2">工作种类</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="job : ${TestJobListSearch}">
+        <th th:text="${job.JobName}"></th>
+        <th th:text="${job.JobPublishDate}"></th>
+        <th th:text="${job.JobFamily}"></th>
+    </tr>
+    </tbody>
+</table>
+
+<ul th:each="job : ${JobListByHeat}">
+    <li th:each="entry : ${job}" th:text="${job.JobName}" ></li>
+    <li th:each="entry : ${job}" th:text="${job.JobCity}"></li>
+    <li th:each="entry : ${job}" th:text="${job.JobSalary}"></li>
+
+</ul>
+
+
+<ul class="hot_pos reset" th:each="job : ${JobListByHeat}">
+    <li class="clearfix" th:each="entry : ${job}">
+        <div class="hot_pos_l">
+            <div class="mb10">
+                <a href="h/jobs/147822.html" target="_blank" th:text="${job.JobName}">运营总监</a>
+                &nbsp;
+                <span class="c9" th:text="${job.JobCity}">[北京]</span>
+            </div>
+            <span><em class="c7" th:text="${job.JobSalary}">月薪： </em>15k-20k</span>
+            <span><em class="c7" th:text="${job.JobExperience}">经验：</em> 3-5年</span>
+            <span th:text="${job.JobEduDegree}"><em class="c7" >最低学历： </em>本科</span>
+            <br/>
+            <span><em class="c7">职位诱惑：</em>发展前景</span>
+            <br/>
+            <span th:text="${job.JobPublishDate}">1天前发布</span>
+            <!-- <a  class="wb">分享到微博</a> -->
+        </div>
+        <div class="hot_pos_r">
+            <div class="mb10 recompany"><a href="h/c/399.html" target="_blank">节操精选</a></div>
+            <span><em class="c7">领域：</em> 移动互联网</span>
+            <span><em class="c7">创始人：</em>陈桦</span>
+            <br/>
+            <span><em class="c7">阶段：</em> 初创型(天使轮)</span>
+            <span><em class="c7">规模：</em>少于15人</span>
+            <ul class="companyTags reset">
+                <li>移动互联网</li>
+                <li>五险一金</li>
+                <li>扁平管理</li>
+            </ul>
+        </div>
+    </li>
+
+</ul>
+
+
 <script>
     function okclick()
     {

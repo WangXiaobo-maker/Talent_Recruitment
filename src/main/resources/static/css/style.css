@@ -13,7 +13,7 @@
 *{outline: none; }html,body{height:100%;}
 #body{min-height: 100%;height: auto !important; height: 100%; margin: 0 0 -37px; background: #FFFFFF; padding-top:2px; padding-left:30px;}
 body{margin:0;padding:0; font:14px/22px "微软雅黑","宋体",Arial; color:#333;word-wrap:break-word;}
-#body1{min-height: 100%;height: auto !important; height: 100%; width:800px; margin: 0 0 -37px; background: #FFFFFF; padding-top:2px; padding-left:30px;}
+#body1{min-height: 100%;height: auto !important; height: 100%; width:630px; margin: 0 0 -37px; background: #FFFFFF; padding-top:2px; padding-left:30px; padding-right: 30px}
 body1{margin:0;padding:0; font:14px/22px "微软雅黑","宋体",Arial; color:#333;word-wrap:break-word;}
 .clearfix:after{content: "";height: 0;clear: both;visibility: hidden;}
 .clearfix{display: inline-block;}  /* for IE/Mac */
@@ -23,7 +23,7 @@ input[type="button"],input[type="submit"]{font-family:"微软雅黑","宋体",Ar
 input[type="text"]:focus,input[type="password"]:focus{border:2px solid #d4e2e4;}
 textarea{ border:2px solid #f1f1f1; width:600px; height:260px;outline:none; resize:none; font:20px/32px "微软雅黑","宋体",Arial; padding:6px 10px; margin-top:20px;transition:border 0.2s ease-in 0s;}
 textarea:focus{ border:2px solid #d4e2e4; }:focus {outline: 0;}.placeholder { color: #777; }img{border:none;}
-.dn{ display:none;}.db{display:block;}.fl{float:left!important;}.fr{float:right!important;}.clear{ clear:both;} 
+.dn{ display:none;}.db{display:block;}.fl{float:left!important;}.fr{float:right!important;}.clear{ clear:both;}
 a{color:#555; text-decoration:none;cursor:pointer;-moz-transition: background-color 0.2s ease-out,color 0.1s ease-out; -webkit-transition: background-color 0.2s ease-out,color 0.1s ease-out;-ms-transition: background-color 0.2s ease-out,color 0.1s ease-out;transition: background-color 0.2s ease-out,color 0.1s ease-out;}a:hover{color:#011d56;}
 dl,dd{margin:0;}em{ font-style:normal;}ul.reset{margin:0;padding:0;list-style:none;}h2{font-size:16px;margin:10px 0;}
 .c9{color:#999;}.c7{color:#777;}.c5{color:#555;}.c3{color:#333;}
@@ -82,7 +82,7 @@ span.error{display:block; margin:5px 0 10px 0; font-size:14px; color:#ff6a6a;tex
 #search_box{width:1024px;height:41px; position:relative;}
 #search_input{border:2px solid #747778;border-right:none;width:574px; height:23px; line-height:23px;float:left;font-size:16px;padding:7px 8px;margin:0;}
 #search_button{height:41px;width:152px; color:#FFF; font-size:18px;border:none;background:#747778;float:right; cursor:pointer;}
-#search_button:hover{background:#616364;} 
+#search_button:hover{background:#616364;}
 #search_box{border:2px solid #011d56;width:1024px;height:37px; position:relative;}
 #search_input{width:476px; height:23px; line-height:23px;float:left;font-size:16px;padding:7px 8px 7px 10px;margin:0 0 0 94px;border:0;}
 #search_button{height:37px;width:152px; color:#FFF; font-size:18px;border:none;background:#011d56;float:right; cursor:pointer;}
@@ -253,7 +253,7 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 #loginForm .fr:hover{color:#019875;}
 #loginForm label{vertical-align:top;}
 /**add nancy**/
-.registerJianJu{ *height:36px;} 
+.registerJianJu{ *height:36px;}
 #loginForm input[type="checkbox"]{margin-bottom:20px;border:none;background:none}
 #submitLogin{width:155px; height:46px;font-size:20px; line-height:46px; clear:both; float:left; background:#011d56; color:#fff; border:none; text-align:center;}
 .submitLogin{width:155px; height:46px;font-size:20px; line-height:46px; clear:both; float:left; background:#011d56; color:#fff; border:none; text-align:center;}
@@ -292,7 +292,7 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 .hc_tag > dt{padding-bottom:10px; overflow:hidden;}
 .hc_tag h2{margin:0 0 10px 0;}
 .hc_tag > dd{ background:#fafafa; padding:20px 15px 10px 15px; overflow:hidden;}
-.hc_tag dl{ overflow:hidden; *margin-bottom:10px;} 
+.hc_tag dl{ overflow:hidden; *margin-bottom:10px;}
 .hc_tag dl dt{ float:left; font-weight:bold; width:75px;}
 .hc_tag dl dd{ margin-left:75px; }
 .hc_tag dl a{ float:left; margin:0 10px 10px 0;padding:0px 8px;white-space:nowrap;}
@@ -527,7 +527,7 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 .c_box{ margin:0 30px 0 220px;}
 .c_box h2{ font-size:24px; margin:0 0 10px 0; font-weight:normal; float:left;}
 /**add by nancy**/
-.companyName h2{width:300px;height:24px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;} 
+.companyName h2{width:300px;height:24px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
 /**add end by nancy**/
 .c_box h1.fullname{font-size:18px; line-height:30px;color:#555;margin:0 0 10px 0;}
 .c_box h3{ clear:both; font-size:20px; margin:20px 0 0 0; font-weight:normal; }
@@ -726,7 +726,7 @@ ul.my_jobs{margin:20px 0 0 0;}
 #positionTabs li{float:left; border-right:1px solid #555;}
 #positionTabs li a{display:block;font-size:18px;line-height:18px;color:#555;padding:0 12px;}
 #positionTabs li.current a{color:#000;font-weight:600;}
- 
+
 /**new_job.html**/
 .c_section_mid dt div{ float:right; margin:15px 20px 0 0; color:#555;}
 .c_section_mid dt span{ font-size:18px;color:#0d9572;}
@@ -792,7 +792,7 @@ a.greylink{ color:#555;font-size:18px; margin-right:60px;text-decoration:underli
 #labels li i{float:left; font-style:normal; background:#129f7e url(img/x.png) left center no-repeat; width:20px; height:38px; cursor:pointer;  display:none;}
 #labels li:hover{margin-right:5px;}
 #labels li:hover i{ display:block;}
-#step2Form input[type="text"]{ width:490px; float:left;} 
+#step2Form input[type="text"]{ width:490px; float:left;}
 #add_label{ float:left; width:90px; height:45px; line-height:45px; font-size:18px; text-align:center; color:#fff; background:#129f7e; border:none; margin:20px 0 0 25px;}
 #box_labels{ background:#fff; margin:20px 0 0 0; padding:20px 20px 20px 20px;}
 #box_labels dl{ overflow:hidden; margin-bottom:30px;}
@@ -834,7 +834,7 @@ a.greylink{ color:#555;font-size:18px; margin-right:60px;text-decoration:underli
 .c_notice .contacttip a:hover{text-decoration:underline;}
 /*.openService td{*padding:0 0 10px 0;}
 .openService #name{width:350px;}
-.openService #companyShortName{width:200px;margin-top:23px;} 可以删掉*/ 
+.openService #companyShortName{width:200px;margin-top:23px;} 可以删掉*/
 #suggestCompany{background:#fff;margin-top:10px;}
 #suggestCompany dt{ padding:0 15px; margin-bottom:8px;}
 #suggestCompany dt span{color:#999; font-size:14px;display:block;background:url(img/breakline.gif) 0 bottom repeat-x;padding:10px 0 20px 0;}
@@ -1187,7 +1187,7 @@ ul.my_delivery{margin:20px 48px;}
 .boxUpDownan{position:absolute;z-index:20;border:2px solid #c8e6de;margin-top:-2px;*margin-top:40px !important;background:#fff;zoom:1;}
 .boxUpDownan ul{margin:14px 0 6px 12px;padding:0;max-height:200px;}
 .boxUpDownan table tr{display:block;padding: 5px 10px;}
-.boxUpDownan ul p{font-weight:normal !important;margin:0 0 12px 0;font: 14px/14px "微软雅黑","宋体",Arial;} 
+.boxUpDownan ul p{font-weight:normal !important;margin:0 0 12px 0;font: 14px/14px "微软雅黑","宋体",Arial;}
 .boxUpDownan ul li{font-size:14px;padding:0px 10px;cursor:pointer;line-height:24px;display:inline-block;border-radius:22px;border:2px #91cebe solid;color:rgb(181,181,181); word-break:break-all !important;white-space:pre-wrap !important;margin-right:8px;margin-bottom:8px;*display:inline;*zoom:1;}
 .boxUpDownan ul li:hover{background:#91cebe;color:#fff;*border:0;*zoom:1;*margin-right:12px;*margin-bottom: 10px;}
 /**end **/
@@ -1562,7 +1562,7 @@ i.speed1{width: 22px;height: 16px;position:absolute;background:url(img/job_122_1
 #box_level3 li:hover{ background:#c8e6de; color:#fff;}
 
 /* receiveResume.html */
-/* 
+/*
 .noResumeReceived{font-size:18px;height:200px;line-height:32px;	background:url(img/noResumeReceived.png) 30px 30px no-repeat;	padding:40px 0 0 150px;	margin:20px 0 0 0;}
 .noResumeReceived a{color:#019875;}
 ul.resumeLists{	margin:20px 0;}
@@ -1580,7 +1580,7 @@ ul.resumeLists li.fileResume .resumeIntro{margin-left:60px;}
 ul.resumeLists li.fileResume .resumeIntro h3{margin-bottom:6px;}
 ul.resumeLists li.fileResume .resumeIntro span{	margin-top:-30px;}
 */
- 
+
 #deliverResumeConfirm div{line-height:28px;margin-bottom:10px;}
 #deliverResumeConfirm a{margin-right:20px;}
 #deliverResumeConfirm a.edit_field{text-decoration:underline;color:#555555;}
