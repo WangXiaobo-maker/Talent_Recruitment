@@ -242,6 +242,7 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 #loginForm a{color:#011d56;}
 #loginForm input#email{width:296px;font-size:16px; color:#777; border:1px solid #011d56;}
 #loginForm input#password{width:296px;font-size:16px; color:#777;  border:1px solid #011d56;}
+#loginForm input#confirmpassword{width:296px;font-size:16px; color:#777;  border:1px solid #011d56;}
 #loginForm input:focus{border:2px solid #011d56;-webkit-box-shadow: 0px 0px 4px #011d56;-moz-box-shadow: 0px 0px 4px #011d56;box-shadow: 0px 0px 4px #011d56;}
 #loginForm .fr{color:#777; margin-right:45px;}
 #loginForm .fr:hover{color:#019875;}

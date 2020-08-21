@@ -115,15 +115,7 @@
 			});
 			return false;
 		}
-		if (password === ""){
-			swal({
-				title: "密码不能为空！！",
-				text: "请输入密码",
-				type: "error",
-				confirmButtonColor: "#011d56"
-			});
-			return false;
-		}
+
 		if (email.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) === -1){
 			swal({
 				title: "邮箱格式错误！！",
@@ -133,6 +125,16 @@
 			});
 			return false;
 		}
+		if (password === ""){
+			swal({
+				title: "密码不能为空！！",
+				text: "请输入密码",
+				type: "error",
+				confirmButtonColor: "#011d56"
+			});
+			return false;
+		}
+
 		for (var i = 0; i < type.length; i++) {
 			if (type[i].checked) {
 				return true;
