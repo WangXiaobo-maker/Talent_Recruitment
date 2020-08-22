@@ -1,13 +1,14 @@
 package com.talresource.Talent_Recruitment.dao;
 
-import com.talresource.Talent_Recruitment.entity.User;
+import com.talresource.Talent_Recruitment.entity.News;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface TestDao {
 
-    @Select("select * from user")
-    User selectAllUser();
+
 
 }

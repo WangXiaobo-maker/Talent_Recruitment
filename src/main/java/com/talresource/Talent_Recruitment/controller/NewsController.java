@@ -13,8 +13,29 @@ public class NewsController {
     private NewsService newsService;
 
     @RequestMapping("/newsTest1")
-    public String newTest1(ModelMap map){
+    public String newsTest1(ModelMap map){
         map.addAttribute("newsList", newsService.selectAllNews());
         return "test2";
+    }
+
+    @RequestMapping("/newsTest2")
+    public String newsTest2(ModelMap map){
+        return "news";
+    }
+
+    @RequestMapping("/newsTest3")
+    public String newsTest3(ModelMap map){
+        return "newsContentTest";
+    }
+
+    @RequestMapping("/redirNews")
+    public String redirNews(ModelMap map){
+        map.addAttribute("NewsListByDate", newsService.selectNewsByDate());
+        return "news";
+    }
+
+    @RequestMapping("/redirNewsContent")
+    public String redirNewsContent(){
+        return "newContent";
     }
 }

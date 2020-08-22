@@ -12,4 +12,7 @@ public interface NewsDao {
     @Select("select * from news")
     List<News> selectAllNews();
 
+    @Select("select * from news order by NewsPublishDate DESC limit 10")
+    List<News> selectNewsByDate();
+
 }

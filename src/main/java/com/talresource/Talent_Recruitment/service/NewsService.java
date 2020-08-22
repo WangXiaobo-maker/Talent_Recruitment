@@ -19,4 +19,8 @@ public class NewsService {
         return newsDao.selectAllNews();
     }
 
+    public List<News> selectNewsByDate(){
+        return newsDao.selectNewsByDate();
+    }
+
 }

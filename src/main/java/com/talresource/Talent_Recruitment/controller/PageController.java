@@ -13,7 +13,7 @@ public class PageController {
 
     @RequestMapping("/index")
     public String index(){
-        return "news";
+        return "index";
     }
 
     @RequestMapping("/home")
