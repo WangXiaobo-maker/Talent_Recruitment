@@ -143,7 +143,7 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 /*新闻网页标题*/
 #home_banner1{width:1024px;height:400px;position:relative;margin:-100px 0 18px; overflow:hidden;}
 #home_banner1:hover .arrow{display:block;}
-#news_title{text-align:center;width:100%;height:300px;background: url(../img/news_title.png);position:relative;}
+#news_title{text-align:center;width:100%;height:300px;background: url(../img/news_title.png); background-size:110% auto; position:relative;}
 #news_title_div1{text-align:center;width:100%;height:200px;}
 #news_title_div2{text-align:center;width:100%;height:90px;}
 #news_title_div3{text-align:center;width:100%;height:100px;}
