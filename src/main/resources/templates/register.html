@@ -2,37 +2,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
-<script id="allmobilize" charset="utf-8" src="style/js/allmobilize.min.js"></script>
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="alternate" media="handheld"  />
-<!-- end 云适配 -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>无限创想人才招聘平台</title>
-<meta name="baidu-site-verification" content="QIQ6KC1oZ6" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="alternate" media="handheld"  />
+	<!-- end 云适配 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>无限创想人才招聘平台</title>
+	<meta name="baidu-site-verification" content="QIQ6KC1oZ6" />
 
-<!-- <div class="web_root"  style="display:none">h</div> -->
-<script type="text/javascript">
-var ctx = "h";
-console.log(1);
-</script>
-<link rel="Shortcut Icon" href="h/images/favicon.ico">
-<link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{static/css/index.css}"/>
+	<!-- <div class="web_root"  style="display:none">h</div> -->
+	<script type="text/javascript">
+		var ctx = "h";
+		console.log(1);
+	</script>
+	<link rel="Shortcut Icon" href="h/images/favicon.ico">
+	<link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{static/css/index.css}"/>
 
-<script th:src="@{static/js/jquery.1.10.1.min.js}" type="text/javascript"></script>
+	<script th:src="@{static/js/jquery.1.10.1.min.js}" type="text/javascript"></script>
 
-<script type="text/javascript" th:src="@{static/js/jquery.lib.min.js}"></script>
-<script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
+	<script type="text/javascript" th:src="@{static/js/jquery.lib.min.js}"></script>
+	<script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
 	<script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
 
-<script type="text/javascript">
-var youdao_conv_id = 271546; 
-</script> 
-<script type="text/javascript" th:src="@{static/js/conv.js}"></script>
+	<script type="text/javascript">
+		var youdao_conv_id = 271546;
+	</script>
+	<script type="text/javascript" th:src="@{static/js/conv.js}"></script>
+	<style>
+		.sweetAlert{
+			width:1000px;
+			margin: 0 auto;
+			left: 0;
+			right: 0;
+		}
+	</style>
 </head>
 
-<body>
+<body onkeydown="keyLogin()">
 <main>
 	<div class="login_box_btm"></div>
 	<div id="overlay"></div>
@@ -46,48 +53,46 @@ var youdao_conv_id = 271546;
 	</ul>
 	<div class="login_wrapper">
 		<div class="login_header">
-        	<a href="h/"><img th:src="@{static/img/logo_white.png}" width="285" height="62" alt="无限创想" /></a>
-            <div id="cloud_s"><img th:src="@{static/img/cloud_s.png}" width="81" height="52" alt="cloud" /></div>
-            <div id="cloud_m"><img th:src="@{static/img/cloud_m.png}" width="136" height="95"  alt="cloud" /></div>
-        </div>
-        
-    	<input type="hidden" id="resubmitToken" value="9b207beb1e014a93bc852b7ba450db27" />		
+			<a href="home"><img th:src="@{static/img/logo_white.png}" width="285" height="62" alt="无限创想" /></a>
+			<div id="cloud_s"><img th:src="@{static/img/cloud_s.png}" width="81" height="52" alt="cloud" /></div>
+			<div id="cloud_m"><img th:src="@{static/img/cloud_m.png}" width="136" height="95"  alt="cloud" /></div>
+		</div>
+
+		<input type="hidden" id="resubmitToken" value="9b207beb1e014a93bc852b7ba450db27" />
 		<div class="login_box">
-        	<form id="loginForm">
-        		<ul class="register_radio clearfix">
-		            <li>
-		            	企&nbsp;&nbsp;业
-		              	<input type="radio" value="0" name="type" /> 
-		            </li>
-		            <li>
+			<form id="loginForm">
+				<ul class="register_radio clearfix">
+					<li>
+						企&nbsp;&nbsp;业
+						<input type="radio" value="0" name="type" />
+					</li>
+					<li>
 						个&nbsp;&nbsp;人
-		              	<input type="radio" value="1" name="type" /> 
-		            </li>
-		        </ul> 
-            	<input type="text" id="email" name="email" tabindex="1" placeholder="请输入常用邮箱地址" />
-                <span class="error" style="display:none;" id="beError"></span>
-                <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />
+						<input type="radio" value="1" name="type" />
+					</li>
+				</ul>
+				<input type="text" id="email" name="email" tabindex="1" placeholder="请输入常用邮箱地址" />
+				<span class="error" style="display:none;" id="beError"></span>
+				<input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />
 				<input type="password" id="confirmpassword" name="confirmpassword" tabindex="2" placeholder="请确认密码" />
 
 				<label class="fl registerJianJu" for="checkbox">
-            		<input type="checkbox" id="checkbox" name="checkbox" checked  class="checkbox valid" />我已阅读并同意<a href="h/privacy.html" target="_blank">《无限创想用户协议》</a>
-           		</label>
-				<input type="submit" style="color:#fff;margin-left:80px;" class="submitLogin" value="注 &nbsp; &nbsp; 册" onclick="javascript:return formCheck()">
+					<input type="checkbox" id="checkbox" name="checkbox" class="checkbox valid" />我已阅读并同意<a onclick="javascript:Displayprotocol()">《无限创想用户协议》</a>
+				</label>
+				<a id="submit" style="color:#fff;margin-left:80px;" class="submitLogin" title="注 &nbsp; &nbsp; 册" onclick="javascript:return formCheck()">注 &nbsp; &nbsp; 册</a>
 
-<!--				<input style="margin-left:80px;" type="submit" id="submitLogin" value="注 &nbsp; &nbsp; 册" />-->
-                
-                <input type="hidden" id="callback" name="callback" value=""/>
-                <input type="hidden" id="authType" name="authType" value=""/>
-                <input type="hidden" id="signature" name="signature" value=""/>
-                <input type="hidden" id="timestamp" name="timestamp" value=""/>
-            </form>
-            <div class="login_right"><br>
+				<input type="hidden" id="callback" name="callback" value=""/>
+				<input type="hidden" id="authType" name="authType" value=""/>
+				<input type="hidden" id="signature" name="signature" value=""/>
+				<input type="hidden" id="timestamp" name="timestamp" value=""/>
+			</form>
+			<div class="login_right"><br>
 				<img th:src="@{static/img/login_ico.png}" width="130" height="120"/><br>
-            	<div>已有帐号</div>
-            	<a  th:href="@{'/redirLogin'}"  class="registor_now">直接登录</a>
-            </div>
-        </div>
-    </div>
+				<div>已有帐号</div>
+				<a  th:href="@{'/redirLogin'}"  class="registor_now">直接登录</a>
+			</div>
+		</div>
+	</div>
 </main>
 
 <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
@@ -99,20 +104,72 @@ var youdao_conv_id = 271546;
 </script>
 
 <script type="text/javascript">
-	// $(document).ready(function(e) {
-	// 	$('.register_radio li input').click(function (e) {
-	// 		$(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
-	// 	});
-	// });
+	$(document).ready(function(e) {
+		$('.register_radio li input').click(function (e) {
+			$(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
+		});
+	});
 
+	function keyLogin(){
+		if (event.keyCode === 13){
+			document.getElementById("submit").click();
+		}
+	};
+
+	function Displayprotocol() {
+		swal({
+			title: "无限创想用户协议",
+			text: "<p style='text-align: left;font-weight: bold;'>尊敬的用户：</p>" +
+					"<p style='text-align: left;text-indent:2em;'>在您成为无限创想注册用户，使用无限创想提供的服务之前，" +
+					"请您认真阅读本《无限创想用户协议》，更好的了解我们所提供的服务以及您享有的权利和承担的义务。您一旦开始使用无限创想服务，" +
+					"即表示您已经确认并接受了本文件中的全部条款。</p>" +
+					"<p style='text-align: left;text-indent:2em;'>本用户协议（以下简称“协议”）系由您与无限创想公司" +
+					"（以下简称“无限创想公司”或“我们”）（注册地址：西北农林科技大学，联系电话：15835717261）就无限创想公司提供的无限创想人才招聘软件" +
+					"（以下简称“本平台”或“无限创想人才招聘”）所订立的相关权利义务规范。无限创想人才招聘软件是一个严肃纯净的招聘服务软件，" +
+					"请您在注册、使用无限创想人才招聘之前，认真阅读以下条款：</p>" +
+					"<p style='text-align: left;font-weight: bold;'>一、注册条款的接受</p>" +
+					"<p style='text-align: left;text-indent:2em;'>一旦您在注册页面点击或勾选“我已阅读并同意《无限创想用户协议》”相关内容后，" +
+					"即表示您已经阅读并且同意与无限创想公司达成协议，成为无限创想人才招聘的用户，并接受本用户协议中的全部注册条款和无限创想人才招聘软件" +
+					"内公布的其他专项协议或规则的所有条款的约束。</p>" +
+					"<p style='text-align: left;font-weight: bold;'>二、用户注册条件</p>" +
+					"<p style='text-align: left;text-indent:2em;'>1.申请注册成为无限创想的用户应同时满足下列全部条件：" +
+					"在注册之日以及此后使用无限创想服务期间必须以招聘或求职为目的；在注册之日必须年满16周岁以上。</p>" +
+					"<p style='text-align: left;text-indent:2em;'>2.为了更好地享有无限创想网络信息发布平台服务，用户应遵守" +
+					"无限创想人才招聘软件注册机制的要求，向无限创想提供本人真实、正确、最新及完整的资料；如注册为招聘主体的用户，" +
+					"应保证及时更新本人提供的“单位名称、职务或岗位信息、企业邮箱”等相关授权信息及材料，并确保前述授权的真实性；" +
+					"用户应保证其职务行为，包括但不限于发布招聘信息、与求职者沟通等均在使用本平台期间持续有效；" +
+					"通过认证的用户应保持其招聘帐号与对应的授权单位具有唯一性。</p>" +
+					"<p style='text-align: left;text-indent:2em;'>3.若用户提供任何错误、不实或不完整的资料，或无限创想有理由怀疑资料为错误、" +
+					"不实或不完整及违反用户注册条款的，或无限创想有理由怀疑其用户资料、言行等有悖于“严肃纯净的招聘APP”主题或违反《无限创想用户协议》的，" +
+					"无限创想有权修改用户的注册昵称、个人说明、发布的信息等，或暂停或终止该用户使用其帐号，或暂停或终止提供无限创提供的全部或部分服务。</p>" +
+					"<p style='text-align: left;text-indent:2em;'>4.若用户故意提供虚假的身份信息、公司信息进行注册，" +
+					"发布虚假招聘信息或者求职信息的，视为严重违反本用户协议，无限创想有权暂停或终止该用户账号并停止提供服务。" +
+					"虚假注册、发布虚假信息给无限创想造成经济、名誉等任何损失的，无限创想将追究该用户的法律责任。</p>" +
+					"<p style='text-align: left;font-weight: bold;'>三、用户帐号、密码及安全</p>" +
+					"<p style='text-align: left;text-indent:2em;'>1.在完成用户注册程序之后，用户将收到一个密码及帐号。" +
+					"用户有义务保证密码及帐号的安全。用户应对利用该密码及帐号所进行的一切活动负全部责任，包括任何经由无限创想上载、张贴、" +
+					"发送电子邮件或任何其它方式传送的资讯、资料、文字、软件、音乐、音讯、照片、图形、视讯、信息或其它资料，" +
+					"无论系公开还是私下传送，均由内容提供者承担责任。</p>" +
+					"<p style='text-align: left;text-indent:2em;'>2.用户的密码或帐号遭到未获授权的使用，或者发生其它任何安全问题时，" +
+					"用户应立即通知无限创想。由于用户使用不当或者其他非因无限创想导致的帐号、密码泄漏，进而导致其资料、信息泄漏的，由用户承担其不利后果。</p>" +
+					"<p style='text-align: left;text-indent:2em;'>3.用户不得将账号主动告知第三方或提供给第三方进行使用，" +
+					"例如提供给第三方进行代为购买无限创想服务等。如因此造成用户隐私泄露或无限创想平台损失的，用户应当承担相应的责任。</p>" +
+					"",
+			html: true,
+			confirmButtonColor: "#011d56",
+			customClass: "sweetAlert"
+		});
+	}
+	
 	function formCheck() {
 		var email = document.getElementById('email').value;
 		var password = document.getElementById('password').value;
 		var confirmpassword = document.getElementById('confirmpassword').value;
 		var type = document.getElementsByName('type');
+		var checkbox = $("#checkbox").is(':checked');
 		if (email === ""){
 			swal({
-				title: "邮箱不能为空！！",
+				title: "邮箱不能为空",
 				text: "请输入邮箱",
 				type: "error",
 				confirmButtonColor: "#011d56"
@@ -121,7 +178,7 @@ var youdao_conv_id = 271546;
 		}
 		if (email.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) === -1){
 			swal({
-				title: "邮箱格式错误！！",
+				title: "邮箱格式错误",
 				text: "请输入有效的邮箱地址，如：youxiang@163.com",
 				type: "error",
 				confirmButtonColor: "#011d56"
@@ -130,40 +187,98 @@ var youdao_conv_id = 271546;
 		}
 		if (password === ""){
 			swal({
-				title: "密码不能为空！！",
+				title: "密码不能为空",
 				text: "请输入密码",
 				type: "error",
 				confirmButtonColor: "#011d56"
 			});
 			return false;
 		}
-		var flag;
+		if (password.search(/^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/) === -1){
+			swal({
+				title: "密码格式错误",
+				text: "密码必须为6位以上字母/数字/符号组合，至少包含一个字母和数字",
+				type: "error",
+				confirmButtonColor: "#011d56"
+			});
+			return false;
+		}
+		if (password !== confirmpassword){
+			swal({
+				title: "两次输入的密码不一致",
+				text: "请重新输入",
+				type: "error",
+				confirmButtonColor: "#011d56"
+			});
+			return false;
+		}
+		var flag = false;
 		for (var i = 0; i < type.length; i++) {
 			if (type[i].checked) {
 				flag = true;
 			}
 		}
-		if(flag == true){
-			if (password != confirmpassword){
-				swal({
-					title: "两次输入的密码不一致！！",
-					text: "请重新输入",
-					type: "error",
-					confirmButtonColor: "#011d56"
-				});
-				return false;
-			}
-			return true;
+		if(flag === false){
+			swal({
+				title: "未选择注册身份",
+				text: "请选择注册身份：企业/个人",
+				type: "error",
+				confirmButtonColor: "#011d56"
+			});
+			return false;
 		}
-		swal({
-			title: "未选择注册身份！！",
-			text: "请选择注册身份：企业/个人",
-			type: "error",
-			confirmButtonColor: "#011d56"
-		});
-		return false;
+		if(checkbox === false){
+			swal({
+				title: "未同意用户协议",
+				text: "请阅读并同意《无限创想用户协议》",
+				type: "error",
+				confirmButtonColor: "#011d56"
+			});
+			return false;
+		}
+		return true;
 	}
 </script>
-
+<script type="text/javascript">
+	$("#submit").click(function () {
+		if(formCheck() === true){
+			var email = $("#email").val();
+			var password = $("#password").val();
+			var type = $('input[name="type"]:checked').val();
+			var url = "toregister";
+			var data = {
+				"email": email,
+				"password": password,
+				"type": type
+			}
+			$.post(url, data, function (result) {
+				if(result != null && result.code === 200){
+					if(type === "0"){
+						window.location.href="companyRegisterInfo";
+					}
+					else {
+						window.location.href="home";
+					}
+				}
+				else if(result != null && result.code === 0){
+					swal({
+						title: "该邮箱已被注册",
+						text: "该邮箱已被注册，请使用其他邮箱",
+						type: "error",
+						confirmButtonColor: "#011d56"
+					});
+				}
+				else {
+					swal({
+						title: "注册失败",
+						text: "请确认输入内容并重试",
+						type: "error",
+						confirmButtonColor: "#011d56"
+					});
+				}
+			})
+		}
+	})
+</script>
 </body>
 </html>
