@@ -104,20 +104,6 @@
 	padding:0 20px;
 	margin-left:20px;}
 
-#detail{
-	width: 1200px;
-
-}
-
-#detail-left{
-	width: 900px;
-	float: left;
-}
-#detail-center{
-	width: 50px;
-	float: left;
-}
-#detail-right{
-	width: 200px;
-	float: left;
-}
+#detail{ width: 1260px; background-color:#f0f0f0; margin:35px auto 0; padding-bottom:20px;}
+#detail-left{ width:800px; float:left; padding:20px 50px 20px 50px;}
+#detail-right{ width:300px; float:left; margin-left:20px; padding:20px;}
