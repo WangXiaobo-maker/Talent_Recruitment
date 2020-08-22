@@ -128,16 +128,16 @@
                 <img th:src="@{static/img/logo_home.png}" width="229" height="43"/>
             </a>
             <ul class="reset" id="navheader">
-                <li><a href="index.html">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
+                <li><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
                 <li><a href="companylist.html">职位搜索</a></li>
-                <li class="current"><a href="h/toForum.html" target="_blank">职业资讯</a></li>
+                <li class="current"><a th:href="@{'/redirNews'}" >职业资讯</a></li>
                 <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
             </ul>
             <ul class="loginTop">
-                <li><a th:href="@{'/RedirLogin'}" rel="nofollow">登录</a></li>
+                <li><a th:href="@{'/redirLogin'}" rel="nofollow">登录</a></li>
                 <li>|</li>
-                <li><a th:href="@{'/RedirRegister'}" rel="nofollow">注册</a></li>
+                <li><a th:href="@{'/redirRegister'}" rel="nofollow">注册</a></li>
             </ul>
         </div>
     </div><!-- end #header -->
@@ -176,29 +176,28 @@
                 <em id="next" class="arrow">&gt;</em>
             </div><!--/#main_banner-->
 
+
             <div id="hotList" style="background-color:#fff;">
-                <ul class="hot_pos reset" id="news_context_ul">
-                    <li class="clearfix" id="news_context_li">
+                <ul class="hot_pos reset" id="news_context_ul" th:each="news : ${NewsListByDate}">
+                    <li class="clearfix" id="news_context_li" th:each="entry : ${news}">
                         <div class="news_context_div_l">
                             <div class="mb10">
-                                <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/logo_white.png}" alt=""></a>
+                                <a href="h/jobs/147822.html" target="_blank"><img width="300px" height="170px" th:src="@{'static/img/' + ${news.NewsImg}}" ></a>
                             </div>
 
                         </div>
                         <div class="news_context_div_r">
                             <div class="mb10 recompany">
-                                <a href="h/c/399.html" target="_blank" style="font-size: 23px">专访|坚守无人区的后浪巡护员们</a>
+                                <a th:href="@{/redirNewsContent(NewsID=${news.NewsID})}" target="_blank" style="font-size: 23px" th:text="${news.NewsTitle}"></a>
                             </div>
                             <div>
-                                <p>
-                                    “90后”巡护员才仁多杰依然清晰地记得自己在可可西里第一次巡山的经历。
-                                    冬天里的可可西里，温度降至零下40度，刚刚下过小雪的道路泥泞，原定十天的巡护计划被迫延长，可能20天甚至更长。
-                                    面临物资不足，才仁多
-                                </p>
+                                <p th:text="${news.NewsContent}" style="display: -webkit-box;
+                                -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+                                text-indent: 2em"></p>
                             </div>
 
                             <div>
-                                <p style="color: #9f9f9f">2020-07-31</p>
+                                <p style="color: #9f9f9f" th:text="${news.NewsPublishDate}"></p>
                             </div>
                         </div>
                     </li>

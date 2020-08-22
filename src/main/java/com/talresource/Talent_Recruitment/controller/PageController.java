@@ -13,7 +13,7 @@ public class PageController {
 
     @RequestMapping("/index")
     public String index(){
-        return "home";
+        return "index";
     }
 
     @RequestMapping("/home")
@@ -22,6 +22,12 @@ public class PageController {
 
         return "home";
     }
+
+    @RequestMapping("/test3")
+    public String test3(){
+        return "test3";
+    }
+
 
     @RequestMapping("/redirLogin")
     public String login(){

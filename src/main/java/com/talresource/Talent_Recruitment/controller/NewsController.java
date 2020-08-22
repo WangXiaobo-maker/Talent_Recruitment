@@ -24,8 +24,10 @@ public class NewsController {
     }
 
     @RequestMapping("/newsTest3")
-    public String newsTest3(ModelMap map){
-        return "newsContentTest";
+    public String newsTest3(ModelMap map, String NewsContent){
+        newsService.insertNewsTest(NewsContent);
+        map.addAttribute("testMessage", newsService.selectNewsByID(7));
+        return "test3";
     }
 
     @RequestMapping("/redirNews")
@@ -35,7 +37,10 @@ public class NewsController {
     }
 
     @RequestMapping("/redirNewsContent")
-    public String redirNewsContent(){
-        return "newContent";
+    public String redirNewsContent(String NewsID, ModelMap map){
+        int NewsID1 = Integer.parseInt(NewsID);
+        map.addAttribute("News", newsService.selectNewsByID(NewsID1));
+        map.addAttribute("NewsListByHeat", newsService.selectNewsByHeat());
+        return "newsContent";
     }
 }

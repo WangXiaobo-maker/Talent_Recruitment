@@ -11,6 +11,16 @@ public class News {
     private String NewsContent;
     private String NewsImg;
 
+    @Override
+    public String toString() {
+        return "News{" +
+                "NewsID=" + NewsID +
+                ", NewsTitle='" + NewsTitle + '\'' +
+                ", NewsPublishDate='" + NewsPublishDate + '\'' +
+                ", NewsContent='" + NewsContent + '\'' +
+                ", NewsImg='" + NewsImg + '\'' +
+                '}';
+    }
 
     public String getNewsImg() {
         return NewsImg;

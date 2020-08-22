@@ -164,6 +164,15 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 .job_hot_div_l{float:left; width:80px; height: 80px;margin-top: 30px;padding-left: 20px;}
 .job_hot_div_r{float:left; width:200px; height: 100px;margin-left: 10px;text-align:left;}
 
+/*首页热门*/
+.job_ul{text-align: center;height: 100px;width:101%}
+.job_li{display: inline-block;width:300px;}
+.job_hot_l{float:left;width:300px;}
+.job_hot_m{float:left;width:300px;margin-left:20px;}
+.job_hot_r{float:left;width:300px;margin-left:20px;}
+.job_hot_div_l{float:left;width:80px; height: 80px;margin-top: 20px}
+.job_hot_div_r{float:left;width:120px; height: 100px;margin-left: 20px;text-align:left;}
+
 ul.hotabbing{font-size: 0;background:#f6f6f6;}
 ul.hotabbing li{cursor:pointer;display:inline-block;*display:inline;*zoom:1;padding:7px 20px;font-size:18px;color:#999;}
 ul.hotabbing li.current{border-top:3px solid #89b0de;background:#fff;color:#333;}
@@ -687,7 +696,7 @@ ul.c_jobs{margin:-10px 0 0 0;*margin:-50px 0 0 -20px;}
 .c_tags td a{color:#0d9572; text-decoration:underline;}
 /*add by nancy*/
 .solveWrap td a{color:#0d9572; text-decoration:underline; overflow: hidden;white-space: nowrap;
-text-overflow: ellipsis; display:block; width:190px;}
+    text-overflow: ellipsis; display:block; width:190px;}
 /*add end by nancy*/
 .editTags input[type="text"]{ width:160px; height:30px;font-size:18px;margin:0;}
 .select_tags{ background:#fff url(img/s_drop.png) 160px center no-repeat; height:40px; line-height:40px; font-size:18px;border:2px solid #f1f1f1 !important; width:184px;text-align:left;color:#777; padding:0 35px 0 5px;}

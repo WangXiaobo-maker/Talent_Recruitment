@@ -13,7 +13,7 @@ public interface JobDao {
     @Select("select * from job")
     List<Job> selectAllJob();
 
-    @Select("select * from job order by JobPublishDate DESC limit 5")
+    @Select("select * from job order by JobPublishDate DESC limit 9")
     List<Job> selectJobByHeat();
 
     @Select("select * from job where (JobName like CONCAT('%',#{JobName},'%')) " +

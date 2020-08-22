@@ -23,4 +23,16 @@ public class NewsService {
         return newsDao.selectNewsByDate();
     }
 
+    public News selectNewsByID(int NewsID){
+        return newsDao.selectNewsByID(NewsID);
+    }
+
+    public List<News> selectNewsByHeat(){
+        return newsDao.selectNewsByHeat();
+    }
+
+    public void insertNewsTest(String NewsContent){
+        newsDao.insertNewsTest(NewsContent);
+    }
+
 }
