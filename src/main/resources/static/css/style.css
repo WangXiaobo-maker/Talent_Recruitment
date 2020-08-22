@@ -154,13 +154,23 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 .news_context_div_l{float:left;width:300px;height: 200px;}
 .news_context_div_r{float:right;width:600px;margin-left:30px;height: 200px;text-align:left;}
 
+/*首页热门*/
+.job_ul{text-align: center;height: 100px;width:101%}
+.job_li{display: inline-block;width:32%}
+.job_hot_l{float:left;width:316px;height: 130px;background-color: #fff;padding: 10px;}
+.job_hot{float:left;width:336px;height: 130px;background-color: #fff;}
+.job_hot_m{float:left;width:300px;margin-left:20px;}
+.job_hot_r{float:left;width:300px;margin-left:20px;}
+.job_hot_div_l{float:left; width:80px; height: 80px;margin-top: 30px;padding-left: 20px;}
+.job_hot_div_r{float:left; width:200px; height: 100px;margin-left: 10px;text-align:left;}
+
 ul.hotabbing{font-size: 0;background:#f6f6f6;}
 ul.hotabbing li{cursor:pointer;display:inline-block;*display:inline;*zoom:1;padding:7px 20px;font-size:18px;color:#999;}
 ul.hotabbing li.current{border-top:3px solid #89b0de;background:#fff;color:#333;}
 ul.hotabbing li.recommendNew{position:relative;}
 ul.hotabbing li i{width: 23px;height: 15px;position:absolute;right:-10px; top:-5px;background:url(img/icon_new.png) left top no-repeat;}
 ul.hot_pos{clear:both;}
-.hot_pos li{padding:13px; line-height:25px; position:relative; }
+.hot_pos li{/*padding:13px;*/margin-right: 5px; line-height:25px; position:relative; }
 ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.png) left top no-repeat;left:0;}
 .apply{ position: absolute; right:0; background:#ff9a10; color:#fff; font-size:16px;  line-height:25px; cursor:pointer; }
 .apply:hover{ background-color:#d9830e;}
