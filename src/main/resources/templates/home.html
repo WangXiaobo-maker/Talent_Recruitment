@@ -141,68 +141,72 @@
             </ul>
         </div>
     </div><!-- end #header -->
-    <div id="container">
-        <div class="content">
-            <div id="search_box">
-                <form id="searchForm" name="searchForm" action="list.html" method="get">
-                    <ul id="searchType">
-                        <li data-searchtype="1" class="type_selected">职位</li>
-                        <li data-searchtype="4">公司</li>
-                    </ul>
-                    <div class="searchtype_arrow"></div>
-                    <input type="text" id="search_input" name="kd" tabindex="1" value="" placeholder="请输入职位名称，如：产品经理"/>
-                    <input type="hidden" name="spc" id="spcInput" value=""/>
-                    <input type="hidden" name="pl" id="plInput" value=""/>
-                    <input type="hidden" name="gj" id="gjInput" value=""/>
-                    <input type="hidden" name="xl" id="xlInput" value=""/>
-                    <input type="hidden" name="yx" id="yxInput" value=""/>
-                    <input type="hidden" name="gx" id="gxInput" value=""/>
-                    <input type="hidden" name="st" id="stInput" value=""/>
-                    <input type="hidden" name="labelWords" id="labelWords" value=""/>
-                    <input type="hidden" name="lc" id="lc" value=""/>
-                    <input type="hidden" name="workAddress" id="workAddress" value=""/>
-                    <input type="hidden" name="city" id="cityInput" value=""/>
-                    <input type="submit" id="search_button" value="搜索"/>
-                </form>
-            </div>
-            <style>
-                .ui-autocomplete {
-                    width: 488px;
-                    background: #fafafa !important;
-                    position: relative;
-                    z-index: 10;
-                    border: 2px solid #89b0de;
-                }
+    <div class="content"  style="background:url(//img01.51jobcdn.com/im/mkt/zn/train/20200710/bg/EDU-7.jpg?1594366349) center no-repeat">
+        <div id="block">
 
-                .ui-autocomplete-category {
-                    font-size: 16px;
-                    color: #999;
-                    width: 50px;
-                    position: absolute;
-                    z-index: 11;
-                    right: 0px; /*top: 6px; */
-                    text-align: center;
-                    border-top: 1px dashed #e5e5e5;
-                    padding: 5px 0;
-                }
+        </div>
+        <div id="search_box" align="center">
+            <form id="searchForm" name="searchForm" action="list.html" method="get">
+                <ul id="searchType">
+                    <li data-searchtype="1" class="type_selected">职位</li>
+                    <li data-searchtype="4">公司</li>
+                </ul>
+                <div class="searchtype_arrow"></div>
+                <input type="text" id="search_input" name="kd" tabindex="1" value="" style="width:759px; height:23px;" placeholder="请输入职位名称，如：产品经理"/>
+                <input type="hidden" name="spc" id="spcInput" value=""/>
+                <input type="hidden" name="pl" id="plInput" value=""/>
+                <input type="hidden" name="gj" id="gjInput" value=""/>
+                <input type="hidden" name="xl" id="xlInput" value=""/>
+                <input type="hidden" name="yx" id="yxInput" value=""/>
+                <input type="hidden" name="gx" id="gxInput" value=""/>
+                <input type="hidden" name="st" id="stInput" value=""/>
+                <input type="hidden" name="labelWords" id="labelWords" value=""/>
+                <input type="hidden" name="lc" id="lc" value=""/>
+                <input type="hidden" name="workAddress" id="workAddress" value=""/>
+                <input type="hidden" name="city" id="cityInput" value=""/>
+                <input type="submit" id="search_button" value="搜索"/>
+            </form>
+        </div>
+        <style>
+            .ui-autocomplete {
+                width: 488px;
+                background: #fafafa !important;
+                position: relative;
+                z-index: 10;
+                border: 2px solid #89b0de;
+            }
 
-                .ui-menu-item {
-                    *width: 439px;
-                    vertical-align: middle;
-                    position: relative;
-                    margin: 0px;
-                    margin-right: 50px !important;
-                    background: #fff;
-                    border-right: 1px dashed #ededed;
-                }
+            .ui-autocomplete-category {
+                font-size: 16px;
+                color: #999;
+                width: 50px;
+                position: absolute;
+                z-index: 11;
+                right: 0px; /*top: 6px; */
+                text-align: center;
+                border-top: 1px dashed #e5e5e5;
+                padding: 5px 0;
+            }
 
-                .ui-menu-item a {
-                    display: block;
-                    overflow: hidden;
-                }
-            </style>
-            <script type="text/javascript" th:src="@{static/js/search.min.js}"></script>
-            <dl class="hotSearch">
+            .ui-menu-item {
+                *width: 439px;
+                vertical-align: middle;
+                position: relative;
+                margin: 0px;
+                margin-right: 50px !important;
+                background: #fff;
+                border-right: 1px dashed #ededed;
+            }
+
+            .ui-menu-item a {
+                display: block;
+                overflow: hidden;
+            }
+
+        </style>
+        <script type="text/javascript" th:src="@{static/js/search.min.js}"></script>
+        <div id="hot">
+            <dl class="hotSearch" align="center">
                 <dt>热门搜索：</dt>
                 <dd><a href="list.htmlJava?labelWords=label&city=">Java</a></dd>
                 <dd><a href="list.htmlPHP?labelWords=label&city=">PHP</a></dd>
@@ -215,6 +219,10 @@
                 <dd><a href="list.htmlBD?labelWords=label&city=">BD</a></dd>
                 <dd><a href="list.html?gx=实习&city=">实习</a></dd>
             </dl>
+        </div>
+    </div>
+
+    <div id="container">
             <div id="home_banner">
                 <div id="banner_list" style="left:0px;">
                     <img th:src="@{static/img/gg1.png}" alt="">
