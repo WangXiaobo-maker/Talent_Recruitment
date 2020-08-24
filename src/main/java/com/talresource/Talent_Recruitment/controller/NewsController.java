@@ -43,4 +43,18 @@ public class NewsController {
         map.addAttribute("NewsListByHeat", newsService.selectNewsByHeat());
         return "newsContent";
     }
+
+    @RequestMapping("/redirNewsEdit")
+    public String redirNewsEdit(){
+        return "newsPublish";
+    }
+
+    @RequestMapping("/newsEdit")
+    public String newsEdit(String NewsTitle, String NewsPublishDate, String NewsContent){
+        if (newsService.insertNews(NewsTitle, NewsPublishDate, NewsContent))
+            return "newsPublish";
+        else
+            return "error";
+    }
+
 }

@@ -26,4 +26,8 @@ public interface NewsDao {
     @Insert("insert into news(NewsContent)" +
             "value(#{NewsContent})")
     void insertNewsTest(@Param("NewsContent") String NewsContent);
+
+    @Insert("insert into news(NewsTitle ,NewsPublishDate, NewsContent) value(#{NewsTitle} ,#{NewsPublishDate}, #{NewsContent})")
+    boolean insertNews(@Param("NewsTitle") String NewsTitle, @Param("NewsPublishDate") String NewsPublishDate,
+                       @Param("NewsContent") String NewsContent);
 }
