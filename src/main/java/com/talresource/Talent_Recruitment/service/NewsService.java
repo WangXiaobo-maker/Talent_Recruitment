@@ -35,4 +35,8 @@ public class NewsService {
         newsDao.insertNewsTest(NewsContent);
     }
 
+    public boolean insertNews(String NewsTitle, String NewsPublishDate, String NewsContent){
+        return newsDao.insertNews(NewsTitle, NewsPublishDate, NewsContent);
+    }
+
 }
