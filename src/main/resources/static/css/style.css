@@ -166,15 +166,6 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 .job_hot_div_l{float:left; width:80px; height: 80px;margin-top: 30px;padding-left: 20px;}
 .job_hot_div_r{float:left; width:200px; height: 100px;margin-left: 10px;text-align:left;}
 
-/*首页热门*/
-.job_ul{text-align: center;height: 100px;width:101%}
-.job_li{display: inline-block;width:300px;}
-.job_hot_l{float:left;width:300px;}
-.job_hot_m{float:left;width:300px;margin-left:20px;}
-.job_hot_r{float:left;width:300px;margin-left:20px;}
-.job_hot_div_l{float:left;width:80px; height: 80px;margin-top: 20px}
-.job_hot_div_r{float:left;width:120px; height: 100px;margin-left: 20px;text-align:left;}
-
 ul.hotabbing{font-size: 0;background:#f6f6f6;}
 ul.hotabbing li{cursor:pointer;display:inline-block;*display:inline;*zoom:1;padding:7px 20px;font-size:18px;color:#999;}
 ul.hotabbing li.current{border-top:3px solid #89b0de;background:#fff;color:#333;}
