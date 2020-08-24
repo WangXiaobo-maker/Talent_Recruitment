@@ -124,7 +124,7 @@
 <div id="body" style="background-color:#f0f0f0;">
     <div id="header">
         <div class="wrapper">
-            <a href="index.html" class="logo">
+            <a href="home" class="logo">
                 <img th:src="@{static/img/logo_home.png}" width="229" height="43"/>
             </a>
             <ul class="reset" id="navheader">
@@ -134,10 +134,20 @@
                 <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
             </ul>
-            <ul class="loginTop">
+            <ul class="loginTop" th:if="${session.user == null && session.company == null}">
                 <li><a th:href="@{'/redirLogin'}" rel="nofollow">登录</a></li>
                 <li>|</li>
                 <li><a th:href="@{'/redirRegister'}" rel="nofollow">注册</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.user != null}">
+                <li><a th:text="${session.user.getNickName()}"></a></li>
+                <li>|</li>
+                <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.company != null}">
+                <li><a>企业用户</a></li>
+                <li>|</li>
+                <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
             </ul>
         </div>
     </div><!-- end #header -->
@@ -156,7 +166,6 @@
 
     <div id="container">
         <div class="content">
-
             <div id="home_banner1">
                 <div id="banner_list" style="left:0px;">
                     <img th:src="@{static/img/gg1.png}" alt="">
@@ -207,53 +216,6 @@
             </div>
 
             <div class="clear"></div>
-            <div id="linkbox">
-                <dl>
-                    <dt>友情链接</dt>
-                    <dd>
-                        <a href="http://www.zhuqu.com/" target="_blank">住趣家居网</a> <span>|</span>
-                        <a href="http://www.woshipm.com/" target="_blank">人人都是产品经理</a> <span>|</span>
-                        <a href="http://zaodula.com/" target="_blank">互联网er的早读课</a> <span>|</span>
-                        <a href="http://lieyunwang.com/" target="_blank">猎云网</a> <span>|</span>
-                        <a href="http://www.ucloud.cn/" target="_blank">UCloud</a> <span>|</span>
-                        <a href="http://www.iconfans.com/" target="_blank">iconfans</a> <span>|</span>
-                        <a href="http://www.html5dw.com/" target="_blank">html5梦工厂</a> <span>|</span>
-                        <a href="http://www.sykong.com/" target="_blank">手游那点事</a>
-
-                        <a href="http://www.php100.com/" target="_blank">php100</a> <span>|</span>
-                        <a href="http://www.uehtml.com/" target="_blank">uehtml</a> <span>|</span>
-                        <a href="http://www.w3cplus.com/" target="_blank">W3CPlus</a> <span>|</span>
-                        <a href="http://www.boxui.com/" target="_blank">盒子UI</a> <span>|</span>
-                        <a href="http://www.uimaker.com/" target="_blank">uimaker</a> <span>|</span>
-                        <a href="http://www.yixieshi.com/" target="_blank">互联网的一些事</a> <span>|</span>
-                        <a href="http://www.chuanke.com/" target="_blank">传课网</a> <span>|</span>
-                        <a href="http://www.eoe.cn/" target="_blank">安卓开发</a> <span>|</span>
-                        <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a>
-                        <a href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
-                        <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
-                        <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
-                        <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
-                        <a href="http://www.zhongchou.cn" target="_blank">众筹网</a><span>|</span>
-                        <a href="http://www.marklol.com/" target="_blank">马克互联网</a><span>|</span>
-                        <a href="http://www.chaohuhr.com/" target="_blank">巢湖英才网</a>
-
-                        <a href="http://www.zhubajie.com/" target="_blank">创意服务外包</a><span>|</span>
-                        <a href="http://www.thinkphp.cn/" target="_blank">thinkphp</a><span>|</span>
-                        <a href="http://www.chuangxinpai.com/" target="_blank">创新派</a><span>|</span>
-
-                        <a href="http://w3cshare.com/" target="_blank">W3Cshare</a><span>|</span>
-                        <a href="http://www.518lunwen.cn/" target="_blank">论文发表网</a><span>|</span>
-                        <a href="http://www.199it.com" target="_blank">199it</a><span>|</span>
-
-                        <a href="http://www.shichangbu.com" target="_blank">市场部网</a><span>|</span>
-                        <a href="http://www.meitu.com/" target="_blank">美图公司</a><span>|</span>
-                        <a href="https://www.teambition.com/" target="_blank">Teambition</a>
-                        <a href="http://oupeng.com/" target="_blank">欧朋浏览器</a><span>|</span>
-                        <a href="http://iwebad.com/" target="_blank">网络广告人社区</a>
-                        <a href="h/af/flink.html" target="_blank" class="more">更多</a>
-                    </dd>
-                </dl>
-            </div>
         </div>
         <input type="hidden" value="" name="userid" id="userid"/>
         <!-- <div id="qrSide"><a></a></div> -->
@@ -303,17 +265,43 @@
         <script type="text/javascript" th:src="@{static/js/count.js}"></script>
         <div class="clear"></div>
         <input type="hidden" id="resubmitToken" value=""/>
-        <a id="backtop" title="回到顶部" rel="nofollow"></a>
+        <a id="backtop" style="margin-left:1100px;" title="回到顶部" rel="nofollow"></a>
     </div><!-- end #container -->
 </div><!-- end #body -->
 <div id="footer">
-    <div class="wrapper">
-        <a href="h/about.html" target="_blank" rel="nofollow">联系我们</a>
-        <a href="h/af/zhaopin.html" target="_blank">互联网公司导航</a>
-        <a href="http://e.weibo.com/lagou720" target="_blank" rel="nofollow">拉勾微博</a>
-        <a class="footer_qr" href="javascript:void(0)" rel="nofollow">拉勾微信<i></i></a>
-        <div class="copyright">&copy;2013-2014 Lagou <a target="_blank"
-                                                        href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action">京ICP备14023790号-2</a>
+    <div id="linkbox">
+        <dl>
+            <dt style="font-size:20px;">友情链接</dt>
+            <dd>
+                <a href="http://www.zhuqu.com/" target="_blank">住趣家居网</a> <span>|</span>
+                <a href="http://www.woshipm.com/" target="_blank">人人都是产品经理</a> <span>|</span>
+                <a href="http://zaodula.com/" target="_blank">互联网er的早读课</a> <span>|</span>
+                <a href="http://lieyunwang.com/" target="_blank">猎云网</a> <span>|</span>
+                <a href="http://www.ucloud.cn/" target="_blank">UCloud</a> <span>|</span>
+                <a href="http://www.iconfans.com/" target="_blank">iconfans</a> <span>|</span>
+                <a href="http://www.html5dw.com/" target="_blank">html5梦工厂</a> <span>|</span>
+                <a href="http://www.sykong.com/" target="_blank">手游那点事</a>
+
+                <a href="http://www.php100.com/" target="_blank">php100</a> <span>|</span>
+                <a href="http://www.uehtml.com/" target="_blank">uehtml</a> <span>|</span>
+                <a href="http://www.w3cplus.com/" target="_blank">W3CPlus</a> <span>|</span>
+                <a href="http://www.boxui.com/" target="_blank">盒子UI</a> <span>|</span>
+                <a href="http://www.uimaker.com/" target="_blank">uimaker</a> <span>|</span>
+                <a href="http://www.yixieshi.com/" target="_blank">互联网的一些事</a> <span>|</span>
+                <a href="http://www.chuanke.com/" target="_blank">传课网</a> <span>|</span>
+                <a href="http://www.eoe.cn/" target="_blank">安卓开发</a> <span>|</span>
+                <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a>
+                <a href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
+                <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
+                <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
+                <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
+
+            </dd>
+        </dl>
+    </div>
+    <div class="dt-footer-bottom">
+        <div class="dt-footer-info">
+            <span class="dt-footer-icp">Copyright ©2020 wuxiancx.com 版权所有</span>
         </div>
     </div>
 </div>

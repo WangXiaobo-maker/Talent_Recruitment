@@ -14,7 +14,7 @@
     </header>
     <form th:action="@{'/newsTest3'}" method="post">
         <div id="test-editormd">
-                <textarea style="display:none;" name="NewsContent" th:text="${testMessage}">[TOC]
+                <textarea style="display:none;" name="NewsContent" th:text="${testMessage}" >[TOC]
 
 #### Disabled options
 
@@ -56,8 +56,6 @@
 <script type="text/javascript" th:inline="javascript">
     var testEditor;
 
-
-
     $(function() {
         testEditor = editormd("test-editormd", {
             width   : "90%",
@@ -72,6 +70,7 @@
             sequenceDiagram : true,  // 默认不解析
             path    : [[@{static/editormd/lib/}]]
     });
+        testEditor.unwatch();
 
         /*
         // or

@@ -9,6 +9,41 @@
     <!-- end 云适配 -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>无限创想人才招聘平台</title>
+
+
+
+
+    <link rel="stylesheet" href="../static/editormd/css/editormd.css" th:href="@{static/editormd/css/editormd.css}"/>
+    <link rel="stylesheet" href="../plugins/editor.md/css/editormd.preview.css" th:href="@{static/editormd/css/editormd.preview.css}"/>
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+    <script th:src="@{static/editormd/examples/js/jquery.min.js}"></script>
+    <script src="../plugins/editor.md/lib/marked.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
+    <script src="../plugins/editor.md/lib/prettify.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
+
+    <script src="../plugins/editor.md/lib/raphael.min.js" th:src="@{static/editormd/lib/raphael.min.js}"></script>
+    <script src="../plugins/editor.md/lib/underscore.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
+    <script src="../plugins/editor.md/lib/sequence-diagram.min.js" th:src="@{static/editormd/lib/underscore.min.js}"></script>
+    <script src="../plugins/editor.md/lib/flowchart.min.js" th:src="@{static/editormd/lib/flowchart.min.js}"></script>
+    <script src="../plugins/editor.md/lib/jquery.flowchart.min.js" th:src="@{static/editormd/lib/jquery.flowchart.min.js}"></script>
+    <script src="../plugins/editor.md/editormd.js" th:src="@{static/editormd/editormd.js}"></script>
+
+    <script type="text/javascript" th:inline="javascript">
+        var testEditormdView;
+        $(function() {
+            testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+                htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                emoji           : true,
+                taskList        : true,
+                tex             : true,  // 默认不解析
+                flowChart       : true,  // 默认不解析
+                sequenceDiagram : true,  // 默认不解析
+            });
+        });
+
+    </script>
+
+
+
     <!-- <div class="web_root"  style="display:none">h</div> -->
     <script type="text/javascript">
         var ctx = "h";
@@ -41,7 +76,7 @@
 <div id="body" style="background-color:#f0f0f0;">
     <div id="header">
         <div class="wrapper">
-            <a href="index.html" class="logo">
+            <a href="home" class="logo">
                 <img th:src="@{static/img/logo_home.png}" width="229" height="43"/>
             </a>
             <ul class="reset" id="navheader">
@@ -51,10 +86,20 @@
                 <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
             </ul>
-            <ul class="loginTop">
+            <ul class="loginTop" th:if="${session.user == null && session.company == null}">
                 <li><a th:href="@{'/redirLogin'}" rel="nofollow">登录</a></li>
                 <li>|</li>
                 <li><a th:href="@{'/redirRegister'}" rel="nofollow">注册</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.user != null}">
+                <li><a th:text="${session.user.getNickName()}"></a></li>
+                <li>|</li>
+                <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.company != null}">
+                <li><a>企业用户</a></li>
+                <li>|</li>
+                <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
             </ul>
         </div>
     </div><!-- end #header -->
@@ -64,13 +109,47 @@
             <div class="detail inner">
                 <div class="detail-main">
                     <div class="detail-content">
-                        <h1 class="title" th:text="${News.NewsTitle}" >专访 | 坚守无人区的后浪巡护员们</h1>
-                        <div class="info"><p class="author">管理员发布<em>·</em><span class="time" th:text="${News.NewsPublishDate}"></span>
+                        <h1 class="title" th:text="${News.NewsTitle}">专访 | 坚守无人区的后浪巡护员们</h1>
+                        <div class="info"><p class="author">管理员发布<em>·</em><span class="time" th:text="${News.NewsPublishDate}">2020-07-31</span>
                             <p class="tags">公司动态</p></p></div>
                     </div>
                 </div>
                 <div id="content">
-                    <p style="text-align: left;" th:text="${News.NewsContent}"></p>
+                    <div id="test-editormd-view">
+                        <textarea style="display:none;" name="NewsContent" th:text="${News.NewsContent}" >[TOC]
+
+#### Disabled options
+
+- TeX (Based on KaTeX);
+- Emoji;
+- Task lists;
+- HTML tags decode;
+- Flowchart and Sequence Diagram;
+
+#### Editor.md directory
+
+    editor.md/
+            lib/
+            css/
+            scss/
+            tests/
+            fonts/
+            images/
+            plugins/
+            examples/
+            languages/
+            editormd.js
+            ...
+
+```html
+&lt;!-- English --&gt;
+&lt;script src="../dist/js/languages/en.js"&gt;&lt;/script&gt;
+
+&lt;!-- 繁體中文 --&gt;
+&lt;script src="../dist/js/languages/zh-tw.js"&gt;&lt;/script&gt;
+```
+</textarea>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,39 +158,16 @@
                 <h3 class="title" style="font-family:微软雅黑; font-size:18px;"><b><img th:src="@{static/img/news_hot.png}" style="height:20px;">&nbsp;&nbsp;热门新闻</b></h3>
 
 
-
-                <ul class="hot_pos reset" id="news_context_ul" th:each="news : ${NewsListByDate}">
-                    <li class="clearfix" id="news_context_li" th:each="entry : ${news}">
-                        <div class="news_context_div_l">
-                            <div class="mb10">
-                                <a href="h/jobs/147822.html" target="_blank"><img width="300px" height="170px" th:src="@{'static/img/' + ${news.NewsImg}}" ></a>
-                            </div>
-
-                        </div>
-                        <div class="news_context_div_r">
-                            <div class="mb10 recompany">
-                                <a th:href="@{/redirNewsContent(NewsID=${news.NewsID})}" target="_blank" style="font-size: 23px" th:text="${news.NewsTitle}"></a>
-                            </div>
-                            <p th:utext="${news.NewsContent}">
-<!--                                <p th:text="${news.NewsContent}" style="display: -webkit-box;-->
-<!--                                -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;-->
-<!--                                text-indent: 2em"></p>-->
-                            </p>
-
-                            <div>
-                                <p style="color: #9f9f9f" th:text="${news.NewsPublishDate}"></p>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!--<a href="list.html" class="btn fr" target="_blank">查看更多</a>-->
+                <ul th:each="news : ${newsList}">
+                    <li th:each="entry : ${news}" th:text="${news.NewsTitle}" ></li>
+                    <li th:each="entry : ${news}" > <img th:src="@{'static/img/' + ${news.NewsImg}}" > </li>
+                    <li th:each="entry : ${news}" th:text="${news.NewsContent}"></li>
                 </ul>
 
 
-
-                <ul th:each="news : ${NewsListByHeat}">
-                    <li><p class="text-title"><a href="/article/68.html" ka="article-detail-hot1" th:each="entry : ${news}" th:text="${news.NewsTitle}"></a></p>
-                        <div class="info"><p class="author"><span class="time" th:text="${news.NewsPublishDate}"></span></p></div>
+                <ul >
+                    <li th:each="news : ${NewsListByHeat}"><p class="text-title"><a href="/article/68.html" ka="article-detail-hot1" th:text="${news.NewsTitle}">年薪25万美元的工作在找你</a></p>
+                        <div class="info"><p class="author"><span class="time" th:text="${news.NewsPublishDate}">2020-05-06</span></p></div>
                     </li>
                 </ul>
             </div>
@@ -123,53 +179,7 @@
 
 
         <div class="clear"></div>
-        <div id="linkbox">
-            <dl>
-                <dt>友情链接</dt>
-                <dd>
-                    <a href="http://www.zhuqu.com/" target="_blank">住趣家居网</a> <span>|</span>
-                    <a href="http://www.woshipm.com/" target="_blank">人人都是产品经理</a> <span>|</span>
-                    <a href="http://zaodula.com/" target="_blank">互联网er的早读课</a> <span>|</span>
-                    <a href="http://lieyunwang.com/" target="_blank">猎云网</a> <span>|</span>
-                    <a href="http://www.ucloud.cn/" target="_blank">UCloud</a> <span>|</span>
-                    <a href="http://www.iconfans.com/" target="_blank">iconfans</a> <span>|</span>
-                    <a href="http://www.html5dw.com/" target="_blank">html5梦工厂</a> <span>|</span>
-                    <a href="http://www.sykong.com/" target="_blank">手游那点事</a>
 
-                    <a href="http://www.php100.com/" target="_blank">php100</a> <span>|</span>
-                    <a href="http://www.uehtml.com/" target="_blank">uehtml</a> <span>|</span>
-                    <a href="http://www.w3cplus.com/" target="_blank">W3CPlus</a> <span>|</span>
-                    <a href="http://www.boxui.com/" target="_blank">盒子UI</a> <span>|</span>
-                    <a href="http://www.uimaker.com/" target="_blank">uimaker</a> <span>|</span>
-                    <a href="http://www.yixieshi.com/" target="_blank">互联网的一些事</a> <span>|</span>
-                    <a href="http://www.chuanke.com/" target="_blank">传课网</a> <span>|</span>
-                    <a href="http://www.eoe.cn/" target="_blank">安卓开发</a> <span>|</span>
-                    <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a>
-                    <a href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
-                    <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
-                    <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
-                    <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
-                    <a href="http://www.zhongchou.cn" target="_blank">众筹网</a><span>|</span>
-                    <a href="http://www.marklol.com/" target="_blank">马克互联网</a><span>|</span>
-                    <a href="http://www.chaohuhr.com/" target="_blank">巢湖英才网</a>
-
-                    <a href="http://www.zhubajie.com/" target="_blank">创意服务外包</a><span>|</span>
-                    <a href="http://www.thinkphp.cn/" target="_blank">thinkphp</a><span>|</span>
-                    <a href="http://www.chuangxinpai.com/" target="_blank">创新派</a><span>|</span>
-
-                    <a href="http://w3cshare.com/" target="_blank">W3Cshare</a><span>|</span>
-                    <a href="http://www.518lunwen.cn/" target="_blank">论文发表网</a><span>|</span>
-                    <a href="http://www.199it.com" target="_blank">199it</a><span>|</span>
-
-                    <a href="http://www.shichangbu.com" target="_blank">市场部网</a><span>|</span>
-                    <a href="http://www.meitu.com/" target="_blank">美图公司</a><span>|</span>
-                    <a href="https://www.teambition.com/" target="_blank">Teambition</a>
-                    <a href="http://oupeng.com/" target="_blank">欧朋浏览器</a><span>|</span>
-                    <a href="http://iwebad.com/" target="_blank">网络广告人社区</a>
-                    <a href="h/af/flink.html" target="_blank" class="more">更多</a>
-                </dd>
-            </dl>
-        </div>
     </div>
     <input type="hidden" value="" name="userid" id="userid"/>
     <!-- <div id="qrSide"><a></a></div> -->
@@ -223,22 +233,47 @@
 </div><!-- end #container -->
 </div><!-- end #body -->
 <div id="footer">
-    <div class="wrapper">
-        <a href="h/about.html" target="_blank" rel="nofollow">联系我们</a>
-        <a href="h/af/zhaopin.html" target="_blank">互联网公司导航</a>
-        <a href="http://e.weibo.com/lagou720" target="_blank" rel="nofollow">拉勾微博</a>
-        <a class="footer_qr" href="javascript:void(0)" rel="nofollow">拉勾微信<i></i></a>
-        <div class="copyright">&copy;2013-2014 Lagou <a target="_blank"
-                                                        href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action">京ICP备14023790号-2</a>
+    <div id="linkbox">
+        <dl>
+            <dt style="font-size:20px;">友情链接</dt>
+            <dd>
+                <a href="http://www.zhuqu.com/" target="_blank">住趣家居网</a> <span>|</span>
+                <a href="http://www.woshipm.com/" target="_blank">人人都是产品经理</a> <span>|</span>
+                <a href="http://zaodula.com/" target="_blank">互联网er的早读课</a> <span>|</span>
+                <a href="http://lieyunwang.com/" target="_blank">猎云网</a> <span>|</span>
+                <a href="http://www.ucloud.cn/" target="_blank">UCloud</a> <span>|</span>
+                <a href="http://www.iconfans.com/" target="_blank">iconfans</a> <span>|</span>
+                <a href="http://www.html5dw.com/" target="_blank">html5梦工厂</a> <span>|</span>
+                <a href="http://www.sykong.com/" target="_blank">手游那点事</a>
+
+                <a href="http://www.php100.com/" target="_blank">php100</a> <span>|</span>
+                <a href="http://www.uehtml.com/" target="_blank">uehtml</a> <span>|</span>
+                <a href="http://www.w3cplus.com/" target="_blank">W3CPlus</a> <span>|</span>
+                <a href="http://www.boxui.com/" target="_blank">盒子UI</a> <span>|</span>
+                <a href="http://www.uimaker.com/" target="_blank">uimaker</a> <span>|</span>
+                <a href="http://www.yixieshi.com/" target="_blank">互联网的一些事</a> <span>|</span>
+                <a href="http://www.chuanke.com/" target="_blank">传课网</a> <span>|</span>
+                <a href="http://www.eoe.cn/" target="_blank">安卓开发</a> <span>|</span>
+                <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a>
+                <a href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
+                <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
+                <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
+                <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
+
+            </dd>
+        </dl>
+    </div>
+    <div class="dt-footer-bottom">
+        <div class="dt-footer-info">
+            <span class="dt-footer-icp">Copyright ©2020 wuxiancx.com 版权所有</span>
         </div>
     </div>
-</div>
 
-<script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
-<script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
 
-<!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
- -->
+    <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
+     -->
 
 </body>
 </html>
