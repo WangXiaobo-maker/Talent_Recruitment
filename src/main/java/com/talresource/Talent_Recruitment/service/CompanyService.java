@@ -39,4 +39,9 @@ public class CompanyService {
                           String CompanyAddress, int CompanyID){
         return companyDao.updateById(CompanyName, CompanyPhone, CompanyLegalPerson, CompanyAddress, CompanyID);
     }
+
+    public int updateById2(String CompanyNature, String CompanyType, String CompanyCulture,
+                          String CompanyInfo, int CompanyID){
+        return companyDao.updateById2(CompanyNature, CompanyType, CompanyCulture, CompanyInfo, CompanyID);
+    }
 }

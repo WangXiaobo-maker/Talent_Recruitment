@@ -26,4 +26,10 @@ public interface CompanyDao {
     int updateById(@Param("CompanyName") String CompanyName,@Param("CompanyPhone") String CompanyPhone,
                    @Param("CompanyLegalPerson") String CompanyLegalPerson,@Param("CompanyAddress") String CompanyAddress,
                    @Param("CompanyID") int CompanyID);
+
+    @Update("update company set CompanyNature=#{CompanyNature},CompanyType=#{CompanyType}," +
+            "CompanyCulture=#{CompanyCulture},CompanyInfo=#{CompanyInfo} where CompanyID=#{CompanyID}")
+    int updateById2(@Param("CompanyNature") String CompanyNature,@Param("CompanyType") String CompanyType,
+                   @Param("CompanyCulture") String CompanyCulture,@Param("CompanyInfo") String CompanyInfo,
+                   @Param("CompanyID") int CompanyID);
 }

@@ -62,29 +62,31 @@
                             <div class="s_form">
                                 <p>欢迎你！完善下方的企业信息，无限创想帮你找好员工！</p>
                                 <p style="font-size:20px;"><img th:src="@{static/img/register_company.png}" style="width:30px;">
-                                    公司名称：（必填）</h3><input type="text" style="width:600px;" id="subCompanyName" name="CompanyName"
-                                                         placeholder="请输入公司名称" value=""/>
+                                    <font style="font-weight: bold;">公司名称：（必填）</font>
+                                    <input type="text" style="width:600px;" id="subCompanyName" name="CompanyName"
+                                           placeholder="请输入公司名称" value=""/>
                                 </p>
                                 <p style="font-size:20px;"><img th:src="@{static/img/register_phone.png}" style="width:30px;">
-                                    联系电话：（必填）</h3><input type="text" style="width:600px;" id="subCompanyPhone" name="CompanyPhone"
-                                                         placeholder="请输入联系电话" value=""/>
+                                    <font style="font-weight: bold;">联系电话：（必填）</font>
+                                    <input type="text" style="width:600px;" id="subCompanyPhone" name="CompanyPhone"
+                                           placeholder="请输入联系电话" value=""/>
                                 </p>
                                 <p style="font-size:20px;"><img th:src="@{static/img/register_mail.png}" style="width:30px;">
-                                    注册法人：（必填）</h3><input type="text" style="width:600px;" id="subCompanyLegalPerson" name="CompanyLegalPerson"
-                                                         placeholder="请输入法人姓名" value=""/>
+                                    <font style="font-weight: bold;">注册法人：（必填）</font>
+                                    <input type="text" style="width:600px;" id="subCompanyLegalPerson" name="CompanyLegalPerson"
+                                           placeholder="请输入法人姓名" value=""/>
                                 </p>
                                 <p style="font-size:20px;"><img th:src="@{static/img/register_add.png}" style="width:30px;">
-                                    公司地址：（必填）</h3><input type="text" style="width:600px;" id="subCompanyAddress" name="CompanyAddress"
-                                                         placeholder="请输入具体地址" value=""/>
+                                    <font style="font-weight: bold;">公司地址：（必填）</font>
+                                    <input type="text" style="width:600px;" id="subCompanyAddress" name="CompanyAddress"
+                                           placeholder="请输入具体地址" value=""/>
                                 </p>
-                                <!--<input type="submit" class="btn_big" id="subSubmit" value="提 交"/>-->
-                                <a class="btn_big" id="subSubmit" title="提 交" onclick="javascript:return formCheck()">提 交</a>
-                                <a href="javascript:history.go(-1);" class="btn_cancel" style="float: right;margin-left:0;margin-right: 50px;">取 消</a>
+                                <a href="javascript:history.go(-1);" class="btn_cancel">取 消</a>
+                                <a class="btn_big" id="subSubmit" title="提 交" onclick="javascript:return formCheck()" style="float: right;margin-left:0;margin-right: 60px;">下 一 步</a>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -206,7 +208,7 @@
                 }
                 $.post(url, data, function (result) {
                     if(result != null && result.code === 200){
-                        window.location.href="home";
+                        window.location.href="companyRegisterInfo2";
                     }
                     else if(result != null && result.code === 0){
                         swal({

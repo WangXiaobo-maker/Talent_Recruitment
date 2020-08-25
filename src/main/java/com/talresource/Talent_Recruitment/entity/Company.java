@@ -10,35 +10,48 @@ public class Company {
     private String CompanyName;
     private String CompanyPhone;
     private String CompanyEmail;
+    private String CompanyLegalPerson;
     private String CompanyAddress;
     private String CompanyCulture;
     private String CompanyInfo;
+    private String CompanyNature;
+    private String CompanyType;
     private int CompanyHeat;
 
     public Company() {
     }
 
     public Company(String CPassword, String companyName, String companyPhone, String companyEmail,
-                   String companyAddress, String companyCulture, String companyInfo) {
+                   String companyLegalPerson, String companyAddress, String companyCulture,
+                   String companyInfo, String companyNature, String companyType, int companyHeat) {
         this.CPassword = CPassword;
         CompanyName = companyName;
         CompanyPhone = companyPhone;
         CompanyEmail = companyEmail;
+        CompanyLegalPerson = companyLegalPerson;
         CompanyAddress = companyAddress;
         CompanyCulture = companyCulture;
         CompanyInfo = companyInfo;
+        CompanyNature = companyNature;
+        CompanyType = companyType;
+        CompanyHeat = companyHeat;
     }
 
-    public Company(int companyID, String CPassword, String companyName, String companyPhone,
-                   String companyEmail, String companyAddress, String companyCulture, String companyInfo) {
+    public Company(int companyID, String CPassword, String companyName, String companyPhone, String companyEmail,
+                   String companyLegalPerson, String companyAddress, String companyCulture, String companyInfo,
+                   String companyNature, String companyType, int companyHeat) {
         CompanyID = companyID;
         this.CPassword = CPassword;
         CompanyName = companyName;
         CompanyPhone = companyPhone;
         CompanyEmail = companyEmail;
+        CompanyLegalPerson = companyLegalPerson;
         CompanyAddress = companyAddress;
         CompanyCulture = companyCulture;
         CompanyInfo = companyInfo;
+        CompanyNature = companyNature;
+        CompanyType = companyType;
+        CompanyHeat = companyHeat;
     }
 
     public int getCompanyHeat() {
@@ -113,6 +126,30 @@ public class Company {
         CompanyInfo = companyInfo;
     }
 
+    public String getCompanyLegalPerson() {
+        return CompanyLegalPerson;
+    }
+
+    public void setCompanyLegalPerson(String companyLegalPerson) {
+        CompanyLegalPerson = companyLegalPerson;
+    }
+
+    public String getCompanyNature() {
+        return CompanyNature;
+    }
+
+    public void setCompanyNature(String companyNature) {
+        CompanyNature = companyNature;
+    }
+
+    public String getCompanyType() {
+        return CompanyType;
+    }
+
+    public void setCompanyType(String companyType) {
+        CompanyType = companyType;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
@@ -121,9 +158,13 @@ public class Company {
                 ", CompanyName='" + CompanyName + '\'' +
                 ", CompanyPhone='" + CompanyPhone + '\'' +
                 ", CompanyEmail='" + CompanyEmail + '\'' +
+                ", CompanyLegalPerson='" + CompanyLegalPerson + '\'' +
                 ", CompanyAddress='" + CompanyAddress + '\'' +
                 ", CompanyCulture='" + CompanyCulture + '\'' +
                 ", CompanyInfo='" + CompanyInfo + '\'' +
+                ", CompanyNature='" + CompanyNature + '\'' +
+                ", CompanyType='" + CompanyType + '\'' +
+                ", CompanyHeat=" + CompanyHeat +
                 '}';
     }
 }

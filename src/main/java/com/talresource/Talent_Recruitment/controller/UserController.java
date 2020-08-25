@@ -52,9 +52,17 @@ public class UserController {
                 result.getMessage().equals("注册成功"))
             return "userRegisterInfo";
         if(result.getData() != null &&
+                result.getData().getClass() == User.class &&
+                result.getMessage().equals("提交成功"))
+            return "redirect:home";
+        if(result.getData() != null &&
                 result.getData().getClass() == Company.class &&
                 result.getMessage().equals("注册成功"))
             return "redirect:companyRegisterInfo";
+        if(result.getData() != null &&
+                result.getData().getClass() == Company.class &&
+                result.getMessage().equals("下一步成功"))
+            return "redirect:companyRegisterInfo2";
         return "redirect:redirRegister";
     }
 
