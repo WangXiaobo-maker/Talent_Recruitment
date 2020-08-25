@@ -10,6 +10,7 @@ public class News {
     private String NewsPublishDate;
     private String NewsContent;
     private String NewsImg;
+    private String NewsBriefInfo;
 
     @Override
     public String toString() {
@@ -20,6 +21,14 @@ public class News {
                 ", NewsContent='" + NewsContent + '\'' +
                 ", NewsImg='" + NewsImg + '\'' +
                 '}';
+    }
+
+    public String getNewsBriefInfo() {
+        return NewsBriefInfo;
+    }
+
+    public void setNewsBriefInfo(String newsBriefInfo) {
+        NewsBriefInfo = newsBriefInfo;
     }
 
     public String getNewsImg() {

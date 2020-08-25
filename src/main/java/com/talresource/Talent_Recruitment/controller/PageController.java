@@ -1,5 +1,6 @@
 package com.talresource.Talent_Recruitment.controller;
 
+import com.talresource.Talent_Recruitment.service.CompanyService;
 import com.talresource.Talent_Recruitment.service.JobService;
 import com.talresource.Talent_Recruitment.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class PageController {
     @Autowired
     private NewsService newsService;
 
+    @Autowired
+    private CompanyService companyService;
+
     @RequestMapping("/index")
     public String index(){
         return "index";
@@ -23,7 +27,7 @@ public class PageController {
     @RequestMapping("/home")
     public String home(ModelMap map){
         map.addAttribute("JobListByHeat", jobService.selectJobByHeat());
-
+        map.addAttribute("CompanyListByHeat", companyService.selectCompanyByHeat());
         return "home";
     }
 
@@ -35,7 +39,6 @@ public class PageController {
     @RequestMapping("/test4")
     public String test4(ModelMap map){
         map.addAttribute("testMessage", newsService.selectNewsByID(7));
-
         return "test4";
     }
 }

@@ -3,6 +3,8 @@ package com.talresource.Talent_Recruitment.dao;
 import com.talresource.Talent_Recruitment.entity.Company;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface CompanyDao {
 
@@ -32,4 +34,8 @@ public interface CompanyDao {
     int updateById2(@Param("CompanyNature") String CompanyNature,@Param("CompanyType") String CompanyType,
                    @Param("CompanyCulture") String CompanyCulture,@Param("CompanyInfo") String CompanyInfo,
                    @Param("CompanyID") int CompanyID);
+
+
+    @Select("select * from company order by CompanyHeat DESC limit 9")
+    List<Company> selectCompanyByHeat();
 }

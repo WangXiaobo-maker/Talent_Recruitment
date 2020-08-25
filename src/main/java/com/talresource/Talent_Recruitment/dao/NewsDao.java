@@ -1,10 +1,7 @@
 package com.talresource.Talent_Recruitment.dao;
 
 import com.talresource.Talent_Recruitment.entity.News;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -30,4 +27,10 @@ public interface NewsDao {
     @Insert("insert into news(NewsTitle ,NewsPublishDate, NewsContent) value(#{NewsTitle} ,#{NewsPublishDate}, #{NewsContent})")
     boolean insertNews(@Param("NewsTitle") String NewsTitle, @Param("NewsPublishDate") String NewsPublishDate,
                        @Param("NewsContent") String NewsContent);
+
+    @Update("update news set NewsTitle=#{NewsTitle}, NewsPublishDate=#{NewsPublishDate}," +
+            "NewsContent=#{NewsContent} where NewsID=#{NewsID}")
+    boolean updateNewsById(@Param("NewsTitle") String NewsTitle, @Param("NewsPublishDate") String NewsPublishDate,
+                   @Param("NewsContent") String NewsContent, @Param("NewsID") int NewsID);
+
 }

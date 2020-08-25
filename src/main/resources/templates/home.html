@@ -142,12 +142,12 @@
             <ul class="loginTop" th:if="${session.user != null}">
                 <li><a th:text="${session.user.getNickName()}"></a></li>
                 <li>|</li>
-                <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
+                <li><a th:href="@{'/logout'}" rel="nofollow" onclick="javascript:return logoutC();">注销</a></li>
             </ul>
             <ul class="loginTop" th:if="${session.company != null}">
                 <li><a>企业用户</a></li>
                 <li>|</li>
-                <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
+                <li><a th:href="@{'/logout'}" rel="nofollow" onclick="javascript:return logoutC();">注销</a></li>
             </ul>
         </div>
     </div><!-- end #header -->
@@ -259,197 +259,25 @@
                 <img th:src="@{static/img/home_hotJob.png}" alt="">
                 <br>
             </div>
+
+
             <ul class="hot_pos reset" style="padding: 0px;width: 1050px;">
-                <li class="job_li">
+                <li class="job_li" th:each="job : ${JobListByHeat}">
                     <div class="job_hot_l">
                         <div class="mb10 job_hot_div_l">
                             <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
                         </div>
                         <div class="mb10 job_hot_div_r">
                             <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
+                                <p style="font-size: 20px;margin-top: 14px; display: -webkit-box;
+                                -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;" th:text="${job.JobName}">
                                 </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
+                                <p style="font-size: 15px;margin-top: 3px;" >
+                                    <span th:text="${job.JobCity}"></span>|&nbsp;
+                                    <span th:text="${job.JobExperience}"></span>|&nbsp;
+                                    <span th:text="${job.JobEduDegree}"></span>
                                 </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
+                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;" th:text="${job.JobSalary}"></p>
                             </a>
 
                         </div>
@@ -517,202 +345,24 @@
                 <br>
             </div>
             <ul class="hot_pos reset" style="padding: 0px;width: 1050px;">
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
+                <li class="job_li" th:each="company : ${CompanyListByHeat}">
+                    <div class="job_hot_l" style="text-align: center; height: 200px; ">
+                        <a href="h/jobs/147822.html" target="_blank">
+                            <img th:src="@{static/img/hwawei.png}" alt="">
 
-                        </div>
+                            <p style="font-size: 20px;margin-top: 14px; display: -webkit-box;-webkit-box-orient: vertical;
+                                 -webkit-line-clamp: 1; overflow: hidden;" th:text="${company.CompanyName}">
+                            </p>
+                            <p style="font-size: 15px;margin-top: 3px;" >
+                                <span th:text="${company.CompanyNature}"></span>|&nbsp;
+                                <span th:text="${company.CompanyType}"></span>
+                            </p>
+                            <p style="border: solid 1px #e3e7ed; margin: 0 auto; text-align: center; width: 130px"  >个热招职位</p>
+                        </a>
+
                     </div>
                 </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
 
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="job_li">
-                    <div class="job_hot_l">
-                        <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
-                        </div>
-                        <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
-                                <p style="font-size: 20px;margin-top: 14px;">
-                                    Java开发工程师
-                                </p>
-                                <p style="font-size: 15px;margin-top: 3px;">
-                                    西安|3-5年|本科
-                                </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;">
-                                    20-35K
-                                </p>
-                            </a>
-
-                        </div>
-                    </div>
-                </li>
             </ul>
 
             <div>
@@ -890,7 +540,16 @@
 
 <script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
 <script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
+<script>
+    function logoutC() {
+        if (confirm("确认注销吗？")){
+            return true;
+        }
+        return false;
 
+
+    }
+</script>
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
  -->
 

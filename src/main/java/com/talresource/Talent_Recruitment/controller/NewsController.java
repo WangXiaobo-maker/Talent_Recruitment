@@ -12,10 +12,10 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
-    @RequestMapping("/newsTest1")
-    public String newsTest1(ModelMap map){
-        map.addAttribute("newsList", newsService.selectAllNews());
-        return "test2";
+    @RequestMapping("/allNews")
+    public String allNews(ModelMap map){
+        map.addAttribute("NewsList", newsService.selectAllNews());
+        return "newsList";
     }
 
     @RequestMapping("/newsTest2")
@@ -45,16 +45,27 @@ public class NewsController {
     }
 
     @RequestMapping("/redirNewsEdit")
-    public String redirNewsEdit(){
+    public String redirNewsEdit(ModelMap map, int NewsID){
+        map.addAttribute("News", newsService.selectNewsByID(NewsID));
         return "newsPublish";
     }
 
     @RequestMapping("/newsEdit")
-    public String newsEdit(String NewsTitle, String NewsPublishDate, String NewsContent){
-        if (newsService.insertNews(NewsTitle, NewsPublishDate, NewsContent))
-            return "newsPublish";
-        else
-            return "error";
+    public String newsEdit(ModelMap map, String NewsTitle, String NewsPublishDate, String NewsContent, String NewsID){
+        int NewsID1 = Integer.parseInt(NewsID);
+        map.addAttribute("News", newsService.selectNewsByID(NewsID1));
+        map.addAttribute("NewsList", newsService.selectAllNews());
+
+        if (NewsID1 == 0){
+            if (newsService.insertNews(NewsTitle, NewsPublishDate, NewsContent)){
+                return "newsList";
+            }
+        }else {
+            if (newsService.updateNewsById(NewsTitle, NewsPublishDate, NewsContent, NewsID1)){
+                return "newsList";
+            }
+        }
+        return "error";
     }
 
 }

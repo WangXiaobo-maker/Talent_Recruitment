@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class CompanyService {
 
@@ -43,5 +45,9 @@ public class CompanyService {
     public int updateById2(String CompanyNature, String CompanyType, String CompanyCulture,
                           String CompanyInfo, int CompanyID){
         return companyDao.updateById2(CompanyNature, CompanyType, CompanyCulture, CompanyInfo, CompanyID);
+    }
+
+    public List<Company> selectCompanyByHeat(){
+        return companyDao.selectCompanyByHeat();
     }
 }

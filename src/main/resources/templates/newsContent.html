@@ -12,7 +12,6 @@
 
 
 
-
     <link rel="stylesheet" href="../static/editormd/css/editormd.css" th:href="@{static/editormd/css/editormd.css}"/>
     <link rel="stylesheet" href="../plugins/editor.md/css/editormd.preview.css" th:href="@{static/editormd/css/editormd.preview.css}"/>
     <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
@@ -116,39 +115,8 @@
                 </div>
                 <div id="content">
                     <div id="test-editormd-view">
-                        <textarea style="display:none;" name="NewsContent" th:text="${News.NewsContent}" >[TOC]
-
-#### Disabled options
-
-- TeX (Based on KaTeX);
-- Emoji;
-- Task lists;
-- HTML tags decode;
-- Flowchart and Sequence Diagram;
-
-#### Editor.md directory
-
-    editor.md/
-            lib/
-            css/
-            scss/
-            tests/
-            fonts/
-            images/
-            plugins/
-            examples/
-            languages/
-            editormd.js
-            ...
-
-```html
-&lt;!-- English --&gt;
-&lt;script src="../dist/js/languages/en.js"&gt;&lt;/script&gt;
-
-&lt;!-- 繁體中文 --&gt;
-&lt;script src="../dist/js/languages/zh-tw.js"&gt;&lt;/script&gt;
-```
-</textarea>
+                        <textarea style="display:none; font-size: 100px" name="NewsContent" th:text="${News.NewsContent}" >
+                        </textarea>
                     </div>
                 </div>
             </div>
@@ -157,16 +125,8 @@
             <div class="hot-news">
                 <h3 class="title" style="font-family:微软雅黑; font-size:18px;"><b><img th:src="@{static/img/news_hot.png}" style="height:20px;">&nbsp;&nbsp;热门新闻</b></h3>
 
-
-                <ul th:each="news : ${newsList}">
-                    <li th:each="entry : ${news}" th:text="${news.NewsTitle}" ></li>
-                    <li th:each="entry : ${news}" > <img th:src="@{'static/img/' + ${news.NewsImg}}" > </li>
-                    <li th:each="entry : ${news}" th:text="${news.NewsContent}"></li>
-                </ul>
-
-
                 <ul >
-                    <li th:each="news : ${NewsListByHeat}"><p class="text-title"><a href="/article/68.html" ka="article-detail-hot1" th:text="${news.NewsTitle}">年薪25万美元的工作在找你</a></p>
+                    <li th:each="news : ${NewsListByHeat}"><p class="text-title"><a th:href="@{/redirNewsContent(NewsID=${news.NewsID})}" ka="article-detail-hot1" th:text="${news.NewsTitle}">年薪25万美元的工作在找你</a></p>
                         <div class="info"><p class="author"><span class="time" th:text="${news.NewsPublishDate}">2020-05-06</span></p></div>
                     </li>
                 </ul>
@@ -182,47 +142,8 @@
 
     </div>
     <input type="hidden" value="" name="userid" id="userid"/>
-    <!-- <div id="qrSide"><a></a></div> -->
     <!--  -->
 
-    <!-- <div id="loginToolBar">
-        <div>
-            <em></em>
-            <img src="style/images/footbar_logo.png" width="138" height="45" />
-            <span class="companycount"></span>
-            <span class="positioncount"></span>
-            <a href="#loginPop" class="bar_login inline" title="登录"><i></i></a>
-            <div class="right">
-                <a href="register.html?from=index_footerbar" onclick="_hmt.push(['_trackEvent', 'button', 'click', 'register'])" class="bar_register" id="bar_register" target="_blank"><i></i></a>
-            </div>
-            <input type="hidden" id="cc" value="16002" />
-            <input type="hidden" id="cp" value="96531" />
-        </div>
-    </div>
-     -->
-    <!-------------------------------------弹窗lightbox  ----------------------------------------->
-    <div style="display:none;">
-        <!-- 登录框 -->
-        <div id="loginPop" class="popup" style="height:240px;">
-            <form id="loginForm">
-                <input type="text" id="email" name="email" tabindex="1" placeholder="请输入登录邮箱地址"/>
-                <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码"/>
-                <span class="error" style="display:none;" id="beError"></span>
-                <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked"
-                                                        name="autoLogin"/> 记住我</label>
-                <a href="h/reset.html" class="fr">忘记密码？</a>
-                <input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录"/>
-            </form>
-            <div class="login_right">
-                <div>还没有拉勾帐号？</div>
-                <a href="register.html" class="registor_now">立即注册</a>
-                <div class="login_others">使用以下帐号直接登录:</div>
-                <a href="h/ologin/auth/sina.html" target="_blank" id="icon_wb" class="icon_wb"
-                   title="使用新浪微博帐号登录"></a>
-                <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank" title="使用腾讯QQ帐号登录"></a>
-            </div>
-        </div><!--/#loginPop-->
-    </div>
     <!------------------------------------- end ----------------------------------------->
     <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>

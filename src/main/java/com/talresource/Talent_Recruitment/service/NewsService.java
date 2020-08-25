@@ -39,4 +39,8 @@ public class NewsService {
         return newsDao.insertNews(NewsTitle, NewsPublishDate, NewsContent);
     }
 
+    public boolean updateNewsById(String NewsTitle, String NewsPublishDate, String NewsContent, int NewsID){
+        return newsDao.updateNewsById(NewsTitle, NewsPublishDate, NewsContent, NewsID);
+    }
+
 }

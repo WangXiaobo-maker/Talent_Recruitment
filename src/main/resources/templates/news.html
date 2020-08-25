@@ -191,16 +191,16 @@
                     <li class="clearfix" id="news_context_li" th:each="entry : ${news}">
                         <div class="news_context_div_l">
                             <div class="mb10">
-                                <a href="h/jobs/147822.html" target="_blank"><img width="300px" height="170px" th:src="@{'static/img/' + ${news.NewsImg}}" ></a>
+                                <a href="h/jobs/147822.html" target="_blank"><img width="300px" height="170px" th:src="@{'static/img/newsImg/' + ${news.NewsImg}}" ></a>
                             </div>
 
                         </div>
                         <div class="news_context_div_r">
                             <div class="mb10 recompany">
-                                <a th:href="@{/redirNewsContent(NewsID=${news.NewsID})}" target="_blank" style="font-size: 23px" th:text="${news.NewsTitle}"></a>
+                                <a th:href="@{/redirNewsContent(NewsID=${news.NewsID})}" style="font-size: 23px" th:text="${news.NewsTitle}"></a>
                             </div>
                             <div>
-                                <p th:text="${news.NewsContent}" style="display: -webkit-box;
+                                <p th:text="${news.NewsBriefInfo}" style="display: -webkit-box;
                                 -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
                                 text-indent: 2em"></p>
                             </div>

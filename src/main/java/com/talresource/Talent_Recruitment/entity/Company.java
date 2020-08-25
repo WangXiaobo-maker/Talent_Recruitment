@@ -17,6 +17,7 @@ public class Company {
     private String CompanyNature;
     private String CompanyType;
     private int CompanyHeat;
+    private int CompanyJobNum;
 
     public Company() {
     }
@@ -52,6 +53,14 @@ public class Company {
         CompanyNature = companyNature;
         CompanyType = companyType;
         CompanyHeat = companyHeat;
+    }
+
+    public int getCompanyJobNum() {
+        return CompanyJobNum;
+    }
+
+    public void setCompanyJobNum(int companyJobNum) {
+        CompanyJobNum = companyJobNum;
     }
 
     public int getCompanyHeat() {
