@@ -21,14 +21,14 @@ public class PageController {
 
     @RequestMapping("/index")
     public String index(){
-        return "index";
+        return "jobSearch";
     }
 
     @RequestMapping("/home")
     public String home(ModelMap map){
         map.addAttribute("JobListByHeat", jobService.selectJobByHeat());
         map.addAttribute("CompanyListByHeat", companyService.selectCompanyByHeat());
-        return "home";
+        return "jobSearch";
     }
 
     @RequestMapping("/test3")
