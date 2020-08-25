@@ -11,6 +11,24 @@ public class Comment {
     private String CommentPublishDate;
     private String CommentContent;
 
+    public Comment() {
+    }
+
+    public Comment(int postID, int userID, String commentPublishDate, String commentContent) {
+        PostID = postID;
+        UserID = userID;
+        CommentPublishDate = commentPublishDate;
+        CommentContent = commentContent;
+    }
+
+    public Comment(int commentID, int postID, int userID, String commentPublishDate, String commentContent) {
+        CommentID = commentID;
+        PostID = postID;
+        UserID = userID;
+        CommentPublishDate = commentPublishDate;
+        CommentContent = commentContent;
+    }
+
     public int getCommentID() {
         return CommentID;
     }
@@ -49,5 +67,16 @@ public class Comment {
 
     public void setCommentContent(String commentContent) {
         CommentContent = commentContent;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "CommentID=" + CommentID +
+                ", PostID=" + PostID +
+                ", UserID=" + UserID +
+                ", CommentPublishDate='" + CommentPublishDate + '\'' +
+                ", CommentContent='" + CommentContent + '\'' +
+                '}';
     }
 }

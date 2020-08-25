@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -77,11 +76,11 @@ public class CompanyController {
                                         String CompanyLegalPerson, String CompanyAddress){
         Result result = null;
         Company company = companyService.queryByName(CompanyName);
-        if(company != null){
+        Company company1 = (Company)session.getAttribute("company");
+        if(company != null && company.getCompanyID() != company1.getCompanyID()){
             result = new Result(Config.STATUS_FAILURE,"该公司已被注册");
         }
         else {
-            Company company1 = (Company)session.getAttribute("company");
             int CompanyID = company1.getCompanyID();
             int update = companyService.updateById(CompanyName, CompanyPhone, CompanyLegalPerson, CompanyAddress, CompanyID);
             if(update <= 0){

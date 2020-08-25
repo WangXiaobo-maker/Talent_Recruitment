@@ -62,11 +62,12 @@
                             <div class="s_form">
                                 <p>欢迎你！完善下方的个人信息，无限创想帮你挑工作！</p>
                                 <p style="font-size:20px;"><img th:src="@{static/img/register_uname.png}" style="width:30px;">
-                                    姓名：（必填）</h3><input type="text" style="width:600px;" id="subUserName" name="UserName"
+                                    <font style="font-weight: bold;">姓名：（必填）</font>
+                                    <input type="text" style="width:600px;" id="subUserName" name="UserName"
                                                        placeholder="请输入真实姓名" value=""/>
                                 </p>
                                 <p style="font-size:20px;"><img th:src="@{static/img/register_sex.png}" style="width:30px;">
-                                    性别：（必填）
+                                    <font style="font-weight: bold;">性别：（必填）</font>
                                 <ul class="sex_radio clearfix">
                                     <li>
                                         男
@@ -79,15 +80,18 @@
                                 </ul>
                                 </p>
                                 <p style="font-size:20px;"><img th:src="@{static/img/register_nickname.png}" style="width:30px;">
-                                    昵称：（必填）<input type="text" id="subNickName" name="NickName" placeholder="请输入昵称"
+                                    <font style="font-weight: bold;">昵称：（必填）</font>
+                                    <input type="text" id="subNickName" name="NickName" placeholder="请输入昵称"
                                                   value=""/>
                                 </p>
                                 <p style="font-size:20px;"><img th:src="@{static/img/register_birth.png}" style="width:30px;">
-                                    出生日期：（必填）<input type="date" id="subBirth" name="Birth" placeholder="请选择出生年月日"
+                                    <font style="font-weight: bold;">出生日期：（必填）</font>
+                                    <input type="date" id="subBirth" name="Birth" placeholder="请选择出生年月日"
                                                     value=""/>
                                 </p>
                                 <p style="font-size:20px;"><img th:src="@{static/img/register_phone.png}" style="width:30px;">
-                                    联系电话：（必填）<input type="text" id="subUserPhone" name="UserPhone" placeholder="请输入联系电话"
+                                    <font style="font-weight: bold;">联系电话：（必填）</font>
+                                    <input type="text" id="subUserPhone" name="UserPhone" placeholder="请输入联系电话"
                                                     value=""/>
                                 </p>
                                 <a href="javascript:history.go(-1);" class="btn_cancel">取 消</a>

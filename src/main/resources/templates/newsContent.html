@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:wb="http://open.weibo.com/wb"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <script id="allmobilize" charset="utf-8" th:src="@{static/js/allmobilize.min.js}"></script>
@@ -25,6 +24,8 @@
     <script src="../plugins/editor.md/lib/flowchart.min.js" th:src="@{static/editormd/lib/flowchart.min.js}"></script>
     <script src="../plugins/editor.md/lib/jquery.flowchart.min.js" th:src="@{static/editormd/lib/jquery.flowchart.min.js}"></script>
     <script src="../plugins/editor.md/editormd.js" th:src="@{static/editormd/editormd.js}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
 
     <script type="text/javascript" th:inline="javascript">
         var testEditormdView;
@@ -80,7 +81,7 @@
             </a>
             <ul class="reset" id="navheader">
                 <li><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
-                <li><a href="companylist.html">职位搜索</a></li>
+                <li><a th:href="@{'/jobSearch'}">职位搜索</a></li>
                 <li class="current"><a th:href="@{'/redirNews'}" >职业资讯</a></li>
                 <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
@@ -93,12 +94,12 @@
             <ul class="loginTop" th:if="${session.user != null}">
                 <li><a th:text="${session.user.getNickName()}"></a></li>
                 <li>|</li>
-                <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
+                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
             </ul>
             <ul class="loginTop" th:if="${session.company != null}">
                 <li><a>企业用户</a></li>
                 <li>|</li>
-                <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
+                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
             </ul>
         </div>
     </div><!-- end #header -->
@@ -141,10 +142,6 @@
         <div class="clear"></div>
 
     </div>
-    <input type="hidden" value="" name="userid" id="userid"/>
-    <!--  -->
-
-    <!------------------------------------- end ----------------------------------------->
     <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/count.js}"></script>
@@ -175,11 +172,11 @@
                 <a href="http://www.yixieshi.com/" target="_blank">互联网的一些事</a> <span>|</span>
                 <a href="http://www.chuanke.com/" target="_blank">传课网</a> <span>|</span>
                 <a href="http://www.eoe.cn/" target="_blank">安卓开发</a> <span>|</span>
-                <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a>
+                <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a><span>|</span>
                 <a href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
                 <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
                 <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
-                <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
+                <a href="http://www.ycpai.com" target="_blank">互联网创业</a>
 
             </dd>
         </dl>
@@ -189,12 +186,29 @@
             <span class="dt-footer-icp">Copyright ©2020 wuxiancx.com 版权所有</span>
         </div>
     </div>
-
+</div>
     <script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
-
+    <script>
+        function logoutC() {
+            swal({
+                    title: "确定注销吗？",
+                    text: "您将退出登录！",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#011d56",
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    closeOnConfirm: false,
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+                        window.location.href="logout";
+                    }
+                });
+        }
+    </script>
     <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
      -->
-
 </body>
 </html>

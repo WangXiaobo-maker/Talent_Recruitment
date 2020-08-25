@@ -24,7 +24,7 @@ public class Company {
 
     public Company(String CPassword, String companyName, String companyPhone, String companyEmail,
                    String companyLegalPerson, String companyAddress, String companyCulture,
-                   String companyInfo, String companyNature, String companyType, int companyHeat) {
+                   String companyInfo, String companyNature, String companyType, int companyHeat, int companyJobNum) {
         this.CPassword = CPassword;
         CompanyName = companyName;
         CompanyPhone = companyPhone;
@@ -36,11 +36,12 @@ public class Company {
         CompanyNature = companyNature;
         CompanyType = companyType;
         CompanyHeat = companyHeat;
+        CompanyJobNum = companyJobNum;
     }
 
     public Company(int companyID, String CPassword, String companyName, String companyPhone, String companyEmail,
                    String companyLegalPerson, String companyAddress, String companyCulture, String companyInfo,
-                   String companyNature, String companyType, int companyHeat) {
+                   String companyNature, String companyType, int companyHeat, int companyJobNum) {
         CompanyID = companyID;
         this.CPassword = CPassword;
         CompanyName = companyName;
@@ -53,22 +54,7 @@ public class Company {
         CompanyNature = companyNature;
         CompanyType = companyType;
         CompanyHeat = companyHeat;
-    }
-
-    public int getCompanyJobNum() {
-        return CompanyJobNum;
-    }
-
-    public void setCompanyJobNum(int companyJobNum) {
         CompanyJobNum = companyJobNum;
-    }
-
-    public int getCompanyHeat() {
-        return CompanyHeat;
-    }
-
-    public void setCompanyHeat(int companyHeat) {
-        CompanyHeat = companyHeat;
     }
 
     public int getCompanyID() {
@@ -111,6 +97,14 @@ public class Company {
         CompanyEmail = companyEmail;
     }
 
+    public String getCompanyLegalPerson() {
+        return CompanyLegalPerson;
+    }
+
+    public void setCompanyLegalPerson(String companyLegalPerson) {
+        CompanyLegalPerson = companyLegalPerson;
+    }
+
     public String getCompanyAddress() {
         return CompanyAddress;
     }
@@ -135,14 +129,6 @@ public class Company {
         CompanyInfo = companyInfo;
     }
 
-    public String getCompanyLegalPerson() {
-        return CompanyLegalPerson;
-    }
-
-    public void setCompanyLegalPerson(String companyLegalPerson) {
-        CompanyLegalPerson = companyLegalPerson;
-    }
-
     public String getCompanyNature() {
         return CompanyNature;
     }
@@ -157,6 +143,22 @@ public class Company {
 
     public void setCompanyType(String companyType) {
         CompanyType = companyType;
+    }
+
+    public int getCompanyHeat() {
+        return CompanyHeat;
+    }
+
+    public void setCompanyHeat(int companyHeat) {
+        CompanyHeat = companyHeat;
+    }
+
+    public int getCompanyJobNum() {
+        return CompanyJobNum;
+    }
+
+    public void setCompanyJobNum(int companyJobNum) {
+        CompanyJobNum = companyJobNum;
     }
 
     @Override
@@ -174,6 +176,7 @@ public class Company {
                 ", CompanyNature='" + CompanyNature + '\'' +
                 ", CompanyType='" + CompanyType + '\'' +
                 ", CompanyHeat=" + CompanyHeat +
+                ", CompanyJobNum=" + CompanyJobNum +
                 '}';
     }
 }

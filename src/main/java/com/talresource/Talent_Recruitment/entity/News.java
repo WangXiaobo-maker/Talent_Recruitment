@@ -12,31 +12,24 @@ public class News {
     private String NewsImg;
     private String NewsBriefInfo;
 
-    @Override
-    public String toString() {
-        return "News{" +
-                "NewsID=" + NewsID +
-                ", NewsTitle='" + NewsTitle + '\'' +
-                ", NewsPublishDate='" + NewsPublishDate + '\'' +
-                ", NewsContent='" + NewsContent + '\'' +
-                ", NewsImg='" + NewsImg + '\'' +
-                '}';
+    public News() {
     }
 
-    public String getNewsBriefInfo() {
-        return NewsBriefInfo;
-    }
-
-    public void setNewsBriefInfo(String newsBriefInfo) {
+    public News(String newsTitle, String newsPublishDate, String newsContent, String newsImg, String newsBriefInfo) {
+        NewsTitle = newsTitle;
+        NewsPublishDate = newsPublishDate;
+        NewsContent = newsContent;
+        NewsImg = newsImg;
         NewsBriefInfo = newsBriefInfo;
     }
 
-    public String getNewsImg() {
-        return NewsImg;
-    }
-
-    public void setNewsImg(String newsImg) {
+    public News(int newsID, String newsTitle, String newsPublishDate, String newsContent, String newsImg, String newsBriefInfo) {
+        NewsID = newsID;
+        NewsTitle = newsTitle;
+        NewsPublishDate = newsPublishDate;
+        NewsContent = newsContent;
         NewsImg = newsImg;
+        NewsBriefInfo = newsBriefInfo;
     }
 
     public int getNewsID() {
@@ -69,5 +62,33 @@ public class News {
 
     public void setNewsContent(String newsContent) {
         NewsContent = newsContent;
+    }
+
+    public String getNewsImg() {
+        return NewsImg;
+    }
+
+    public void setNewsImg(String newsImg) {
+        NewsImg = newsImg;
+    }
+
+    public String getNewsBriefInfo() {
+        return NewsBriefInfo;
+    }
+
+    public void setNewsBriefInfo(String newsBriefInfo) {
+        NewsBriefInfo = newsBriefInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "NewsID=" + NewsID +
+                ", NewsTitle='" + NewsTitle + '\'' +
+                ", NewsPublishDate='" + NewsPublishDate + '\'' +
+                ", NewsContent='" + NewsContent + '\'' +
+                ", NewsImg='" + NewsImg + '\'' +
+                ", NewsBriefInfo='" + NewsBriefInfo + '\'' +
+                '}';
     }
 }

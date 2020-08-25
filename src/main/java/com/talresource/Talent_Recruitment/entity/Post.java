@@ -11,6 +11,24 @@ public class Post {
     private String PostPublishDate;
     private String PostContent;
 
+    public Post() {
+    }
+
+    public Post(String postTitle, int userID, String postPublishDate, String postContent) {
+        PostTitle = postTitle;
+        UserID = userID;
+        PostPublishDate = postPublishDate;
+        PostContent = postContent;
+    }
+
+    public Post(int postID, String postTitle, int userID, String postPublishDate, String postContent) {
+        PostID = postID;
+        PostTitle = postTitle;
+        UserID = userID;
+        PostPublishDate = postPublishDate;
+        PostContent = postContent;
+    }
+
     public int getPostID() {
         return PostID;
     }
@@ -49,5 +67,16 @@ public class Post {
 
     public void setPostContent(String postContent) {
         PostContent = postContent;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "PostID=" + PostID +
+                ", PostTitle='" + PostTitle + '\'' +
+                ", UserID=" + UserID +
+                ", PostPublishDate='" + PostPublishDate + '\'' +
+                ", PostContent='" + PostContent + '\'' +
+                '}';
     }
 }

@@ -30,6 +30,8 @@
     </script>
     <script type="text/javascript" th:src="@{static/js/homebannner.js}"></script>
     <script type="text/javascript" th:src="@{static/js/conv.js}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
     <script>
         window.onload = function() {
             var container = document.getElementById("home_banner");
@@ -118,7 +120,6 @@
             }
         }
     </script>
-
 </head>
 <body>
 <div id="body" style="background-color: #f0f0f0;">
@@ -129,7 +130,7 @@
             </a>
             <ul class="reset" id="navheader">
                 <li class="current"><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
-                <li><a href="companylist.html">职位搜索</a></li>
+                <li><a th:href="@{'/jobSearch'}">职位搜索</a></li>
                 <li><a th:href="@{'/redirNews'}">职业资讯</a></li>
                 <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
@@ -142,12 +143,12 @@
             <ul class="loginTop" th:if="${session.user != null}">
                 <li><a th:text="${session.user.getNickName()}"></a></li>
                 <li>|</li>
-                <li><a th:href="@{'/logout'}" rel="nofollow" onclick="javascript:return logoutC();">注销</a></li>
+                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
             </ul>
             <ul class="loginTop" th:if="${session.company != null}">
                 <li><a>企业用户</a></li>
                 <li>|</li>
-                <li><a th:href="@{'/logout'}" rel="nofollow" onclick="javascript:return logoutC();">注销</a></li>
+                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
             </ul>
         </div>
     </div><!-- end #header -->
@@ -445,53 +446,8 @@
 
             </ul>
         </div>
-
-
         <div class="clear"></div>
     </div>
-    <input type="hidden" value="" name="userid" id="userid"/>
-    <!-- <div id="qrSide"><a></a></div> -->
-    <!--  -->
-
-    <!-- <div id="loginToolBar">
-        <div>
-            <em></em>
-            <img src="style/images/footbar_logo.png" width="138" height="45" />
-            <span class="companycount"></span>
-            <span class="positioncount"></span>
-            <a href="#loginPop" class="bar_login inline" title="登录"><i></i></a>
-            <div class="right">
-                <a href="register.html?from=index_footerbar" onclick="_hmt.push(['_trackEvent', 'button', 'click', 'register'])" class="bar_register" id="bar_register" target="_blank"><i></i></a>
-            </div>
-            <input type="hidden" id="cc" value="16002" />
-            <input type="hidden" id="cp" value="96531" />
-        </div>
-    </div>
-     -->
-    <!-------------------------------------弹窗lightbox  ----------------------------------------->
-    <div style="display:none;">
-        <!-- 登录框 -->
-        <div id="loginPop" class="popup" style="height:240px;">
-            <form id="loginForm">
-                <input type="text" id="email" name="email" tabindex="1" placeholder="请输入登录邮箱地址"/>
-                <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码"/>
-                <span class="error" style="display:none;" id="beError"></span>
-                <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked"
-                                                        name="autoLogin"/> 记住我</label>
-                <a href="h/reset.html" class="fr">忘记密码？</a>
-                <input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录"/>
-            </form>
-            <div class="login_right">
-                <div>还没有拉勾帐号？</div>
-                <a href="register.html" class="registor_now">立即注册</a>
-                <div class="login_others">使用以下帐号直接登录:</div>
-                <a href="h/ologin/auth/sina.html" target="_blank" id="icon_wb" class="icon_wb"
-                   title="使用新浪微博帐号登录"></a>
-                <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank" title="使用腾讯QQ帐号登录"></a>
-            </div>
-        </div><!--/#loginPop-->
-    </div>
-    <!------------------------------------- end ----------------------------------------->
     <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/count.js}"></script>
@@ -522,11 +478,11 @@
                 <a href="http://www.yixieshi.com/" target="_blank">互联网的一些事</a> <span>|</span>
                 <a href="http://www.chuanke.com/" target="_blank">传课网</a> <span>|</span>
                 <a href="http://www.eoe.cn/" target="_blank">安卓开发</a> <span>|</span>
-                <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a>
+                <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a><span>|</span>
                 <a href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
                 <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
                 <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
-                <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
+                <a href="http://www.ycpai.com" target="_blank">互联网创业</a>
 
             </dd>
         </dl>
@@ -542,12 +498,21 @@
 <script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
 <script>
     function logoutC() {
-        if (confirm("确认注销吗？")){
-            return true;
-        }
-        return false;
-
-
+        swal({
+                title: "确定注销吗？",
+                text: "您将退出登录！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#011d56",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    window.location.href="logout";
+                }
+            });
     }
 </script>
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>

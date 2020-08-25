@@ -31,6 +31,11 @@ public class PageController {
         return "home";
     }
 
+    @RequestMapping("/jobSearch")
+    public String jobSearch(){
+        return "jobSearch";
+    }
+
     @RequestMapping("/test3")
     public String test3(){
         return "test3";
