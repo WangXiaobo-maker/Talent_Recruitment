@@ -24,6 +24,10 @@ public class JobService {
         return jobDao.selectJobByHeat();
     }
 
+    public List<Job> JobSearchByInfo(String JobCity, String JobSalary, String JobExperience, String JobEduDegree, String JobFamily){
+        return jobDao.JobSearchByInfo(JobCity, JobSalary, JobExperience, JobEduDegree, JobFamily);
+    }
+
     public List<Job> TestJobList(String JobName, String JobFamily){
         return jobDao.TestJobList(JobName, JobFamily);
     }
