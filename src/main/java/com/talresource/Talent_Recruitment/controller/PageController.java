@@ -36,8 +36,6 @@ public class PageController {
         return "jobSearch";
     }
 
-
-
     @RequestMapping("/test3")
     public String test3(){
         return "test2";
