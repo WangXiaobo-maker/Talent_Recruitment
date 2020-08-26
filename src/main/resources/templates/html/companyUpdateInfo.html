@@ -29,6 +29,7 @@
             <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
             <li class="current"><a href="create.html" rel="nofollow">我的信息</a></li>
         </ul>
+
     </div>
 </div><!-- end #header -->
 <div class="admin">
@@ -48,23 +49,23 @@
                     <div class="user-status offline"><i class="am-icon-dot-circle-o" aria-hidden="true"></i></div>
                 </div>
                 <br/>
-                <span style="font-weight:bold; color:#89b0de">福尔摩羊</span>，欢迎你！
+                <span style="font-weight:bold; color:#89b0de">乐推文化传播有限公司</span>，欢迎！
             </div>
             <!-- End User -->
 
             <ul class="am-list admin-sidebar-list">
-                <li><a th:href="@{'/userInfoPage'}"><span class="am-icon-home"></span>&nbsp;&nbsp;个人主页</a></li>
+                <li><a th:href="@{'/companyInfoPage'}"><span class="am-icon-home"></span>&nbsp;&nbsp;企业主页</a></li>
                 <li class="admin-parent">
-                    <a th:href="@{'/myInfo'}" class="am-cf" data-am-collapse="{target: '#collapse-nav1'}">
-                        <span class="am-icon-file"></span>&nbsp;&nbsp;我的信息</a>
+                    <a th:href="@{'/companyInfo'}" class="am-cf" data-am-collapse="{target: '#collapse-nav1'}">
+                        <span class="am-icon-file"></span>&nbsp;&nbsp;企业信息</a>
                 </li>
                 <li class="admin-parent">
-                    <a th:href="@{'/myNotice'}" class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">
+                    <a th:href="@{'/companyNotice'}" class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">
                         <span class="am-icon-table"></span>&nbsp;&nbsp;通知公告</a>
                 </li>
                 <li class="admin-parent">
                     <a th:href="@{''}" class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">
-                        <span class="am-icon-archive"></span>&nbsp;&nbsp;我的简历</a>
+                        <span class="am-icon-archive"></span>&nbsp;&nbsp;收到简历</a>
                 </li>
             </ul>
         </div>
@@ -103,38 +104,16 @@
 
                         <form action="" class="am-form" data-am-validator>
                             <fieldset>
-                                <legend>我的个人信息</legend>
+                                <legend>企业信息</legend>
                                 <div class="am-form-group">
-                                    <label for="doc-vld-name-2">姓名：</label>
-                                    <input type="text" id="doc-vld-name-2" minlength="3"
+                                    <label for="doc-vld-name-1">名称：</label>
+                                    <input type="text" id="doc-vld-name-1" minlength="3"
                                            required/>
                                 </div>
 
                                 <div class="am-form-group">
                                     <label for="doc-vld-name-2">密码：</label>
-                                    <input type="button" minlength="3" value="修改密码" required/>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="doc-vld-email-2">昵称：</label>
-                                    <input type="email" id="doc-vld-email-2" required/>
-                                </div>
-
-
-                                <div class="am-form-group">
-                                    <label>性别： </label>
-                                    <label class="am-radio-inline">
-                                        <input type="radio" value="" name="docVlGender" required> 男
-                                    </label>
-                                    <label class="am-radio-inline">
-                                        <input type="radio" name="docVlGender"> 女
-                                    </label>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="doc-vld-age-2">年龄：</label>
-                                    <input type="number" class="" id="doc-vld-age-2" placeholder="输入年龄 18-120" min="18"
-                                           max="120" required/>
+                                    <input type="button" id="doc-vld-name-2" minlength="3" value="修改密码" required/>
                                 </div>
 
                                 <div class="am-form-group">
@@ -145,6 +124,21 @@
                                 <div class="am-form-group">
                                     <label for="doc-vld-url-2">绑定邮箱：</label>
                                     <input type="url" id="doc-vld-url-2" placeholder="输入邮箱" required/>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="doc-vld-url-3">地址：</label>
+                                    <input type="url" id="doc-vld-url-3" placeholder="输入地址" required/>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="doc-vld-ta-1">企业文化：</label>
+                                    <textarea id="doc-vld-ta-1" rows="2" minlength="2" maxlength="100"></textarea>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="doc-vld-ta-2">企业信息：</label>
+                                    <textarea id="doc-vld-ta-2" rows="5" minlength="10" maxlength="100"></textarea>
                                 </div>
 
                                 <button class="am-btn am-btn-secondary" type="submit">提&nbsp;&nbsp;交</button>
