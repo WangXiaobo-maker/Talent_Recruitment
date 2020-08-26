@@ -29,21 +29,6 @@
             <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
             <li class="current"><a href="create.html" rel="nofollow">我的信息</a></li>
         </ul>
-        <ul class="loginTop" th:if="${session.user == null && session.company == null}">
-            <li><a th:href="@{'/redirLogin'}" rel="nofollow">登录</a></li>
-            <li>|</li>
-            <li><a th:href="@{'/redirRegister'}" rel="nofollow">注册</a></li>
-        </ul>
-        <ul class="loginTop" th:if="${session.user != null}">
-            <li><a th:text="${session.user.getNickName()}"></a></li>
-            <li>|</li>
-            <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
-        </ul>
-        <ul class="loginTop" th:if="${session.company != null}">
-            <li><a>企业用户</a></li>
-            <li>|</li>
-            <li><a th:href="@{'/logout'}" rel="nofollow">注销</a></li>
-        </ul>
     </div>
 </div><!-- end #header -->
 <div class="admin">
@@ -171,8 +156,6 @@
                 </div>
                 <!-- Row end -->
             </div>
-
-
         </div>
     </div>
     <!-- end right Content here -->

@@ -16,7 +16,7 @@
 
 h1 {
   margin: 0;
-  padding: 20px;
+  padding: 0;
   background-color: rgba(255, 255, 255, .4);
   font-size: 1.8em;
   text-align: center;
@@ -32,7 +32,7 @@ h1 {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   counter-reset: done-items undone-items;
 }
 
