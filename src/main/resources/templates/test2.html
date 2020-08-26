@@ -1,37 +1,1099 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html xmlns:wb="http://open.weibo.com/wb"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>�剧��娴�璇�</title>
+    <script id="allmobilize" charset="utf-8" th:src="@{static/js/allmobilize.min.js}"></script>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate" media="handheld"/>
+    <!-- end 云适配 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无限创想人才招聘平台</title>
+    <!-- <div class="web_root"  style="display:none">h</div> -->
+    <script type="text/javascript">
+        var ctx = "h";
+        console.log(1);
+    </script>
+    <link rel="Shortcut Icon" href="h/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/popup.css}"/>
+    <script th:src="@{static/js/jquery.1.10.1.min.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{static/js/jquery.lib.min.js}"></script>
+    <script th:src="@{static/js/ajaxfileupload.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{static/js/additional-methods.js}"></script>
+    <!--[if lte IE 8]>
+    <script type="text/javascript" th:src="@{static/js/excanvas.js}"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var youdao_conv_id = 271546;
+    </script>
+    <script type="text/javascript" th:src="@{static/js/homebannner.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/conv.js}"></script>
+    <script>
+        window.onload = function () {
+            var container = document.getElementById("home_banner");
+            var list = document.getElementById("banner_list");
+            var buttons = document.getElementById("banner_btn").getElementsByTagName("span");
+            var prev = document.getElementById('prev');
+            var next = document.getElementById('next');
+            var index = 1;
+            var timer;
+
+            //animate 函数，在当前left值得基础上向右移动 offset px,如果向左移动距离超过图六位置就变为图一位置，向右移动距离超过图二位置就变为图七位置
+            function animate(offset) {
+                var newLeft = parseInt(list.style.left) + offset;
+                list.style.left = newLeft + 'px';
+                if (newLeft > -0) {
+                    list.style.left = -4096 + 'px';
+                }
+                if (newLeft < -4096) {
+                    list.style.left = -0 + 'px';
+                }
+            }
+
+            //将当前显示图片对应的小圆点样式改变
+            function buttonsShow() {
+                //将所有的小圆点的样式清除
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i].className == "on") {
+                        buttons[i].className = "";
+                    }
+                }
+                //数组从0开始，故index需要-1
+                buttons[index - 1].className = "on";
+            }
+
+            //点击产生查看前一张效果，animate移动距离改变，小圆点显示改变，当index=1时还要查看前一张时，index变为5
+            prev.onclick = function () {
+                index -= 1;
+                if (index < 1) {
+                    index = 5
+                }
+                buttonsShow();
+                animate(1024);
+            };
+
+            //点击产生查看后一张效果，animate移动距离改变，小圆点显示改变
+            next.onclick = function () {
+                index += 1;
+                if (index > 5) {
+                    index = 1
+                }
+                animate(-1024);
+                buttonsShow();
+            };
+
+            //通过定时器调用next.onclick（）实现每两秒滚动一次
+            function play() {
+                //重复执行的定时器
+                timer = setInterval(function () {
+                    next.onclick();
+                }, 2000)
+            }
+
+            //清除定时器实现停止滚动
+            function stop() {
+                clearInterval(timer);
+            }
+
+            container.onmouseover = stop; //在鼠标进入onmouseover时，停止每两秒滚动一次
+            container.onmouseout = play; //在鼠标离开onmouseover时，开始每两秒滚动一次
+            play(); //在onload后就调用play()
+
+            //为每个小按钮添加onclick事件，当点击按钮时会跳动到按钮对应的图片
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].onclick = function () {
+                    //当前图片点击当前的小圆点不执行以下代码。
+                    if (this.className == "on") {
+                        return;
+                    }
+                    /* 这里获得鼠标移动到小圆点的位置，用this把index绑定到对象buttons[i]上 */
+                    /* 由于这里的index是自定义属性，需要用到getAttribute()这个DOM2级方法，去获取自定义index的属性*/
+                    var clickIndex = parseInt(this.getAttribute('index'));
+                    var offset = 1024 * (clickIndex - index); //这个index是当前图片停留时的index
+                    animate(-offset);
+                    index = clickIndex; //存放鼠标点击后的位置，用于小圆点的正常显示
+                    buttonsShow();
+                }
+            }
+        }
+    </script>
+
 </head>
 <body>
+<div id="body" style="background-color: #f0f0f0;">
+    <div id="header">
+        <div class="wrapper">
+            <a href="index.html" class="logo">
+                <img th:src="@{static/img/logo_home.png}" width="229" height="43"/>
+            </a>
+            <ul class="reset" id="navheader">
+                <li class="current"><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
+                <li><a href="companylist.html">职位搜索</a></li>
+                <li><a th:href="@{'/redirNews'}">职业资讯</a></li>
+                <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
+                <li><a href="create.html" rel="nofollow">我的信息</a></li>
+            </ul>
+            <ul class="loginTop">
+                <li><a th:href="@{'/redirLogin'}" rel="nofollow">登录</a></li>
+                <li>|</li>
+                <li><a th:href="@{'/redirRegister'}" rel="nofollow">注册</a></li>
+            </ul>
+        </div>
+    </div><!-- end #header -->
+    <div class="content">
+        <div id="block">
+
+        </div>
+        <div id="search_box" align="center">
+            <form id="searchForm" name="searchForm" action="list.html" method="get">
+                <ul id="searchType">
+                    <li data-searchtype="1" class="type_selected">职&nbsp;&nbsp;位</li>
+                    <li data-searchtype="4">公&nbsp;&nbsp;司</li>
+                </ul>
+                <div class="searchtype_arrow"></div>
+                <input type="text" id="search_input" name="kd" tabindex="1" value="" style="width:699px; height:23px;"
+                       placeholder="请输入职位名称，如：产品经理"/>
+                <input type="hidden" name="spc" id="spcInput" value=""/>
+                <input type="hidden" name="pl" id="plInput" value=""/>
+                <input type="hidden" name="gj" id="gjInput" value=""/>
+                <input type="hidden" name="xl" id="xlInput" value=""/>
+                <input type="hidden" name="yx" id="yxInput" value=""/>
+                <input type="hidden" name="gx" id="gxInput" value=""/>
+                <input type="hidden" name="st" id="stInput" value=""/>
+                <input type="hidden" name="labelWords" id="labelWords" value=""/>
+                <input type="hidden" name="lc" id="lc" value=""/>
+                <input type="hidden" name="workAddress" id="workAddress" value=""/>
+                <input type="hidden" name="city" id="cityInput" value=""/>
+                <input type="submit" id="search_button" value="搜&nbsp;&nbsp;索"/>
+            </form>
+        </div>
+        <style>
+            .ui-autocomplete {
+                width: 488px;
+                background: #fafafa !important;
+                position: relative;
+                z-index: 10;
+                border: 2px solid #89b0de;
+            }
+
+            .ui-autocomplete-category {
+                font-size: 16px;
+                color: #999;
+                width: 50px;
+                position: absolute;
+                z-index: 11;
+                right: 0px; /*top: 6px; */
+                text-align: center;
+                border-top: 1px dashed #e5e5e5;
+                padding: 5px 0;
+            }
+
+            .ui-menu-item {
+                *width: 439px;
+                vertical-align: middle;
+                position: relative;
+                margin: 0px;
+                margin-right: 50px !important;
+                background: #fff;
+                border-right: 1px dashed #ededed;
+            }
+
+            .ui-menu-item a {
+                display: block;
+                overflow: hidden;
+            }
+
+        </style>
+        <script type="text/javascript" th:src="@{static/js/search.min.js}"></script>
+        <div id="hot">
+            <dl class="hotSearch" align="center">
+                <dt>热门搜索：</dt>
+                <dd><a href="list.htmlJava?labelWords=label&city=">Java</a></dd>
+                <dd><a href="list.htmlPHP?labelWords=label&city=">PHP</a></dd>
+                <dd><a href="list.htmlAndroid?labelWords=label&city=">Android</a></dd>
+                <dd><a href="list.htmliOS?labelWords=label&city=">iOS</a></dd>
+                <dd><a href="list.html前端?labelWords=label&city=">前端</a></dd>
+                <dd><a href="list.html产品经理?labelWords=label&city=">产品经理</a></dd>
+                <dd><a href="list.htmlUI?labelWords=label&city=">UI</a></dd>
+                <dd><a href="list.html运营?labelWords=label&city=">运营</a></dd>
+                <dd><a href="list.htmlBD?labelWords=label&city=">BD</a></dd>
+                <dd><a href="list.html?gx=实习&city=">实习</a></dd>
+            </dl>
+        </div>
+    </div>
+
+    <div id="container" style="margin-top: 279px;">
+
+        <div style="background-color: #FFFFFF;padding-bottom: 5px;margin-bottom: 9px;">
+
+            <div class="breakline"></div>
+            <dl class="workplace" id="workplaceSelect">
+                <dt class="fl" style="font-weight: bold;">工作地点：</dt>
+                <dd>
+                    <a href="javascript:;" class="current">全国</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">北京</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">上海</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">广州</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">深圳</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">成都</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">杭州</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">武汉</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">南京</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">青岛</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">西安</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">南京</a>
+                    |
+                </dd>
+                <dd class="more">
+                    <a href="javascript:;">其他</a>
+                    <div class="triangle citymore_arrow"></div>
+                </dd>
+                <dd id="box_expectCity" class="job_City_search dn">
+                    <span class="bot"></span>
+                    <span class="top"></span>
+                    <dl>
+                        <dt style="color: #011d56;">ABCDEF</dt>
+                        <dd>
+                            <span>北京</span>
+                            <span>长春</span>
+                            <span>成都</span>
+                            <span>重庆</span>
+                            <span>长沙</span>
+                            <span>常州</span>
+                            <span>东莞</span>
+                            <span>大连</span>
+                            <span>佛山</span>
+                            <span>福州</span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="color: #011d56;">GHIJ</dt>
+                        <dd>
+                            <span>贵阳</span>
+                            <span>广州</span>
+                            <span>哈尔滨</span>
+                            <span>合肥</span>
+                            <span>海口</span>
+                            <span>杭州</span>
+                            <span>惠州</span>
+                            <span>金华</span>
+                            <span>济南</span>
+                            <span>嘉兴</span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="color: #011d56;">KLMN</dt>
+                        <dd>
+                            <span>昆明</span>
+                            <span>廊坊</span>
+                            <span>宁波</span>
+                            <span>南昌</span>
+                            <span>南京</span>
+                            <span>南宁</span>
+                            <span>南通</span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="color: #011d56;">OPQR</dt>
+                        <dd>
+                            <span>青岛</span>
+                            <span>泉州</span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="color: #011d56;">STUV</dt>
+                        <dd>
+                            <span>上海</span>
+                            <span>石家庄</span>
+                            <span>绍兴</span>
+                            <span>沈阳</span>
+                            <span>深圳</span>
+                            <span>苏州</span>
+                            <span>天津</span>
+                            <span>太原</span>
+                            <span>台州</span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="color: #011d56;">WXYZ</dt>
+                        <dd>
+                            <span>武汉</span>
+                            <span>无锡</span>
+                            <span>温州</span>
+                            <span>西安</span>
+                            <span>厦门</span>
+                            <span>烟台</span>
+                            <span>珠海</span>
+                            <span>中山</span>
+                            <span>郑州</span>
+                        </dd>
+                    </dl>
+                </dd>
+            </dl>
+
+            <dl class="workplace" id="workplaceSelect">
+                <dt class="fl" style="font-weight: bold;">月薪范围：</dt>
+                <dd>
+                    <a href="javascript:;" class="current">所有</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">3-4.5千</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">4.5-6千</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">6-8千</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">0.8-1万</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">1-1.5万</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">1.5-2万</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">2-3万</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">3-4万</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">4万以上</a>
+
+                </dd>
+                <dd>
+                    <form>
+                        &nbsp;&nbsp;
+                        <input type="text" style="margin-top: 0px; width: 130px;height: 7px;font-size: 5px"
+                               placeholder="自定义薪资...">
+                        <input type="submit" value="确定" style="background-color: #011d56; color: #FFFFFF;">
+                    </form>
+
+                </dd>
+            </dl>
+
+            <dl class="workplace" id="workplaceSelect">
+                <dt class="fl" style="font-weight: bold;">工作年限：</dt>
+                <dd>
+                    <a href="javascript:;" class="current">所有</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">在校生/应届生</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">1-3年</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">3-5年</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">5-10年</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">10年以上</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">无需经验</a>
+                </dd>
+            </dl>
+
+            <dl class="workplace" id="workplaceSelect">
+                <dt class="fl" style="font-weight: bold;">学历要求：</dt>
+                <dd>
+                    <a href="javascript:;" class="current">所有</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">初中及以下</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">高中/中技/中专</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">大专</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">本科</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">硕士</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">博士</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">无学历要求</a>
+                </dd>
+            </dl>
+
+            <dl class="workplace" id="workplaceSelect">
+                <dt class="fl" style="font-weight: bold;">公司性质：</dt>
+                <dd>
+                    <a href="javascript:;" class="current">所有</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">国企</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">外资（欧美）</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">外资（非欧美）</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">上市公司</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">合资</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">民营公司</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">政府机关</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">事业单位</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">外企代表处</a>
+                    |
+                </dd>
+                <dd>
+                    <a href="javascript:;">创业公司</a>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="job_search_div">
+            <div id="hotList" class="job_search_div_l">
+                <ul class="hot_pos reset" id="jobList">
+                    <li id="jobll" class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" >
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-24发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">10K-20K</span>
+                                    <span>北京|本科|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>五险一金</li>
+                                    <li>股票期权</li>
+                                    <li>年度旅游</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" target="_blank" style="font-size: 20px">紫色医疗</a>
+                            </div>
+                            <p><em class="c7">民营公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">移动互联网/健康医疗</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-21发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">8K-16K</span>
+                                    <span>北京|本科|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>股票期权</li>
+                                    <li>五险一金</li>
+                                    <li>带薪年假</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" target="_blank" style="font-size: 20px">网利宝</a>
+                            </div>
+                            <p><em class="c7">民营公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">O2O/金融互联网</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">高级web前端开发工程师</span>
+                                <span class="c9">08-19发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">8K-15K</span>
+                                    <span>上海|大专|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>岗位晋升</li>
+                                    <li>技能培训</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" target="_blank" style="font-size: 20px">淘米</a>
+                            </div>
+                            <p><em class="c7">上市公司|500-2000人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">游戏</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-18发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">10K-20K</span>
+                                    <span>广州|不限|1-3年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>年终分红</li>
+                                    <li>绩效奖金</li>
+                                    <li>专项奖金</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" target="_blank" style="font-size: 20px">艾特互动</a>
+                            </div>
+                            <p><em class="c7">创业公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">移动互联网/社会化营销</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-16发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">4K-7K</span>
+                                    <span>上海|大专|1-3年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>扁平管理</li>
+                                    <li>股票期权</li>
+                                    <li>年底双薪</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" target="_blank"
+                                                 style="font-size: 20px">快车道数据科技</a></div>
+                            <p><em class="c7">创业公司|少于15人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">大数据/云计算/分类信息</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-24发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">10K-20K</span>
+                                    <span>北京|本科|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>五险一金</li>
+                                    <li>股票期权</li>
+                                    <li>年度旅游</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" title="紫色医疗" target="_blank"
+                                                 style="font-size: 20px">紫色医疗</a></div>
+                            <p><em class="c7">民营公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">移动互联网/健康医疗</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-24发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">10K-20K</span>
+                                    <span>北京|本科|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>五险一金</li>
+                                    <li>股票期权</li>
+                                    <li>年度旅游</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" title="紫色医疗" target="_blank"
+                                                 style="font-size: 20px">紫色医疗</a></div>
+                            <p><em class="c7">民营公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">移动互联网/健康医疗</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-24发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">10K-20K</span>
+                                    <span>北京|本科|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>五险一金</li>
+                                    <li>股票期权</li>
+                                    <li>年度旅游</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" title="紫色医疗" target="_blank"
+                                                 style="font-size: 20px">紫色医疗</a></div>
+                            <p><em class="c7">民营公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">移动互联网/健康医疗</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-24发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">10K-20K</span>
+                                    <span>北京|本科|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>五险一金</li>
+                                    <li>股票期权</li>
+                                    <li>年度旅游</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" title="紫色医疗" target="_blank"
+                                                 style="font-size: 20px">紫色医疗</a></div>
+                            <p><em class="c7">民营公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">移动互联网/健康医疗</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-24发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">10K-20K</span>
+                                    <span>北京|本科|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>五险一金</li>
+                                    <li>股票期权</li>
+                                    <li>年度旅游</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" title="紫色医疗" target="_blank"
+                                                 style="font-size: 20px">紫色医疗</a></div>
+                            <p><em class="c7">民营公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">移动互联网/健康医疗</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-24发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">10K-20K</span>
+                                    <span>北京|本科|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>五险一金</li>
+                                    <li>股票期权</li>
+                                    <li>年度旅游</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" title="紫色医疗" target="_blank"
+                                                 style="font-size: 20px">紫色医疗</a></div>
+                            <p><em class="c7">民营公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">移动互联网/健康医疗</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;" id="jobll">
+                        <div class="job_infor_l">
+                            <a href="h/jobs/147822.html" target="_blank">
+                                <span style="font-size: 20px">前端开发</span>
+                                <span class="c9">08-24发布</span>
+                                <p>
+                                    <span style="color: #bf3c2c">10K-20K</span>
+                                    <span>北京|本科|3-5年</span>
+                                </p>
+                                <ul class="companyTags reset">
+                                    <li>五险一金</li>
+                                    <li>股票期权</li>
+                                    <li>年度旅游</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="job_infor_r">
+                            <div class="mb10"><a href="h/c/1712.html" title="紫色医疗" target="_blank"
+                                                 style="font-size: 20px">紫色医疗</a></div>
+                            <p><em class="c7">民营公司|15-50人</em></p>
+                            <p><em class="c7" style="color: #9f9f9f">移动互联网/健康医疗</em></p>
+
+                            <div class="job_button">
+                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                                <input type="submit" value="申请职位" class="p_but">
+                            </div>
+
+                        </div>
+                    </li>
+
+                </ul>
+                <!-- 分页按钮 -->
+                <div class="page Pagination">
+                    <div id="page"></div>
+                </div>
+            </div>
+            <div id="hotList" class="job_search_div_r">
+                <div class="job_ad_title">
+                    求职助力
+                </div>
+                <div class="job_ad">
+                    <a href="h/jobs/147822.html" target="_blank">
+                        <div>
+                            <img th:src="@{static/img/q1.png}" alt="">
+                        </div>
+                        <strong style="font-size: 18px;">HR教你优雅谈钱，3步定薪酬</strong>
+                        <p style="color: #9f9f9f; margin-top: 5px;">跳槽/薪资</p>
+                    </a>
+
+                    </br>
+
+                    <a href="h/jobs/147822.html" target="_blank">
+                        <div>
+                            <img th:src="@{static/img/q2.png}" alt="">
+                        </div>
+                        <strong style="font-size: 18px;">面试中的说话之道</strong>
+                        <p style="color: #9f9f9f; margin-top: 5px;">面试/求职/沟通技巧</p>
+                    </a>
+
+                    </br>
+
+                    <a href="h/jobs/147822.html" target="_blank">
+                        <div>
+                            <img th:src="@{static/img/q3.png}" alt="">
+                        </div>
+                        <strong style="font-size: 18px;">全方位打造有面试机会的简历</strong>
+                        <p style="color: #9f9f9f; margin-top: 5px;">面试/简历</p>
+                    </a>
+
+                </div>
+            </div>
+        </div>
 
 
-<!--<table class="table table-striped" data-toggle="table" data-search="true"-->
-<!--       data-pagination="true" data-page-size="10" data-striped="true"-->
-<!--       data-classes="table table-no-border">-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th class="col_1">璧�璁�</th>-->
-<!--        <th >�剧��</th>-->
-<!--        <th class="col_2">��瀹�</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="news : ${newsList}">-->
-<!--        <th th:text="${news.NewsTitle}"></th>-->
-<!--        <th><img th:src="@{'static/img/' + ${news.NewsImg}}"></th>-->
-<!--        <th th:text="${news.NewsContent}"></th>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
+    </div>
 
+    <!-- 分页函数 -->
+    <script>
+        var zz=getzz()
+        var pageno=1 ; //当前页
+        var pagesize=1; //每页多少条信息
+        if(zz.length%pagesize==0){
+            var pageall =zz.length/pagesize ;
+        }else{
+            var pageall =parseInt(zz.length/pagesize)+1;
+        } //一共多少页
 
-<ul th:each="news : ${newsList}">
-    <li th:each="entry : ${news}" th:text="${news.NewsTitle}" ></li>
-    <li th:each="entry : ${news}" > <img th:src="@{'static/img/' + ${news.NewsImg}}" > </li>
-    <li th:each="entry : ${news}" th:text="${news.NewsContent}"></li>
-</ul>
+        change(1);
+
+        function getzz() {
+            var a = $("ul#jobList li#jobll");
+            var zz =new Array(a.length);
+            for(var i=0;i <a.length;i++){
+                zz[i]=a[i].innerHTML;
+            } //div的字符串数组付给zz
+            return zz;
+        }
+        function change(e){
+
+            pageno=e;
+            if(e<1){
+                e=1;pageno=1;//就等于第1页 ， 当前页为1
+            }
+            if(e>pageall){ //如果输入页大于最大页
+                e=pageall;pageno=pageall; //输入页和当前页都=最大页
+            }
+            $("#jobList").html("");//全部清空
+            var html="";
+            for(var i=0;i<pagesize;i++){
+                html += '<li id="jobll" class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;">' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+                if(zz[(e-1)*pagesize+i+1]==null) break;//超出最后的范围跳出
+            }
+            $("ul#jobList").html(html);//给ul列表写入html
+            var ye="";
+            for(var j=1;j<=pageall;j++){
+                if(e==j){
+                    ye=ye+"<span><a href='#' onClick='change("+j+")' style='color:orange'>"+j+"</a></span> "
+                }else{
+                    ye=ye+"<a href='#' onClick='change("+j+")'>"+j+"</a> "
+                }
+            }
+            var pageContent="";
+            pageContent +='<a href="#" onClick="change(1)">首页</a>';
+            pageContent +='<a href="#" onClick="change(--pageno)">上一页</a>';
+            // pageContent +='<span id=\"a2\">'+pageno+'</span>';
+            // pageContent +='<span id="a1">'+pageall+'</span>';
+            pageContent +='<span id="a3">'+ye+'</span>';
+            pageContent +='<a href="#" onClick="change(++pageno)">下一页</a>';
+            pageContent +='<a href="#" onClick="change(pageall)">尾页</a>';
+            $("#page").html(pageContent);
+        }
+    </script>
+
+    <div class="clear"></div>
+</div>
+<input type="hidden" value="" name="userid" id="userid"/>
+<!-- <div id="qrSide"><a></a></div> -->
+<!--  -->
+
+<!-- <div id="loginToolBar">
+    <div>
+        <em></em>
+        <img src="style/images/footbar_logo.png" width="138" height="45" />
+        <span class="companycount"></span>
+        <span class="positioncount"></span>
+        <a href="#loginPop" class="bar_login inline" title="登录"><i></i></a>
+        <div class="right">
+            <a href="register.html?from=index_footerbar" onclick="_hmt.push(['_trackEvent', 'button', 'click', 'register'])" class="bar_register" id="bar_register" target="_blank"><i></i></a>
+        </div>
+        <input type="hidden" id="cc" value="16002" />
+        <input type="hidden" id="cp" value="96531" />
+    </div>
+</div>
+ -->
+<!-------------------------------------弹窗lightbox  ----------------------------------------->
+<div style="display:none;">
+    <!-- 登录框 -->
+    <div id="loginPop" class="popup" style="height:240px;">
+        <form id="loginForm">
+            <input type="text" id="email" name="email" tabindex="1" placeholder="请输入登录邮箱地址"/>
+            <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码"/>
+            <span class="error" style="display:none;" id="beError"></span>
+            <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked"
+                                                    name="autoLogin"/> 记住我</label>
+            <a href="h/reset.html" class="fr">忘记密码？</a>
+            <input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录"/>
+        </form>
+        <div class="login_right">
+            <div>还没有拉勾帐号？</div>
+            <a href="register.html" class="registor_now">立即注册</a>
+            <div class="login_others">使用以下帐号直接登录:</div>
+            <a href="h/ologin/auth/sina.html" target="_blank" id="icon_wb" class="icon_wb"
+               title="使用新浪微博帐号登录"></a>
+            <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank" title="使用腾讯QQ帐号登录"></a>
+        </div>
+    </div><!--/#loginPop-->
+</div>
+<!------------------------------------- end ----------------------------------------->
+<script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/count.js}"></script>
+<div class="clear"></div>
+<input type="hidden" id="resubmitToken" value=""/>
+<a id="backtop" title="回到顶部" rel="nofollow"></a>
+</div><!-- end #container -->
+</div><!-- end #body -->
+<div id="footer">
+    <div id="linkbox">
+        <dl>
+            <dt style="font-size:20px;">友情链接</dt>
+            <dd>
+                <a href="http://www.zhuqu.com/" target="_blank">住趣家居网</a> <span>|</span>
+                <a href="http://www.woshipm.com/" target="_blank">人人都是产品经理</a> <span>|</span>
+                <a href="http://zaodula.com/" target="_blank">互联网er的早读课</a> <span>|</span>
+                <a href="http://lieyunwang.com/" target="_blank">猎云网</a> <span>|</span>
+                <a href="http://www.ucloud.cn/" target="_blank">UCloud</a> <span>|</span>
+                <a href="http://www.iconfans.com/" target="_blank">iconfans</a> <span>|</span>
+                <a href="http://www.html5dw.com/" target="_blank">html5梦工厂</a> <span>|</span>
+                <a href="http://www.sykong.com/" target="_blank">手游那点事</a>
+
+                <a href="http://www.php100.com/" target="_blank">php100</a> <span>|</span>
+                <a href="http://www.uehtml.com/" target="_blank">uehtml</a> <span>|</span>
+                <a href="http://www.w3cplus.com/" target="_blank">W3CPlus</a> <span>|</span>
+                <a href="http://www.boxui.com/" target="_blank">盒子UI</a> <span>|</span>
+                <a href="http://www.uimaker.com/" target="_blank">uimaker</a> <span>|</span>
+                <a href="http://www.yixieshi.com/" target="_blank">互联网的一些事</a> <span>|</span>
+                <a href="http://www.chuanke.com/" target="_blank">传课网</a> <span>|</span>
+                <a href="http://www.eoe.cn/" target="_blank">安卓开发</a> <span>|</span>
+                <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a>
+                <a href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
+                <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
+                <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
+                <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
+
+            </dd>
+        </dl>
+    </div>
+    <div class="dt-footer-bottom">
+        <div class="dt-footer-info">
+            <span class="dt-footer-icp">Copyright ©2020 wuxiancx.com 版权所有</span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
+
+<!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
+ -->
 
 </body>
 </html>

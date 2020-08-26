@@ -40,7 +40,7 @@ public class PageController {
 
     @RequestMapping("/test3")
     public String test3(){
-        return "test3";
+        return "test2";
     }
 
     @RequestMapping("/test4")

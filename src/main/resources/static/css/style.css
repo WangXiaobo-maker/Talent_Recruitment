@@ -175,7 +175,7 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 .job_City_search > span.bot{border-width:10px; border-style:dashed dashed solid;border-color:transparent transparent #c8c8c8;right:177px;*right:77px;top:-22px;}
 .job_City_search > span.top{border-width:10px; border-style:dashed dashed solid;border-color:transparent transparent #ffffff; right:177px;*right:77px; top:-19px;}
 .sure{position: absolute;width: 40px;height: 22px;line-height: 22px;color: #0058a6;text-align: center;cursor: pointer;right: 0;top: 0;}
-.job_search_div{width: 1024px;height: 1760px;}
+.job_search_div{width: 1024px;height: auto;}
 .job_search_div_l{float:left;width: 730px;}
 .job_search_div_r{float:right;width: 290px;background-color: #FFFFFF;}
 .job_search_div_r a:hover{color: #89b0de;}
@@ -190,6 +190,8 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 .job_ad_title{font-size: 20px;padding: 16px; font-weight: bold;}
 .job_ad{padding: 16px;}
 
+/*资讯编辑*/
+#new_content{width:1300px;height:900px;margin:35px auto 0; padding-bottom:20px;}
 
 ul.hotabbing{font-size: 0;background:#f6f6f6;}
 ul.hotabbing li{cursor:pointer;display:inline-block;*display:inline;*zoom:1;padding:7px 20px;font-size:18px;color:#999;}
@@ -267,10 +269,13 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 .workplace a:hover{background:#011d56; color:#fff;}
 .workplace a.current{background:#011d56; color:#fff;}
 .Pagination{margin:20px 0; overflow:hidden;line-height:30px;}
-.Pagination a,.Pagination span{height:30px; line-height:30px;margin:0 10px 10px 0; float:left;padding:0 10px; color:#fff; background:#011d56;-webkit-transition: .2s;-moz-transition: .2s;transition: .2s;}
-.Pagination a:hover,.Pagination span:hover{background:#89b0de;-webkit-transition: .2s;-moz-transition: .2s;transition: .2s;}
+.Pagination a{height:30px; line-height:30px;margin:0 10px 10px 0; float:left;padding:0 10px; color:#fff; background:#011d56;-webkit-transition: .2s;-moz-transition: .2s;transition: .2s;}
+.Pagination span{height:30px; line-height:30px; float:left; color:#fff;-webkit-transition: .2s;-moz-transition: .2s;transition: .2s;}
+.Pagination a:hover{background:#89b0de;-webkit-transition: .2s;-moz-transition: .2s;transition: .2s;}
 .Pagination a.current,.Pagination span.current,.Pagination span.disabled{background:#89b0de;cursor:pointer;}
 .Pagination input{border:1px solid #cbcbcb;margin:0 5px; height:28px;font-size:16px;line-height:28px;}
+.Pagination span a.hover{background:#89b0de;-webkit-transition: .2s;-moz-transition: .2s;transition: .2s;}
+
 .noresult{ height:160px; font-size:24px; color:#555; background:#fafafa url(img/noresult.png) 80px 55px no-repeat; padding:120px 0 0 220px; margin-top:15px; line-height:32px;}
 .noresult span{font-size:16px; color:#999;}
 .qq_group{margin:20px 0 0 0;border-top:3px solid #747676;border-bottom:3px solid #dadada; background:url(img/subscribe_bg.jpg) repeat;padding:20px;}
