@@ -133,9 +133,9 @@
                 <img th:src="@{static/img/logo_home.png}" width="229" height="43"/>
             </a>
             <ul class="reset" id="navheader">
-                <li class="current"><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
-                <li><a href="companylist.html">职位搜索</a></li>
-                <li><a th:href="@{'/redirNews'}">职业资讯</a></li>
+                <li ><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
+                <li><a th:href="@{'/jobSearch'}">职位搜索</a></li>
+                <li class="current"><a th:href="@{'/redirNews'}">职业资讯</a></li>
                 <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
             </ul>
@@ -169,7 +169,7 @@
                 <span style="float:right;text-align: right;color: #6b6b6b;">修改资讯请务必尊重原文链接,否则有可能被直接删除</span>
             </p>
             <span style="font-size: 25px; padding-right: 10px">标题&nbsp;&nbsp;:</span>
-            <input type="text" style="height: 50px;" th:value="${News.NewsTitle}"
+            <input type="text" style="height: 35px;" th:value="${News.NewsTitle}"
                    placeholder="请输入标题（最多...个字）">
         </div>
 
