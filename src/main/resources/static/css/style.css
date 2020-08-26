@@ -268,6 +268,35 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 .workplace a{ color:#555; padding:2px 5px; cursor:pointer;}
 .workplace a:hover{background:#011d56; color:#fff;}
 .workplace a.current{background:#011d56; color:#fff;}
+
+.workplace1{ margin:0px 0px 15px 15px; line-height:22px;overflow:hidden;}
+.workplace1 dd,.workplace1 li{float:left; margin-left:5px;}
+.workplace1 dd.more,.workplace1 li.more{padding-right:15px;position:relative;}
+.workplace1 a{ color:#555; padding:2px 5px; cursor:pointer;}
+.workplace1 a:hover{background:#011d56; color:#fff;}
+.workplace1 a.current{background:#011d56; color:#fff;}
+
+.workplace2{ margin:0px 0px 15px 15px; line-height:22px;overflow:hidden;}
+.workplace2 dd,.workplace2 li{float:left; margin-left:5px;}
+.workplace2 dd.more,.workplace2 li.more{padding-right:15px;position:relative;}
+.workplace2 a{ color:#555; padding:2px 5px; cursor:pointer;}
+.workplace2 a:hover{background:#011d56; color:#fff;}
+.workplace2 a.current{background:#011d56; color:#fff;}
+
+.workplace3{ margin:0px 0px 15px 15px; line-height:22px;overflow:hidden;}
+.workplace3 dd,.workplace3 li{float:left; margin-left:5px;}
+.workplace3 dd.more,.workplace3 li.more{padding-right:15px;position:relative;}
+.workplace3 a{ color:#555; padding:2px 5px; cursor:pointer;}
+.workplace3 a:hover{background:#011d56; color:#fff;}
+.workplace3 a.current{background:#011d56; color:#fff;}
+
+.workplace4{ margin:0px 0px 15px 15px; line-height:22px;overflow:hidden;}
+.workplace4 dd,.workplace4 li{float:left; margin-left:5px;}
+.workplace4 dd.more,.workplace4 li.more{padding-right:15px;position:relative;}
+.workplace4 a{ color:#555; padding:2px 5px; cursor:pointer;}
+.workplace4 a:hover{background:#011d56; color:#fff;}
+.workplace4 a.current{background:#011d56; color:#fff;}
+
 .Pagination{margin:20px 0; overflow:hidden;line-height:30px;}
 .Pagination a{height:30px; line-height:30px;margin:0 10px 10px 0; float:left;padding:0 10px; color:#fff; background:#011d56;-webkit-transition: .2s;-moz-transition: .2s;transition: .2s;}
 .Pagination span{height:30px; line-height:30px; float:left; color:#fff;-webkit-transition: .2s;-moz-transition: .2s;transition: .2s;}
