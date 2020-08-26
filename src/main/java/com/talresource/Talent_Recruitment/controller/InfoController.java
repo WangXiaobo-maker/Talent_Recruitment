@@ -31,4 +31,24 @@ public class InfoController {
         return "html/myNotice";
     }
 
+    @RequestMapping("/companyInfoPage")
+    public String companyInfoPage() {
+        return "companyInfoPage";
+    }
+
+    @RequestMapping("/companyInfo")
+    public String companyInfo() {
+        return "html/companyInfo";
+    }
+
+    @RequestMapping("/companyUpdateInfo")
+    public String companyUpdateInfo() {
+        return "html/companyUpdateInfo";
+    }
+
+    @RequestMapping("/companyNotice")
+    public String companyNotice() {
+        return "html/companyNotice";
+    }
+
 }

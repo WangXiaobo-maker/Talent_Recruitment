@@ -31,6 +31,7 @@
         </ul>
     </div>
 </div><!-- end #header -->
+
 <div class="admin">
     <!--<div class="am-g">-->
     <!-- ========== Left Sidebar Start ========== -->
@@ -48,23 +49,23 @@
                     <div class="user-status offline"><i class="am-icon-dot-circle-o" aria-hidden="true"></i></div>
                 </div>
                 <br/>
-                <span style="font-weight:bold; color:#89b0de">福尔摩羊</span>，欢迎你！
+                <span style="font-weight:bold; color:#89b0de">乐推文化传播有限公司</span>，欢迎！
             </div>
             <!-- End User -->
 
             <ul class="am-list admin-sidebar-list">
-                <li><a th:href="@{'/userInfoPage'}"><span class="am-icon-home"></span>&nbsp;&nbsp;个人主页</a></li>
+                <li><a th:href="@{'/companyInfoPage'}"><span class="am-icon-home"></span>&nbsp;&nbsp;企业主页</a></li>
                 <li class="admin-parent">
-                    <a th:href="@{'/myInfo'}" class="am-cf" data-am-collapse="{target: '#collapse-nav1'}">
-                        <span class="am-icon-file"></span>&nbsp;&nbsp;我的信息</a>
+                    <a th:href="@{'/companyInfo'}" class="am-cf" data-am-collapse="{target: '#collapse-nav1'}">
+                        <span class="am-icon-file"></span>&nbsp;&nbsp;企业信息</a>
                 </li>
                 <li class="admin-parent">
-                    <a th:href="@{'/myNotice'}" class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">
+                    <a th:href="@{'/companyNotice'}" class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">
                         <span class="am-icon-table"></span>&nbsp;&nbsp;通知公告</a>
                 </li>
                 <li class="admin-parent">
                     <a th:href="@{''}" class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">
-                        <span class="am-icon-archive"></span>&nbsp;&nbsp;我的简历</a>
+                        <span class="am-icon-archive"></span>&nbsp;&nbsp;收到简历</a>
                 </li>
             </ul>
         </div>
@@ -103,51 +104,43 @@
 
                         <form action="" class="am-form" data-am-validator>
                             <fieldset>
-                                <legend>我的个人信息</legend>
+                                <legend>企业信息</legend>
                                 <div class="am-form-group">
-                                    <label for="doc-vld-name-2">姓名：</label>
-                                    <input type="text" id="doc-vld-name-2" minlength="3"
-                                           required/>
+                                    <label>名称：</label>
+                                    <span>乐推文化传播有限公司</span>
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="doc-vld-name-2">密码：</label>
-                                    <input type="button" minlength="3" value="修改密码" required/>
+                                    <label>密码：</label>
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="doc-vld-email-2">昵称：</label>
-                                    <input type="email" id="doc-vld-email-2" required/>
+                                    <label>绑定电话：</label>
+                                    <span>18956325698</span>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label>绑定邮箱：</label>
+                                    <span>1246249319@163.com</span>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label>地址：</label>
+                                    <span>徐汇区桂林路396号3号楼5层 (邮编：200233)</span>
                                 </div>
 
 
                                 <div class="am-form-group">
-                                    <label>性别： </label>
-                                    <label class="am-radio-inline">
-                                        <input type="radio" value="" name="docVlGender" required> 男
-                                    </label>
-                                    <label class="am-radio-inline">
-                                        <input type="radio" name="docVlGender"> 女
-                                    </label>
+                                    <label>企业文化： </label>
+                                    <span>快乐工作 工作快乐</span>
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="doc-vld-age-2">年龄：</label>
-                                    <input type="number" class="" id="doc-vld-age-2" placeholder="输入年龄 18-120" min="18"
-                                           max="120" required/>
+                                    <label>企业信息：</label>
+                                    <span>乐推传媒已为2800+的广告主提供直接或间接服务，每月产出视频2400+，累计3348亿次展示，超过434亿次观看量。</span>
                                 </div>
 
-                                <div class="am-form-group">
-                                    <label for="doc-vld-url-1">绑定电话：</label>
-                                    <input type="url" id="doc-vld-url-1" placeholder="输入电话" required/>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="doc-vld-url-2">绑定邮箱：</label>
-                                    <input type="url" id="doc-vld-url-2" placeholder="输入邮箱" required/>
-                                </div>
-
-                                <button class="am-btn am-btn-secondary" type="submit">提&nbsp;&nbsp;交</button>
+                                <button class="am-btn am-btn-secondary" type="submit">修&nbsp;&nbsp;改</button>
                             </fieldset>
                         </form>
 
@@ -156,6 +149,8 @@
                 </div>
                 <!-- Row end -->
             </div>
+
+
         </div>
     </div>
     <!-- end right Content here -->
@@ -167,10 +162,10 @@
 <a href="admin-offcanvas" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
    data-am-offcanvas="{target: '#admin-offcanvas'}"><!--<i class="fa fa-bars" aria-hidden="true"></i>--></a>
 
-<script type="text/javascript" src="../assets/js/jquery-2.1.0.js"></script>
-<script type="text/javascript" src="../assets/js/amazeui.min.js"></script>
-<script type="text/javascript" src="../assets/js/app.js"></script>
-<script type="text/javascript" src="../assets/js/blockUI.js"></script>
+<script type="text/javascript" th:src="@{static/js/jquery-2.1.0.js}"></script>
+<script type="text/javascript" th:src="@{static/js/amazeui.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/app.js}"></script>
+<script type="text/javascript" th:src="@{static/js/blockUI.js}"></script>
 </body>
 
 </html>
