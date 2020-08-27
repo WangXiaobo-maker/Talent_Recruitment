@@ -38,4 +38,9 @@ public interface CompanyDao {
 
     @Select("select * from company order by CompanyHeat DESC limit 9")
     List<Company> selectCompanyByHeat();
+
+
+    @Select("select * from company where (CompanyName like CONCAT('%',#{CompanyName},'%')) " +
+            "order by CompanyHeat")
+    List<Company> selectCompanyByName(@Param("CompanyName") String CompanyName );
 }
