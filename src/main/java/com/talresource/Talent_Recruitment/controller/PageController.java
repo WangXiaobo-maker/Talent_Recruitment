@@ -170,7 +170,7 @@ public class PageController {
 
     @RequestMapping("/test3")
     public String test3(){
-        return "test2";
+        return "test5";
     }
 
     @RequestMapping("/test4")
@@ -178,4 +178,6 @@ public class PageController {
         map.addAttribute("testMessage", newsService.selectNewsByID(7));
         return "test4";
     }
+
+
 }

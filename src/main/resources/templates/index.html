@@ -6,10 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>无限创想人才招聘平台</title>
+
 	<link rel="stylesheet" type="text/css" th:href="@{static/css/index.css}">
 	<!--[if IE]>
 		<script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
+
 </head>
 <body>
 	<main>
@@ -39,5 +41,10 @@
 	    $('#scene').parallax();
 	});
 	</script>
+
+    <script th:src="@{static/js/mouse-click.js}"></script>
+    <canvas width="100%" height="100%"
+            style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+
 </body>
 </html>

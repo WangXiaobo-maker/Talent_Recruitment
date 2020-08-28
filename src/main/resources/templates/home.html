@@ -99,6 +99,7 @@
             function stop() {
                 clearInterval(timer);
             }
+
             container.onmouseover = stop; //在鼠标进入onmouseover时，停止每两秒滚动一次
             container.onmouseout = play; //在鼠标离开onmouseover时，开始每两秒滚动一次
             play(); //在onload后就调用play()
@@ -124,7 +125,7 @@
 </head>
 <body>
 <div id="body" style="background-color: #f0f0f0;">
-    <div id="header">
+    <div id="header" style="zIndex:100;">
         <div class="wrapper">
             <a href="home" class="logo">
                 <img th:src="@{static/img/logo_home.png}" width="229" height="43"/>
@@ -152,7 +153,7 @@
                 <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
             </ul>
         </div>
-    </div><!-- end #header -->
+    </div>
     <div class="content">
         <div id="block">
 
@@ -237,7 +238,6 @@
             </dl>
         </div>
     </div>
-
     <div id="container">
         <div id="home_banner">
             <div id="banner_list" style="left:0px;">
@@ -256,7 +256,7 @@
             </div>
             <em id="prev" class="arrow">&lt;</em>
             <em id="next" class="arrow">&gt;</em>
-        </div><!--/#main_banner-->
+        </div>
 
 
         <div id="hotList">
@@ -276,14 +276,16 @@
                         <div class="mb10 job_hot_div_r">
                             <a href="h/jobs/147822.html" target="_blank">
                                 <p style="font-size: 20px;margin-top: 14px; display: -webkit-box;
-                                -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;" th:text="${job.JobName}">
+                                -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;"
+                                   th:text="${job.JobName}">
                                 </p>
-                                <p style="font-size: 15px;margin-top: 3px;" >
+                                <p style="font-size: 15px;margin-top: 3px;">
                                     <span th:text="${job.JobCity}"></span>|&nbsp;
                                     <span th:text="${job.JobExperience}"></span>|&nbsp;
                                     <span th:text="${job.JobEduDegree}"></span>
                                 </p>
-                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;" th:text="${job.JobSalary}"></p>
+                                <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;"
+                                   th:text="${job.JobSalary}"></p>
                             </a>
 
                         </div>
@@ -359,11 +361,12 @@
                             <p style="font-size: 20px;margin-top: 14px; display: -webkit-box;-webkit-box-orient: vertical;
                                  -webkit-line-clamp: 1; overflow: hidden;" th:text="${company.CompanyName}">
                             </p>
-                            <p style="font-size: 15px;margin-top: 3px;" >
+                            <p style="font-size: 15px;margin-top: 3px;">
                                 <span th:text="${company.CompanyNature}"></span>|&nbsp;
                                 <span th:text="${company.CompanyType}"></span>
                             </p>
-                            <p style="border: solid 1px #e3e7ed; margin: 0 auto; text-align: center; width: 130px"  >个热招职位</p>
+                            <p style="border: solid 1px #e3e7ed; margin: 0 auto; text-align: center; width: 130px">
+                                个热招职位</p>
                         </a>
 
                     </div>
@@ -459,7 +462,7 @@
     <div class="clear"></div>
     <input type="hidden" id="resubmitToken" value=""/>
     <a id="backtop" title="回到顶部" rel="nofollow"></a>
-</div><!-- end #container -->
+</div>
 </div><!-- end #body -->
 <div id="footer">
     <div id="linkbox">
@@ -499,7 +502,7 @@
     </div>
 </div>
 
-<script src="https://files.cnblogs.com/files/wkfvawl/mouse-click.js"></script>
+<script th:src="@{static/js/mouse-click.js}"></script>
 <canvas width="100%" height="100%"
         style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 <script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
@@ -516,15 +519,13 @@
                 cancelButtonText: "取消",
                 closeOnConfirm: false,
             },
-            function(isConfirm){
+            function (isConfirm) {
                 if (isConfirm) {
-                    window.location.href="logout";
+                    window.location.href = "logout";
                 }
             });
     }
 </script>
-<!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
- -->
 
 </body>
 </html>
