@@ -153,7 +153,7 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 #home_banner1:hover .arrow{display:block;}
 #news_title{text-align:center;width:100%;height:300px;background: url(../img/news_title.png); background-size:110%; position:relative;}
 #news_title_div1{text-align:center;width:100%;height:200px;}
-#news_title_div2{text-align:center;width:100%;height:90px;}
+#news_title_div2{text-align:center;width:100%;height:100px;}
 #news_title_div3{text-align:center;width:100%;height:100px;}
 /*新闻网页具体新闻*/
 #news_context_ul{text-align: center;height: 200px;}
@@ -195,8 +195,84 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 .job_ad_title{font-size: 20px;padding: 16px; font-weight: bold;}
 .job_ad{padding: 16px;}
 
+/*首页搜索*/
+.searchType:hover .search_ul{display: block;}
+.search_box_div{float: left;}
+.search_box_div_top{display: block;}
+.search_box_div_bottom{display: none;}
+.search_box_div:hover .search_box_div_bottom{display: list-item;}
+
 /*资讯编辑*/
 #new_content{width:1300px;height:900px;margin:35px auto 0; padding-bottom:20px;}
+
+/*论坛首页*/
+#forum_container{width:1300px;margin:35px auto 0; padding-bottom:20px;}
+.forum_content{width:100%; float:left;}
+.forum_div_l{float: left;width: 1000px;padding-top: 10px;}
+.forum_div_r{float:right;width: 290px;}
+.forum_hot_div{float: left;width: 450px;padding-left: 10px;}
+.forum_latest_div{float: right;width: 450px;margin-left: 20px;padding-left: 10px;padding-right: 10px;}
+.articles{list-style: none;}
+ul.articles .article-entry{position: relative;border-bottom: 1px solid #f2f2f2;padding: 0 0 0 24px;}
+ul.articles .article-entry.standard {
+    background: url(../img/standard.png) no-repeat 0 3px;
+}
+.article-entry .like-count {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    line-height: 18px;
+    font-weight: 600;
+    padding: 3px 5px 3px 20px;
+    border: 1px solid #f2f2f2;
+    border-bottom: none;
+    background: url(../img/like.png) no-repeat 6px 8px;
+}
+#forum_search_box{padding:30px 30px 20px 30px; width:964px;height:37px; position:relative;margin:0 auto; z-index:100;}
+#forum_title_div2{text-align:center;width:100%;height:40px;}
+.forum_content a:hover{color: #89b0de;}
+
+/*论坛具体内容*/
+#forumContent_detail{ width: 1260px; background-color:#f0f0f0; margin:35px auto 0; padding-bottom: 20px;}
+.forumContent_detail_l{ width: 180px;float: left;}
+.forumContent_detail_r{ width: 590px;float: right;}
+#forumContent_detail-left{ width:900px; float:left; }
+#forumContent_detail-right{ width:300px; float:right; margin-left:20px; padding:20px;}
+.forumContent_detail_left_top{width:800px; float:left; padding:20px 50px 20px 50px;}
+.forumContent_detail_left_bottom{width:800px; float:left; padding:20px 50px 20px 50px;margin-top: 10px;}
+.forumContent_li{overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+.forumContent_a{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+    width: 60%;
+    vertical-align: middle;
+    color: #666;
+}
+.forumContent_hot_flag{
+    background: #FF7F42;
+    color: #FFF;
+    width: 20px;
+    padding: 1px 4px;
+    margin-right: 7px;
+}
+.forumContent_flag{
+    display: inline-block;
+    text-align: right;
+    width: 20px;
+    padding: 1px 4px;
+    position: relative;
+    right: 7px;
+}
+.topic_list_box {
+    border-top: 1px solid #e4e6eb;
+    border-bottom: 1px solid #e4e6eb;
+}
+.topic-fixed {
+    position: fixed;
+}
 
 ul.hotabbing{font-size: 0;background:#f6f6f6;}
 ul.hotabbing li{cursor:pointer;display:inline-block;*display:inline;*zoom:1;padding:7px 20px;font-size:18px;color:#999;}
