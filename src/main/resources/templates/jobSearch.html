@@ -135,7 +135,7 @@
                 <li><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
                 <li class="current"><a th:href="@{'/jobSearch'}">职位搜索</a></li>
                 <li><a th:href="@{'/redirNews'}">职业资讯</a></li>
-                <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
+                <li><a th:href="@{'/forum'}" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
             </ul>
             <ul class="loginTop" th:if="${session.user == null && session.company == null}">

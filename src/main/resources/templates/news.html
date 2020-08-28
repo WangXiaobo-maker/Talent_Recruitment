@@ -132,7 +132,7 @@
                 <li><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
                 <li><a th:href="@{'/jobSearch'}">职位搜索</a></li>
                 <li class="current"><a th:href="@{'/redirNews'}" >职业资讯</a></li>
-                <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
+                <li><a th:href="@{'/forum'}" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
             </ul>
             <ul class="loginTop" th:if="${session.user == null && session.company == null}">
@@ -266,6 +266,10 @@
 
 <script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
 <script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
+
+<script th:src="@{static/js/mouse-click.js}"></script>
+<canvas width="100%" height="100%"
+        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 
 <script>
     function logoutC() {

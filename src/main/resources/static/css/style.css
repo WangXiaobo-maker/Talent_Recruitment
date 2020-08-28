@@ -221,12 +221,12 @@ ul.articles .article-entry.standard {
     position: absolute;
     bottom: 0px;
     right: 0px;
-    line-height: 18px;
+    line-height: 22px;
     font-weight: 600;
-    padding: 3px 5px 3px 20px;
+    padding: 5px 5px 3px 27px;
     border: 1px solid #f2f2f2;
     border-bottom: none;
-    background: url(../img/like.png) no-repeat 6px 8px;
+    background: url(../img/fire.png) no-repeat 1px 1px;
 }
 #forum_search_box{padding:30px 30px 20px 30px; width:964px;height:37px; position:relative;margin:0 auto; z-index:100;}
 #forum_title_div2{text-align:center;width:100%;height:40px;}

@@ -187,8 +187,14 @@
         </div>
     </div>
 </div>
-    <script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
-    <script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
+
+<script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
+
+<script th:src="@{static/js/mouse-click.js}"></script>
+<canvas width="100%" height="100%"
+        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+
     <script>
         function logoutC() {
             swal({

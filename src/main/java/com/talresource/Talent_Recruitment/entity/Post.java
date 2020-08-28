@@ -10,6 +10,7 @@ public class Post {
     private int UserID;
     private String PostPublishDate;
     private String PostContent;
+    private String PostHeat;
 
     public Post() {
     }
@@ -27,6 +28,14 @@ public class Post {
         UserID = userID;
         PostPublishDate = postPublishDate;
         PostContent = postContent;
+    }
+
+    public String getPostHeat() {
+        return PostHeat;
+    }
+
+    public void setPostHeat(String postHeat) {
+        PostHeat = postHeat;
     }
 
     public int getPostID() {

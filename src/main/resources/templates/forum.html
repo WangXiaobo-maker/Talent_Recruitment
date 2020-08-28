@@ -31,6 +31,7 @@
     <script type="text/javascript" th:src="@{static/js/conv.js}"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
+
     <script>
         window.onload = function () {
             var container = document.getElementById("home_banner1");
@@ -132,8 +133,8 @@
             <ul class="reset" id="navheader">
                 <li><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
                 <li><a th:href="@{'/jobSearch'}">职位搜索</a></li>
-                <li class="current"><a th:href="@{'/redirNews'}">职业资讯</a></li>
-                <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
+                <li><a th:href="@{'/redirNews'}">职业资讯</a></li>
+                <li class="current"><a th:href="@{'/forum'}" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
             </ul>
             <ul class="loginTop" th:if="${session.user == null && session.company == null}">
@@ -183,89 +184,20 @@
 
                     <div class="forum_hot_div">
                         <div style="height: 26px;">
-                            <span style="height: 26px;"><img th:src="@{static/img/fire.png}" alt=""></span>
+                            <span style="height: 26px;"><img th:src="@{static/img/hot.png}" alt=""></span>
                             <span style="font-size:20px;font-weight: bold;color: #6b6b6b">热门帖子</span>
                         </div>
 
                         <ul class="articles" style="padding-left: 0px;margin-top: 20px;">
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/5/29</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
+                            <li class="article-entry standard" th:each="map : ${PostMapByHeat}">
+                                <h4 style="font-size:15px;font-weight: bold;">
+                                    <a th:text="${map.value.PostTitle}" th:href="@{/forumContent(PostID=${map.value.PostID}, UserID=${map.key.UserID})}"></a>
+                                </h4>
+                                <span style="width: 100px;display: inline-block;text-align: left;" th:text="'发帖人：' + ${map.key.UserName}"><a href="#" title="" >发帖人昵称</a></span>
+                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;" th:text="${map.value.PostPublishDate}"></span>
+                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;" th:text="${map.value.PostHeat}"></span>
                             </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">超时加班为何吐槽者众维权者寡？</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/4/25</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">比起以前的人，现在更多年轻人选择拒绝工厂拒绝操作工</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/4/16</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">下大雨的天气面试官让你去面试，你会去吗？</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/4/8</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">超时加班为何吐槽者众维权者寡？</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/4/25</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">超时加班为何吐槽者众维权者寡？</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/4/25</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/5/29</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/5/29</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/5/29</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/5/29</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/5/29</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/5/29</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:170px; text-align: center;">2020/5/29</span>
-                                <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
+
 
                         </ul>
                     </div>
@@ -276,70 +208,12 @@
                             <span style="font-size:20px;font-weight: bold;color: #6b6b6b">最新发布</span>
                         </div>
                         <ul class="articles" style="padding-left: 0px;margin-top: 20px;">
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">2019四季度短缺职业排行：快递员职业短缺加大</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/5/12</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">当别人问你工资的时候，你会虚报吗？</a></h4>
-                                <span><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="float: right;">2020/3/21</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">面试之问答</a></h4>
-                                <span><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="float: right;">2020/3/11</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">竞争激烈，面试紧张怎么办？</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/3/2</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">找互联网工作大多都需要有经验怎么办？</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/2/18</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">职场交际能力重要?还是工作能力重要?</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/1/30</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">2019四季度短缺职业排行：快递员职业短缺加大</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/5/12</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">2019四季度短缺职业排行：快递员职业短缺加大</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/5/12</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">2019四季度短缺职业排行：快递员职业短缺加大</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/5/12</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">2019四季度短缺职业排行：快递员职业短缺加大</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/5/12</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">2019四季度短缺职业排行：快递员职业短缺加大</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/5/12</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">2019四季度短缺职业排行：快递员职业短缺加大</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/5/12</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:15px;font-weight: bold;"><a href="single.html">2019四季度短缺职业排行：快递员职业短缺加大</a></h4>
-                                <span><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="float: right;">2020/5/12</span>
+                            <li class="article-entry standard" th:each="map : ${PostMapByDate}">
+                                <h4 style="font-size:15px;font-weight: bold;" >
+                                    <a th:text="${map.value.PostTitle}" th:href="@{/forumContent(PostID=${map.value.PostID}, UserID=${map.key.UserID})}"></a>
+                                </h4>
+                                <span><a href="#" title="" th:text="'发帖人：' + ${map.key.UserName}"></a></span>
+                                <span class="article-meta" style="float: right;" th:text="${map.value.PostPublishDate}">2020/5/12</span>
                             </li>
                         </ul>
                     </div>
@@ -455,7 +329,7 @@
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
  -->
 
-<script src="https://files.cnblogs.com/files/wkfvawl/mouse-click.js"></script>
+<script th:src="@{static/js/mouse-click.js}"></script>
 <canvas width="100%" height="100%"
         style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 

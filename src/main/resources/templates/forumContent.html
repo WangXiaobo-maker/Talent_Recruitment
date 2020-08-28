@@ -91,8 +91,8 @@
             <ul class="reset" id="navheader">
                 <li><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
                 <li><a th:href="@{'/jobSearch'}">职位搜索</a></li>
-                <li class="current"><a th:href="@{'/redirNews'}">职业资讯</a></li>
-                <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
+                <li><a th:href="@{'/redirNews'}">职业资讯</a></li>
+                <li class="current"><a th:href="@{'/forum'}" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
             </ul>
             <ul class="loginTop" th:if="${session.user == null && session.company == null}">
@@ -120,13 +120,14 @@
                     <div class="forumContent_detail_l">
                         <div class="user-box am-hide-sm-only">
                             <div class="user-img">
-                                <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
-                                     class="img-circle img-thumbnail img-responsive">
+                                <img alt="user-img" title="Mat Helme" class="img-circle img-thumbnail img-responsive"
+                                     th:src="@{'static/img/userImg/' + ${userInfo.UserID} + '.jpg'}"
+                                style="width: 128px">
                                 <div class="user-status offline"><i class="am-icon-dot-circle-o" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <br/>
-                            <span style="font-weight:bold; color:#89b0de;font-size: 15px;">福尔摩羊</span>，欢迎你！
+                            <span style="font-weight:bold; color:#89b0de;font-size: 15px;" th:text="${userInfo.UserName}">福尔摩羊</span>，欢迎你！
                         </div>
 
                     </div>
@@ -134,10 +135,10 @@
                     <div class="forumContent_detail_r">
                         <div class="detail-main">
                             <div class="detail-content">
-                                <h1 class="title" th:text="${News.NewsTitle}">专访 | 坚守无人区的后浪巡护员们</h1>
+                                <h1 class="title" th:text="${postInfo.PostTitle}" style="line-height: normal"></h1>
                                 <div class="info">
                                     <p class="author">
-                                        <span class="time" th:text="${News.NewsPublishDate}">2020-07-31</span>
+                                        <span class="time" th:text="${postInfo.PostPublishDate}"></span>
                                     </p>
                                 </div>
                             </div>
@@ -145,7 +146,7 @@
                         <div id="content">
                             <div id="test-editormd-view" style="padding:20px 0 0 0;">
                         <textarea style="display:none; font-size: 100px" name="NewsContent"
-                                  th:text="${News.NewsContent}">
+                                  th:text="${postInfo.PostContent}">
                         </textarea>
                             </div>
                         </div>
@@ -544,5 +545,8 @@
 </script>
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
  -->
+<script th:src="@{static/js/mouse-click.js}"></script>
+<canvas width="100%" height="100%"
+        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 </body>
 </html>

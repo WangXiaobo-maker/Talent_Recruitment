@@ -2,9 +2,9 @@ package com.talresource.Talent_Recruitment.controller;
 
 import com.talresource.Talent_Recruitment.entity.Company;
 import com.talresource.Talent_Recruitment.entity.Job;
-import com.talresource.Talent_Recruitment.service.CompanyService;
-import com.talresource.Talent_Recruitment.service.JobService;
-import com.talresource.Talent_Recruitment.service.NewsService;
+import com.talresource.Talent_Recruitment.entity.Post;
+import com.talresource.Talent_Recruitment.entity.User;
+import com.talresource.Talent_Recruitment.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,6 +23,12 @@ public class PageController {
 
     @Autowired
     private CompanyService companyService;
+
+    @Autowired
+    private PostService postService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/index")
     public String index(){
@@ -163,22 +169,34 @@ public class PageController {
         return "jobSearch";
     }
 
-    @RequestMapping("/pagediv")
-    public String pagediv(){
-        return "jobSearch::test";
-    }
 
     @RequestMapping("/forum")
-    public String forum(){
+    public String forum(ModelMap map){
+
+        List<Post> PostListByHeat = postService.selectPostsByHeat();
+        Map<User, Post> userPostMapByHeat = new HashMap<>();
+        for (int i=0;i<PostListByHeat.size();i++){
+            Post post = PostListByHeat.get(i);
+            User user = userService.queryById(post.getUserID());
+            userPostMapByHeat.put(user, post);
+        }
+
+        List<Post> PostListByDate = postService.selectPostsByDate();
+        Map<User, Post> userPostMapByDate = new HashMap<>();
+        for (int i=0;i<PostListByDate.size();i++){
+            Post post = PostListByDate.get(i);
+            User user = userService.queryById(post.getUserID());
+            userPostMapByDate.put(user, post);
+        }
+
+        map.addAttribute("PostMapByHeat", userPostMapByHeat);
+        map.addAttribute("PostMapByDate", userPostMapByDate);
+
+        System.out.println();
+
         return "forum";
     }
 
-    @RequestMapping("/forumContent")
-    public String forumContent( ModelMap map){
-        map.addAttribute("News", newsService.selectNewsByID(34));
-        map.addAttribute("NewsListByHeat", newsService.selectNewsByHeat());
-        return "forumContent";
-    }
 
     @RequestMapping("/test3")
     public String test3(){
