@@ -132,6 +132,7 @@
                     <div class="forumContent_detail_r">
                         <div class="detail-main">
                             <div class="detail-content">
+                                <input id="PostID" th:value="${postInfo.getPostID()}" hidden="hidden">
                                 <h1 class="title" th:text="${postInfo.PostTitle}" style="line-height: normal"></h1>
                                 <div class="info">
                                     <p class="author">
@@ -155,28 +156,29 @@
             <div class="forumContent_detail_left_bottom" style="background-color:#fff;">
                 <div style="height: 26px;">
                     <span style="height: 26px;"><img th:src="@{static/img/review.png}" alt=""></span>
-                    <span style="font-size:20px;font-weight: bold;color: #6b6b6b">热门评论</span>
+                    <span style="font-size:20px;font-weight: bold;color: #6b6b6b">最新评论</span>
                 </div>
 
                 <ul class="articles" style="padding-left: 0px;margin-top: 40px;">
-                    <li class="article-entry">
+                    <li class="article-entry" th:each="map : ${UserCommentMap}">
                         <h4 style="font-size:15px;">
                             <div style="height: 50px;width: 776px;">
                                 <div style="float: left;width: 60px;height: 50px;">
-                                    <img th:src="@{static/img/profilePic.jpeg}" alt="forum-user-img"
+                                    <img th:src="@{'static/img/userImg/' + ${map.key.UserID} + '.jpg'}" alt="forum-user-img"
                                          class="forum-img-circle forum-img-thumbnail forum-img-responsive"
                                          style="width:50px;height: 50px;">
                                 </div>
                                 <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
                                     <div style="float: left;height: 50px;width: 100px;">
                                         <a href="single.html" style="padding-top: 0px;">
-                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">超级大傻瓜:</span>
+                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;"
+                                                  th:text="${map.key.NickName} + ':'"></span>
                                         </a>
                                     </div>
 
                                     <div style="float: right;height: 50px;width: 550px;">
-                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
-                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
+                                        <span style="display: inline-block;text-align: left; margin-left: 10px;"
+                                              th:text="${map.value.CommentContent}">
                                         </span>
                                     </div>
 
@@ -184,131 +186,25 @@
 
                             </div>
                         </h4>
-                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
-                        <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                    </li>
-
-                    <li class="article-entry">
-                        <h4 style="font-size:15px;">
-                            <div style="height: 50px;width: 776px;">
-                                <div style="float: left;width: 60px;height: 50px;">
-                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
-                                         class="img-circle img-thumbnail img-responsive"
-                                         style="width:50px;height: 50px;">
-                                </div>
-                                <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
-                                    <div style="float: left;height: 50px;width: 100px;">
-                                        <a href="single.html" style="padding-top: 0px;">
-                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">大傻瓜:</span>
-                                        </a>
-                                    </div>
-
-                                    <div style="float: right;height: 50px;width: 550px;">
-                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
-                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </h4>
-                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
-                        <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                    </li>
-                    <li class="article-entry">
-                        <h4 style="font-size:15px;">
-                            <div style="height: 50px;width: 776px;">
-                                <div style="float: left;width: 60px;height: 50px;">
-                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
-                                         class="img-circle img-thumbnail img-responsive"
-                                         style="width:50px;height: 50px;">
-                                </div>
-                                <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
-                                    <div style="float: left;height: 50px;width: 100px;">
-                                        <a href="single.html" style="padding-top: 0px;">
-                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">伸手挽明月:</span>
-                                        </a>
-                                    </div>
-
-                                    <div style="float: right;height: 50px;width: 550px;">
-                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
-                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </h4>
-                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
-                        <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                    </li>
-                    <li class="article-entry">
-                        <h4 style="font-size:15px;">
-                            <div style="height: 50px;width: 776px;">
-                                <div style="float: left;width: 60px;height: 50px;">
-                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
-                                         class="img-circle img-thumbnail img-responsive"
-                                         style="width:50px;height: 50px;">
-                                </div>
-                                <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
-                                    <div style="float: left;height: 50px;width: 100px;">
-                                        <a href="single.html" style="padding-top: 0px;">
-                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">诗与彼方:</span>
-                                        </a>
-                                    </div>
-
-                                    <div style="float: right;height: 50px;width: 550px;">
-                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
-                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </h4>
-                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
-                        <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                    </li>
-                    <li class="article-entry">
-                        <h4 style="font-size:15px;">
-                            <div style="height: 50px;width: 776px;">
-                                <div style="float: left;width: 60px;height: 50px;">
-                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
-                                         class="img-circle img-thumbnail img-responsive"
-                                         style="width:50px;height: 50px;">
-                                </div>
-                                <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
-                                    <div style="float: left;height: 50px;width: 100px;">
-                                        <a href="single.html" style="padding-top: 0px;">
-                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">白羊:</span>
-                                        </a>
-                                    </div>
-
-                                    <div style="float: right;height: 50px;width: 550px;">
-                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
-                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </h4>
-                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
+                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;"
+                              th:text="${map.value.CommentPublishDate} + ' 发布'" >2020/4/25 &nbsp; 发布</span>
                         <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
                     </li>
 
                 </ul>
 
-                <form>
+                <form >
                     <!--<input type="textarea" style="height: 250px;width: 800px;">-->
-                    <textarea style="width: 775px;height: 200px;font-size: 15px;" placeholder="请输入评论（最多76个字）..."></textarea>
+                    <textarea id="CommentContent" style="width: 775px;height: 200px;font-size: 15px;" placeholder="请输入评论（最多76个字）..."></textarea>
                     <br>
-                    <input type="submit" value="发表评论"
-                           style="height:50px;width:200px;background-color: #011d56; color: #FFFFFF;float: right;margin-top: 20px;font-size: 18px;">
+                    <div th:if="${session.user} == null">
+                        <input type="button" value="发表评论" onclick="NotLogin()"
+                               style="height:50px;width:200px;background-color: #011d56; color: #FFFFFF;float: right;margin-top: 20px;font-size: 18px;">
+                    </div>
+                    <div th:if="${session.user} != null">
+                        <input type="button" value="发表评论" onclick="javascript:return formCheck()" id="submit"
+                               style="height:50px;width:200px;background-color: #011d56; color: #FFFFFF;float: right;margin-top: 20px;font-size: 18px;">
+                    </div>
                 </form>
 
             </div>
@@ -323,87 +219,27 @@
                 </h3>
 
                 <ul>
-                    <li style="border: 0px;">
-                        <span class="forumContent_hot_flag">1</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
+                    <li style="border: 0px;" th:each=" userpost : ${userPostMap1}">
+                        <span class="forumContent_hot_flag" th:text="${userpost.key}">  </span>
+                        <a th:href="@{/forumContent(PostID=${userpost.value.getPost().getPostID()}, UserID=${userpost.value.getUser().getUserID()})}"
+                           ka="article-detail-hot1" class="forumContent_a" th:text="${userpost.value.getPost().getPostTitle()}">
                             年薪25万美元的工作在找你
                         </a>
-                        <span class="time" style="float: right;">2492828</span>
-
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_hot_flag">2</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            高校食堂光盘可免费换水果
-                        </a>
-                        <span class="time" style="float: right;">1655491</span>
-
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_hot_flag">3</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            2019四季度短缺职业排行：快递员职业短缺加大
-                        </a>
-                        <span class="time" style="float: right;">1337516</span>
+                        <span class="time" style="float: right;" th:text="${userpost.value.getPost().getPostHeat()}">2492828</span>
 
                     </li>
 
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">4</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
+
+                    <li style="border: 0px;" th:each="userpost : ${userPostMap2}">
+                        <span class="forumContent_flag" th:text="${userpost.key}"></span>
+                        <a th:href="@{/forumContent(PostID=${userpost.value.getPost().getPostID()}, UserID=${userpost.value.getUser().getUserID()})}"
+                           ka="article-detail-hot1" class="forumContent_a" th:text="${userpost.value.getPost().getPostTitle()}">
                             超时加班为何吐槽者众维权者寡？
                         </a>
-                        <span class="time" style="float: right;">1219963</span>
+                        <span class="time" style="float: right;" th:text="${userpost.value.getPost().getPostHeat()}">1219963</span>
 
                     </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">5</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            竞争激烈，面试紧张怎么办？
-                        </a>
-                        <span class="time" style="float: right;">1068826</span>
 
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">6</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            找互联网工作大多都需要有经验怎么办？
-                        </a>
-                        <span class="time" style="float: right;">734029</span>
-
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">7</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            职场疲惫要如何调试自己？
-                        </a>
-                        <span class="time" style="float: right;">681038</span>
-
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">8</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            职场人做好这几点，你也可以成为“别人家的孩子”
-                        </a>
-                        <span class="time" style="float: right;">531403</span>
-
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">9</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            不注水也吸引HR的简历这样写
-                        </a>
-                        <span class="time" style="float: right;">458275</span>
-
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">10</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            清华大学最小博士生
-                        </a>
-                        <span class="time" style="float: right;">409450</span>
-
-                    </li>
                 </ul>
             </div>
 
@@ -539,6 +375,66 @@
                 }
             });
     }
+
+
+    function NotLogin() {
+        swal({
+                title: "您还没有登录",
+                text: "登录才能发表评论哦！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#011d56",
+                confirmButtonText: "去登录",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    window.location.href = "redirLogin";
+                }
+            });
+    }
+</script>
+<script type="text/javascript">
+    function formCheck() {
+        var CommentContent = document.getElementById('CommentContent').value;
+        if (CommentContent === ""){
+            swal({
+                title: "评论不能为空",
+                text: "请输入评论内容再提交",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        return true;
+    }
+    $("#submit").click(function () {
+        if(formCheck() === true){
+            var PostID = $("#PostID").val();
+            var CommentContent = $("#CommentContent").val();
+            console.log(PostID + "-" + CommentContent);
+            var url = "publishComment";
+            var data = {
+                PostID: PostID,
+                CommentContent: CommentContent
+            }
+            $.post(url, data, function (result) {
+                if(result != null && result.code === 200){
+                    location.reload();
+                }
+                else{
+                    swal({
+                        title: "发表失败",
+                        text: "请确认输入内容并重试",
+                        type: "error",
+                        confirmButtonColor: "#011d56"
+                    });
+                }
+            })
+        }
+
+    })
 </script>
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
  -->
