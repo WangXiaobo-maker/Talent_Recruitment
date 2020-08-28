@@ -11,8 +11,13 @@
 * height:60px;                    detail page btn .btn_big
 **********************************************/
 *{outline: none; }html,body{height:100%;}
-#body{min-height: 100%;height: auto !important; height: 100%; margin: 0 0 -37px; background: #FFFFFF; padding-top:2px;}
-body{margin:0;padding:0; font:14px/22px "微软雅黑","宋体",Arial; color:#333;word-wrap:break-word;}
+#body{min-height: 100%;height: auto !important; height: 100%; margin: 0 0 -37px; background: #FFFFFF; padding-top:2px; z-index:-2;}
+body{margin:0;padding:0; font:14px/22px "微软雅黑","宋体",Arial; color:#333;word-wrap:break-word;
+    background-image: url("https://img2018.cnblogs.com/blog/1358881/201909/1358881-20190910100015098-837598352.jpg");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    cursor: url(https://files.cnblogs.com/files/wkfvawl/cursor.ico),auto;}
 #body1{min-height: 100%;height: auto !important; height: 100%; width:630px; margin: 0 0 -37px; background: #FFFFFF; padding-top:2px; padding-left:30px; padding-right: 30px}
 body1{margin:0;padding:0; font:14px/22px "微软雅黑","宋体",Arial; color:#333;word-wrap:break-word;}
 .clearfix:after{content: "";height: 0;clear: both;visibility: hidden;}
@@ -78,7 +83,7 @@ span.error{display:block; margin:5px 0 10px 0; font-size:14px; color:#ff6a6a;tex
 #noticeTip a{color:#011d56;}
 #noticeTip a.closeNT{width:12px;height:12px;display:inline-block;margin-left:10px;background:url(img/close_notice.png) no-repeat;transition: all .5s;-moz-transition: all .5s;-webkit-transition: all .5s;-o-transition: all .5s;}
 #noticeTip a.closeNT:hover{transform: rotate(180deg);-ms-transform: rotate(180deg);-webkit-transform: rotate(180deg);-o-transform: rotate(180deg);-moz-transform: rotate(180deg);}
-#container{width:1024px;margin:35px auto 0; padding-bottom:20px;}
+#container{width:1024px;margin:35px auto 0; padding-bottom:20px; z-index:-2;}
 #search_box{ width:964px;height:41px; position:relative;}
 #search_input{border:2px solid #747778;border-right:none;width:514px; height:23px; line-height:23px;float:left;font-size:16px;padding:7px 8px;margin:0;}
 #search_button{height:41px;width:152px; color:#FFF; font-size:18px;border:none;background:#747778;float:right; cursor:pointer;}
