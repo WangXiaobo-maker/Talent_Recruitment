@@ -284,9 +284,6 @@ a:hover {
     line-height: 48px;
 }
 
-
-
-
 /*---right Content here---*/
 .content-page {
     background-color:#F0F0F0;
@@ -302,16 +299,20 @@ a:hover {
     /*margin-top: 20px;*/
 }
 
+.content-page .gallery-content {
+    background-color:#fff;
+    background-clip: padding-box;
+    border-radius: 5px;
+    padding: 20px 5px;
+    margin-left: 10px;
+}
+
 .am-g{
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
 }
-
-
-
-
 
 @media screen and (max-width: 641px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
   .am-topbar{
