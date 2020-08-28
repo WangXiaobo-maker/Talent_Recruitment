@@ -157,26 +157,30 @@
 
         </div>
         <div id="search_box" align="center">
-            <form id="searchForm" name="searchForm" action="list.html" method="get">
+            <form id="searchForm" name="searchForm">
                 <ul id="searchType">
-                    <li data-searchtype="1" class="type_selected">职&nbsp;&nbsp;位</li>
-                    <li data-searchtype="4">公&nbsp;&nbsp;司</li>
+                    <li data-searchtype="1" class="type_selected" value="职位">职&nbsp;&nbsp;位</li>
+                    <li data-searchtype="" value="公司">公&nbsp;&nbsp;司</li>
                 </ul>
                 <div class="searchtype_arrow"></div>
-                <input type="text" id="search_input" name="kd" tabindex="1" value="" style="width:699px; height:23px;" placeholder="请输入职位名称，如：产品经理"/>
-                <input type="hidden" name="spc" id="spcInput" value=""/>
-                <input type="hidden" name="pl" id="plInput" value=""/>
-                <input type="hidden" name="gj" id="gjInput" value=""/>
-                <input type="hidden" name="xl" id="xlInput" value=""/>
-                <input type="hidden" name="yx" id="yxInput" value=""/>
-                <input type="hidden" name="gx" id="gxInput" value=""/>
-                <input type="hidden" name="st" id="stInput" value=""/>
-                <input type="hidden" name="labelWords" id="labelWords" value=""/>
-                <input type="hidden" name="lc" id="lc" value=""/>
-                <input type="hidden" name="workAddress" id="workAddress" value=""/>
-                <input type="hidden" name="city" id="cityInput" value=""/>
-                <input type="submit" id="search_button" value="搜&nbsp;&nbsp;索"/>
+                <input type="text" id="search_input" name="jobInfo" tabindex="1" value="" style="width:699px; height:23px;"
+                       placeholder="请输入职位名称，如：产品经理"/>
+
+                <input type="button" id="search_button" value="搜&nbsp;&nbsp;索" onclick="jobSearch()"/>
+
             </form>
+            <script>
+                function jobSearch() {
+                    // var searchType = document.getElementsByClassName("type_selected")[0].var();
+                    var searchType=$("#searchType li[class='type_selected']").attr("value");
+                    console.log(searchType);
+                    var jobInfo = document.getElementById("search_input").value;
+                    console.log(jobInfo);
+                    url = "searchJob?searchType=" + searchType + "&jobInfo=" + jobInfo;
+                    window.location.href = url;
+
+                }
+            </script>
         </div>
         <style>
             .ui-autocomplete {
@@ -219,16 +223,16 @@
         <div id="hot">
             <dl class="hotSearch" align="center">
                 <dt>热门搜索：</dt>
-                <dd><a href="list.htmlJava?labelWords=label&city=">Java</a></dd>
-                <dd><a href="list.htmlPHP?labelWords=label&city=">PHP</a></dd>
-                <dd><a href="list.htmlAndroid?labelWords=label&city=">Android</a></dd>
-                <dd><a href="list.htmliOS?labelWords=label&city=">iOS</a></dd>
-                <dd><a href="list.html前端?labelWords=label&city=">前端</a></dd>
-                <dd><a href="list.html产品经理?labelWords=label&city=">产品经理</a></dd>
-                <dd><a href="list.htmlUI?labelWords=label&city=">UI</a></dd>
-                <dd><a href="list.html运营?labelWords=label&city=">运营</a></dd>
-                <dd><a href="list.htmlBD?labelWords=label&city=">BD</a></dd>
-                <dd><a href="list.html?gx=实习&city=">实习</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=Java'}">Java</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=PHP'}">PHP</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=Android'}">Android</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=iOS'}">iOS</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=前端'}">前端</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=产品经理'}">产品经理</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=UI'}">UI</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=运营'}">运营</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=BD'}">BD</a></dd>
+                <dd><a th:href="@{'/searchJob?searchType=职位&jobInfo=实习'}">实习</a></dd>
             </dl>
         </div>
     </div>

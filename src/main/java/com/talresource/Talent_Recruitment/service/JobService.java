@@ -28,8 +28,12 @@ public class JobService {
         return jobDao.JobSearchByInfo(JobCity, JobSalary, JobExperience, JobEduDegree, JobFamily);
     }
 
-    public List<Job> TestJobList(String JobName, String JobFamily){
-        return jobDao.TestJobList(JobName, JobFamily);
+    public List<Job> JobSearchByNameOrFamily(String JobName, String JobFamily){
+        return jobDao.JobSearchByNameOrFamily(JobName, JobFamily);
+    }
+
+    public List<Job> selectJobByCompany(int CompanyID){
+        return jobDao.selectJobByCompany(CompanyID);
     }
 
 }

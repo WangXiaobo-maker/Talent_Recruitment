@@ -75,6 +75,12 @@ public class PageController {
             }
 
             map.addAttribute("JobMap", map1);
+
+            if (map1.size() == 0)
+                map.addAttribute("message", "null");
+            else
+                map.addAttribute("message", "notnull");
+
             System.out.println("Search1: " + JobList.size());
             return "jobSearch";
         }else {
@@ -91,8 +97,18 @@ public class PageController {
             }
 
             map.addAttribute("JobMap", map1);
+            if (map1.size() == 0)
+                map.addAttribute("message", "null");
+            else
+                map.addAttribute("message", "notnull");
             System.out.println("Search1: " + JobList.size());
-            return "jobSearch::jobList";
+
+            if (map1.size() == 0)
+                map.addAttribute("message", "null");
+            else
+                map.addAttribute("message", "notnull");
+
+            return "jobSearch::list";
         }
 
 
@@ -138,8 +154,18 @@ public class PageController {
         }
 
         map.addAttribute("JobMap", map1);
+        map.addAttribute("size", JobList.size());
+        if (map1.size() == 0)
+            map.addAttribute("message", "null");
+        else
+            map.addAttribute("message", "notnull");
 
-        return "jobSearch::listdiv";
+        return "jobSearch";
+    }
+
+    @RequestMapping("/pagediv")
+    public String pagediv(){
+        return "jobSearch::test";
     }
 
     @RequestMapping("/test3")
