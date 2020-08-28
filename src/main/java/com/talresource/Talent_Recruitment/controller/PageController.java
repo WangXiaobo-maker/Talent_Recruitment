@@ -168,6 +168,18 @@ public class PageController {
         return "jobSearch::test";
     }
 
+    @RequestMapping("/forum")
+    public String forum(){
+        return "forum";
+    }
+
+    @RequestMapping("/forumContent")
+    public String forumContent( ModelMap map){
+        map.addAttribute("News", newsService.selectNewsByID(34));
+        map.addAttribute("NewsListByHeat", newsService.selectNewsByHeat());
+        return "forumContent";
+    }
+
     @RequestMapping("/test3")
     public String test3(){
         return "test2";

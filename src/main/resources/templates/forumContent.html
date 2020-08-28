@@ -1,0 +1,548 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script id="allmobilize" charset="utf-8" th:src="@{static/js/allmobilize.min.js}"></script>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate" media="handheld"/>
+    <!-- end 云适配 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无限创想人才招聘平台</title>
+
+
+    <link rel="stylesheet" href="../static/editormd/css/editormd.css" th:href="@{static/editormd/css/editormd.css}"/>
+    <link rel="stylesheet" href="../plugins/editor.md/css/editormd.preview.css"
+          th:href="@{static/editormd/css/editormd.preview.css}"/>
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
+    <script th:src="@{static/editormd/examples/js/jquery.min.js}"></script>
+    <script src="../plugins/editor.md/lib/marked.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
+    <script src="../plugins/editor.md/lib/prettify.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
+
+    <script src="../plugins/editor.md/lib/raphael.min.js" th:src="@{static/editormd/lib/raphael.min.js}"></script>
+    <script src="../plugins/editor.md/lib/underscore.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
+    <script src="../plugins/editor.md/lib/sequence-diagram.min.js"
+            th:src="@{static/editormd/lib/underscore.min.js}"></script>
+    <script src="../plugins/editor.md/lib/flowchart.min.js" th:src="@{static/editormd/lib/flowchart.min.js}"></script>
+    <script src="../plugins/editor.md/lib/jquery.flowchart.min.js"
+            th:src="@{static/editormd/lib/jquery.flowchart.min.js}"></script>
+    <script src="../plugins/editor.md/editormd.js" th:src="@{static/editormd/editormd.js}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
+
+    <script type="text/javascript" th:inline="javascript">
+        var testEditormdView;
+        $(function () {
+            testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+            });
+        });
+
+    </script>
+
+
+    <!-- <div class="web_root"  style="display:none">h</div> -->
+    <script type="text/javascript">
+        var ctx = "h";
+        console.log(1);
+    </script>
+    <link rel="Shortcut Icon" href="h/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/popup.css}"/>
+
+    <script th:src="@{static/js/jquery.1.10.1.min.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{static/js/jquery.lib.min.js}"></script>
+    <script th:src="@{static/js/ajaxfileupload.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{static/js/additional-methods.js}"></script>
+    <!--[if lte IE 8]>
+    <script type="text/javascript" th:src="@{static/js/excanvas.js}"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var youdao_conv_id = 271546;
+    </script>
+    <script type="text/javascript" th:src="@{static/js/homebannner.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/conv.js}"></script>
+
+    <style type="text/css">
+        .hot-news ul {
+            list-style-type: none;
+            padding-left: 0px;
+        }
+
+        .hot-news li {
+            font-size: 16px;
+            padding: 10px 0 5px 0;
+            border-bottom: 1px #d0d0d0 solid;
+        }
+    </style>
+</head>
+<body>
+<div id="body" style="background-color:#f0f0f0;">
+    <div id="header">
+        <div class="wrapper">
+            <a href="home" class="logo">
+                <img th:src="@{static/img/logo_home.png}" width="229" height="43"/>
+            </a>
+            <ul class="reset" id="navheader">
+                <li><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
+                <li><a th:href="@{'/jobSearch'}">职位搜索</a></li>
+                <li class="current"><a th:href="@{'/redirNews'}">职业资讯</a></li>
+                <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
+                <li><a href="create.html" rel="nofollow">我的信息</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.user == null && session.company == null}">
+                <li><a th:href="@{'/redirLogin'}" rel="nofollow">登录</a></li>
+                <li>|</li>
+                <li><a th:href="@{'/redirRegister'}" rel="nofollow">注册</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.user != null}">
+                <li><a th:text="${session.user.getNickName()}"></a></li>
+                <li>|</li>
+                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.company != null}">
+                <li><a>企业用户</a></li>
+                <li>|</li>
+                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
+            </ul>
+        </div>
+    </div><!-- end #header -->
+
+    <div id="forumContent_detail">
+        <div id="forumContent_detail-left">
+            <div class="forumContent_detail_left_top" style="background-color:#fff;">
+                <div style="width: 800px;">
+                    <div class="forumContent_detail_l">
+                        <div class="user-box am-hide-sm-only">
+                            <div class="user-img">
+                                <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
+                                     class="img-circle img-thumbnail img-responsive">
+                                <div class="user-status offline"><i class="am-icon-dot-circle-o" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <br/>
+                            <span style="font-weight:bold; color:#89b0de;font-size: 15px;">福尔摩羊</span>，欢迎你！
+                        </div>
+
+                    </div>
+
+                    <div class="forumContent_detail_r">
+                        <div class="detail-main">
+                            <div class="detail-content">
+                                <h1 class="title" th:text="${News.NewsTitle}">专访 | 坚守无人区的后浪巡护员们</h1>
+                                <div class="info">
+                                    <p class="author">
+                                        <span class="time" th:text="${News.NewsPublishDate}">2020-07-31</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="content">
+                            <div id="test-editormd-view" style="padding:20px 0 0 0;">
+                        <textarea style="display:none; font-size: 100px" name="NewsContent"
+                                  th:text="${News.NewsContent}">
+                        </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="forumContent_detail_left_bottom" style="background-color:#fff;">
+                <div style="height: 26px;">
+                    <span style="height: 26px;"><img th:src="@{static/img/review.png}" alt=""></span>
+                    <span style="font-size:20px;font-weight: bold;color: #6b6b6b">热门评论</span>
+                </div>
+
+                <ul class="articles" style="padding-left: 0px;margin-top: 40px;">
+                    <li class="article-entry">
+                        <h4 style="font-size:15px;">
+                            <div style="height: 50px;width: 776px;">
+                                <div style="float: left;width: 60px;height: 50px;">
+                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
+                                         class="img-circle img-thumbnail img-responsive"
+                                         style="width:50px;height: 50px;">
+                                </div>
+                                <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
+                                    <div style="float: left;height: 50px;width: 100px;">
+                                        <a href="single.html" style="padding-top: 0px;">
+                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">超级大傻瓜:</span>
+                                        </a>
+                                    </div>
+
+                                    <div style="float: right;height: 50px;width: 550px;">
+                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
+                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </h4>
+                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
+                        <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
+                    </li>
+
+                    <li class="article-entry">
+                        <h4 style="font-size:15px;">
+                            <div style="height: 50px;width: 776px;">
+                                <div style="float: left;width: 60px;height: 50px;">
+                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
+                                         class="img-circle img-thumbnail img-responsive"
+                                         style="width:50px;height: 50px;">
+                                </div>
+                                <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
+                                    <div style="float: left;height: 50px;width: 100px;">
+                                        <a href="single.html" style="padding-top: 0px;">
+                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">大傻瓜:</span>
+                                        </a>
+                                    </div>
+
+                                    <div style="float: right;height: 50px;width: 550px;">
+                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
+                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </h4>
+                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
+                        <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
+                    </li>
+                    <li class="article-entry">
+                        <h4 style="font-size:15px;">
+                            <div style="height: 50px;width: 776px;">
+                                <div style="float: left;width: 60px;height: 50px;">
+                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
+                                         class="img-circle img-thumbnail img-responsive"
+                                         style="width:50px;height: 50px;">
+                                </div>
+                                <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
+                                    <div style="float: left;height: 50px;width: 100px;">
+                                        <a href="single.html" style="padding-top: 0px;">
+                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">伸手挽明月:</span>
+                                        </a>
+                                    </div>
+
+                                    <div style="float: right;height: 50px;width: 550px;">
+                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
+                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </h4>
+                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
+                        <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
+                    </li>
+                    <li class="article-entry">
+                        <h4 style="font-size:15px;">
+                            <div style="height: 50px;width: 776px;">
+                                <div style="float: left;width: 60px;height: 50px;">
+                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
+                                         class="img-circle img-thumbnail img-responsive"
+                                         style="width:50px;height: 50px;">
+                                </div>
+                                <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
+                                    <div style="float: left;height: 50px;width: 100px;">
+                                        <a href="single.html" style="padding-top: 0px;">
+                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">诗与彼方:</span>
+                                        </a>
+                                    </div>
+
+                                    <div style="float: right;height: 50px;width: 550px;">
+                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
+                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </h4>
+                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
+                        <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
+                    </li>
+                    <li class="article-entry">
+                        <h4 style="font-size:15px;">
+                            <div style="height: 50px;width: 776px;">
+                                <div style="float: left;width: 60px;height: 50px;">
+                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
+                                         class="img-circle img-thumbnail img-responsive"
+                                         style="width:50px;height: 50px;">
+                                </div>
+                                <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
+                                    <div style="float: left;height: 50px;width: 100px;">
+                                        <a href="single.html" style="padding-top: 0px;">
+                                            <span style="font-size: 15px;font-weight: bold;margin-bottom: 20px;">白羊:</span>
+                                        </a>
+                                    </div>
+
+                                    <div style="float: right;height: 50px;width: 550px;">
+                                        <span style="display: inline-block;text-align: left; margin-left: 10px;">
+                                        阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </h4>
+                        <span class="article-meta" style="display:inline-block;width:250px; text-align: center;">2020/4/25 &nbsp; 发布</span>
+                        <span class="like-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
+                    </li>
+
+                </ul>
+
+                <form>
+                    <!--<input type="textarea" style="height: 250px;width: 800px;">-->
+                    <textarea style="width: 775px;height: 200px;font-size: 15px;" placeholder="请输入评论（最多76个字）..."></textarea>
+                    <br>
+                    <input type="submit" value="发表评论"
+                           style="height:50px;width:200px;background-color: #011d56; color: #FFFFFF;float: right;margin-top: 20px;font-size: 18px;">
+                </form>
+
+            </div>
+
+        </div>
+        <div id="forumContent_detail-right" style="float: right; height:467px;background-color:#fff;">
+            <div class="hot-news">
+                <h3 class="title" style="font-family:微软雅黑; font-size:18px;">
+                    <b>
+                        <img th:src="@{static/img/news_hot.png}" style="height:20px;">&nbsp;&nbsp;论坛热议榜
+                    </b>
+                </h3>
+
+                <ul>
+                    <li style="border: 0px;">
+                        <span class="forumContent_hot_flag">1</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            年薪25万美元的工作在找你
+                        </a>
+                        <span class="time" style="float: right;">2492828</span>
+
+                    </li>
+                    <li style="border: 0px;">
+                        <span class="forumContent_hot_flag">2</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            高校食堂光盘可免费换水果
+                        </a>
+                        <span class="time" style="float: right;">1655491</span>
+
+                    </li>
+                    <li style="border: 0px;">
+                        <span class="forumContent_hot_flag">3</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            2019四季度短缺职业排行：快递员职业短缺加大
+                        </a>
+                        <span class="time" style="float: right;">1337516</span>
+
+                    </li>
+
+                    <li style="border: 0px;">
+                        <span class="forumContent_flag">4</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            超时加班为何吐槽者众维权者寡？
+                        </a>
+                        <span class="time" style="float: right;">1219963</span>
+
+                    </li>
+                    <li style="border: 0px;">
+                        <span class="forumContent_flag">5</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            竞争激烈，面试紧张怎么办？
+                        </a>
+                        <span class="time" style="float: right;">1068826</span>
+
+                    </li>
+                    <li style="border: 0px;">
+                        <span class="forumContent_flag">6</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            找互联网工作大多都需要有经验怎么办？
+                        </a>
+                        <span class="time" style="float: right;">734029</span>
+
+                    </li>
+                    <li style="border: 0px;">
+                        <span class="forumContent_flag">7</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            职场疲惫要如何调试自己？
+                        </a>
+                        <span class="time" style="float: right;">681038</span>
+
+                    </li>
+                    <li style="border: 0px;">
+                        <span class="forumContent_flag">8</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            职场人做好这几点，你也可以成为“别人家的孩子”
+                        </a>
+                        <span class="time" style="float: right;">531403</span>
+
+                    </li>
+                    <li style="border: 0px;">
+                        <span class="forumContent_flag">9</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            不注水也吸引HR的简历这样写
+                        </a>
+                        <span class="time" style="float: right;">458275</span>
+
+                    </li>
+                    <li style="border: 0px;">
+                        <span class="forumContent_flag">10</span>
+                        <a ka="article-detail-hot1" class="forumContent_a">
+                            清华大学最小博士生
+                        </a>
+                        <span class="time" style="float: right;">409450</span>
+
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 广告链接
+            <div class="side-cooperation"><a href="javascript:;" title="媒体合作" ka="article-detail-media" ><img src="https://static.zhipin.com/v2/web/news/images/cooperation.jpg" alt="" width="200px" height="150px"/></a></div>
+            -->
+        </div>
+
+
+        <div class="clear" style="height: 10px;"></div>
+
+    </div>
+
+    <script type="text/javascript">
+        (function ($) {
+            $.fn.capacityFixed = function (options) {
+                var opts = $.extend({}, $.fn.capacityFixed.deflunt, options);
+                var FixedFun = function (element) {
+                    var top = element.position().top;
+                    var right = "98px";
+                    element.css({
+                        "right": right,
+                        "top": top
+                    });
+                    $(window).resize(function () {
+                        var right = ($(window).width() - opts.pageWidth) / 2 + opts.right;
+                        element.css({
+                            "right": right
+                        });
+                    });
+                    $(window).scroll(function () {
+                        var scrolls = $(this).scrollTop();
+                        if (scrolls > top) {
+
+                            if (window.XMLHttpRequest) {
+                                element.css({
+                                    position: "fixed",
+                                    top: 0
+                                });
+                            } else {
+                                element.css({
+                                    top: scrolls
+                                });
+                            }
+                        } else {
+                            element.css({
+                                position: "absolute",
+                                top: top
+                            });
+                        }
+                    });
+                    element.find(".close-ico").click(function (event) {
+                        element.remove();
+                        event.preventDefault();
+                    })
+                };
+                return $(this).each(function () {
+                    FixedFun($(this));
+                });
+            };
+            $.fn.capacityFixed.deflunt = {
+                right: 100,//相对于页面宽度zhi的右边定位
+                top: 0,
+                pageWidth: 960
+            };
+        })(jQuery);
+
+        $("#forumContent_detail-right").capacityFixed();
+    </script>
+
+    <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/count.js}"></script>
+    <div class="clear"></div>
+    <input type="hidden" id="resubmitToken" value=""/>
+    <a id="backtop" title="回到顶部" rel="nofollow"></a>
+</div><!-- end #container -->
+</div><!-- end #body -->
+<div id="footer">
+    <div id="linkbox">
+        <dl>
+            <dt style="font-size:20px;">友情链接</dt>
+            <dd>
+                <a href="http://www.zhuqu.com/" target="_blank">住趣家居网</a> <span>|</span>
+                <a href="http://www.woshipm.com/" target="_blank">人人都是产品经理</a> <span>|</span>
+                <a href="http://zaodula.com/" target="_blank">互联网er的早读课</a> <span>|</span>
+                <a href="http://lieyunwang.com/" target="_blank">猎云网</a> <span>|</span>
+                <a href="http://www.ucloud.cn/" target="_blank">UCloud</a> <span>|</span>
+                <a href="http://www.iconfans.com/" target="_blank">iconfans</a> <span>|</span>
+                <a href="http://www.html5dw.com/" target="_blank">html5梦工厂</a> <span>|</span>
+                <a href="http://www.sykong.com/" target="_blank">手游那点事</a>
+
+                <a href="http://www.php100.com/" target="_blank">php100</a> <span>|</span>
+                <a href="http://www.uehtml.com/" target="_blank">uehtml</a> <span>|</span>
+                <a href="http://www.w3cplus.com/" target="_blank">W3CPlus</a> <span>|</span>
+                <a href="http://www.boxui.com/" target="_blank">盒子UI</a> <span>|</span>
+                <a href="http://www.uimaker.com/" target="_blank">uimaker</a> <span>|</span>
+                <a href="http://www.yixieshi.com/" target="_blank">互联网的一些事</a> <span>|</span>
+                <a href="http://www.chuanke.com/" target="_blank">传课网</a> <span>|</span>
+                <a href="http://www.eoe.cn/" target="_blank">安卓开发</a> <span>|</span>
+                <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a><span>|</span>
+                <a href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
+                <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
+                <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
+                <a href="http://www.ycpai.com" target="_blank">互联网创业</a>
+
+            </dd>
+        </dl>
+    </div>
+    <div class="dt-footer-bottom">
+        <div class="dt-footer-info">
+            <span class="dt-footer-icp">Copyright ©2020 wuxiancx.com 版权所有</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
+<script>
+    function logoutC() {
+        swal({
+                title: "确定注销吗？",
+                text: "您将退出登录！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#011d56",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    window.location.href = "logout";
+                }
+            });
+    }
+</script>
+<!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
+ -->
+</body>
+</html>
