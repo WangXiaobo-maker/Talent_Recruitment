@@ -118,16 +118,13 @@
             <div class="forumContent_detail_left_top" style="background-color:#fff;">
                 <div style="width: 800px;">
                     <div class="forumContent_detail_l">
-                        <div class="user-box am-hide-sm-only">
-                            <div class="user-img">
-                                <img alt="user-img" title="Mat Helme" class="img-circle img-thumbnail img-responsive"
+                        <div class="forum-user-box am-hide-sm-only">
+                            <div class="forum-user-img">
+                                <img alt="forum-user-img" class="forum-img-circle forum-img-thumbnail forum-img-responsive"
                                      th:src="@{'static/img/userImg/' + ${userInfo.UserID} + '.jpg'}"
-                                style="width: 128px">
-                                <div class="user-status offline"><i class="am-icon-dot-circle-o" aria-hidden="true"></i>
-                                </div>
+                                     style="width: 128px">
                             </div>
-                            <br/>
-                            <span style="font-weight:bold; color:#89b0de;font-size: 15px;" th:text="${userInfo.UserName}">福尔摩羊</span>，欢迎你！
+                            <span style="font-weight:bold; text-align:center; color: #0c80ba; font-size:18px;" th:text="${userInfo.NickName}"></span>
                         </div>
 
                     </div>
@@ -145,7 +142,7 @@
                         </div>
                         <div id="content">
                             <div id="test-editormd-view" style="padding:20px 0 0 0;">
-                        <textarea style="display:none; font-size: 100px" name="NewsContent"
+                        <textarea style="display:none;" name="NewsContent"
                                   th:text="${postInfo.PostContent}">
                         </textarea>
                             </div>
@@ -166,8 +163,8 @@
                         <h4 style="font-size:15px;">
                             <div style="height: 50px;width: 776px;">
                                 <div style="float: left;width: 60px;height: 50px;">
-                                    <img th:src="@{static/img/profilePic.jpeg}" alt="user-img" title="Mat Helme"
-                                         class="img-circle img-thumbnail img-responsive"
+                                    <img th:src="@{static/img/profilePic.jpeg}" alt="forum-user-img"
+                                         class="forum-img-circle forum-img-thumbnail forum-img-responsive"
                                          style="width:50px;height: 50px;">
                                 </div>
                                 <div style="float: left;width: 650px;height: 50px;margin-left: 10px;">
@@ -426,7 +423,7 @@
                 var opts = $.extend({}, $.fn.capacityFixed.deflunt, options);
                 var FixedFun = function (element) {
                     var top = element.position().top;
-                    var right = "98px";
+                    var right = "320px";
                     element.css({
                         "right": right,
                         "top": top

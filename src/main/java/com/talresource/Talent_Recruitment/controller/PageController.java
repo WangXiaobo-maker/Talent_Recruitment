@@ -198,6 +198,11 @@ public class PageController {
     }
 
 
+    @RequestMapping("/forumSearch")
+    public String forumSearch(){
+        return "forumSearch";
+    }
+
     @RequestMapping("/test3")
     public String test3(){
         return "test5";
