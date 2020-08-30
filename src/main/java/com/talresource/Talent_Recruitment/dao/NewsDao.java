@@ -11,7 +11,7 @@ public interface NewsDao {
     @Select("select * from news")
     List<News> selectAllNews();
 
-    @Select("select * from news order by NewsPublishDate DESC ")
+    @Select("select * from news where NewsID<>0 order by NewsPublishDate DESC ")
     List<News> selectNewsByDate();
 
     @Select("select * from news where NewsID=#{NewsID}")
@@ -32,5 +32,8 @@ public interface NewsDao {
             "NewsContent=#{NewsContent} where NewsID=#{NewsID}")
     boolean updateNewsById(@Param("NewsTitle") String NewsTitle, @Param("NewsPublishDate") String NewsPublishDate,
                    @Param("NewsContent") String NewsContent, @Param("NewsID") int NewsID);
+
+    @Update("update news set NewsHeat=NewsHeat+6 where NewsID=#{NewsID}")
+    boolean updateNewsHeat(@Param("NewsID") int NewsID);
 
 }

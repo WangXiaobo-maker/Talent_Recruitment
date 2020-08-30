@@ -10,10 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class JobController {
@@ -36,7 +33,7 @@ public class JobController {
                 CompanyList.add(companyService.queryById(job.getCompanyID()));
             }
 
-            Map<Job, Company> map1 = new HashMap<>();
+            Map<Job, Company> map1 = new LinkedHashMap<>();
             for (int i=0;i<JobList.size();i++){
                 map1.put(JobList.get(i), CompanyList.get(i));
             }
@@ -49,10 +46,10 @@ public class JobController {
             System.out.println("Search1: " + JobList.size());
         }
 
-        if (searchType.equals("公司")){
+        else if (searchType.equals("公司")){
             List<Company> CompanyList = companyService.selectCompanyByName(jobInfo);
             List<Job> JobList = new ArrayList<Job>();
-            Map<Job, Company> map1 = new HashMap<>();
+            Map<Job, Company> map1 = new LinkedHashMap<>();
             for (int i=0;i<CompanyList.size();i++){
                 Company company = CompanyList.get(i);
                 List<Job> companyJobList = jobService.selectJobByCompany(company.getCompanyID());
@@ -72,21 +69,14 @@ public class JobController {
 
         }
 
+        else{
+            map.addAttribute("message", "null");
+        }
 
 
 
         return "jobSearch";
 
-    }
-
-
-    @RequestMapping("/jobTest1")
-    public String jobTest1(ModelMap map){
-
-        map.addAttribute("JobListByHeat", jobService.selectJobByHeat());
-
-        map.addAttribute("TestJobListSearch", jobService.selectAllJob());
-        return "test1";
     }
 
 

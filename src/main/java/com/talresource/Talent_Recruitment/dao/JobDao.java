@@ -4,6 +4,7 @@ import com.talresource.Talent_Recruitment.entity.Job;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -45,6 +46,9 @@ public interface JobDao {
 
     @Select("select * from job where CompanyID=#{CompanyID} order by JobHeat DESC limit 3" )
     List<Job> selectJobByCompanylim3(@Param("CompanyID") int CompanyID);
+
+    @Update("update job set JobHeat=JobHeat+6 where JobID=#{JobID}")
+    boolean updateJobHeat(@Param("JobID") int JobID);
 
 }
 //"ORDER BY   REPLACE(JobName,'${JobName}=','')  "

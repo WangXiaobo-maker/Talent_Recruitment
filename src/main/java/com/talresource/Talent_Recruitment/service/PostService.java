@@ -1,6 +1,7 @@
 package com.talresource.Talent_Recruitment.service;
 
 import com.talresource.Talent_Recruitment.dao.PostDao;
+import com.talresource.Talent_Recruitment.entity.Job;
 import com.talresource.Talent_Recruitment.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,19 @@ public class PostService {
         return postDao.selectPostsByDate();
     }
 
+    public List<Post> selectAllPost(){
+        return postDao.selectAllPost();
+    }
+
+    public List<Post> searchPostByTitleOrContent(String PostInfo){
+        return postDao.searchPostByTitleOrContent(PostInfo);
+    }
+
+    public boolean insertPost(String PostTitle, String PostContent, String PostPublishDate, int UserID){
+        return postDao.insertPost(PostTitle, PostContent, PostPublishDate, UserID);
+    }
+
+    public boolean updatePostHeat(int PostID){
+        return postDao.updatePostHeat(PostID);
+    }
 }

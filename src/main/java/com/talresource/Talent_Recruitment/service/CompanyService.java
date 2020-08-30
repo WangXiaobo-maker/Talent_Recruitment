@@ -58,4 +58,8 @@ public class CompanyService {
     public List<Company> selectCompanyByName(String CompanyName){
         return companyDao.selectCompanyByName(CompanyName);
     }
+
+    public boolean updateCompanyHeat(int CompanyID){
+        return companyDao.updateCompanyHeat(CompanyID);
+    }
 }

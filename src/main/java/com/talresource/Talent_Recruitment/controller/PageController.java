@@ -134,11 +134,12 @@ public class PageController {
 
     }
 
+
     @RequestMapping("/forum")
     public String forum(ModelMap map){
 
         List<Post> PostListByHeat = postService.selectPostsByHeat();
-        Map<User, Post> userPostMapByHeat = new HashMap<>();
+        Map<User, Post> userPostMapByHeat = new LinkedHashMap<>();
         for (int i=0;i<PostListByHeat.size();i++){
             Post post = PostListByHeat.get(i);
             User user = userService.queryById(post.getUserID());
@@ -146,7 +147,7 @@ public class PageController {
         }
 
         List<Post> PostListByDate = postService.selectPostsByDate();
-        Map<User, Post> userPostMapByDate = new HashMap<>();
+        Map<User, Post> userPostMapByDate = new LinkedHashMap<>();
         for (int i=0;i<PostListByDate.size();i++){
             Post post = PostListByDate.get(i);
             User user = userService.queryById(post.getUserID());
@@ -161,19 +162,30 @@ public class PageController {
         return "forum";
     }
 
-    @RequestMapping("/forumSearch")
-    public String forumSearch(){
+    @RequestMapping("/redirForumSearch")
+    public String redirForumSearch(ModelMap map) {
+
+        List<Post> postList = postService.selectAllPost();
+        Map<User, Post> userPostMap = new LinkedHashMap<>();
+
+        for (int i=0;i<postList.size();i++){
+            Post post = postList.get(i);
+            userPostMap.put(userService.queryById(post.getUserID()), post);
+        }
+
+        map.addAttribute("UserPostMap", userPostMap);
         return "forumSearch";
     }
 
     @RequestMapping("/jobInfo")
     public String jobInfo(ModelMap map, int JobID){
 
+        jobService.updateJobHeat(JobID);
+
         Job job = jobService.selectJobByID(JobID);
         Company company = companyService.queryById(job.getCompanyID());
         map.addAttribute("Job", job);
         map.addAttribute("Company", company);
-
 
         List<Job> jobList = jobService.selectJobByHeatlim10();
 
@@ -192,6 +204,8 @@ public class PageController {
     @RequestMapping("/companyIntro")
     public String companyIntro(ModelMap map, int CompanyID){
 
+        companyService.updateCompanyHeat(CompanyID);
+
         map.addAttribute("companyInfo", companyService.queryById(CompanyID));
         map.addAttribute("companyJobListlim3", jobService.selectJobByCompanylim3(CompanyID));
         map.addAttribute("similarCompanyList", companyService.selectCompanyByHeatlim4());
@@ -207,17 +221,6 @@ public class PageController {
 
 
         return "companyIntro";
-    }
-
-    @RequestMapping("/test3")
-    public String test3(){
-        return "companyIntro";
-    }
-
-    @RequestMapping("/test4")
-    public String test4(ModelMap map){
-        map.addAttribute("testMessage", newsService.selectNewsByID(7));
-        return "jobInfo";
     }
 
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -29,6 +30,9 @@ public class PostController {
 
     @RequestMapping("/forumContent")
     public String forumContent( ModelMap map, int PostID, int UserID){
+
+        postService.updatePostHeat(PostID);
+
         Post post = postService.selectPostByID(PostID);
         User user = userService.queryById(UserID);
 
@@ -72,6 +76,42 @@ public class PostController {
         map.addAttribute("userPostMap2", stringPostCombineUserMap2);
 
         return "forumContent";
+    }
+
+    @RequestMapping("/searchForum")
+    public String searchForum(ModelMap map, String postInfo){
+
+        List<Post> postList = postService.searchPostByTitleOrContent(postInfo);
+        Map<User, Post> userPostMap = new LinkedHashMap<>();
+
+        for (int i=0;i<postList.size();i++){
+            Post post = postList.get(i);
+            userPostMap.put(userService.queryById(post.getUserID()), post);
+        }
+
+        map.addAttribute("UserPostMap", userPostMap);
+        return "forumSearch";
+    }
+
+    @RequestMapping("/publishPost")
+    @ResponseBody
+    public Result publishPost(HttpSession session, String PostTitle, String PostContent){
+//        System.out.println(PostID + "-" + CommentContent);
+        Result result = null;
+        User user = (User)session.getAttribute("user");
+        int UserID = user.getUserID();
+        Date today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String PostPublishDate = sdf.format(today);
+//        System.out.println(CommentPublishDate);
+
+        if (postService.insertPost(PostTitle, PostContent, PostPublishDate, UserID)){
+            result = new Result(Config.STATUS_SUCCESS,"发表成功");
+        }
+        else{
+            result = new Result(Config.STATUS_FAILURE,"发表失败");
+        }
+        return result;
     }
 
 

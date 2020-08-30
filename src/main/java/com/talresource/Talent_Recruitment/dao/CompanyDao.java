@@ -46,4 +46,7 @@ public interface CompanyDao {
     @Select("select * from company where (CompanyName like CONCAT('%',#{CompanyName},'%')) " +
             "order by CompanyHeat")
     List<Company> selectCompanyByName(@Param("CompanyName") String CompanyName );
+
+    @Update("update company set CompanyHeat=CompanyHeat+6 where CompanyID=#{CompanyID}")
+    boolean updateCompanyHeat(@Param("CompanyID") int CompanyID);
 }

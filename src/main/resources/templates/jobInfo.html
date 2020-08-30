@@ -344,14 +344,19 @@
                                 </a>
                             </div>
                             <div class="info-primary">
-                                <div class="name" style="text-indent: 3em"><a ka="job_sug_2" th:href="@{/jobInfo(JobID=${similarJob.getJobID()})}"
+                                <div class="name" style="text-indent: 3em">
+                                    <a ka="job_sug_2" th:href="@{/jobInfo(JobID=${similarJob.getJobID()})}"
                                                      th:text="${similarJob.getJobName()}">大数据解决方案
-                                    <span style="color: red" th:text="${similarJob.getJobSalary()}">15-25K</span></a></div>
+
+                                    </a>
+                                    <span style="color: red" th:text="${similarJob.getJobSalary()}">15-25K</span>
+                                </div>
                                 <p class="gray" style="text-indent: 3em">
                                     <a ka="job_sug_brandjob2_custompage" th:href="@{/jobInfo(JobID=${similarJob.getJobID()})}" title="航天科工网络信息招聘">
                                     <span style="color: gray" th:text="${similarJob.getJobEduDegree()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;航天科工</span>
                                     </a><em class="vdot">·</em>
-                                    <span style="color: gray" th:text="${similarJob.getJobCity()}">西安</span></p>
+                                    <span style="color: gray" th:text="${similarJob.getJobCity()}">西安</span>
+                                </p>
                             </div>
                         </ol>
 

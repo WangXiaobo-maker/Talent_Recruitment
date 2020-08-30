@@ -43,4 +43,8 @@ public class NewsService {
         return newsDao.updateNewsById(NewsTitle, NewsPublishDate, NewsContent, NewsID);
     }
 
+    public boolean updateNewsHeat(int NewsID){
+        return newsDao.updateNewsHeat(NewsID);
+    }
+
 }

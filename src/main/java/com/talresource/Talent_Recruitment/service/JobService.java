@@ -51,4 +51,8 @@ public class JobService {
     public List<Job> selectJobByCompanylim3(int CompanyID){
         return jobDao.selectJobByCompanylim3(CompanyID);
     }
+
+    public boolean updateJobHeat(int JobID){
+        return jobDao.updateJobHeat(JobID);
+    }
 }

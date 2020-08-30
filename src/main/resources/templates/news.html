@@ -167,7 +167,7 @@
     </div>
 
     <div id="container">
-        <div class="content">
+        <div class="content1">
             <div id="home_banner1">
                 <div id="banner_list" style="left:0px;">
                     <img th:src="@{static/img/gg1.png}" alt="">
@@ -189,11 +189,11 @@
 
 
             <div id="hotList" style="background-color:#fff;padding-top: 20px;">
-                <ul class="hot_pos reset" id="news_context_ul" th:each="news : ${NewsListByDate}">
-                    <li class="clearfix" id="news_context_li" th:each="entry : ${news}">
+                <ul class="hot_pos reset" id="news_context_ul" >
+                    <li class="clearfix" id="news_context_li" th:each="news : ${NewsListByDate}">
                         <div class="news_context_div_l">
                             <div class="mb10">
-                                <a href="h/jobs/147822.html" target="_blank"><img width="300px" height="170px" th:src="@{'static/img/newsImg/' + ${news.NewsImg}}" ></a>
+                                <a th:href="@{/redirNewsContent(NewsID=${news.NewsID})}" ><img width="300px" height="170px" th:src="@{'static/img/newsImg/' + ${news.NewsImg}}" ></a>
                             </div>
 
                         </div>
@@ -215,7 +215,66 @@
 
                     <!--<a href="list.html" class="btn fr" target="_blank">查看更多</a>-->
                 </ul>
+                <div class="page Pagination">
+                    <div id="page"></div>
+                </div>
             </div>
+            <!-- 分页函数 -->
+            <script>
+                var zz=getzz()
+                var pageno=1 ; //当前页
+                var pagesize=10; //每页多少条信息
+                if(zz.length%pagesize==0){
+                    var pageall =zz.length/pagesize ;
+                }else{
+                    var pageall =parseInt(zz.length/pagesize)+1;
+                } //一共多少页
+
+                change(1);
+
+                function getzz() {
+                    var a = $("ul#news_context_ul li#news_context_li");
+                    var zz =new Array(a.length);
+                    for(var i=0;i <a.length;i++){
+                        zz[i]=a[i].innerHTML;
+                    } //div的字符串数组付给zz
+                    return zz;
+                }
+                function change(e){
+
+                    pageno=e;
+                    if(e<1){
+                        e=1;pageno=1;//就等于第1页 ， 当前页为1
+                    }
+                    if(e>pageall){ //如果输入页大于最大页
+                        e=pageall;pageno=pageall; //输入页和当前页都=最大页
+                    }
+                    $("#news_context_ul").html("");//全部清空
+                    var html="";
+                    for(var i=0;i<pagesize;i++){
+                        html += '<li class="clearfix" id="news_context_li" >' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+                        if(zz[(e-1)*pagesize+i+1]==null) break;//超出最后的范围跳出
+                    }
+                    $("ul#news_context_ul").html(html);//给ul列表写入html
+                    var ye="";
+                    for(var j=1;j<=pageall;j++){
+                        if(e==j){
+                            ye=ye+"<span><a href='#' onClick='change("+j+")' style='color:orange'>"+j+"</a></span> "
+                        }else{
+                            ye=ye+"<a href='#' onClick='change("+j+")'>"+j+"</a> "
+                        }
+                    }
+                    var pageContent="";
+                    pageContent +='<a href="#" onClick="change(1)">首页</a>';
+                    pageContent +='<a href="#" onClick="change(--pageno)">上一页</a>';
+                    // pageContent +='<span id=\"a2\">'+pageno+'</span>';
+                    // pageContent +='<span id="a1">'+pageall+'</span>';
+                    pageContent +='<span id="a3">'+ye+'</span>';
+                    pageContent +='<a href="#" onClick="change(++pageno)">下一页</a>';
+                    pageContent +='<a href="#" onClick="change(pageall)">尾页</a>';
+                    $("#page").html(pageContent);
+                }
+            </script>
 
             <div class="clear"></div>
         </div>

@@ -121,6 +121,9 @@ span.error{display:block; margin:5px 0 10px 0; font-size:14px; color:#ff6a6a;tex
 
 /*index content*/
 .content{width:100%; float:left; background: url(../img/home_search.png) center no-repeat;}
+.content1{width:100%; float:left;}
+
+
 .da-thumbs {list-style: none;height: 118px;	position: relative;	margin: 0 0 25px 0;	padding: 0;}
 .da-thumbs li {	float: left;margin-right:8px;background: #fff;position: relative;	border:2px solid #fafafa;}
 .da-thumbs li.last{margin-right:0;}
@@ -156,7 +159,7 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 #news_title_div2{text-align:center;width:100%;height:100px;}
 #news_title_div3{text-align:center;width:100%;height:100px;}
 /*新闻网页具体新闻*/
-#news_context_ul{text-align: center;height: 200px;}
+#news_context_ul{text-align: center;}
 #news_context_li{position: relative;margin: 0 auto;height: 200px;}
 .news_context_div_l{float:left;width:300px;height: 200px;}
 .news_context_div_r{float:right;width:600px;margin-left:30px;height: 200px;text-align:left;}

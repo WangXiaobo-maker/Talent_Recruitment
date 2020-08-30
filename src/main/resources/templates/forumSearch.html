@@ -133,8 +133,8 @@
             <ul class="reset" id="navheader">
                 <li><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
                 <li><a th:href="@{'/jobSearch'}">职位搜索</a></li>
-                <li class="current"><a th:href="@{'/redirNews'}">职业资讯</a></li>
-                <li><a href="jianli.html" rel="nofollow">交流论坛</a></li>
+                <li><a th:href="@{'/redirNews'}">职业资讯</a></li>
+                <li class="current"><a th:href="@{'/forum'}" rel="nofollow">交流论坛</a></li>
                 <li><a href="create.html" rel="nofollow">我的信息</a></li>
             </ul>
             <ul class="loginTop" th:if="${session.user == null && session.company == null}">
@@ -167,8 +167,8 @@
                 <p style="color: #fff;font-family: 'Adobe Caslon Pro';font-size: 20px;text-align: center;">如果你有问题期待解答或者有经验想要分享，请到这里来！</p>
             </div>
             <div id="forum_search_box" align="center">
-                <form id="searchForm" name="searchForm" action="list.html" method="get">
-                    <input type="text" id="search_input" name="kd" tabindex="1" value="" style="width:699px; height:23px;" placeholder="请输入搜索关键词..."/>
+                <form id="searchForm" name="searchForm" th:action="@{/searchForum}" method="get">
+                    <input type="text" id="search_input" name="postInfo" tabindex="1" value="" style="width:699px; height:23px;" placeholder="请输入搜索关键词..."/>
 
                     <input type="submit" id="search_button" value="搜&nbsp;&nbsp;索"/>
                 </form>
@@ -184,90 +184,29 @@
 
                     <div class="forumSearch_div">
 
-                        <ul class="articles" style="padding-left: 0px;margin-top: 20px;">
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/5/29</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">超时加班为何吐槽者众维权者寡？</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/4/25</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">比起以前的人，现在更多年轻人选择拒绝工厂拒绝操作工</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/4/16</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">下大雨的天气面试官让你去面试，你会去吗？</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/4/8</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">超时加班为何吐槽者众维权者寡？</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/4/25</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">超时加班为何吐槽者众维权者寡？</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/4/25</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/5/29</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/5/29</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/5/29</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/5/29</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/5/29</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/5/29</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4 style="font-size:20px;font-weight: bold;"><a href="single.html">#职场交流#大家有没有觉得90后活的很洒脱呢</a></h4>
-                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" >发帖人昵称</a></span>
-                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;">2020/5/29</span>
-                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;">15</span>
+                        <ul class="articles" id="articles_ul" style="padding-left: 0px;margin-top: 20px;">
+                            <li class="article-entry standard" id="articles_li" th:each="map : ${UserPostMap}">
+                                <h4 style="font-size:20px;font-weight: bold;">
+                                    <a th:href="@{/forumContent(PostID=${map.value.getPostID()}, UserID=${map.key.getUserID()})}"
+                                       th:text="${map.value.getPostTitle()}">#职场交流#大家有没有觉得90后活的很洒脱呢</a>
+                                </h4>
+                                <span style="width: 100px;display: inline-block;text-align: left;font-size: 16px;"><a href="#" title="" th:text="'发帖人：' + ${map.key.getNickName()}">发帖人昵称</a></span>
+                                <span class="article-meta" style="display:inline-block;width:300px; text-align: center;font-size: 16px;" th:text="${map.value.getPostPublishDate()}">2020/5/29</span>
+                                <span class="hot-count" style="float:right;font-weight: 10;color: #9f9f9f;" th:text="${map.value.getPostHeat()}">15</span>
                             </li>
 
                         </ul>
+                        <!-- 分页按钮 -->
+                        <div class="page Pagination">
+                            <div id="page"></div>
+                        </div>
                     </div>
 
+
+
                 </div>
+
+
 
                 <div class="forumSearch_div_r" style="background-color: #FFFFFF;">
                     <div class="job_ad_title">
@@ -305,6 +244,63 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 分页函数 -->
+            <script>
+                var zz=getzz()
+                var pageno=1 ; //当前页
+                var pagesize=12; //每页多少条信息
+                if(zz.length%pagesize==0){
+                    var pageall =zz.length/pagesize ;
+                }else{
+                    var pageall =parseInt(zz.length/pagesize)+1;
+                } //一共多少页
+
+                change(1);
+
+                function getzz() {
+                    var a = $("ul#articles_ul li#articles_li");
+                    var zz =new Array(a.length);
+                    for(var i=0;i <a.length;i++){
+                        zz[i]=a[i].innerHTML;
+                    } //div的字符串数组付给zz
+                    return zz;
+                }
+                function change(e){
+
+                    pageno=e;
+                    if(e<1){
+                        e=1;pageno=1;//就等于第1页 ， 当前页为1
+                    }
+                    if(e>pageall){ //如果输入页大于最大页
+                        e=pageall;pageno=pageall; //输入页和当前页都=最大页
+                    }
+                    $("#articles_ul").html("");//全部清空
+                    var html="";
+                    for(var i=0;i<pagesize;i++){
+                        html += '<li class="article-entry standard" id="articles_li" >' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+                        if(zz[(e-1)*pagesize+i+1]==null) break;//超出最后的范围跳出
+                    }
+                    $("ul#articles_ul").html(html);//给ul列表写入html
+                    var ye="";
+                    for(var j=1;j<=pageall;j++){
+                        if(e==j){
+                            ye=ye+"<span><a href='#' onClick='change("+j+")' style='color:orange'>"+j+"</a></span> "
+                        }else{
+                            ye=ye+"<a href='#' onClick='change("+j+")'>"+j+"</a> "
+                        }
+                    }
+                    var pageContent="";
+                    pageContent +='<a href="#" onClick="change(1)">首页</a>';
+                    pageContent +='<a href="#" onClick="change(--pageno)">上一页</a>';
+                    // pageContent +='<span id=\"a2\">'+pageno+'</span>';
+                    // pageContent +='<span id="a1">'+pageall+'</span>';
+                    pageContent +='<span id="a3">'+ye+'</span>';
+                    pageContent +='<a href="#" onClick="change(++pageno)">下一页</a>';
+                    pageContent +='<a href="#" onClick="change(pageall)">尾页</a>';
+                    $("#page").html(pageContent);
+                }
+            </script>
 
             <div class="clear" style="margin-bottom: 20px;"></div>
         </div>

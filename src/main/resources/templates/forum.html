@@ -168,8 +168,8 @@
                 <p style="color: #fff;font-family: 'Adobe Caslon Pro';font-size: 20px;text-align: center;">如果你有问题期待解答或者有经验想要分享，请到这里来！</p>
             </div>
             <div id="forum_search_box" align="center">
-                <form id="searchForm" name="searchForm" action="list.html" method="get">
-                    <input type="text" id="search_input" name="kd" tabindex="1" value="" style="width:699px; height:23px;" placeholder="请输入搜索关键词..."/>
+                <form id="searchForm" name="searchForm" th:action="@{/searchForum}" method="get">
+                    <input type="text" id="search_input" name="postInfo" tabindex="1" value="" style="width:699px; height:23px;" placeholder="请输入搜索关键词..."/>
 
                     <input type="submit" id="search_button" value="搜&nbsp;&nbsp;索"/>
                 </form>
@@ -222,7 +222,7 @@
 
                     <div class="forum_button_div">
                         <form>
-                            <input type="button" value="浏览更多" class="forum_button" style="border: #ccc 2px solid;">
+                            <a th:href="@{/redirForumSearch}"><input type="button" value="浏览更多" class="forum_button" style="border: #ccc 2px solid;"></a>
                         </form>
                     </div>
 
@@ -273,10 +273,17 @@
 
                     <form>
                         <!--<input type="textarea" style="height: 250px;width: 800px;">-->
-                        <input type="text" placeholder="请输入标题..." style="font-size: 16px;">
-                        <textarea style="width: 900px;height: 200px;font-size: 15px;" placeholder="请输入新帖内容..."></textarea>
+                        <input id="PostTitle" type="text" placeholder="请输入标题..." style="font-size: 16px;">
+                        <textarea id="PostContent" style="width: 900px;height: 200px;font-size: 15px;" placeholder="请输入新帖内容..."></textarea>
                         <br>
-                        <input type="submit" value="发表评论" class="forum_publish_button">
+                        <div th:if="${session.user} == null">
+                            <input type="button" value="发布帖子" onclick="NotLogin()"
+                                   style="height:50px;width:200px;background-color: #011d56; color: #FFFFFF;float: right;margin-top: 20px;font-size: 18px;">
+                        </div>
+                        <div th:if="${session.user} != null">
+                            <input type="button" value="发布帖子" onclick="javascript:return formCheck()" id="submit"
+                                   style="height:50px;width:200px;background-color: #011d56; color: #FFFFFF;float: right;margin-top: 20px;font-size: 18px;">
+                        </div>
                     </form>
                 </div>
 
@@ -350,6 +357,74 @@
                 }
             });
     }
+    function NotLogin() {
+        swal({
+                title: "您还没有登录",
+                text: "登录才能发表帖子哦！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#011d56",
+                confirmButtonText: "去登录",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    window.location.href = "redirLogin";
+                }
+            });
+    }
+</script>
+<script type="text/javascript">
+    function formCheck() {
+        var PostContent = document.getElementById('PostContent').value;
+        var PostTitle = document.getElementById('PostTitle').value;
+        if (PostContent === "" || PostTitle === ""){
+            swal({
+                title: "内容不能为空",
+                text: "请输入内容再提交",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        return true;
+    }
+    $("#submit").click(function () {
+        if(formCheck() === true){
+            var PostTitle = $("#PostTitle").val();
+            var PostContent = $("#PostContent").val();
+            console.log(PostContent);
+            var url = "publishPost";
+            var data = {
+                PostTitle: PostTitle,
+                PostContent: PostContent
+            }
+            $.post(url, data, function (result) {
+                if(result != null && result.code === 200){
+                    swal({
+                            title: "发布成功！！",
+                            type: "success",
+                            confirmButtonColor: "#011d56",
+                        },
+                        function(isConfirm){
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        });
+                }
+                else{
+                    swal({
+                        title: "发表失败",
+                        text: "请确认输入内容并重试",
+                        type: "error",
+                        confirmButtonColor: "#011d56"
+                    });
+                }
+            })
+        }
+
+    })
 </script>
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
  -->

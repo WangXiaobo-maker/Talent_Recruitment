@@ -173,6 +173,7 @@
 
             </form>
             <script>
+
                 function jobSearch() {
                     // var searchType = document.getElementsByClassName("type_selected")[0].var();
                     var searchType=$("#searchType li[class='type_selected']").attr("value");
@@ -765,7 +766,7 @@
                     <li id="jobll" class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;"
                         th:each="map : ${JobMap}">
                         <div class="job_infor_l">
-                            <a href="h/jobs/147822.html" target="_blank">
+                            <a th:href="@{/jobInfo(JobID=${map.key.JobID})}" >
                                 <span style="font-size: 20px" th:text="${map.key.JobName}"></span>
                                 <span class="c9" th:text="${map.key.JobPublishDate} + '发布'"></span>
                                 <p>
@@ -775,14 +776,14 @@
                                     <span th:text="${map.key.JobEduDegree}"></span>
                                 </p>
                                 <ul class="companyTags reset">
-                                    <li th:text="${map.key.JobWelfare1}"></li>
-                                    <li th:text="${map.key.JobWelfare2}"></li>
-                                    <li th:text="${map.key.JobWelfare3}"></li>
+                                    <li th:if="${map.key.JobWelfare3} != ''" th:text="${map.key.JobWelfare1}"></li>
+                                    <li th:if="${map.key.JobWelfare3} != ''" th:text="${map.key.JobWelfare2}"></li>
+                                    <li th:if="${map.key.JobWelfare3} != ''" th:text="${map.key.JobWelfare3}"></li>
                                 </ul>
                             </a>
                         </div>
                         <div class="job_infor_r">
-                            <div class="mb10"><a href="h/c/1712.html" target="_blank" style="font-size: 20px;display: -webkit-box;
+                            <div class="mb10"><a th:href="@{/companyIntro(CompanyID=${map.value.CompanyID})}" style="font-size: 20px;display: -webkit-box;
                                                  -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;"
                                                  th:text="${map.value.CompanyName}">紫色医疗</a>
                             </div>

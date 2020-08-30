@@ -335,9 +335,6 @@
 
 
 
-
-
-
                 </div>
                 <div class="content_r2">
                     <div class="more_job_title" align="center">
@@ -353,13 +350,16 @@
                                     </a>
                                 </div>
                                 <div class="info-primary">
-                                    <div class="name" style="text-indent: 3em"><a ka="job_sug_2" th:href="@{/companyIntro(CompanyID=${similarCompany.getCompanyID()})}"
+                                    <div class="name" style="text-indent: 3em">
+                                        <a ka="job_sug_2" th:href="@{/companyIntro(CompanyID=${similarCompany.getCompanyID()})}"
                                                                                   th:text="${similarCompany.getCompanyName()}">大数据解决方案
-                                    <p class="gray" style="text-indent: 3em">
+                                        </a>
+                                        <p class="gray" style="text-indent: 3em">
                                         <a ka="job_sug_brandjob2_custompage" title="航天科工网络信息招聘">
                                             <span style="color: gray" th:text="${similarCompany.getCompanyNature()}"></span>
                                         </a><em class="vdot">·</em>
-                                        <span style="color: gray" th:text="${similarCompany.getCompanyType()}">西安</span></p>
+                                        <span style="color: gray" th:text="${similarCompany.getCompanyType()}"></span></p>
+                                    </div>
                                 </div>
                             </ol>
 
