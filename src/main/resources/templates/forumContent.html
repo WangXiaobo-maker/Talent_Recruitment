@@ -9,10 +9,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>无限创想人才招聘平台</title>
 
-    <link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
+
     <link rel="stylesheet" href="../static/editormd/css/editormd.css" th:href="@{static/editormd/css/editormd.css}"/>
     <link rel="stylesheet" href="../plugins/editor.md/css/editormd.preview.css"
           th:href="@{static/editormd/css/editormd.preview.css}"/>
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
     <script th:src="@{static/editormd/examples/js/jquery.min.js}"></script>
     <script src="../plugins/editor.md/lib/marked.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
     <script src="../plugins/editor.md/lib/prettify.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
@@ -130,7 +131,7 @@
 
                     <div class="forumContent_detail_r">
                         <div class="detail-main">
-                            <div class="detail-content">
+                            <div class="detail-content2">
                                 <input id="PostID" th:value="${postInfo.getPostID()}" hidden="hidden">
                                 <h1 class="title" th:text="${postInfo.PostTitle}" style="line-height: normal"></h1>
                                 <div class="info">
@@ -225,14 +226,7 @@
                         <span class="time" style="float: right;" th:text="${userpost.value.getPost().getPostHeat()}">2492828</span>
 
                     </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_hot_flag">3</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            2019四季度短缺职业排行：快递员职业短缺加大
-                        </a>
-                        <span class="time" style="float: right;">1337516</span>
 
-                    </li>
 
                     <li style="border: 0px;" th:each="userpost : ${userPostMap2}">
                         <span class="forumContent_flag" th:text="${userpost.key}"></span>
@@ -243,46 +237,7 @@
                         <span class="time" style="float: right;" th:text="${userpost.value.getPost().getPostHeat()}">1219963</span>
 
                     </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">6</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            找互联网工作大多都需要有经验怎么办？
-                        </a>
-                        <span class="time" style="float: right;">734029</span>
 
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">7</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            职场疲惫要如何调试自己？
-                        </a>
-                        <span class="time" style="float: right;">681038</span>
-
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">8</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            职场人做好这几点，你也可以成为“别人家的孩子”
-                        </a>
-                        <span class="time" style="float: right;">531403</span>
-
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">9</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            不注水也吸引HR的简历这样写
-                        </a>
-                        <span class="time" style="float: right;">458275</span>
-
-                    </li>
-                    <li style="border: 0px;">
-                        <span class="forumContent_flag">10</span>
-                        <a ka="article-detail-hot1" class="forumContent_a">
-                            清华大学最小博士生
-                        </a>
-                        <span class="time" style="float: right;">409450</span>
-
-                    </li>
                 </ul>
             </div>
 
