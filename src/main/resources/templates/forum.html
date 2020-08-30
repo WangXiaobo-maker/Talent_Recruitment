@@ -200,6 +200,7 @@
 
 
                         </ul>
+
                     </div>
 
                     <div class="forum_latest_div">
@@ -212,10 +213,16 @@
                                 <h4 style="font-size:15px;font-weight: bold;" >
                                     <a th:text="${map.value.PostTitle}" th:href="@{/forumContent(PostID=${map.value.PostID}, UserID=${map.key.UserID})}"></a>
                                 </h4>
-                                <span><a href="#" title="" th:text="'发帖人：' + ${map.key.NickName}"></a></span>
+                                <span th:text="'发帖人：' + ${map.key.NickName}"><a href="#" title=""></a></span>
                                 <span class="like-count2" style="float:right;font-weight: 10;color: #9f9f9f;" th:text="${map.value.PostPublishDate}"></span>
                             </li>
                         </ul>
+                    </div>
+
+                    <div class="forum_button_div">
+                        <form>
+                            <input type="button" value="浏览更多" class="forum_button" style="border: #ccc 2px solid;">
+                        </form>
                     </div>
 
                 </div>
@@ -225,7 +232,7 @@
                         热门推荐
                     </div>
                     <div class="job_ad">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a href="#" onclick="return false">
                             <div>
                                 <img th:src="@{static/img/forum_ad1.png}" alt="">
                             </div>
@@ -235,7 +242,7 @@
 
                         </br>
 
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a href="#" onclick="return false">
                             <div>
                                 <img th:src="@{static/img/forum_ad2.png}" alt="">
                             </div>
@@ -245,7 +252,7 @@
 
                         </br>
 
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a href="#" onclick="return false">
                             <div>
                                 <img th:src="@{static/img/forum_ad3.png}" alt="">
                             </div>
@@ -255,6 +262,23 @@
 
                     </div>
                 </div>
+
+
+                <div class="forum_publish">
+                    <span style="font-weight: bold;font-size: 20px;">
+                        <img th:src="@{static/img/forum_publish.png}" alt="">
+                        发表新帖
+                    </span>
+
+                    <form>
+                        <!--<input type="textarea" style="height: 250px;width: 800px;">-->
+                        <input type="text" placeholder="请输入标题..." style="font-size: 16px;">
+                        <textarea style="width: 900px;height: 200px;font-size: 15px;" placeholder="请输入新帖内容..."></textarea>
+                        <br>
+                        <input type="submit" value="发表评论" class="forum_publish_button">
+                    </form>
+                </div>
+
             </div>
 
             <div class="clear" style="margin-bottom: 20px;"></div>
@@ -263,7 +287,7 @@
 
         <div class="clear"></div>
         <input type="hidden" id="resubmitToken" value=""/>
-        <a id="backtop" style="margin-left:1100px;" title="回到顶部" rel="nofollow"></a>
+        <a id="backtop" style="margin-left:1350px;" title="回到顶部" rel="nofollow"></a>
     </div><!-- end #container -->
 </div><!-- end #body -->
 <div id="footer">
