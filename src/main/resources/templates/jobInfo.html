@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             var container = document.getElementById("home_banner");
             var list = document.getElementById("banner_list");
             var buttons = document.getElementById("banner_btn").getElementsByTagName("span");
@@ -98,13 +98,14 @@
             function stop() {
                 clearInterval(timer);
             }
+
             container.onmouseover = stop; //在鼠标进入onmouseover时，停止每两秒滚动一次
             container.onmouseout = play; //在鼠标离开onmouseover时，开始每两秒滚动一次
             play(); //在onload后就调用play()
 
             //为每个小按钮添加onclick事件，当点击按钮时会跳动到按钮对应的图片
             for (var i = 0; i < buttons.length; i++) {
-                buttons[i].onclick = function() {
+                buttons[i].onclick = function () {
                     //当前图片点击当前的小圆点不执行以下代码。
                     if (this.className == "on") {
                         return;
@@ -159,36 +160,24 @@
 
             <div id="block_job">
                 <div style="height:156px;width: 1024px;margin-top: 20px;">
-                    <div style="width: 165px;height: 123px;float: right;text-align: center;margin-top: 30px;">
+                    <div style="width: 165px;height: 123px;float: right;text-align: center;margin-top: 70px;">
                     <span>
                         <a href="home.html" ka="all-jobs-top">
                             <b style="font-size: 38px;color: #ffffff; margin-top: 20px; ">立即沟通</b>
-                            <p style="color:#FFFFFF ">在招职位</p>
                         </a>
                     </span>
-                        <div style="height: 40px;padding-bottom: 20px;width: 130px;padding-left: 20px;margin-right: 0px;">
-
-                            <a href="javascript" ka="job_online_resume_1">
-                                <img th:src="@{static/img/resume_link.png}" width="32" height="30"  alt="vip" />
-
-                            </a>
-                            <div style="float: right; height: 34px;padding-top: 5px;width: 90px;">
-                                <a href="javascript" ka="job_online_resume_1">
-                                    <span style="color: #FFFFFF">填写在线简历</span>
-                                </a>
-                            </div>
-                        </div>
 
                     </div>
                     <div style="width: 160px;height: 115px;float:left;text-align: center;margin-top: 30px;">
-                        <img th:src="@{'static/img/jobLogo/' + ${Job.getJobID()} + '.jpg'}" width="125" height="115"  alt="公司loGO" />
+                        <img th:src="@{'static/img/jobLogo/' + ${Job.getJobID()} + '.jpg'}" width="125" height="115"
+                             alt="公司loGO"/>
                     </div>
                     <div style="width: auto;height: 123px;text-indent: 1em;float:left;text-align: center;margin-top: 40px;">
 
                         <h1 class="name" style="color: #FFFFFF" th:text="${Job.JobName}">Java工程师</h1>
                         <p style="color: #FFFFFF; width: 300px">
                             <span th:text="${Job.JobSalary} + ' | '">8K-9K&nbsp;|</span>
-                            <span th:text="${Job.JobCity} + ' | ' " >&nbsp;北京&nbsp;|</span>
+                            <span th:text="${Job.JobCity} + ' | ' ">&nbsp;北京&nbsp;|</span>
                             <span th:text="${Job.JobExperience} + ' | ' ">&nbsp;3-5年&nbsp;|</span>
                             <span th:text="${Job.JobEduDegree}">&nbsp;本科</span></p>
                     </div>
@@ -242,40 +231,27 @@
     <div id="container2">
         <!-- <div class="clearfix">-->
         <div class="job-box" style="height: auto;">
-            <div class="content_l">
-                <dl >
+
+            <div class="content_l" style="height: 1050px;">
+                <dl>
                     <dt>
                         <div class="detail-op">
-                            <div class="op-links">
-                                <tr >
-                                    <th  ka="job_detail_wechat_share" href="javascript:;" class="link-wechat-share"
-                                         data-url="/boss/share/job.json?jobId=72b8d04c88b501990XB539q7E1U~&source=2"><span style="color: gray"><img th:src="@{static/img/weiChat.png}" width="30" height="20"  alt="vip" />微信扫码分享</span></th>
-                                    <th href="javascript:;" ka="job_detail_like" class="link-like "
-                                        data-url="/geek/tag/jobtagupdate.json?jobId=72b8d04c88b501990XB539q7E1U~&expectId=&tag=4&lid="><span style="color: gray"><img th:src="@{static/img/heart.png}" width="30" height="20"  alt="vip" />感兴趣</span></th>
-
-                                    <th ka="job_detail_report" href="javascript:;" class="link-report"><span style="color: gray"><img th:src="@{static/img/warning.png}" width="27" height="20"  alt="vip" />举报</span></th>
-                                </tr>
-
-
-                            </div>
                             <div class="detail-figure">
-                                <img src="https://img.bosszhipin.com/boss/avatar/avatar_6.png?x-oss-process=image/resize,w_100,limit_0 " height="70px" width="75px"  alt="" />
+                                <img src="https://img.bosszhipin.com/boss/avatar/avatar_6.png?x-oss-process=image/resize,w_100,limit_0 "
+                                     height="70px" width="75px" alt=""/>
+                            </div>
+                            <div style="margin-top: 20px;padding-top: 4px;">
+                                <h2 class="name" style="text-indent: 1em;font-size: 20px;font-weight: bolder;margin-top: 20px;" th:text="${Job.JobHr}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;王先生</h2>
                             </div>
 
-                            <h2 class="name" style="text-indent: 1em" th:text="${Job.JobHr}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;王先生
-                                <img th:src="@{static/img/vip.png}" width="20" height="20"  alt="vip" /></h2>
-                            <span style="color: gray">
 
-                                <!--    架构师<em class="vdot">·</em>刚刚在线-->
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架构师&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刚刚在线
-                            </span>
                         </div>
                     </dt>
                 </dl>
 
                 <div class="job-block" style="height:auto;">
-                    <div class="job_info_title2" >职位描述： </div>
-                    <div class="text"  style="text-indent: 2em" th:text="${Job.JobInfo}">
+                    <div class="job_info_title2" style="font-size: 22px;width: 110px;">职位描述：</div>
+                    <div class="text" style="margin-top: 20px;font-size: 16px;line-height: 1.5;" th:text="${Job.JobInfo}">
                         &nbsp;&nbsp;负责研究AI for data领域的课题研究与产品化落地，包括基于AI进行数据质量检测、智能修复、dataprofile智能采集等课题。<br/>
                         岗位要求：<br/>1、数学、计算机等相关专业研究生与博士，研究领域为AI辅助大数据处理方向；<br/>2、具备机器学习理论功底、熟悉人工智能相关框架：Caffe、Tensorflow、CNTK等；<br/>
                         3、具备大型数据仓库架构设计、模型设计等相关经验，成为主导某领域核心模块设计能力；<br/>4、熟悉大数据存储、技术、检索相关技术：HADOOP、HIVE、spark、elasticsearch；<br/>
@@ -283,33 +259,35 @@
                     </div>
                 </div>
                 <div class="job-block">
-                    <div class="job_info_title2">公司介绍： </div>
-                    <div class="text"  style="text-indent: 2em" th:text="${Company.CompanyInfo}">
+                    <div class="job_info_title2" style="font-size: 22px;width: 110px;">公司介绍：</div>
+                    <div class="text" style="margin-top: 20px;font-size: 16px;line-height: 1.5;" th:text="${Company.CompanyInfo}">
                         &nbsp;&nbsp;陕西纳吉特数据科技有限公司专注于科技与教育融合创新，为智慧校园的建设提供产品研发、技术服务和一体化解决方案，依托首都科技产业优势、雄厚的技术力量、教育服务实践经验，力争成为国内领先的智慧教育顶层解决方案提供商。
                         <br/> &nbsp;&nbsp;公司始终坚持技术创新与产学研深度融合，整合了一支稳定的管理团队、专业的
                         研发团队、权威的专家团队，精心研发服务于学校的教育教学应用，现已相继完成了以共享数据中心为核心，以统一身份认证平台、统一门户平台、统一基础数据为支撑，形成综合素质评价、课程管理、德育管理、校园OA
                         设备管理与报修、教学资源管理等多级应用互通的智慧校园公共服务平台。
                     </div>
-                </div >
+                </div>
                 <div class="job-block">
-                    <div class="job_info_title2">公司地址： </div>
+                    <div class="job_info_title2" style="font-size: 22px;width: 110px;margin-bottom: 10px;">公司地址：</div>
                     <div class="job-location-address">
                         <!-- <div class="text"> &nbsp;&nbsp;西安市雁塔区华为西安研究所</div>-->
-                        <span style="margin-bottom: 20px;font-size: medium" display:block;
-                        th:text="${Company.CompanyAddress}">
-                            <img th:src="@{static/img/address.png}" width="20" height="23"  alt="vip" />&nbsp;
+                        <span style="margin-bottom: 20px;font-size: medium;display:block;"
+                              th:text="${Company.CompanyAddress}">
+                            <img th:src="@{static/img/address.png}" width="20" height="23" alt="vip"/>&nbsp;
                             西安市 雁塔区 华为西安研究所</span>
-                        <div class="job-location-map js-open-map" data-content="西安市 雁塔区 华为西安研究所">
-                            <img src="https://restapi.amap.com/v3/staticmap?size=836*174&markers=mid,0xFF0000,A:108.839257,34.197356&key=21b56a6cc83fad7668dbb0e9564759a7" width="700px" alt="公司地址" />
+                        <div class="job-location-map js-open-map" style="margin-top: 10px;" data-content="西安市 雁塔区 华为西安研究所">
+                            <img src="https://restapi.amap.com/v3/staticmap?size=836*174&markers=mid,0xFF0000,A:108.839257,34.197356&key=21b56a6cc83fad7668dbb0e9564759a7"
+                                 width="700px" alt="公司地址"/>
 
                         </div>
                     </div>
                 </div>
                 <div class="job-block">
-                    <div class="job_info_title2">投递简历： </div>
+                    <div class="job_info_title2" style="font-size: 22px;width: 110px;margin-top: 20px;">投递简历：</div>
                     <dd class="resume resume_web">
                         <div>
-                            <span> 你已有可投递的在线简历：<a title="刘昊然的简历" target="_blank" href="jianli.html"><strong>刘昊然的简历</strong></a></span><br>
+                            <span> 你已有可投递的在线简历：<a title="刘昊然的简历" target="_blank"
+                                                  href="jianli.html"><strong>刘昊然的简历</strong></a></span><br>
                             <span>简历更新于2014-07-01 15:53</span>
                         </div>
                         <span class="setBtns">
@@ -320,40 +298,50 @@
 
                     <dd>
                         <!-- 用户是否激活 0-否；1-是 -->
-                        <a title="投个简历" class="btn fr btn_apply inline cboxElement" style="background-color: #011d56" href="#setResumeApply">投个简历</a>
+                        <a title="投个简历" class="btn fr btn_apply inline cboxElement" style="background-color: #011d56"
+                           href="#setResumeApply">投个简历</a>
 
                     </dd>
 
                 </div>
 
 
-
             </div>
-            <div class="content_r">
-                <div class="more_job_title" align="center">
-                    <h3><a th:href="@{'/jobSearch'}" rel="nofollow" ka="more-similar-jobs2" class="more"><strong>更多相似职位</strong></a></h3>
-                </div>
-                <div >
 
+            <div class="content_r" style="height: 1050px;">
+                <div class="more_job_title" style="margin: 0px;text-align: left;border-bottom: 0px;">
+                    <h4>
+                        <a th:href="@{'/jobSearch'}" rel="nofollow" ka="more-similar-jobs2"
+                           class="more"><strong>更多相似职位</strong></a>
+                    </h4>
+                </div>
+
+                <div>
                     <ul style="padding: 0px;">
 
-                        <ol class="info-block" th:each="similarJob : ${similarJobList}">
-                            <div class="company-logo">
-                                <a ka="job_sug_brand2_custompage" th:href="@{/jobInfo(JobID=${similarJob.getJobID()})}" title="航天科工网络信息">
-                                    <img th:src="@{'static/img/jobLogo/' + ${similarJob.getJobID()} + '.jpg'}" style="width: 100px;height: 100px" alt="" />
+                        <ol class="info-block" style="padding-left: 0px;margin-right: 20px;width: auto;height: auto;"
+                            th:each="similarJob : ${similarJobList}">
+                            <div class="company-logo" style="padding-left: 60px;">
+                                <a ka="job_sug_brand2_custompage" th:href="@{/jobInfo(JobID=${similarJob.getJobID()})}"
+                                   title="航天科工网络信息">
+                                    <img th:src="@{'static/img/jobLogo/' + ${similarJob.getJobID()} + '.jpg'}"
+                                         style="width: 100px;height: 100px" alt=""/>
                                 </a>
                             </div>
-                            <div class="info-primary">
-                                <div class="name" style="text-indent: 3em">
-                                    <a ka="job_sug_2" th:href="@{/jobInfo(JobID=${similarJob.getJobID()})}"
-                                                     th:text="${similarJob.getJobName()}">大数据解决方案
-
+                            <div class="info-primary" style="margin-top: 10px;text-align: center;">
+                                <div class="name" style="text-align: center; font-size: 18px;">
+                                    <a ka="job_sug_2"
+                                       th:href="@{/jobInfo(JobID=${similarJob.getJobID()})}"
+                                       th:text="${similarJob.getJobName()}">
+                                        大数据解决方案
                                     </a>
-                                    <span style="color: red" th:text="${similarJob.getJobSalary()}">15-25K</span>
+                                        <p style="color: red;font-size: 14px;" th:text="${similarJob.getJobSalary()}">15-25K</p>
+
                                 </div>
-                                <p class="gray" style="text-indent: 3em">
-                                    <a ka="job_sug_brandjob2_custompage" th:href="@{/jobInfo(JobID=${similarJob.getJobID()})}" title="航天科工网络信息招聘">
-                                    <span style="color: gray" th:text="${similarJob.getJobEduDegree()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;航天科工</span>
+                                <p class="gray" style="width: auto;font-size: 14px;">
+                                    <a ka="job_sug_brandjob2_custompage"
+                                       th:href="@{/jobInfo(JobID=${similarJob.getJobID()})}" title="航天科工网络信息招聘">
+                                        <span style="color: gray" th:text="${similarJob.getJobEduDegree()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;航天科工</span>
                                     </a><em class="vdot">·</em>
                                     <span style="color: gray" th:text="${similarJob.getJobCity()}">西安</span>
                                 </p>
@@ -361,25 +349,30 @@
                         </ol>
 
 
-
-
                     </ul>
-                    <div class="view-more" align="center"><a th:href="@{'/jobSearch'}" rel="nofollow" ka="more-similar-jobs3"><i class="more">更多相似职位</i></a></div>
                 </div>
             </div>
+
             <div class="content_bottom">
-                <div class="job_info_title">推荐职位</div>
+                <div class="job_info_title"
+                     style="font-size: 23px;padding-left: 8px;padding-top: 10px;padding-bottom: 10px;">推荐职位
+                </div>
 
                 <div class="slider-main">
                     <ul class="ul_box">
-                        <li class="cur" >
+                        <li class="cur">
                             <a ka="job_recommend_1"
                                class="recommend-li" th:each="map : ${CompanyJobMap}"
-                               th:href="@{/jobInfo(JobID=${map.value.getJobID()})}" >
-                                <div class="name" th:text="${map.value.getJobName()}">DSP控制软件开发工程师</div>
-                                <div class="red" th:text="${map.value.getJobSalary()}">10-15K</div>
+                               th:href="@{/jobInfo(JobID=${map.value.getJobID()})}">
+                                <div class="name" style="font-size: 18px;" th:text="${map.value.getJobName()}">
+                                    DSP控制软件开发工程师
+                                </div>
+                                <div class="red" style="font-size: 14px;" th:text="${map.value.getJobSalary()}">10-15K
+                                </div>
 
-                                <p style="font-size: smaller;color: gray;" th:text="${map.key.getCompanyName()}">神西电气</p>
+                                <p style="font-size: 14px;font-size: smaller;color: gray;"
+                                   th:text="${map.key.getCompanyName()}">
+                                    神西电气</p>
                             </a>
                         </li>
 
@@ -407,17 +400,12 @@
                    -->
 
 
-
-
-
                 </div>
             </div>
             <div class="content_bottom_right"></div>
 
 
-
             <!-------------------------------------弹窗lightbox  ----------------------------------------->
-
 
 
             <!------------------------------------- end ----------------------------------------->
@@ -455,17 +443,17 @@
             </script>
             <script src="style/js/common.js" type="text/javascript"></script> -->
             <script>
-                $(function(){
+                $(function () {
                     $('#weibolist .cookietxte').text('推荐本职位给好友');
-                    $(document).bind('cbox_complete', function(){
+                    $(document).bind('cbox_complete', function () {
                         hbzxJQ("#gaosutapt .pttui a").trigger("click");
                         hbzxJQ("#mepingpt .pttui a").trigger("click");
                     });
-                    $('#cboxOverlay').bind('click',function(){
+                    $('#cboxOverlay').bind('click', function () {
                         top.location.reload();
                     });
-                    $('#colorbox').on('click','#cboxClose',function(){
-                        if($(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'deliverResumesSuccess' || $(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'uploadFileSuccess'){
+                    $('#colorbox').on('click', '#cboxClose', function () {
+                        if ($(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'deliverResumesSuccess' || $(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'uploadFileSuccess') {
                             top.location.reload();
                         }
                     });
@@ -473,22 +461,25 @@
                 })
             </script>
 
-            <script src="http://api.map.baidu.com/api?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602" type="text/javascript"></script><script src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602&amp;services=&amp;t=20140617153133" type="text/javascript"></script>
+            <script src="http://api.map.baidu.com/api?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602"
+                    type="text/javascript"></script>
+            <script src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602&amp;services=&amp;t=20140617153133"
+                    type="text/javascript"></script>
             <script type="text/javascript">
                 //百度地图API功能
                 var sMap = new BMap.Map("smallmap");
                 sMap.enableScrollWheelZoom(true);
 
-                if($('#positionLat').val() &amp;&amp; $('#positionLng').val()){
-                    var sPoint = new BMap.Point($('#positionLng').val(),$('#positionLat').val());
-                    sMap.centerAndZoom(sPoint,12);
+                if ($('#positionLat').val() &amp;&amp; $('#positionLng').val()) {
+                    var sPoint = new BMap.Point($('#positionLng').val(), $('#positionLat').val());
+                    sMap.centerAndZoom(sPoint, 12);
                     sMap.addOverlay(new BMap.Marker(sPoint));              // 将标注添加到地图中
 
-                }else{
+                } else {
                     // 创建地址解析器实例
                     var sMyGeo = new BMap.Geocoder();
                     // 将地址解析结果显示在地图上,并调整地图视野
-                    sMyGeo.getPoint("广州市天河区科韵路信息港建中路36号裕桥商务大厦", function(sPoint){
+                    sMyGeo.getPoint("广州市天河区科韵路信息港建中路36号裕桥商务大厦", function (sPoint) {
                         if (sPoint) {
                             sMap.centerAndZoom(sPoint, 16);
                             sMap.addOverlay(new BMap.Marker(sPoint));
@@ -504,44 +495,44 @@
                 map.enableScrollWheelZoom(true);
                 // 创建地址解析器实例
                 var gc = new BMap.Geocoder();
-                $(function(){
-                    $('#mapPreview').bind('click',function(){
-                        $.colorbox({inline:true, href:"#baiduMap",title:"公司地址"});
+                $(function () {
+                    $('#mapPreview').bind('click', function () {
+                        $.colorbox({inline: true, href: "#baiduMap", title: "公司地址"});
                         var address = "广州市天河区科韵路信息港建中路36号裕桥商务大厦";
                         var city = "广州";
                         var lat = $('#positionLat').val();
                         var lng = $('#positionLng').val();
                         map.setCurrentCity(city);
                         map.setZoom(12);
-                        if(lat &amp;&amp; lng){
+                        if (lat &amp;&amp; lng) {
                             var p = new BMap.Point(lng, lat);
                             var marker = new BMap.Marker(p);  // 创建标注
                             map.addOverlay(marker);              // 将标注添加到地图中
-                            setTimeout(function(){
+                            setTimeout(function () {
                                 map.centerAndZoom(p, 15);
-                            },1000);
+                            }, 1000);
                             map.setCenter(p);
                             map.setZoom(15);
                             var sContent =
-                                "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;"+city+"&lt;/h4&gt;" +
-                                "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;"+address+"&lt;/p&gt;" +
+                                "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;" + city + "&lt;/h4&gt;" +
+                                "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;" + address + "&lt;/p&gt;" +
                                 "&lt;/div&gt;";
                             var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
                             //图片加载完毕重绘infowindow
                             marker.openInfoWindow(infoWindow);
-                        }else{
-                            gc.getPoint(address, function(point){
+                        } else {
+                            gc.getPoint(address, function (point) {
                                 if (point) {
                                     var p = new BMap.Point(point.lng, point.lat);
                                     var marker = new BMap.Marker(p);  // 创建标注
                                     map.addOverlay(marker);              // 将标注添加到地图中
-                                    setTimeout(function(){
+                                    setTimeout(function () {
                                         map.centerAndZoom(p, 15);
-                                    },1000);
+                                    }, 1000);
                                     map.setZoom(14);
                                     var sContent =
-                                        "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;"+city+"&lt;/h4&gt;" +
-                                        "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;"+address+"&lt;/p&gt;" +
+                                        "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;" + city + "&lt;/h4&gt;" +
+                                        "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;" + address + "&lt;/p&gt;" +
                                         "&lt;/div&gt;";
                                     var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
                                     //图片加载完毕重绘infowindow
@@ -698,15 +689,19 @@
                 cancelButtonText: "取消",
                 closeOnConfirm: false,
             },
-            function(isConfirm){
+            function (isConfirm) {
                 if (isConfirm) {
-                    window.location.href="logout";
+                    window.location.href = "logout";
                 }
             });
     }
 </script>
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
  -->
+
+<script th:src="@{static/js/mouse-click.js}"></script>
+<canvas width="100%" height="100%"
+        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 
 </body>
 </html>
