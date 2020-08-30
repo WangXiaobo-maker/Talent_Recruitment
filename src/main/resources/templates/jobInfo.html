@@ -236,18 +236,12 @@
 
             </style>
             <script type="text/javascript" th:src="@{static/js/search.min.js}"></script>
-
         </div>
-
     </div>
 
-
-
     <div id="container2">
-
-
         <!-- <div class="clearfix">-->
-        <div class="job-box">
+        <div class="job-box" style="height: auto;">
             <div class="content_l">
                 <dl >
                     <dt>
@@ -279,7 +273,7 @@
                     </dt>
                 </dl>
 
-                <div class="job-block">
+                <div class="job-block" style="height:auto;">
                     <div class="job_info_title2" >职位描述： </div>
                     <div class="text"  style="text-indent: 2em" th:text="${Job.JobInfo}">
                         &nbsp;&nbsp;负责研究AI for data领域的课题研究与产品化落地，包括基于AI进行数据质量检测、智能修复、dataprofile智能采集等课题。<br/>
@@ -682,6 +676,9 @@
     </div>
 </div>
 
+<script th:src="@{static/js/mouse-click.js}"></script>
+<canvas width="100%" height="100%"
+        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 <script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
 <script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
 <script>

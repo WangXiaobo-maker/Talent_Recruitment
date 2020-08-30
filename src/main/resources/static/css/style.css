@@ -351,8 +351,8 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 #backtop:hover{background-position:right top !important;}
 #qrSide{ background:url(img/qr_index.jpg) no-repeat; width:108px; height:132px; position:fixed; right:0; bottom:160px; z-index:3;}
 #qrSide a{ background:#cfd0d2 url(img/x.png) no-repeat; position:absolute; right:0; top:-15px; width:15px; height:15px;}
-#footer{height:150px; background-color:#555; margin-top:20px;}
-#footer.wrapper{padding:15px 0 0 0; margin:0px auto; border-top:1px solid #ececed; overflow:hidden; display:inline-block; width:1024px;}
+#footer{height:150px; background-color:#555; margin-top:50px;}
+#footer.wrapper{margin:0px auto; overflow:hidden; display:inline-block; width:1024px;}
 #footer.wrapper-info{display:inline-block; width:1024px;}
 #footer a{padding:0 10px; color:#f0f0f0;}
 .footer_qr{ position:relative;}
@@ -1130,7 +1130,7 @@ a.greylink{ color:#555;font-size:18px; margin-right:60px;text-decoration:underli
 #welcome a.wel_go{width:240px;height:36px;position:absolute;left:390px;top:356px;}
 
 /*友情链接*/
-#linkbox{padding:15px 0 0 0; margin:0px auto;border-top:1px solid #ececed;overflow:hidden; width:1024px;}
+#linkbox{padding:15px 0 0 0; margin:0px auto; overflow:hidden; width:1024px;}
 #linkbox dt{float:left;width:100px;margin-top:2px; font-size:15px; color:#fff;}
 #linkbox dd{margin-left:70px;overflow:hidden;}
 #linkbox a{white-space:nowrap;float:left;padding:3px 9px;color:#fff;font-size:12px; text-decoration:none;height:15px;line-height:15px;margin:5px 0 5px -1px;}
