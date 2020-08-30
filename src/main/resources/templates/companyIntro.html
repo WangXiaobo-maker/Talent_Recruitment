@@ -1,0 +1,712 @@
+<!DOCTYPE HTML>
+<html xmlns:wb="http://open.weibo.com/wb"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:display="http://www.w3.org/1999/xhtml">
+<head>
+    <script id="allmobilize" charset="utf-8" th:src="@{static/js/allmobilize.min.js}"></script>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate" media="handheld"/>
+    <!-- end 云适配 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无限创想人才招聘平台</title>
+    <!-- <div class="web_root"  style="display:none">h</div> -->
+    <script type="text/javascript">
+        var ctx = "h";
+        console.log(1);
+    </script>
+    <link rel="Shortcut Icon" href="h/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/popup.css}"/>
+    <script th:src="@{static/js/jquery.1.10.1.min.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{static/js/jquery.lib.min.js}"></script>
+    <script th:src="@{static/js/ajaxfileupload.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{static/js/additional-methods.js}"></script>
+    <!--[if lte IE 8]>
+    <script type="text/javascript" th:src="@{static/js/excanvas.js}"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var youdao_conv_id = 271546;
+    </script>
+    <script type="text/javascript" th:src="@{static/js/homebannner.js}"></script>
+    <script type="text/javascript" th:src="@{static/js/conv.js}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
+    <script>
+        function showMore()
+        {
+            $("#textcontain").height("auto");//取消文字容器高度限制
+            $("#btncontain").hide();//隐藏查看更多按钮
+        }
+        window.onload = function() {
+            var container = document.getElementById("home_banner");
+            var list = document.getElementById("banner_list");
+            var buttons = document.getElementById("banner_btn").getElementsByTagName("span");
+            var prev = document.getElementById('prev');
+            var next = document.getElementById('next');
+            var index = 1;
+            var timer;
+
+            //animate 函数，在当前left值得基础上向右移动 offset px,如果向左移动距离超过图六位置就变为图一位置，向右移动距离超过图二位置就变为图七位置
+            function animate(offset) {
+                var newLeft = parseInt(list.style.left) + offset;
+                list.style.left = newLeft + 'px';
+                if (newLeft > -0) {
+                    list.style.left = -4096 + 'px';
+                }
+                if (newLeft < -4096) {
+                    list.style.left = -0 + 'px';
+                }
+            }
+
+            //将当前显示图片对应的小圆点样式改变
+            function buttonsShow() {
+                //将所有的小圆点的样式清除
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i].className == "on") {
+                        buttons[i].className = "";
+                    }
+                }
+                //数组从0开始，故index需要-1
+                buttons[index - 1].className = "on";
+            }
+
+            //点击产生查看前一张效果，animate移动距离改变，小圆点显示改变，当index=1时还要查看前一张时，index变为5
+            prev.onclick = function () {
+                index -= 1;
+                if (index < 1) {
+                    index = 5
+                }
+                buttonsShow();
+                animate(1024);
+            };
+
+            //点击产生查看后一张效果，animate移动距离改变，小圆点显示改变
+            next.onclick = function () {
+                index += 1;
+                if (index > 5) {
+                    index = 1
+                }
+                animate(-1024);
+                buttonsShow();
+            };
+
+            //通过定时器调用next.onclick（）实现每两秒滚动一次
+            function play() {
+                //重复执行的定时器
+                timer = setInterval(function () {
+                    next.onclick();
+                }, 2000)
+            }
+
+            //清除定时器实现停止滚动
+            function stop() {
+                clearInterval(timer);
+            }
+            container.onmouseover = stop; //在鼠标进入onmouseover时，停止每两秒滚动一次
+            container.onmouseout = play; //在鼠标离开onmouseover时，开始每两秒滚动一次
+            play(); //在onload后就调用play()
+
+            //为每个小按钮添加onclick事件，当点击按钮时会跳动到按钮对应的图片
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].onclick = function() {
+                    //当前图片点击当前的小圆点不执行以下代码。
+                    if (this.className == "on") {
+                        return;
+                    }
+                    /* 这里获得鼠标移动到小圆点的位置，用this把index绑定到对象buttons[i]上 */
+                    /* 由于这里的index是自定义属性，需要用到getAttribute()这个DOM2级方法，去获取自定义index的属性*/
+                    var clickIndex = parseInt(this.getAttribute('index'));
+                    var offset = 1024 * (clickIndex - index); //这个index是当前图片停留时的index
+                    animate(-offset);
+                    index = clickIndex; //存放鼠标点击后的位置，用于小圆点的正常显示
+                    buttonsShow();
+                }
+            }
+        }
+    </script>
+
+</head>
+<body>
+<div id="body" style="background-color: #f0f0f0;">
+    <div id="header">
+        <div class="wrapper">
+            <a href="home" class="logo">
+                <img th:src="@{static/img/logo_home.png}" width="229" height="43"/>
+            </a>
+            <ul class="reset" id="navheader">
+                <li class="current"><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
+                <li><a th:href="@{'/jobSearch'}">职位搜索</a></li>
+                <li><a th:href="@{'/redirNews'}">职业资讯</a></li>
+                <li><a th:href="@{'/forum'}" rel="nofollow">交流论坛</a></li>
+                <li><a href="create.html" rel="nofollow">我的信息</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.user == null && session.company == null}">
+                <li><a th:href="@{'/redirLogin'}" rel="nofollow">登录</a></li>
+                <li>|</li>
+                <li><a th:href="@{'/redirRegister'}" rel="nofollow">注册</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.user != null}">
+                <li><a th:text="${session.user.getNickName()}"></a></li>
+                <li>|</li>
+                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
+            </ul>
+            <ul class="loginTop" th:if="${session.company != null}">
+                <li><a>企业用户</a></li>
+                <li>|</li>
+                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
+            </ul>
+        </div>
+    </div><!-- end #header -->
+
+    <div class="content4">
+        <div class="content3">
+
+
+            <div id="block_job">
+                <div style="height:156px;width: 1024px;margin-top: 20px;">
+                    <div style="width: 165px;height: 123px;float: right;text-align: center;margin-top: 30px;">
+                    <span>
+                        <a href="home.html" ka="all-jobs-top">
+                            <b style="font-size: 38px;color: #ffffff; margin-top: 20px; "
+                               th:text="${companyInfo.getCompanyJobNum()}">18149</b>
+                            <p style="color:#FFFFFF ">在招职位</p>
+                        </a>
+                    </span>
+                        <div style="height: 40px;padding-bottom: 20px;width: 130px;padding-left: 20px;margin-right: 0px;">
+
+                            <a href="javascript" ka="job_online_resume_1">
+                                <img th:src="@{static/img/resume_link.png}" width="32" height="30"  alt="vip" />
+
+                            </a>
+                            <div style="float: right; height: 34px;padding-top: 5px;width: 90px;">
+                                <a href="javascript" ka="job_online_resume_1">
+                                    <span style="color: #FFFFFF">填写在线简历</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div style="width: 160px;height: 115px;float:left;text-align: center;margin-top: 30px;">
+                        <img th:src="@{'static/img/companyLogo/' + ${companyInfo.getCompanyID()} + '.jpg'}" width="125" height="115"  alt="公司loGO" />
+                    </div>
+                    <div style="width: auto;text-indent: 1em;height: 123px;float:left;text-align: center;margin-top: 40px;">
+
+                        <h1 class="name" style="color: #FFFFFF" th:text="${companyInfo.getCompanyName()}">阿里巴巴集团</h1>
+                        <p style="color: #FFFFFF">
+                            <span th:text="${companyInfo.getCompanyNature()} + ' | ' ">已上市&nbsp;|</span>
+                            <span th:text="${companyInfo.getCompanyType()}">&nbsp;互联网&nbsp;</span></p>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <style>
+                .ui-autocomplete {
+                    width: 488px;
+                    background: #fafafa !important;
+                    position: relative;
+                    z-index: 10;
+                    border: 2px solid #89b0de;
+                }
+
+                .ui-autocomplete-category {
+                    font-size: 16px;
+                    color: #999;
+                    width: 50px;
+                    position: absolute;
+                    z-index: 11;
+                    right: 0px; /*top: 6px; */
+                    text-align: center;
+                    border-top: 1px dashed #e5e5e5;
+                    padding: 5px 0;
+                }
+
+                .ui-menu-item {
+                    *width: 439px;
+                    vertical-align: middle;
+                    position: relative;
+                    margin: 0px;
+                    margin-right: 50px !important;
+                    background: #fff;
+                    border-right: 1px dashed #ededed;
+                }
+
+                .ui-menu-item a {
+                    display: block;
+                    overflow: hidden;
+                }
+
+            </style>
+            <script type="text/javascript" th:src="@{static/js/search.min.js}"></script>
+
+        </div>
+
+    </div>
+    <div id="container2">
+
+        <!-- <div class="clearfix">-->
+        <div class="job-box2">
+            <div class="company_top_position" >
+                <div class="more_job_title2">
+                    <span style="color: #0a001f;font-size: 16px">热招职位</span>
+                    <div style="float: right;margin-right: 30px;" >
+                        <a th:href="@{/jobSearch}" ka="all-jobs-top">
+                            <span style="color:#gray;font-size: 13px">查看更多职位</span>
+                        </a>
+
+                    </div>
+
+                </div>
+                <div class="slider-main2">
+                    <ul class="ul_box2" style="margin-right: 0px;padding-right: 0px;">
+                        <li class="cur2">
+                            <a ka="job_recommend_2" th:href="@{/jobInfo(JobID=${job.getJobID()})}"
+                               th:each="job : ${companyJobListlim3}" class="recommend-li2">
+                                <div class="name2" th:text="${job.getJobName()}">DSP控制软件开发工程师</div>
+                                <div class="red" th:text="${job.getJobSalary()}">10-15K</div>
+
+                                <p style="font-size: smaller;color: gray;" th:text="${companyInfo.getCompanyName()}">神西电气</p>
+                            </a>
+
+                        </li>
+                </div>
+                <div class="content_l2">
+
+
+
+                    <div class="job-block-more">
+                        <div class="job_info_title2"  >公司介绍： </div>
+                        <div class="contain" id="textcontain" th:text="${companyInfo.getCompanyInfo()}">
+                            <!--&nbsp;&nbsp; &nbsp&nbsp;世界这么大，出去浪浪吧！<br/>
+                            &nbsp;&nbsp;<span style="color:gray;">民营</span>
+                            &nbsp;&nbsp;<span>互联网|医疗设备</span>-->
+                            <p></p> 阿里巴巴集团的使命是让天下没有难做的生意。<br>
+                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国领先的第三方网上支付平台支付宝运营。 我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。
+                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国领先的第三方网上支付平台支付宝运营。 我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。
+                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国领先的第三方网上支付平台支付宝运营。 我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。
+                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国
+                            </p>
+                            <div class="open-btn" id="btncontain" >
+                                <a onclick="showMore()">展开</a>  </div>
+                        </div>
+                    </div>
+                    <div class="job-block">
+                        <div class="job_info_title2" >公司文化： </div>
+                        <div class="text">
+                            <span style="color:gray;" th:text="${companyInfo.getCompanyNature()}">民营企业</span>
+                            &nbsp;&nbsp;<span style="color:gray;" th:text="${companyInfo.getCompanyType()}">互联网|医疗设备|大数据</span>
+                            &nbsp;&nbsp;<span style="color:gray;" th:text="'法人: ' + ${companyInfo.getCompanyLegalPerson()}"></span>
+                            &nbsp;&nbsp;<span style="color:gray;">有事搜一搜 没事看一看</span>
+
+                            <br>
+                            <p th:text="${companyInfo.getCompanyCulture()}">
+
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                    <div class="job-block">
+                        <div class="job_info_title2">公司地址： </div>
+                        <div class="job-location-address">
+                            <!-- <div class="text"> &nbsp;&nbsp;西安市雁塔区华为西安研究所</div>-->
+                            <div style="margin: 5px 15px 10px 15px;">
+                                <div style="float: left;margin-right: 10px;" >
+                                    <a style="margin-bottom: 20px;font-size: medium" display:block;><img th:src="@{static/img/map.png}" width="20" height="23"  alt="vip" /></a>
+                                </div>
+                                <div style="float: left;margin-right: 30px;" >
+                                    <a href="home.html" ka="all-jobs-top">
+                                        <span style="color:#gray;font-size: 16px" th:text="${companyInfo.getCompanyAddress()}">西安市 雁塔区 华为研究所</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="job-location-map js-open-map" data-content="西安市 雁塔区 华为西安研究所" >
+
+                                <img src="https://restapi.amap.com/v3/staticmap?size=836*174&markers=mid,0xFF0000,A:108.839257,34.197356&key=21b56a6cc83fad7668dbb0e9564759a7" width="700px" alt="公司地址" />
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="content_r2">
+                    <div class="more_job_title" align="center">
+                        <h3><a th:href="@{'/jobSearch'}" rel="nofollow" ka="more-similar-jobs2" class="more" ><strong>更多相似公司</strong></a></h3>
+                    </div>
+                    <div >
+
+                        <ul style="padding: 0px;">
+                            <ol class="info-block" th:each="similarCompany : ${similarCompanyList}">
+                                <div class="company-logo">
+                                    <a ka="job_sug_brand2_custompage" th:href="@{/companyIntro(CompanyID=${similarCompany.getCompanyID()})}" title="航天科工网络信息">
+                                        <img th:src="@{'static/img/companyLogo/' + ${similarCompany.getCompanyID()} + '.jpg'}" style="width: 100px;height: 100px" alt="" />
+                                    </a>
+                                </div>
+                                <div class="info-primary">
+                                    <div class="name" style="text-indent: 3em"><a ka="job_sug_2" th:href="@{/companyIntro(CompanyID=${similarCompany.getCompanyID()})}"
+                                                                                  th:text="${similarCompany.getCompanyName()}">大数据解决方案
+                                    <p class="gray" style="text-indent: 3em">
+                                        <a ka="job_sug_brandjob2_custompage" title="航天科工网络信息招聘">
+                                            <span style="color: gray" th:text="${similarCompany.getCompanyNature()}"></span>
+                                        </a><em class="vdot">·</em>
+                                        <span style="color: gray" th:text="${similarCompany.getCompanyType()}">西安</span></p>
+                                </div>
+                            </ol>
+
+                        </ul>
+                        <div class="view-more" align="center">
+                            <a th:href="@{/jobSearch}" rel="nofollow"  ka="more-similar-jobs3">
+                                <i class="more">更多相似公司</i></a></div>
+                    </div>
+                </div>
+                <div class="content_bottom">
+                    <div class="job_info_title">推荐职位</div>
+
+                    <div class="slider-main">
+                        <ul class="ul_box">
+                            <li class="cur" >
+                                <a ka="job_recommend_1"
+                                   class="recommend-li" th:each="map : ${CompanyJobMap}" th:href="@{/jobInfo(JobID=${map.value.getJobID()})}" >
+                                    <div class="name" th:text="${map.value.getJobName()}">DSP控制软件开发工程师</div>
+                                    <div class="red" th:text="${map.value.getJobSalary()}">10-15K</div>
+
+                                    <p style="font-size: smaller;color: gray;" th:text="${map.key.getCompanyName()}">神西电气</p>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                        <!--
+                        <a href="javascript:;" class="btn-direction btn-prev prev"></a>
+                        <a href="javascript:;" class="btn-direction btn-next next"></a>
+                        -->
+                        <!--
+                        <div class="job_page_change_left">
+                            <a href="javascript:;"> <img th:src="@{static/img/arrow-left.png}" width="30" height="30"  alt="vip" /></a>
+                        </div>
+                        <div class="slider-dot" >
+                            <i data-index="1" class="cur"></i>
+
+                            <i data-index="2"></i>
+                            <i data-index="3"></i>
+                            <i data-index="4"></i>
+
+                        </div>
+                        <div class="job_page_change_left" >
+                            <a href="javascript:;"> <img th:src="@{static/img/arrow-right.png}" width="30" height="30"  alt="vip" /></a>
+                        </div>
+                       -->
+
+
+
+
+
+                    </div>
+                </div>
+                <div class="content_bottom_right"></div>
+
+
+
+
+                <!-------------------------------------弹窗lightbox  ----------------------------------------->
+
+
+
+                <!------------------------------------- end ----------------------------------------->
+
+                <script src="style/js/job_detail.js" type="text/javascript"></script>
+                <script src="style/js/count.js" type="text/javascript"></script>
+
+                <!-- <script type="text/javascript">
+                var options = {
+                        "snsId": "snwb",
+                        "uid": "",
+                        "token": "",
+                        "openId": "",
+                        "appKey": "",
+                        "merchantId": "11253",
+                        "merchantType": "news",
+                        "socialLoginUrl_sina": ctx+"/ologin/auth/sina.html",
+                        "socialLoginUrl_qq": "",
+                        "weiboId_sina": "3619164344010985",
+                        "weiboId_qq": "",
+                        "socialAllUrl": ctx+"/user/hbzx.html",
+                        "productId": "22194",
+                        "productCategory": "",
+                        "productName": "产品经理",
+                        "productArea": "广州",
+                        "productPrice": "",
+                        "productUrl": ctx+"/jobs/22194.html",
+                        "productImage": ctx+"/upload/logo/ff8080814356e881014357741e5910f1.jpg",
+                        "excerpt": "广州 / 全职 / 8k-15k / 经验1-3年 / 本科及以上 / 职位诱惑 : 上市公司，快速发展空间，产品的话语权",
+                        "sendContent":"我觉得这个职位不错，你觉得咋样？",
+                        "shareContent":"请输入你对此职位的评论",
+                        "autoSend": false,
+                        "load": true
+                　　}
+                </script>
+                <script src="style/js/common.js" type="text/javascript"></script> -->
+                <script>
+                    $(function(){
+                        $('#weibolist .cookietxte').text('推荐本职位给好友');
+                        $(document).bind('cbox_complete', function(){
+                            hbzxJQ("#gaosutapt .pttui a").trigger("click");
+                            hbzxJQ("#mepingpt .pttui a").trigger("click");
+                        });
+                        $('#cboxOverlay').bind('click',function(){
+                            top.location.reload();
+                        });
+                        $('#colorbox').on('click','#cboxClose',function(){
+                            if($(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'deliverResumesSuccess' || $(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'uploadFileSuccess'){
+                                top.location.reload();
+                            }
+                        });
+                        popQR();
+                    })
+                </script>
+
+                <script src="http://api.map.baidu.com/api?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602" type="text/javascript"></script><script src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602&amp;services=&amp;t=20140617153133" type="text/javascript"></script>
+                <script type="text/javascript">
+                    //百度地图API功能
+                    var sMap = new BMap.Map("smallmap");
+                    sMap.enableScrollWheelZoom(true);
+
+                    if($('#positionLat').val() &amp;&amp; $('#positionLng').val()){
+                        var sPoint = new BMap.Point($('#positionLng').val(),$('#positionLat').val());
+                        sMap.centerAndZoom(sPoint,12);
+                        sMap.addOverlay(new BMap.Marker(sPoint));              // 将标注添加到地图中
+
+                    }else{
+                        // 创建地址解析器实例
+                        var sMyGeo = new BMap.Geocoder();
+                        // 将地址解析结果显示在地图上,并调整地图视野
+                        sMyGeo.getPoint("广州市天河区科韵路信息港建中路36号裕桥商务大厦", function(sPoint){
+                            if (sPoint) {
+                                sMap.centerAndZoom(sPoint, 16);
+                                sMap.addOverlay(new BMap.Marker(sPoint));
+                            }
+                        }, "广州");
+                    }
+
+                    /*弹窗大地图*/
+                    var map = new BMap.Map("allmap");
+                    map.addControl(new BMap.NavigationControl());
+                    map.addControl(new BMap.MapTypeControl());
+                    map.addControl(new BMap.OverviewMapControl());
+                    map.enableScrollWheelZoom(true);
+                    // 创建地址解析器实例
+                    var gc = new BMap.Geocoder();
+                    $(function(){
+                        $('#mapPreview').bind('click',function(){
+                            $.colorbox({inline:true, href:"#baiduMap",title:"公司地址"});
+                            var address = "广州市天河区科韵路信息港建中路36号裕桥商务大厦";
+                            var city = "广州";
+                            var lat = $('#positionLat').val();
+                            var lng = $('#positionLng').val();
+                            map.setCurrentCity(city);
+                            map.setZoom(12);
+                            if(lat &amp;&amp; lng){
+                                var p = new BMap.Point(lng, lat);
+                                var marker = new BMap.Marker(p);  // 创建标注
+                                map.addOverlay(marker);              // 将标注添加到地图中
+                                setTimeout(function(){
+                                    map.centerAndZoom(p, 15);
+                                },1000);
+                                map.setCenter(p);
+                                map.setZoom(15);
+                                var sContent =
+                                    "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;"+city+"&lt;/h4&gt;" +
+                                    "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;"+address+"&lt;/p&gt;" +
+                                    "&lt;/div&gt;";
+                                var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+                                //图片加载完毕重绘infowindow
+                                marker.openInfoWindow(infoWindow);
+                            }else{
+                                gc.getPoint(address, function(point){
+                                    if (point) {
+                                        var p = new BMap.Point(point.lng, point.lat);
+                                        var marker = new BMap.Marker(p);  // 创建标注
+                                        map.addOverlay(marker);              // 将标注添加到地图中
+                                        setTimeout(function(){
+                                            map.centerAndZoom(p, 15);
+                                        },1000);
+                                        map.setZoom(14);
+                                        var sContent =
+                                            "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;"+city+"&lt;/h4&gt;" +
+                                            "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;"+address+"&lt;/p&gt;" +
+                                            "&lt;/div&gt;";
+                                        var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+                                        //图片加载完毕重绘infowindow
+                                        marker.openInfoWindow(infoWindow);
+                                    }
+                                }, city);
+                            }
+
+
+                        });
+
+                    });
+                </script>
+                <div class="clear"></div>
+                <input type="hidden" value="e789f5e7097b4c828e9d40ef39a6baf8" id="resubmitToken">
+                <a rel="nofollow" title="回到顶部" id="backtop" style="display: inline;"></a>
+            </div><!-- end #container -->
+
+            <input type="hidden" value="" name="userid" id="userid"/>
+
+            <!-------------------------------------弹窗lightbox  ----------------------------------------->
+            <div style="display:none;">
+                <!-- 登录框 -->
+                <div id="loginPop" class="popup" style="height:240px;">
+                    <form id="loginForm">
+                        <input type="text" id="email" name="email" tabindex="1" placeholder="请输入登录邮箱地址"/>
+                        <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码"/>
+                        <span class="error" style="display:none;" id="beError"></span>
+                        <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked"
+                                                                name="autoLogin"/> 记住我</label>
+                        <a href="h/reset.html" class="fr">忘记密码？</a>
+                        <input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录"/>
+                    </form>
+                    <div class="login_right">
+                        <div>还没有拉勾帐号？</div>
+                        <a href="register.html" class="registor_now">立即注册</a>
+                        <div class="login_others">使用以下帐号直接登录:</div>
+                        <a href="h/ologin/auth/sina.html" target="_blank" id="icon_wb" class="icon_wb"
+                           title="使用新浪微博帐号登录"></a>
+                        <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank" title="使用腾讯QQ帐号登录"></a>
+                    </div>
+                </div><!--/#loginPop-->
+            </div>
+            <!------------------------------------- end ----------------------------------------->
+            <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
+            <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
+            <script type="text/javascript" th:src="@{static/js/count.js}"></script>
+            <div class="clear"></div>
+            <input type="hidden" id="resubmitToken" value=""/>
+            <a id="backtop" title="回到顶部" rel="nofollow"></a>
+        </div><!-- end #container -->
+        <input type="hidden" value="" name="userid" id="userid"/>
+        <!-- <div id="qrSide"><a></a></div> -->
+        <!--  -->
+
+        <!-- <div id="loginToolBar">
+            <div>
+                <em></em>
+                <img src="style/images/footbar_logo.png" width="138" height="45" />
+                <span class="companycount"></span>
+                <span class="positioncount"></span>
+                <a href="#loginPop" class="bar_login inline" title="登录"><i></i></a>
+                <div class="right">
+                    <a href="register.html?from=index_footerbar" onclick="_hmt.push(['_trackEvent', 'button', 'click', 'register'])" class="bar_register" id="bar_register" target="_blank"><i></i></a>
+                </div>
+                <input type="hidden" id="cc" value="16002" />
+                <input type="hidden" id="cp" value="96531" />
+            </div>
+        </div>
+         -->
+        <!-------------------------------------弹窗lightbox  ----------------------------------------->
+        <div style="display:none;">
+            <!-- 登录框 -->
+            <div id="loginPop" class="popup" style="height:240px;">
+                <form id="loginForm">
+                    <input type="text" id="email" name="email" tabindex="1" placeholder="请输入登录邮箱地址"/>
+                    <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码"/>
+                    <span class="error" style="display:none;" id="beError"></span>
+                    <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked"
+                                                            name="autoLogin"/> 记住我</label>
+                    <a href="h/reset.html" class="fr">忘记密码？</a>
+                    <input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录"/>
+                </form>
+                <div class="login_right">
+                    <div>还没有拉勾帐号？</div>
+                    <a href="register.html" class="registor_now">立即注册</a>
+                    <div class="login_others">使用以下帐号直接登录:</div>
+                    <a href="h/ologin/auth/sina.html" target="_blank" id="icon_wb" class="icon_wb"
+                       title="使用新浪微博帐号登录"></a>
+                    <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank" title="使用腾讯QQ帐号登录"></a>
+                </div>
+            </div><!--/#loginPop-->
+        </div>
+        <!------------------------------------- end ----------------------------------------->
+        <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
+        <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
+        <script type="text/javascript" th:src="@{static/js/count.js}"></script>
+        <div class="clear"></div>
+        <input type="hidden" id="resubmitToken" value=""/>
+        <a id="backtop" title="回到顶部" rel="nofollow"></a>
+    </div><!-- end #container -->
+</div><!-- end #body -->
+<div id="footer">
+    <div id="linkbox">
+        <dl>
+            <dt style="font-size:20px;">友情链接</dt>
+            <dd>
+                <a href="http://www.zhuqu.com/" target="_blank">住趣家居网</a> <span>|</span>
+                <a href="http://www.woshipm.com/" target="_blank">人人都是产品经理</a> <span>|</span>
+                <a href="http://zaodula.com/" target="_blank">互联网er的早读课</a> <span>|</span>
+                <a href="http://lieyunwang.com/" target="_blank">猎云网</a> <span>|</span>
+                <a href="http://www.ucloud.cn/" target="_blank">UCloud</a> <span>|</span>
+                <a href="http://www.iconfans.com/" target="_blank">iconfans</a> <span>|</span>
+                <a href="http://www.html5dw.com/" target="_blank">html5梦工厂</a> <span>|</span>
+                <a href="http://www.sykong.com/" target="_blank">手游那点事</a>
+
+                <a href="http://www.php100.com/" target="_blank">php100</a> <span>|</span>
+                <a href="http://www.uehtml.com/" target="_blank">uehtml</a> <span>|</span>
+                <a href="http://www.w3cplus.com/" target="_blank">W3CPlus</a> <span>|</span>
+                <a href="http://www.boxui.com/" target="_blank">盒子UI</a> <span>|</span>
+                <a href="http://www.uimaker.com/" target="_blank">uimaker</a> <span>|</span>
+                <a href="http://www.yixieshi.com/" target="_blank">互联网的一些事</a> <span>|</span>
+                <a href="http://www.chuanke.com/" target="_blank">传课网</a> <span>|</span>
+                <a href="http://www.eoe.cn/" target="_blank">安卓开发</a> <span>|</span>
+                <a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a>
+                <a href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
+                <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
+                <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
+                <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
+
+            </dd>
+        </dl>
+    </div>
+    <div class="dt-footer-bottom">
+        <div class="dt-footer-info">
+            <span class="dt-footer-icp">Copyright ©2020 wuxiancx.com 版权所有</span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
+<script>
+    function logoutC() {
+        swal({
+                title: "确定注销吗？",
+                text: "您将退出登录！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    window.location.href="logout";
+                }
+            });
+    }
+</script>
+<!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
+ -->
+
+</body>
+</html>

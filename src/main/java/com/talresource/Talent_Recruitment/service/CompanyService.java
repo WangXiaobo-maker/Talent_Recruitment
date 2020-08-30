@@ -51,6 +51,10 @@ public class CompanyService {
         return companyDao.selectCompanyByHeat();
     }
 
+    public List<Company> selectCompanyByHeatlim4(){
+        return companyDao.selectCompanyByHeatlim4();
+    }
+
     public List<Company> selectCompanyByName(String CompanyName){
         return companyDao.selectCompanyByName(CompanyName);
     }

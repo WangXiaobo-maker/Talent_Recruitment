@@ -36,4 +36,19 @@ public class JobService {
         return jobDao.selectJobByCompany(CompanyID);
     }
 
+    public Job selectJobByID(int JobID){
+        return jobDao.selectJobByID(JobID);
+    }
+
+    public List<Job> selectJobByHeatlim10(){
+        return jobDao.selectJobByHeatlim10();
+    }
+
+    public List<Job> selectJobByHeatlim4(){
+        return jobDao.selectJobByHeatlim4();
+    }
+
+    public List<Job> selectJobByCompanylim3(int CompanyID){
+        return jobDao.selectJobByCompanylim3(CompanyID);
+    }
 }

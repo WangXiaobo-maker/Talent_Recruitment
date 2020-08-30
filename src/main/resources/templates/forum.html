@@ -212,7 +212,7 @@
                                 <h4 style="font-size:15px;font-weight: bold;" >
                                     <a th:text="${map.value.PostTitle}" th:href="@{/forumContent(PostID=${map.value.PostID}, UserID=${map.key.UserID})}"></a>
                                 </h4>
-                                <span><a href="#" title="" th:text="'发帖人：' + ${map.key.NickName}"></a></span>
+                                <span style="width: 140px;display: inline-block;text-align: left;" th:text="'发帖人：' + ${map.key.NickName}"><a href="#" title="" >发帖人昵称</a></span>
                                 <span class="like-count2" style="float:right;font-weight: 10;color: #9f9f9f;" th:text="${map.value.PostPublishDate}"></span>
                             </li>
                         </ul>

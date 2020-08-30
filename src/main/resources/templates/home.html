@@ -274,7 +274,7 @@
                             <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
                         </div>
                         <div class="mb10 job_hot_div_r">
-                            <a href="h/jobs/147822.html" target="_blank">
+                            <a th:href="@{/jobInfo(JobID=${job.JobID})}" >
                                 <p style="font-size: 20px;margin-top: 14px; display: -webkit-box;
                                 -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;"
                                    th:text="${job.JobName}">
@@ -355,7 +355,7 @@
             <ul class="hot_pos reset" style="padding: 0px;width: 1050px;">
                 <li class="job_li" th:each="company : ${CompanyListByHeat}">
                     <div class="job_hot_l" style="text-align: center; height: 200px; ">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/companyIntro(CompanyID=${company.getCompanyID()})}" >
                             <img th:src="@{static/img/hwawei.png}" alt="">
 
                             <p style="font-size: 20px;margin-top: 14px; display: -webkit-box;-webkit-box-orient: vertical;
@@ -366,7 +366,7 @@
                                 <span th:text="${company.CompanyType}"></span>
                             </p>
                             <p style="border: solid 1px #e3e7ed; margin: 0 auto; text-align: center; width: 130px">
-                                个热招职位</p>
+                                <span style="" th:text="${company.CompanyJobNum}"></span>个热招职位</p>
                         </a>
 
                     </div>

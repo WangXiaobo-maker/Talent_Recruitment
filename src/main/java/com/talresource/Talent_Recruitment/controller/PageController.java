@@ -154,7 +154,7 @@ public class PageController {
 
         System.out.println("Search2: " + JobList.size());
 
-        Map<Job, Company> map1 = new HashMap<>();
+        Map<Job, Company> map1 = new LinkedHashMap<>();
         for (int i=0;i<JobList.size();i++){
             map1.put(JobList.get(i), CompanyList.get(i));
         }
@@ -203,15 +203,58 @@ public class PageController {
         return "forumSearch";
     }
 
+    @RequestMapping("/jobInfo")
+    public String jobInfo(ModelMap map, int JobID){
+
+        Job job = jobService.selectJobByID(JobID);
+        Company company = companyService.queryById(job.getCompanyID());
+        map.addAttribute("Job", job);
+        map.addAttribute("Company", company);
+
+
+        List<Job> jobList = jobService.selectJobByHeatlim10();
+
+        Map<Company, Job> companyJobMap = new LinkedHashMap<>();
+        for (int i=0;i<jobList.size();i++){
+            Job job1 = jobList.get(i);
+            companyJobMap.put(companyService.queryById(job1.getCompanyID()), job1);
+        }
+        map.addAttribute("CompanyJobMap", companyJobMap);
+
+        map.addAttribute("similarJobList", jobService.selectJobByHeatlim4());
+
+        return "jobInfo";
+    }
+
+    @RequestMapping("/companyIntro")
+    public String companyIntro(ModelMap map, int CompanyID){
+
+        map.addAttribute("companyInfo", companyService.queryById(CompanyID));
+        map.addAttribute("companyJobListlim3", jobService.selectJobByCompanylim3(CompanyID));
+        map.addAttribute("similarCompanyList", companyService.selectCompanyByHeatlim4());
+
+        List<Job> jobList = jobService.selectJobByHeatlim10();
+
+        Map<Company, Job> companyJobMap = new LinkedHashMap<>();
+        for (int i=0;i<jobList.size();i++){
+            Job job1 = jobList.get(i);
+            companyJobMap.put(companyService.queryById(job1.getCompanyID()), job1);
+        }
+        map.addAttribute("CompanyJobMap", companyJobMap);
+
+
+        return "companyIntro";
+    }
+
     @RequestMapping("/test3")
     public String test3(){
-        return "test5";
+        return "companyIntro";
     }
 
     @RequestMapping("/test4")
     public String test4(ModelMap map){
         map.addAttribute("testMessage", newsService.selectNewsByID(7));
-        return "test4";
+        return "jobInfo";
     }
 
 
