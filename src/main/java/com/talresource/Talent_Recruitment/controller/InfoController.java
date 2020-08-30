@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class InfoController {
 
+    @RequestMapping("/forgotPwd")
+    public String forgotPwd() {
+        return "forgotPwd";
+    }
+
     @RequestMapping("/userInfoPage")
     public String userInfoPage() {
         return "userInfoPage";
@@ -31,6 +36,11 @@ public class InfoController {
         return "html/myNotice";
     }
 
+    @RequestMapping("/myCV")
+    public String myCV() {
+        return "html/myCV";
+    }
+
     @RequestMapping("/companyInfoPage")
     public String companyInfoPage() {
         return "companyInfoPage";
@@ -52,3 +62,4 @@ public class InfoController {
     }
 
 }
+

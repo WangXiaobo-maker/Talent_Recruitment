@@ -151,7 +151,7 @@ ul.hot_tags{margin-bottom:23px; overflow:hidden;}
 /*新闻网页标题*/
 #home_banner1{width:1024px;height:400px;position:relative;margin:-100px 0 18px; overflow:hidden;}
 #home_banner1:hover .arrow{display:block;}
-#news_title{text-align:center;width:100%;height:300px;background: url(../img/news_title.png); background-size:110%; position:relative;}
+#news_title{text-align:center;width:100%;height:300px;background: url(../img/news_title.png); position:relative;}
 #news_title_div1{text-align:center;width:100%;height:200px;}
 #news_title_div2{text-align:center;width:100%;height:100px;}
 #news_title_div3{text-align:center;width:100%;height:100px;}
@@ -453,6 +453,7 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 #loginForm{width:360px; margin:0; border-right:1px dashed #999 ; float:left;}
 #loginForm a{color:#011d56;}
 #loginForm input#email{width:296px;font-size:16px; color:#777; border:1px solid #011d56;}
+#loginForm input#phone{width:296px;font-size:16px; color:#777; border:1px solid #011d56;}
 #loginForm input#password{width:296px;font-size:16px; color:#777;  border:1px solid #011d56;}
 #loginForm input#confirmpassword{width:296px;font-size:16px; color:#777;  border:1px solid #011d56;}
 #loginForm input:focus{border:2px solid #011d56;-webkit-box-shadow: 0px 0px 4px #011d56;-moz-box-shadow: 0px 0px 4px #011d56;box-shadow: 0px 0px 4px #011d56;}
