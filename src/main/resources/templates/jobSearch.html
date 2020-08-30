@@ -159,7 +159,7 @@
         <div id="block">
 
         </div>
-        <div id="search_box" align="center">
+        <div id="search_box" align="center" action="#">
             <form id="searchForm" name="searchForm">
                 <ul id="searchType">
                     <li data-searchtype="1" class="type_selected" value="职位">职&nbsp;&nbsp;位</li>
@@ -167,12 +167,19 @@
                 </ul>
                 <div class="searchtype_arrow"></div>
                 <input type="text" id="search_input" name="jobInfo" tabindex="1" value="" style="width:699px; height:23px;"
-                       placeholder="请输入职位名称，如：产品经理"/>
+                       placeholder="请输入职位名称，如：产品经理" onkeypress="checkEnter()"/>
 
                 <input type="button" id="search_button" value="搜&nbsp;&nbsp;索" onclick="jobSearch()"/>
 
             </form>
             <script>
+                function checkEnter() {
+                    if (event.keyCode == 13){
+                        alert("sdfdsfds");
+                        jobSearch();
+                        alert("chenggong");
+                    }
+                }
 
                 function jobSearch() {
                     // var searchType = document.getElementsByClassName("type_selected")[0].var();

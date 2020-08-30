@@ -89,6 +89,12 @@ public class PostController {
             userPostMap.put(userService.queryById(post.getUserID()), post);
         }
 
+        if (userPostMap.size() == 0)
+            map.addAttribute("message", "null");
+        else
+            map.addAttribute("message", "notnull");
+
+
         map.addAttribute("UserPostMap", userPostMap);
         return "forumSearch";
     }
