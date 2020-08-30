@@ -272,7 +272,7 @@
                 <li class="job_li" th:each="job : ${JobListByHeat}">
                     <div class="job_hot_l">
                         <div class="mb10 job_hot_div_l">
-                            <a href="h/jobs/147822.html" target="_blank"><img th:src="@{static/img/hwawei.png}" alt=""></a>
+                            <a th:href="@{/jobInfo(JobID=${job.JobID})}" ><img th:src="@{'static/img/jobLogo/' + ${job.getJobID()} + '.jpg'}" alt=""></a>
                         </div>
                         <div class="mb10 job_hot_div_r">
                             <a th:href="@{/jobInfo(JobID=${job.JobID})}" >
@@ -357,7 +357,7 @@
                 <li class="job_li" th:each="company : ${CompanyListByHeat}">
                     <div class="job_hot_l" style="text-align: center; height: 200px; ">
                         <a th:href="@{/companyIntro(CompanyID=${company.getCompanyID()})}" >
-                            <img th:src="@{static/img/hwawei.png}" alt="">
+                            <img th:src="@{'static/img/companyLogo/' + ${company.getCompanyID()} + '.jpg'}" alt="">
 
                             <p style="font-size: 20px;margin-top: 14px; display: -webkit-box;-webkit-box-orient: vertical;
                                  -webkit-line-clamp: 1; overflow: hidden;" th:text="${company.CompanyName}">
@@ -383,14 +383,14 @@
             <ul class="hot_pos reset" style="padding: 0px;width: 1050px;">
                 <li class="job_li">
                     <div class="job_hot">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/jobSearch(JobCity='北京',JobSalary='所有',JobExperience='所有',JobEduDegree='所有',JobFamily='所有')}" >
                             <img th:src="@{static/img/beijing.png}" alt="">
                         </a>
                     </div>
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/jobSearch(JobCity='上海',JobSalary='所有',JobExperience='所有',JobEduDegree='所有',JobFamily='所有')}">
                             <img th:src="@{static/img/shanghai.png}" alt="">
                         </a>
                     </div>
@@ -398,7 +398,7 @@
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/jobSearch(JobCity='南京',JobSalary='所有',JobExperience='所有',JobEduDegree='所有',JobFamily='所有')}">
                             <img th:src="@{static/img/nanjing.png}" alt="">
                         </a>
                     </div>
@@ -406,7 +406,7 @@
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/jobSearch(JobCity='杭州',JobSalary='所有',JobExperience='所有',JobEduDegree='所有',JobFamily='所有')}" >
                             <img th:src="@{static/img/hangzhou.png}" alt="">
                         </a>
                     </div>
@@ -414,7 +414,7 @@
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/jobSearch(JobCity='武汉',JobSalary='所有',JobExperience='所有',JobEduDegree='所有',JobFamily='所有')}" >
                             <img th:src="@{static/img/wuhan.png}" alt="">
                         </a>
                     </div>
@@ -422,7 +422,7 @@
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/jobSearch(JobCity='重庆',JobSalary='所有',JobExperience='所有',JobEduDegree='所有',JobFamily='所有')}" >
                             <img th:src="@{static/img/chongqing.png}" alt="">
                         </a>
                     </div>
@@ -430,7 +430,7 @@
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/jobSearch(JobCity='深圳',JobSalary='所有',JobExperience='所有',JobEduDegree='所有',JobFamily='所有')}" >
                             <img th:src="@{static/img/shenzhen.png}" alt="">
                         </a>
                     </div>
@@ -438,7 +438,7 @@
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/jobSearch(JobCity='西安',JobSalary='所有',JobExperience='所有',JobEduDegree='所有',JobFamily='所有')}" >
                             <img th:src="@{static/img/xian.png}" alt="">
                         </a>
                     </div>
@@ -446,7 +446,7 @@
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
-                        <a href="h/jobs/147822.html" target="_blank">
+                        <a th:href="@{/jobSearch(JobCity='青岛',JobSalary='所有',JobExperience='所有',JobEduDegree='所有',JobFamily='所有')}" >
                             <img th:src="@{static/img/qingdao.png}" alt="">
                         </a>
                     </div>

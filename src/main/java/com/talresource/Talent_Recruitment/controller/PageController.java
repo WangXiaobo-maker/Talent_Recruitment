@@ -82,6 +82,12 @@ public class PageController {
 
             map.addAttribute("JobMap", map1);
 
+            map.put("JobCity",null);
+            map.put("JobSalary",null);
+            map.put("JobExperience",null);
+            map.put("JobEduDegree",null);
+            map.put("JobFamily",null);
+
             if (map1.size() == 0)
                 map.addAttribute("message", "null");
             else
@@ -90,6 +96,7 @@ public class PageController {
             System.out.println("Search1: " + JobList.size());
             return "jobSearch";
         }else {
+
             JobList = jobService.JobSearchByInfo(JobCity, JobSalary, JobExperience, JobEduDegree, JobFamily);
             List<Company> CompanyList = new ArrayList<Company>();
             for (int i=0; i<JobList.size();i++){
@@ -109,66 +116,23 @@ public class PageController {
                 map.addAttribute("message", "notnull");
             System.out.println("Search1: " + JobList.size());
 
+            map.put("JobCity",JobCity);
+            map.put("JobSalary",JobSalary);
+            map.put("JobExperience",JobExperience);
+            map.put("JobEduDegree",JobEduDegree);
+            map.put("JobFamily",JobFamily);
+
             if (map1.size() == 0)
                 map.addAttribute("message", "null");
             else
                 map.addAttribute("message", "notnull");
 
-            return "jobSearch::list";
+            return "jobSearch";
         }
 
 
 
     }
-
-    @RequestMapping("/toJobSearch")
-    public String toJobSearch(ModelMap map, String JobCity, String JobSalary, String JobExperience,
-                              String JobEduDegree, String JobFamily){
-
-        if (JobCity.equals("全国")){
-            JobCity = "";
-        }
-        if (JobSalary.equals("所有")){
-            JobSalary = "";
-        }
-        if (JobExperience.equals("所有")){
-            JobExperience = "";
-        }
-        if (JobEduDegree.equals("所有")){
-            JobEduDegree = "";
-        }
-        if (JobFamily.equals("所有")){
-            JobFamily = "";
-        }
-
-        System.out.println("flag");
-
-        System.out.println(JobCity+"-"+JobSalary+"-"+JobExperience+"-"+JobEduDegree+"-"+JobFamily);
-
-        List<Job> JobList = jobService.JobSearchByInfo(JobCity, JobSalary, JobExperience, JobEduDegree, JobFamily);
-        List<Company> CompanyList = new ArrayList<Company>();
-        for (int i=0; i<JobList.size();i++){
-            Job job = JobList.get(i);
-            CompanyList.add(companyService.queryById(job.getCompanyID()));
-        }
-
-        System.out.println("Search2: " + JobList.size());
-
-        Map<Job, Company> map1 = new LinkedHashMap<>();
-        for (int i=0;i<JobList.size();i++){
-            map1.put(JobList.get(i), CompanyList.get(i));
-        }
-
-        map.addAttribute("JobMap", map1);
-        map.addAttribute("size", JobList.size());
-        if (map1.size() == 0)
-            map.addAttribute("message", "null");
-        else
-            map.addAttribute("message", "notnull");
-
-        return "jobSearch";
-    }
-
 
     @RequestMapping("/forum")
     public String forum(ModelMap map){

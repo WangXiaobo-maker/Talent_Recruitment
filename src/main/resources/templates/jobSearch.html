@@ -14,7 +14,6 @@
         var ctx = "h";
         console.log(1);
     </script>
-
     <link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
@@ -249,55 +248,55 @@
             <dl class="workplace" id="workplaceSelect">
                 <dt class="fl" style="font-weight: bold;">工作地点：</dt>
                 <dd>
-                    <a class="current">全国</a>
+                    <a id="全国">全国</a>
                     |
                 </dd>
                 <dd >
-                    <span><a>北京</a></span>
+                    <a id="北京">北京</a>
                     |
                 </dd>
                 <dd>
-                    <a>上海</a>
+                    <a id="上海">上海</a>
                     |
                 </dd>
                 <dd>
-                    <a>广州</a>
+                    <a id="广州">广州</a>
                     |
                 </dd>
                 <dd>
-                    <a>深圳</a>
+                    <a id="深圳">深圳</a>
                     |
                 </dd>
                 <dd>
-                    <a>成都</a>
+                    <a id="成都">成都</a>
                     |
                 </dd>
                 <dd>
-                    <a>杭州</a>
+                    <a id="杭州">杭州</a>
                     |
                 </dd>
                 <dd>
-                    <a>武汉</a>
+                    <a id="武汉">武汉</a>
                     |
                 </dd>
                 <dd>
-                    <a>南京</a>
+                    <a id="南京">南京</a>
                     |
                 </dd>
                 <dd>
-                    <a>青岛</a>
+                    <a id="青岛">青岛</a>
                     |
                 </dd>
                 <dd>
-                    <a>西安</a>
+                    <a id="西安">西安</a>
                     |
                 </dd>
                 <dd>
-                    <a>南京</a>
+                    <a id="重庆">重庆</a>
                     |
                 </dd>
                 <dd class="more">
-                    <a>其他</a>
+                    <button style="background-color: white;border: none;">其他</button>
                     <div class="triangle citymore_arrow"></div>
                 </dd>
                 <dd id="box_expectCity" class="job_City_search dn">
@@ -306,78 +305,67 @@
                     <dl>
                         <dt style="color: #011d56;">ABCDEF</dt>
                         <dd>
-                            <span>北京</span>
-                            <span>长春</span>
-                            <span>成都</span>
-                            <span>重庆</span>
-                            <span>长沙</span>
-                            <span>常州</span>
-                            <span>东莞</span>
-                            <span>大连</span>
-                            <span>佛山</span>
-                            <span>福州</span>
+                            <span><a id="长春">长春</a></span>
+                            <span><a id="长沙">长沙</a></span>
+                            <span><a id="常州">常州</a></span>
+                            <span><a id="东莞">东莞</a></span>
+                            <span><a id="大连">大连</a></span>
+                            <span><a id="佛山">佛山</a></span>
+                            <span><a id="福州">福州</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt style="color: #011d56;">GHIJ</dt>
                         <dd>
-                            <span>贵阳</span>
-                            <span>广州</span>
-                            <span>哈尔滨</span>
-                            <span>合肥</span>
-                            <span>海口</span>
-                            <span>杭州</span>
-                            <span>惠州</span>
-                            <span>金华</span>
-                            <span>济南</span>
-                            <span>嘉兴</span>
+                            <span><a id="贵阳">贵阳</a></span>
+                            <span><a id="哈尔滨">哈尔滨</a></span>
+                            <span><a id="合肥">合肥</a></span>
+                            <span><a id="海口">海口</a></span>
+                            <span><a id="惠州">惠州</a></span>
+                            <span><a id="金华">金华</a></span>
+                            <span><a id="济南">济南</a></span>
+                            <span><a id="嘉兴">嘉兴</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt style="color: #011d56;">KLMN</dt>
                         <dd>
-                            <span>昆明</span>
-                            <span>廊坊</span>
-                            <span>宁波</span>
-                            <span>南昌</span>
-                            <span>南京</span>
-                            <span>南宁</span>
-                            <span>南通</span>
+                            <span><a id="昆明">昆明</a></span>
+                            <span><a id="廊坊">廊坊</a></span>
+                            <span><a id="宁波">宁波</a></span>
+                            <span><a id="南昌">南昌</a></span>
+                            <span><a id="南宁">南宁</a></span>
+                            <span><a id="南通">南通</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt style="color: #011d56;">OPQR</dt>
                         <dd>
-                            <span>青岛</span>
-                            <span>泉州</span>
+                            <span><a id="泉州">泉州</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt style="color: #011d56;">STUV</dt>
                         <dd>
-                            <span>上海</span>
-                            <span>石家庄</span>
-                            <span>绍兴</span>
-                            <span>沈阳</span>
-                            <span>深圳</span>
-                            <span>苏州</span>
-                            <span>天津</span>
-                            <span>太原</span>
-                            <span>台州</span>
+                            <span><a id="石家庄">石家庄</a></span>
+                            <span><a id="绍兴">绍兴</a></span>
+                            <span><a id="沈阳">沈阳</a></span>
+                            <span><a id="苏州">苏州</a></span>
+                            <span><a id="天津">天津</a></span>
+                            <span><a id="太原">太原</a></span>
+                            <span><a id="台州">台州</a></span>
                         </dd>
                     </dl>
                     <dl>
                         <dt style="color: #011d56;">WXYZ</dt>
                         <dd>
-                            <span>武汉</span>
-                            <span>无锡</span>
-                            <span>温州</span>
-                            <span>西安</span>
-                            <span>厦门</span>
-                            <span>烟台</span>
-                            <span>珠海</span>
-                            <span>中山</span>
-                            <span>郑州</span>
+                            <span><a id="无锡">无锡</a></span>
+                            <span><a id="温州">温州</a></span>
+                            <span><a id="厦门">厦门</a></span>
+                            <span><a id="烟台">烟台</a></span>
+                            <span><a id="珠海">珠海</a></span>
+                            <span><a id="中山">中山</a></span>
+                            <span><a id="郑州">郑州</a></span>
                         </dd>
                     </dl>
                 </dd>
@@ -386,166 +374,164 @@
             <dl class="workplace1" id="workplaceSelect">
                 <dt class="fl" style="font-weight: bold;">月薪范围：</dt>
                 <dd>
-                    <a class="current">所有</a>
+                    <a id="所有月薪">所有</a>
                     |
                 </dd>
                 <dd>
-                    <a>3-4.5千</a>
+                    <a id="2-3K">2-3K</a>
                     |
                 </dd>
                 <dd>
-                    <a>4.5-6千</a>
+                    <a id="3-5K">3-5K</a>
                     |
                 </dd>
                 <dd>
-                    <a>6-8千</a>
+                    <a id="5-8K">5-8K</a>
                     |
                 </dd>
                 <dd>
-                    <a>0.8-1万</a>
+                    <a id="8-10K">8-10K</a>
                     |
                 </dd>
                 <dd>
-                    <a>1-1.5万</a>
+                    <a id="10-15K">10-15K</a>
                     |
                 </dd>
                 <dd>
-                    <a>1.5-2万</a>
+                    <a id="15-20K">15-20K</a>
                     |
                 </dd>
                 <dd>
-                    <a>2-3万</a>
+                    <a id="20-30K">20-30K</a>
                     |
                 </dd>
                 <dd>
-                    <a>3-4万</a>
+                    <a id="30-40K">30-40K</a>
                     |
                 </dd>
                 <dd>
-                    <a>4万以上</a>
-
-                </dd>
-                <dd>
-                    <form>
-                        &nbsp;&nbsp;
-                        <input type="text" style="margin-top: 0px; width: 130px;height: 7px;font-size: 5px"
-                               placeholder="自定义薪资...">
-                        <input type="submit" value="确定" style="background-color: #011d56; color: #FFFFFF;">
-                    </form>
-
+                    <a id="40K以上">40K以上</a>
                 </dd>
             </dl>
 
             <dl class="workplace2" id="workplaceSelect">
                 <dt class="fl" style="font-weight: bold;">工作年限：</dt>
                 <dd>
-                    <a class="current">所有</a>
+                    <a id="所有经验">所有</a>
                     |
                 </dd>
                 <dd>
-                    <a>在校生/应届生</a>
+                    <a id="无需经验">无需经验</a>
                     |
                 </dd>
                 <dd>
-                    <a>1-3年</a>
+                    <a id="1年经验">1年经验</a>
                     |
                 </dd>
                 <dd>
-                    <a>3-5年</a>
+                    <a id="2年经验">2年经验</a>
                     |
                 </dd>
                 <dd>
-                    <a>5-10年</a>
+                    <a id="3年经验">3年经验</a>
                     |
                 </dd>
                 <dd>
-                    <a>10年以上</a>
+                    <a id="4年经验">4年经验</a>
                     |
                 </dd>
                 <dd>
-                    <a>无需经验</a>
+                    <a id="5年经验">5年经验</a>
+                    |
+                </dd>
+                <dd>
+                    <a id="5年以上经验">5年以上经验</a>
                 </dd>
             </dl>
 
             <dl class="workplace3" id="workplaceSelect">
                 <dt class="fl" style="font-weight: bold;">学历要求：</dt>
                 <dd>
-                    <a class="current">所有</a>
+                    <a id="所有学历">所有</a>
                     |
                 </dd>
                 <dd>
-                    <a>初中及以下</a>
+                    <a id="初中及以下">初中及以下</a>
                     |
                 </dd>
                 <dd>
-                    <a>高中/中技/中专</a>
+                    <a id="高中">高中</a>
                     |
                 </dd>
                 <dd>
-                    <a>大专</a>
+                    <a id="中专">中专</a>
                     |
                 </dd>
                 <dd>
-                    <a>本科</a>
+                    <a id="大专">大专</a>
                     |
                 </dd>
                 <dd>
-                    <a>硕士</a>
+                    <a id="本科">本科</a>
                     |
                 </dd>
                 <dd>
-                    <a>博士</a>
+                    <a id="硕士">硕士</a>
                     |
                 </dd>
                 <dd>
-                    <a>无学历要求</a>
+                    <a id="博士">博士</a>
+                    |
+                </dd>
+                <dd>
+                    <a id="无学历要求">无学历要求</a>
                 </dd>
             </dl>
 
             <dl class="workplace4" id="workplaceSelect">
                 <dt class="fl" style="font-weight: bold;">工作类型：</dt>
                 <dd>
-                    <a class="current">所有</a>
+                    <a id="所有类型">所有</a>
                     |
                 </dd>
                 <dd>
-                    <a>互联网</a>
+                    <a id="互联网">互联网</a>
                     |
                 </dd>
                 <dd>
-                    <a>运营</a>
+                    <a id="运营">运营</a>
                     |
                 </dd>
                 <dd>
-                    <a>计算机软件</a>
+                    <a id="计算机软件">计算机软件</a>
                     |
                 </dd>
                 <dd>
-                    <a>房地产</a>
+                    <a id="房地产">房地产</a>
                     |
                 </dd>
                 <dd>
-                    <a>销售</a>
+                    <a id="销售">销售</a>
                     |
                 </dd>
                 <dd>
-                    <a>旅游</a>
+                    <a id="旅游">旅游</a>
                     |
                 </dd>
                 <dd>
-                    <a>人事</a>
+                    <a id="人事">人事</a>
                     |
                 </dd>
                 <dd>
-                    <a>平面设计</a>
+                    <a id="平面设计">平面设计</a>
                     |
                 </dd>
                 <dd>
-                    <a>产品经理</a>
+                    <a id="产品经理">产品经理</a>
                     |
                 </dd>
                 <dd>
-                    <a>机械</a>
+                    <a id="机械">机械</a>
                 </dd>
             </dl>
         </div>
@@ -916,49 +902,6 @@
 
     <div class="clear"></div>
 </div>
-<input type="hidden" value="" name="userid" id="userid"/>
-<!-- <div id="qrSide"><a></a></div> -->
-<!--  -->
-
-<!-- <div id="loginToolBar">
-    <div>
-        <em></em>
-        <img src="style/images/footbar_logo.png" width="138" height="45" />
-        <span class="companycount"></span>
-        <span class="positioncount"></span>
-        <a href="#loginPop" class="bar_login inline" title="登录"><i></i></a>
-        <div class="right">
-            <a href="register.html?from=index_footerbar" onclick="_hmt.push(['_trackEvent', 'button', 'click', 'register'])" class="bar_register" id="bar_register" target="_blank"><i></i></a>
-        </div>
-        <input type="hidden" id="cc" value="16002" />
-        <input type="hidden" id="cp" value="96531" />
-    </div>
-</div>
- -->
-<!-------------------------------------弹窗lightbox  ----------------------------------------->
-<div style="display:none;">
-    <!-- 登录框 -->
-    <div id="loginPop" class="popup" style="height:240px;">
-        <form id="loginForm">
-            <input type="text" id="email" name="email" tabindex="1" placeholder="请输入登录邮箱地址"/>
-            <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码"/>
-            <span class="error" style="display:none;" id="beError"></span>
-            <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked"
-                                                    name="autoLogin"/> 记住我</label>
-            <a href="h/reset.html" class="fr">忘记密码？</a>
-            <input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录"/>
-        </form>
-        <div class="login_right">
-            <div>还没有拉勾帐号？</div>
-            <a href="register.html" class="registor_now">立即注册</a>
-            <div class="login_others">使用以下帐号直接登录:</div>
-            <a href="h/ologin/auth/sina.html" target="_blank" id="icon_wb" class="icon_wb"
-               title="使用新浪微博帐号登录"></a>
-            <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank" title="使用腾讯QQ帐号登录"></a>
-        </div>
-    </div><!--/#loginPop-->
-</div>
-<!------------------------------------- end ----------------------------------------->
 <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
 <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
 <script type="text/javascript" th:src="@{static/js/count.js}"></script>
@@ -1067,20 +1010,65 @@
         var JobEduDegree = list[4].innerText;
         var JobFamily = list[5].innerText;
         console.log(JobCity+"-"+JobSalary+"-"+JobExperience+"-"+JobEduDegree+"-"+JobFamily);
-        // var url = "jobSearch";
-        var data = {
-            JobCity: JobCity,
-            JobSalary: JobSalary,
-            JobExperience: JobExperience,
-            JobEduDegree: JobEduDegree,
-            JobFamily: JobFamily
+        if(JobCity === "全国" && JobSalary === "所有" && JobExperience === "所有" && JobEduDegree === "所有" && JobFamily === "所有"){
+            window.location.href = "jobSearch";
         }
-
-        var url = "toJobSearch?JobCity=" + JobCity + "&JobSalary=" + JobSalary + "&JobExperience=" + JobExperience
-            + "&JobEduDegree=" + JobEduDegree + "&JobFamily=" + JobFamily;
-        window.location.href = url
+        else{
+            var url = "jobSearch?JobCity=" + JobCity + "&JobSalary=" + JobSalary + "&JobExperience=" + JobExperience
+                + "&JobEduDegree=" + JobEduDegree + "&JobFamily=" + JobFamily;
+            window.location.href = url;
+        }
     }
 
+</script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        var JobCity = [[${JobCity}]];
+        var JobSalary = [[${JobSalary}]];
+        var JobExperience = [[${JobExperience}]];
+        var JobEduDegree = [[${JobEduDegree}]];
+        var JobFamily = [[${JobFamily}]];
+        $(".workplace a").removeClass("current");
+        $(".workplace1 a").removeClass("current");
+        $(".workplace2 a").removeClass("current");
+        $(".workplace3 a").removeClass("current");
+        $(".workplace4 a").removeClass("current");
+        if(JobCity === null || JobCity === "" || JobCity === "全国"){
+            JobCity = "全国";
+            $("#"+JobCity).addClass("current");
+        }
+        else {
+            $("#"+JobCity).addClass("current");
+        }
+        if(JobSalary === null || JobSalary === "" || JobSalary === "所有"){
+            JobSalary = "所有月薪";
+            $("#"+JobSalary).addClass("current");
+        }
+        else {
+            $("#"+JobSalary).addClass("current");
+        }
+        if(JobExperience === null || JobExperience === "" || JobExperience === "所有"){
+            JobExperience = "所有经验";
+            $("#"+JobExperience).addClass("current");
+        }
+        else {
+            $("#"+JobExperience).addClass("current");
+        }
+        if(JobEduDegree === null || JobEduDegree === "" || JobEduDegree === "所有"){
+            JobEduDegree = "所有学历";
+            $("#"+JobEduDegree).addClass("current");
+        }
+        else {
+            $("#"+JobEduDegree).addClass("current");
+        }
+        if(JobFamily === null || JobFamily === "" || JobFamily === "所有"){
+            JobFamily = "所有类型";
+            $("#"+JobFamily).addClass("current");
+        }
+        else {
+            $("#"+JobFamily).addClass("current");
+        }
+    })
 </script>
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
  -->
