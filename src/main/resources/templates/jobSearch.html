@@ -14,7 +14,8 @@
         var ctx = "h";
         console.log(1);
     </script>
-    <link rel="Shortcut Icon" href="h/images/favicon.ico">
+
+    <link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/popup.css}"/>
@@ -821,7 +822,7 @@
                     求职助力
                 </div>
                 <div class="job_ad">
-                    <a href="h/jobs/147822.html" target="_blank">
+                    <a href="#" onclick="return false">
                         <div>
                             <img th:src="@{static/img/q1.png}" alt="">
                         </div>
@@ -831,7 +832,7 @@
 
                     </br>
 
-                    <a href="h/jobs/147822.html" target="_blank">
+                    <a href="#" onclick="return false">
                         <div>
                             <img th:src="@{static/img/q2.png}" alt="">
                         </div>
@@ -841,7 +842,7 @@
 
                     </br>
 
-                    <a href="h/jobs/147822.html" target="_blank">
+                    <a href="#" onclick="return false">
                         <div>
                             <img th:src="@{static/img/q3.png}" alt="">
                         </div>
@@ -1004,6 +1005,9 @@
     </div>
 </div>
 
+<script th:src="@{static/js/mouse-click.js}"></script>
+<canvas width="100%" height="100%"
+        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 <script type="text/javascript" th:src="@{static/js/core.min.js}"></script>
 <script type="text/javascript" th:src="@{static/js/popup.min.js}"></script>
 <script>

@@ -197,7 +197,6 @@ public class PageController {
         return "forum";
     }
 
-
     @RequestMapping("/forumSearch")
     public String forumSearch(){
         return "forumSearch";

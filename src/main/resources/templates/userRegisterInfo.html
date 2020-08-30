@@ -11,7 +11,8 @@
         var ctx = "h";
         console.log(1);
     </script>
-    <link rel="Shortcut Icon" href="h/images/favicon.ico">
+
+    <link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/popup.css}"/>
@@ -61,12 +62,14 @@
                             <input type="hidden" value="" name="id" id="orderId"/>
                             <div class="s_form">
                                 <p>欢迎你！完善下方的个人信息，无限创想帮你挑工作！</p>
-                                <p style="font-size:20px;"><img th:src="@{static/img/register_uname.png}" style="width:30px;">
+                                <p style="font-size:20px;"><img th:src="@{static/img/register_uname.png}"
+                                                                style="width:30px;">
                                     <font style="font-weight: bold;">姓名：（必填）</font>
                                     <input type="text" style="width:600px;" id="subUserName" name="UserName"
-                                                       placeholder="请输入真实姓名" value=""/>
+                                           placeholder="请输入真实姓名" value=""/>
                                 </p>
-                                <p style="font-size:20px;"><img th:src="@{static/img/register_sex.png}" style="width:30px;">
+                                <p style="font-size:20px;"><img th:src="@{static/img/register_sex.png}"
+                                                                style="width:30px;">
                                     <font style="font-weight: bold;">性别：（必填）</font>
                                 <ul class="sex_radio clearfix">
                                     <li>
@@ -79,23 +82,27 @@
                                     </li>
                                 </ul>
                                 </p>
-                                <p style="font-size:20px;"><img th:src="@{static/img/register_nickname.png}" style="width:30px;">
+                                <p style="font-size:20px;"><img th:src="@{static/img/register_nickname.png}"
+                                                                style="width:30px;">
                                     <font style="font-weight: bold;">昵称：（必填）</font>
                                     <input type="text" id="subNickName" name="NickName" placeholder="请输入昵称"
-                                                  value=""/>
+                                           value=""/>
                                 </p>
-                                <p style="font-size:20px;"><img th:src="@{static/img/register_birth.png}" style="width:30px;">
+                                <p style="font-size:20px;"><img th:src="@{static/img/register_birth.png}"
+                                                                style="width:30px;">
                                     <font style="font-weight: bold;">出生日期：（必填）</font>
                                     <input type="date" id="subBirth" name="Birth" placeholder="请选择出生年月日"
-                                                    value=""/>
+                                           value=""/>
                                 </p>
-                                <p style="font-size:20px;"><img th:src="@{static/img/register_phone.png}" style="width:30px;">
+                                <p style="font-size:20px;"><img th:src="@{static/img/register_phone.png}"
+                                                                style="width:30px;">
                                     <font style="font-weight: bold;">联系电话：（必填）</font>
                                     <input type="text" id="subUserPhone" name="UserPhone" placeholder="请输入联系电话"
-                                                    value=""/>
+                                           value=""/>
                                 </p>
                                 <a href="javascript:history.go(-1);" class="btn_cancel">取 消</a>
-                                <a class="btn_big" id="subSubmit" title="提 交" onclick="javascript:return formCheck()" style="float: right;margin-left:0;margin-right: 60px;">提 交</a>
+                                <a class="btn_big" id="subSubmit" title="提 交" onclick="javascript:return formCheck()"
+                                   style="float: right;margin-left:0;margin-right: 60px;">提 交</a>
                             </div>
                         </form>
                     </div>
@@ -103,150 +110,154 @@
             </div>
         </div>
     </div>
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
-    <script th:src="@{static/js/jquery.parallax.min.js}"></script>
-    <script>
-        $(document).ready(function () {
-            $('#scene').parallax();
+</main>
+
+<script th:src="@{static/js/mouse-click.js}"></script>
+<canvas width="100%" height="100%"
+        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+<script th:src="@{static/js/jquery.parallax.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#scene').parallax();
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        $('.sex_radio li input').click(function (e) {
+            $(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
         });
-    </script>
+    });
 
-    <script type="text/javascript">
-        $(document).ready(function (e) {
-            $('.sex_radio li input').click(function (e) {
-                $(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
-            });
-        });
+    $("#subBirth").change(function () {
+        $("#subBirth").attr("value", $(this).val());
+    });
 
-        $("#subBirth").change(function(){
-            $("#subBirth").attr("value",$(this).val());
-        });
-
-        function keyLogin(){
-            if (event.keyCode === 13){
-                document.getElementById("subSubmit").click();
-            }
-        };
-
-        function formCheck() {
-            var UserName = document.getElementById('subUserName').value;
-            var Sex = document.getElementsByName('Sex');
-            var NickName = document.getElementById('subNickName').value;
-            var Birth = document.getElementById('subBirth').value;
-            var UserPhone = document.getElementById('subUserPhone').value;
-            if (UserName === ""){
-                swal({
-                    title: "姓名不能为空",
-                    text: "请输入用户真实姓名",
-                    type: "error",
-                    confirmButtonColor: "#011d56"
-                });
-                return false;
-            }
-            if (UserName.indexOf(" ") !== -1){
-                swal({
-                    title: "姓名不能含空格",
-                    text: "请输入正确的用户姓名",
-                    type: "error",
-                    confirmButtonColor: "#011d56"
-                });
-                return false;
-            }
-            var flag = false;
-            for (var i = 0; i < Sex.length; i++) {
-                if (Sex[i].checked) {
-                    flag = true;
-                }
-            }
-            if(flag === false){
-                swal({
-                    title: "未选择性别",
-                    text: "请选择用户性别：男/女",
-                    type: "error",
-                    confirmButtonColor: "#011d56"
-                });
-                return false;
-            }
-            if (NickName === ""){
-                swal({
-                    title: "昵称不能为空",
-                    text: "请输入用户昵称",
-                    type: "error",
-                    confirmButtonColor: "#011d56"
-                });
-                return false;
-            }
-            if (NickName.indexOf(" ") !== -1){
-                swal({
-                    title: "昵称不能含空格",
-                    text: "请输入正确的用户昵称",
-                    type: "error",
-                    confirmButtonColor: "#011d56"
-                });
-                return false;
-            }
-            if (Birth === ""){
-                swal({
-                    title: "出生日期不能为空",
-                    text: "请选择用户出生年月日",
-                    type: "error",
-                    confirmButtonColor: "#011d56"
-                });
-                return false;
-            }
-            if (UserPhone === ""){
-                swal({
-                    title: "联系电话不能为空",
-                    text: "请输入联系电话",
-                    type: "error",
-                    confirmButtonColor: "#011d56"
-                });
-                return false;
-            }
-            if (UserPhone.search(/^1[3456789]\d{9}$/) === -1){
-                swal({
-                    title: "联系电话格式错误",
-                    text: "联系电话必须是以1开头，第二位为3~9的11位数字串",
-                    type: "error",
-                    confirmButtonColor: "#011d56"
-                });
-                return false;
-            }
-            return true;
+    function keyLogin() {
+        if (event.keyCode === 13) {
+            document.getElementById("subSubmit").click();
         }
-    </script>
-    <script type="text/javascript">
-        $("#subSubmit").click(function () {
-            if(formCheck() === true){
-                var UserName = $("#subUserName").val();
-                var Sex = $('input[name="Sex"]:checked').val();
-                var NickName = $("#subNickName").val();
-                var Birth = $("#subBirth").val();
-                var UserPhone = $("#subUserPhone").val();
-                var url = "touserRegisterInfo";
-                var data = {
-                    UserName: UserName,
-                    Sex: Sex,
-                    NickName: NickName,
-                    Birth: Birth,
-                    UserPhone: UserPhone
-                }
-                $.post(url, data, function (result) {
-                    if(result != null && result.code === 200){
-                        window.location.href="home";
-                    }
-                    else {
-                        swal({
-                            title: "提交失败",
-                            text: "请确认输入内容并重试",
-                            type: "error",
-                            confirmButtonColor: "#011d56"
-                        });
-                    }
-                })
+    };
+
+    function formCheck() {
+        var UserName = document.getElementById('subUserName').value;
+        var Sex = document.getElementsByName('Sex');
+        var NickName = document.getElementById('subNickName').value;
+        var Birth = document.getElementById('subBirth').value;
+        var UserPhone = document.getElementById('subUserPhone').value;
+        if (UserName === "") {
+            swal({
+                title: "姓名不能为空",
+                text: "请输入用户真实姓名",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        if (UserName.indexOf(" ") !== -1) {
+            swal({
+                title: "姓名不能含空格",
+                text: "请输入正确的用户姓名",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        var flag = false;
+        for (var i = 0; i < Sex.length; i++) {
+            if (Sex[i].checked) {
+                flag = true;
             }
-        })
-    </script>
+        }
+        if (flag === false) {
+            swal({
+                title: "未选择性别",
+                text: "请选择用户性别：男/女",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        if (NickName === "") {
+            swal({
+                title: "昵称不能为空",
+                text: "请输入用户昵称",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        if (NickName.indexOf(" ") !== -1) {
+            swal({
+                title: "昵称不能含空格",
+                text: "请输入正确的用户昵称",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        if (Birth === "") {
+            swal({
+                title: "出生日期不能为空",
+                text: "请选择用户出生年月日",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        if (UserPhone === "") {
+            swal({
+                title: "联系电话不能为空",
+                text: "请输入联系电话",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        if (UserPhone.search(/^1[3456789]\d{9}$/) === -1) {
+            swal({
+                title: "联系电话格式错误",
+                text: "联系电话必须是以1开头，第二位为3~9的11位数字串",
+                type: "error",
+                confirmButtonColor: "#011d56"
+            });
+            return false;
+        }
+        return true;
+    }
+</script>
+<script type="text/javascript">
+    $("#subSubmit").click(function () {
+        if (formCheck() === true) {
+            var UserName = $("#subUserName").val();
+            var Sex = $('input[name="Sex"]:checked').val();
+            var NickName = $("#subNickName").val();
+            var Birth = $("#subBirth").val();
+            var UserPhone = $("#subUserPhone").val();
+            var url = "touserRegisterInfo";
+            var data = {
+                UserName: UserName,
+                Sex: Sex,
+                NickName: NickName,
+                Birth: Birth,
+                UserPhone: UserPhone
+            }
+            $.post(url, data, function (result) {
+                if (result != null && result.code === 200) {
+                    window.location.href = "home";
+                } else {
+                    swal({
+                        title: "提交失败",
+                        text: "请确认输入内容并重试",
+                        type: "error",
+                        confirmButtonColor: "#011d56"
+                    });
+                }
+            })
+        }
+    })
+</script>
 </main>
 </body>
 </html>
