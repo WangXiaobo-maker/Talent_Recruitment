@@ -1,10 +1,19 @@
 package com.talresource.Talent_Recruitment.controller;
 
+import com.talresource.Talent_Recruitment.entity.User;
+import com.talresource.Talent_Recruitment.service.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class InfoController {
+
+    @Autowired
+    private PostService postService;
 
     @RequestMapping("/forgotPwd")
     public String forgotPwd() {
@@ -59,6 +68,13 @@ public class InfoController {
     @RequestMapping("/companyNotice")
     public String companyNotice() {
         return "html/companyNotice";
+    }
+
+    @RequestMapping("/myPost")
+    public String myPost(HttpSession session, ModelMap map){
+        User user = (User)session.getAttribute("user");
+        map.addAttribute("PostList", postService.selectPostByUserID(user.getUserID()));
+        return "html/myPost";
     }
 
 }

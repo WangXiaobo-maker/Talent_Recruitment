@@ -126,7 +126,7 @@
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
                                                 <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                    <a style="color: red" th:href="@{'/deletePost?PostID='+${post.getPostID()}}" onclick="javascript:return delC();">
+                                                    <a style="color: #cc3333" th:href="@{'/deletePost?PostID='+${post.getPostID()}}" onclick="javascript:return delC();">
                                                         <span class="am-icon-trash-o"></span> 删除
                                                     </a>
                                                 </button>
@@ -179,7 +179,7 @@
             },
             function(isConfirm){
                 if (isConfirm) {
-                    window.location.href="logout";
+                    window.location.href="managerCheck";
                 }
             });
     }

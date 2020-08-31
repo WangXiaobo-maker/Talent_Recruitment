@@ -45,4 +45,9 @@ public class PostService {
     public boolean deletePostByID(int PostID){
         return postDao.deletePostByID(PostID);
     }
+
+    public List<Post> selectPostByUserID(int UserID){
+        return postDao.selectPostByUserID(UserID);
+    }
+
 }

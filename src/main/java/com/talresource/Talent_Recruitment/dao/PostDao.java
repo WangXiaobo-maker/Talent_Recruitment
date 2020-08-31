@@ -37,4 +37,7 @@ public interface PostDao {
     @Delete("delete from post where PostID=#{PostID}")
     boolean deletePostByID(@Param("PostID") int PostID);
 
+    @Select("select * from post where UserID=#{UserID} order by PostPublishDate DESC")
+    List<Post> selectPostByUserID(@Param("UserID") int UserID);
+
 }

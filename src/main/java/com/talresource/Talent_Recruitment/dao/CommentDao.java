@@ -1,10 +1,7 @@
 package com.talresource.Talent_Recruitment.dao;
 
 import com.talresource.Talent_Recruitment.entity.Comment;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -19,4 +16,7 @@ public interface CommentDao {
     boolean insertComment(@Param("PostID") int PostID, @Param("UserID") int UserID,
                          @Param("CommentPublishDate") String CommentPublishDate,
                          @Param("CommentContent") String CommentContent);
+
+    @Delete("delete from comment where PostID=#{PostID}")
+    boolean deleteCommentByPost(@Param("PostID") int PostID);
 }

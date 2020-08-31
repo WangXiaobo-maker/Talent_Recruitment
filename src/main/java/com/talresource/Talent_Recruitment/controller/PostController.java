@@ -99,6 +99,17 @@ public class PostController {
         return "forumSearch";
     }
 
+    @RequestMapping("/userDeletePost")
+    public String userDeletePost(ModelMap map, String PostID){
+
+        int id = Integer.parseInt(PostID);
+        if (postService.deletePostByID(id) && commentService.deleteCommentByPost(id)){
+            return "redirect:myPost";
+        }
+        return "redirect:myPost";
+    }
+
+
     @RequestMapping("/publishPost")
     @ResponseBody
     public Result publishPost(HttpSession session, String PostTitle, String PostContent){
@@ -119,6 +130,9 @@ public class PostController {
         }
         return result;
     }
+
+
+
 
 
 }

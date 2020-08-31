@@ -21,4 +21,7 @@ public class CommentService {
         return commentDao.insertComment(PostID, UserID, CommentPublishDate, CommentContent);
     }
 
+    public boolean deleteCommentByPost(int PostID){
+        return commentDao.deleteCommentByPost(PostID);
+    }
 }
