@@ -33,12 +33,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
     <script>
-        function showMore()
-        {
+        function showMore() {
             $("#textcontain").height("auto");//取消文字容器高度限制
             $("#btncontain").hide();//隐藏查看更多按钮
         }
-        window.onload = function() {
+
+        window.onload = function () {
             var container = document.getElementById("home_banner");
             var list = document.getElementById("banner_list");
             var buttons = document.getElementById("banner_btn").getElementsByTagName("span");
@@ -103,13 +103,14 @@
             function stop() {
                 clearInterval(timer);
             }
+
             container.onmouseover = stop; //在鼠标进入onmouseover时，停止每两秒滚动一次
             container.onmouseout = play; //在鼠标离开onmouseover时，开始每两秒滚动一次
             play(); //在onload后就调用play()
 
             //为每个小按钮添加onclick事件，当点击按钮时会跳动到按钮对应的图片
             for (var i = 0; i < buttons.length; i++) {
-                buttons[i].onclick = function() {
+                buttons[i].onclick = function () {
                     //当前图片点击当前的小圆点不执行以下代码。
                     if (this.className == "on") {
                         return;
@@ -165,30 +166,17 @@
 
             <div id="block_job">
                 <div style="height:156px;width: 1024px;margin-top: 20px;">
-                    <div style="width: 165px;height: 123px;float: right;text-align: center;margin-top: 30px;">
-                    <span>
-                        <a href="home.html" ka="all-jobs-top">
+                    <div style="width: 165px;height: 123px;float: right;text-align: center;margin-top: 65px;">
+                        <span>
                             <b style="font-size: 38px;color: #ffffff; margin-top: 20px; "
                                th:text="${companyInfo.getCompanyJobNum()}">18149</b>
                             <p style="color:#FFFFFF ">在招职位</p>
-                        </a>
-                    </span>
-                        <div style="height: 40px;padding-bottom: 20px;width: 130px;padding-left: 20px;margin-right: 0px;">
-
-                            <a href="javascript" ka="job_online_resume_1">
-                                <img th:src="@{static/img/resume_link.png}" width="32" height="30"  alt="vip" />
-
-                            </a>
-                            <div style="float: right; height: 34px;padding-top: 5px;width: 90px;">
-                                <a href="javascript" ka="job_online_resume_1">
-                                    <span style="color: #FFFFFF">填写在线简历</span>
-                                </a>
-                            </div>
-                        </div>
+                        </span>
 
                     </div>
                     <div style="width: 160px;height: 115px;float:left;text-align: center;margin-top: 30px;">
-                        <img th:src="@{'static/img/companyLogo/' + ${companyInfo.getCompanyID()} + '.jpg'}" width="125" height="115"  alt="公司loGO" />
+                        <img th:src="@{'static/img/companyLogo/' + ${companyInfo.getCompanyID()} + '.jpg'}" width="125"
+                             height="115" alt="公司loGO"/>
                     </div>
                     <div style="width: auto;text-indent: 1em;height: 123px;float:left;text-align: center;margin-top: 40px;">
 
@@ -248,58 +236,65 @@
     <div id="container2">
 
         <!-- <div class="clearfix">-->
-        <div class="job-box2">
-            <div class="company_top_position" >
+        <div class="job-box2" style="height: auto;">
+            <div class="company_top_position" style="height: auto;">
                 <div class="more_job_title2">
-                    <span style="color: #0a001f;font-size: 16px">热招职位</span>
-                    <div style="float: right;margin-right: 30px;" >
+                    <span style="color: #0a001f;font-size: 23px">热招职位</span>
+                    <div style="float: right;margin-right: 30px;">
                         <a th:href="@{/jobSearch}" ka="all-jobs-top">
-                            <span style="color:#gray;font-size: 13px">查看更多职位</span>
+                            <span style="color:#fff;font-size: 15px;border: #ccc 1px solid;padding: 8px;background: #011d56;">查看更多职位</span>
                         </a>
 
                     </div>
 
                 </div>
-                <div class="slider-main2">
+                <div class="slider-main2" style="height: auto;">
                     <ul class="ul_box2" style="margin-right: 0px;padding-right: 0px;">
                         <li class="cur2">
                             <a ka="job_recommend_2" th:href="@{/jobInfo(JobID=${job.getJobID()})}"
                                th:each="job : ${companyJobListlim3}" class="recommend-li2">
-                                <div class="name2" th:text="${job.getJobName()}">DSP控制软件开发工程师</div>
-                                <div class="red" th:text="${job.getJobSalary()}">10-15K</div>
+                                <div class="name2" style="font-size: 18px;" th:text="${job.getJobName()}">DSP控制软件开发工程师
+                                </div>
+                                <div class="red" style="font-size: 14px;" th:text="${job.getJobSalary()}">10-15K</div>
 
-                                <p style="font-size: smaller;color: gray;" th:text="${companyInfo.getCompanyName()}">神西电气</p>
+                                <p style="font-size: smaller;color: gray;font-size: 14px;"
+                                   th:text="${companyInfo.getCompanyName()}">神西电气</p>
                             </a>
 
                         </li>
+                    </ul>
                 </div>
-                <div class="content_l2">
 
-
+                <div class="content_l2" style="height: 930px;">
 
                     <div class="job-block-more">
-                        <div class="job_info_title2"  >公司介绍： </div>
-                        <div class="contain" id="textcontain" th:text="${companyInfo.getCompanyInfo()}">
+                        <div class="job_info_title2" style="font-size: 22px;width: 110px;">公司介绍：</div>
+                        <div class="contain" id="textcontain" style="margin-top: 20px;font-size: 16px;line-height: 2;"
+                             th:text="${companyInfo.getCompanyInfo()}">
                             <!--&nbsp;&nbsp; &nbsp&nbsp;世界这么大，出去浪浪吧！<br/>
                             &nbsp;&nbsp;<span style="color:gray;">民营</span>
                             &nbsp;&nbsp;<span>互联网|医疗设备</span>-->
                             <p></p> 阿里巴巴集团的使命是让天下没有难做的生意。<br>
-                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国领先的第三方网上支付平台支付宝运营。 我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。
-                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国领先的第三方网上支付平台支付宝运营。 我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。
-                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国领先的第三方网上支付平台支付宝运营。 我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。
+                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国领先的第三方网上支付平台支付宝运营。
+                            我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。
+                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国领先的第三方网上支付平台支付宝运营。
+                            我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。
+                            我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国领先的第三方网上支付平台支付宝运营。
+                            我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。
                             我们旨在赋能企业改变营销、销售和经营的方式。我们为商家、品牌及其他企业提供基本的互联网基础设施以及营销平台，让其可借助互联网的力量与用户和客户互动。我们的业务包括核心电商、云计算、数字媒体和娱乐以及创新项目和其他业务。我们并通过子公司菜鸟网络及所投资的关联公司口碑，参与物流和本地服务行业，同时与蚂蚁金融服务集团有战略合作，该金融服务集团主要通过中国
                             </p>
-                            <div class="open-btn" id="btncontain" >
-                                <a onclick="showMore()">展开</a>  </div>
+                            <div class="open-btn" id="btncontain">
+                                <a onclick="showMore()">展开</a></div>
                         </div>
                     </div>
                     <div class="job-block">
-                        <div class="job_info_title2" >公司文化： </div>
-                        <div class="text">
-                            <span style="color:gray;" th:text="${companyInfo.getCompanyNature()}">民营企业</span>
-                            &nbsp;&nbsp;<span style="color:gray;" th:text="${companyInfo.getCompanyType()}">互联网|医疗设备|大数据</span>
-                            &nbsp;&nbsp;<span style="color:gray;" th:text="'法人: ' + ${companyInfo.getCompanyLegalPerson()}"></span>
-                            &nbsp;&nbsp;<span style="color:gray;">有事搜一搜 没事看一看</span>
+                        <div class="job_info_title2" style="font-size: 22px;width: 110px;">公司文化：</div>
+                        <div class="text" style="margin-top: 10px;font-size: 16px;">
+                            <span style="color:gray;" th:text="${companyInfo.getCompanyNature()}">民营企业</span>|<span
+                                style="color:gray;" th:text="${companyInfo.getCompanyType()}">互联网|医疗设备|大数据</span>
+                            &nbsp;&nbsp;&nbsp;<span style="color:gray;font-weight: bolder;">法人：</span><span
+                                style="color:gray;" th:text="${companyInfo.getCompanyLegalPerson()}"></span>
+                            &nbsp;&nbsp;&nbsp;<span style="color:gray;">有事搜一搜 没事看一看</span>
 
                             <br>
                             <p th:text="${companyInfo.getCompanyCulture()}">
@@ -311,76 +306,81 @@
 
 
                     <div class="job-block">
-                        <div class="job_info_title2">公司地址： </div>
+                        <div class="job_info_title2" style="font-size: 22px;width: 110px;">公司地址：</div>
                         <div class="job-location-address">
                             <!-- <div class="text"> &nbsp;&nbsp;西安市雁塔区华为西安研究所</div>-->
                             <div style="margin: 5px 15px 10px 15px;">
-                                <div style="float: left;margin-right: 10px;" >
-                                    <a style="margin-bottom: 20px;font-size: medium" display:block;><img th:src="@{static/img/map.png}" width="20" height="23"  alt="vip" /></a>
+                                <div style="float: left;margin-right: 10px;margin-bottom: 10px;">
+                                    <a style="margin-bottom: 20px;font-size: medium" display:block;><img
+                                            th:src="@{static/img/map.png}" width="20" height="23" alt="vip"/></a>
                                 </div>
-                                <div style="float: left;margin-right: 30px;" >
+                                <div style="float: left;margin-right: 30px;font-size: 16px;ma">
                                     <a href="home.html" ka="all-jobs-top">
-                                        <span style="color:#gray;font-size: 16px" th:text="${companyInfo.getCompanyAddress()}">西安市 雁塔区 华为研究所</span>
+                                        <span style="color:#gray;font-size: 16px"
+                                              th:text="${companyInfo.getCompanyAddress()}">西安市 雁塔区 华为研究所</span>
                                     </a>
                                 </div>
                             </div>
 
-                            <div class="job-location-map js-open-map" data-content="西安市 雁塔区 华为西安研究所" >
+                            <div class="job-location-map js-open-map" style="margin-top: 10px;" data-content="西安市 雁塔区 华为西安研究所">
 
-                                <img src="https://restapi.amap.com/v3/staticmap?size=836*174&markers=mid,0xFF0000,A:108.839257,34.197356&key=21b56a6cc83fad7668dbb0e9564759a7" width="700px" alt="公司地址" />
+                                <img src="https://restapi.amap.com/v3/staticmap?size=836*174&markers=mid,0xFF0000,A:108.839257,34.197356&key=21b56a6cc83fad7668dbb0e9564759a7"
+                                     width="700px" alt="公司地址"/>
 
                             </div>
                         </div>
                     </div>
 
-
-
                 </div>
-                <div class="content_r2">
-                    <div class="more_job_title" align="center">
-                        <h3><a th:href="@{'/jobSearch'}" rel="nofollow" ka="more-similar-jobs2" class="more" ><strong>更多相似公司</strong></a></h3>
+
+                <div class="content_r2" style="height: 930px;padding-left: 20px;width: 250px;">
+                    <div class="more_job_title" style="margin: 0px;text-align: left;border-bottom: 0px;">
+                        <h4>
+                            <a th:href="@{'/jobSearch'}" rel="nofollow" ka="more-similar-jobs2" class="more"><strong>更多相似公司</strong></a>
+                        </h4>
                     </div>
-                    <div >
+                    <div>
 
                         <ul style="padding: 0px;">
-                            <ol class="info-block" th:each="similarCompany : ${similarCompanyList}">
-                                <div class="company-logo">
+
+                            <ol class="info-block" style="padding-left: 0px;margin-right: 20px;width: auto;" th:each="similarCompany : ${similarCompanyList}">
+                                <div class="company-logo" style="padding-left: 60px;">
                                     <a ka="job_sug_brand2_custompage" th:href="@{/companyIntro(CompanyID=${similarCompany.getCompanyID()})}" title="航天科工网络信息">
                                         <img th:src="@{'static/img/companyLogo/' + ${similarCompany.getCompanyID()} + '.jpg'}" style="width: 100px;height: 100px" alt="" />
                                     </a>
                                 </div>
-                                <div class="info-primary">
-                                    <div class="name" style="text-indent: 3em">
+                                <div class="info-primary" style="margin-top: 10px;">
+                                    <div class="name" style="text-align: center; font-size: 18px;">
                                         <a ka="job_sug_2" th:href="@{/companyIntro(CompanyID=${similarCompany.getCompanyID()})}"
-                                                                                  th:text="${similarCompany.getCompanyName()}">大数据解决方案
+                                           th:text="${similarCompany.getCompanyName()}">大数据解决方案
                                         </a>
-                                        <p class="gray" style="text-indent: 3em">
-                                        <a ka="job_sug_brandjob2_custompage" title="航天科工网络信息招聘">
-                                            <span style="color: gray" th:text="${similarCompany.getCompanyNature()}"></span>
-                                        </a><em class="vdot">·</em>
-                                        <span style="color: gray" th:text="${similarCompany.getCompanyType()}"></span></p>
+                                        <p class="gray" style="width: auto;font-size: 14px;">
+                                            <a ka="job_sug_brandjob2_custompage" title="航天科工网络信息招聘">
+                                                <span style="color: gray" th:text="${similarCompany.getCompanyNature()}"></span>
+                                            </a><em class="vdot">|</em>
+                                            <span style="color: gray" th:text="${similarCompany.getCompanyType()}"></span></p>
                                     </div>
                                 </div>
                             </ol>
 
                         </ul>
-                        <div class="view-more" align="center">
-                            <a th:href="@{/jobSearch}" rel="nofollow"  ka="more-similar-jobs3">
-                                <i class="more">更多相似公司</i></a></div>
                     </div>
                 </div>
+
                 <div class="content_bottom">
-                    <div class="job_info_title">推荐职位</div>
+                    <div class="job_info_title" style="font-size: 23px;padding-left: 8px;padding-top: 10px;padding-bottom: 10px;">推荐职位</div>
 
                     <div class="slider-main">
                         <ul class="ul_box">
-                            <li class="cur" >
+                            <li class="cur">
                                 <a ka="job_recommend_1"
-                                   class="recommend-li" th:each="map : ${CompanyJobMap}" th:href="@{/jobInfo(JobID=${map.value.getJobID()})}" >
-                                    <div class="name" th:text="${map.value.getJobName()}">DSP控制软件开发工程师</div>
-                                    <div class="red" th:text="${map.value.getJobSalary()}">10-15K</div>
+                                   class="recommend-li" th:each="map : ${CompanyJobMap}"
+                                   th:href="@{/jobInfo(JobID=${map.value.getJobID()})}">
+                                    <div class="name" style="font-size: 18px;" th:text="${map.value.getJobName()}">DSP控制软件开发工程师</div>
+                                    <div class="red" style="font-size: 14px;" th:text="${map.value.getJobSalary()}">10-15K</div>
 
-                                    <p style="font-size: smaller;color: gray;" th:text="${map.key.getCompanyName()}">神西电气</p>
+                                    <p style="font-size: 14px;font-size: smaller;color: gray;" th:text="${map.key.getCompanyName()}">
+                                        神西电气</p>
                                 </a>
                             </li>
 
@@ -408,18 +408,12 @@
                        -->
 
 
-
-
-
                     </div>
                 </div>
                 <div class="content_bottom_right"></div>
 
 
-
-
                 <!-------------------------------------弹窗lightbox  ----------------------------------------->
-
 
 
                 <!------------------------------------- end ----------------------------------------->
@@ -457,17 +451,17 @@
                 </script>
                 <script src="style/js/common.js" type="text/javascript"></script> -->
                 <script>
-                    $(function(){
+                    $(function () {
                         $('#weibolist .cookietxte').text('推荐本职位给好友');
-                        $(document).bind('cbox_complete', function(){
+                        $(document).bind('cbox_complete', function () {
                             hbzxJQ("#gaosutapt .pttui a").trigger("click");
                             hbzxJQ("#mepingpt .pttui a").trigger("click");
                         });
-                        $('#cboxOverlay').bind('click',function(){
+                        $('#cboxOverlay').bind('click', function () {
                             top.location.reload();
                         });
-                        $('#colorbox').on('click','#cboxClose',function(){
-                            if($(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'deliverResumesSuccess' || $(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'uploadFileSuccess'){
+                        $('#colorbox').on('click', '#cboxClose', function () {
+                            if ($(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'deliverResumesSuccess' || $(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'uploadFileSuccess') {
                                 top.location.reload();
                             }
                         });
@@ -475,22 +469,25 @@
                     })
                 </script>
 
-                <script src="http://api.map.baidu.com/api?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602" type="text/javascript"></script><script src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602&amp;services=&amp;t=20140617153133" type="text/javascript"></script>
+                <script src="http://api.map.baidu.com/api?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602"
+                        type="text/javascript"></script>
+                <script src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602&amp;services=&amp;t=20140617153133"
+                        type="text/javascript"></script>
                 <script type="text/javascript">
                     //百度地图API功能
                     var sMap = new BMap.Map("smallmap");
                     sMap.enableScrollWheelZoom(true);
 
-                    if($('#positionLat').val() &amp;&amp; $('#positionLng').val()){
-                        var sPoint = new BMap.Point($('#positionLng').val(),$('#positionLat').val());
-                        sMap.centerAndZoom(sPoint,12);
+                    if ($('#positionLat').val() &amp;&amp; $('#positionLng').val()) {
+                        var sPoint = new BMap.Point($('#positionLng').val(), $('#positionLat').val());
+                        sMap.centerAndZoom(sPoint, 12);
                         sMap.addOverlay(new BMap.Marker(sPoint));              // 将标注添加到地图中
 
-                    }else{
+                    } else {
                         // 创建地址解析器实例
                         var sMyGeo = new BMap.Geocoder();
                         // 将地址解析结果显示在地图上,并调整地图视野
-                        sMyGeo.getPoint("广州市天河区科韵路信息港建中路36号裕桥商务大厦", function(sPoint){
+                        sMyGeo.getPoint("广州市天河区科韵路信息港建中路36号裕桥商务大厦", function (sPoint) {
                             if (sPoint) {
                                 sMap.centerAndZoom(sPoint, 16);
                                 sMap.addOverlay(new BMap.Marker(sPoint));
@@ -506,44 +503,44 @@
                     map.enableScrollWheelZoom(true);
                     // 创建地址解析器实例
                     var gc = new BMap.Geocoder();
-                    $(function(){
-                        $('#mapPreview').bind('click',function(){
-                            $.colorbox({inline:true, href:"#baiduMap",title:"公司地址"});
+                    $(function () {
+                        $('#mapPreview').bind('click', function () {
+                            $.colorbox({inline: true, href: "#baiduMap", title: "公司地址"});
                             var address = "广州市天河区科韵路信息港建中路36号裕桥商务大厦";
                             var city = "广州";
                             var lat = $('#positionLat').val();
                             var lng = $('#positionLng').val();
                             map.setCurrentCity(city);
                             map.setZoom(12);
-                            if(lat &amp;&amp; lng){
+                            if (lat &amp;&amp; lng) {
                                 var p = new BMap.Point(lng, lat);
                                 var marker = new BMap.Marker(p);  // 创建标注
                                 map.addOverlay(marker);              // 将标注添加到地图中
-                                setTimeout(function(){
+                                setTimeout(function () {
                                     map.centerAndZoom(p, 15);
-                                },1000);
+                                }, 1000);
                                 map.setCenter(p);
                                 map.setZoom(15);
                                 var sContent =
-                                    "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;"+city+"&lt;/h4&gt;" +
-                                    "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;"+address+"&lt;/p&gt;" +
+                                    "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;" + city + "&lt;/h4&gt;" +
+                                    "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;" + address + "&lt;/p&gt;" +
                                     "&lt;/div&gt;";
                                 var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
                                 //图片加载完毕重绘infowindow
                                 marker.openInfoWindow(infoWindow);
-                            }else{
-                                gc.getPoint(address, function(point){
+                            } else {
+                                gc.getPoint(address, function (point) {
                                     if (point) {
                                         var p = new BMap.Point(point.lng, point.lat);
                                         var marker = new BMap.Marker(p);  // 创建标注
                                         map.addOverlay(marker);              // 将标注添加到地图中
-                                        setTimeout(function(){
+                                        setTimeout(function () {
                                             map.centerAndZoom(p, 15);
-                                        },1000);
+                                        }, 1000);
                                         map.setZoom(14);
                                         var sContent =
-                                            "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;"+city+"&lt;/h4&gt;" +
-                                            "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;"+address+"&lt;/p&gt;" +
+                                            "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;" + city + "&lt;/h4&gt;" +
+                                            "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;" + address + "&lt;/p&gt;" +
                                             "&lt;/div&gt;";
                                         var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
                                         //图片加载完毕重绘infowindow
@@ -583,7 +580,8 @@
                         <div class="login_others">使用以下帐号直接登录:</div>
                         <a href="h/ologin/auth/sina.html" target="_blank" id="icon_wb" class="icon_wb"
                            title="使用新浪微博帐号登录"></a>
-                        <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank" title="使用腾讯QQ帐号登录"></a>
+                        <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank"
+                           title="使用腾讯QQ帐号登录"></a>
                     </div>
                 </div><!--/#loginPop-->
             </div>
@@ -698,15 +696,19 @@
                 cancelButtonText: "取消",
                 closeOnConfirm: false,
             },
-            function(isConfirm){
+            function (isConfirm) {
                 if (isConfirm) {
-                    window.location.href="logout";
+                    window.location.href = "logout";
                 }
             });
     }
 </script>
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
  -->
+
+<script th:src="@{static/js/mouse-click.js}"></script>
+<canvas width="100%" height="100%"
+        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 
 </body>
 </html>
