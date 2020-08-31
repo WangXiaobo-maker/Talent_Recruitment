@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
     <script>
+
         window.onload = function () {
             var container = document.getElementById("home_banner");
             var list = document.getElementById("banner_list");
@@ -162,7 +163,7 @@
                 <div style="height:156px;width: 1024px;margin-top: 20px;">
                     <div style="width: 165px;height: 123px;float: right;text-align: center;margin-top: 70px;">
                     <span>
-                        <a href="home.html" ka="all-jobs-top">
+                        <a href="#" ka="all-jobs-top">
                             <b style="font-size: 38px;color: #ffffff; margin-top: 20px; ">立即沟通</b>
                         </a>
                     </span>
@@ -251,20 +252,19 @@
 
                 <div class="job-block" style="height:auto;">
                     <div class="job_info_title2" style="font-size: 22px;width: 110px;">职位描述：</div>
-                    <div class="text" style="margin-top: 20px;font-size: 16px;line-height: 1.5;" th:text="${Job.JobInfo}">
-                        &nbsp;&nbsp;负责研究AI for data领域的课题研究与产品化落地，包括基于AI进行数据质量检测、智能修复、dataprofile智能采集等课题。<br/>
-                        岗位要求：<br/>1、数学、计算机等相关专业研究生与博士，研究领域为AI辅助大数据处理方向；<br/>2、具备机器学习理论功底、熟悉人工智能相关框架：Caffe、Tensorflow、CNTK等；<br/>
-                        3、具备大型数据仓库架构设计、模型设计等相关经验，成为主导某领域核心模块设计能力；<br/>4、熟悉大数据存储、技术、检索相关技术：HADOOP、HIVE、spark、elasticsearch；<br/>
-                        5、对友商管理软件进行竞争分析，对华为服务器管理软件的竞争力负责。<br/>
+                    <div class="text" style="margin-top: 20px;font-size: 16px;line-height: 1.5;" >
+                        <p style="font-size: 16px;line-height: 1.5;display: -webkit-box;
+                                -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden;
+                                text-indent: 2em" th:text="${Job.JobInfo}"></p>
                     </div>
+
                 </div>
                 <div class="job-block">
                     <div class="job_info_title2" style="font-size: 22px;width: 110px;">公司介绍：</div>
-                    <div class="text" style="margin-top: 20px;font-size: 16px;line-height: 1.5;" th:text="${Company.CompanyInfo}">
-                        &nbsp;&nbsp;陕西纳吉特数据科技有限公司专注于科技与教育融合创新，为智慧校园的建设提供产品研发、技术服务和一体化解决方案，依托首都科技产业优势、雄厚的技术力量、教育服务实践经验，力争成为国内领先的智慧教育顶层解决方案提供商。
-                        <br/> &nbsp;&nbsp;公司始终坚持技术创新与产学研深度融合，整合了一支稳定的管理团队、专业的
-                        研发团队、权威的专家团队，精心研发服务于学校的教育教学应用，现已相继完成了以共享数据中心为核心，以统一身份认证平台、统一门户平台、统一基础数据为支撑，形成综合素质评价、课程管理、德育管理、校园OA
-                        设备管理与报修、教学资源管理等多级应用互通的智慧校园公共服务平台。
+                    <div class="text" style="margin-top: 20px;" >
+                        <p style="font-size: 16px;line-height: 1.5;display: -webkit-box;
+                                -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden;
+                                text-indent: 2em" th:text="${Company.CompanyInfo}"></p>
                     </div>
                 </div>
                 <div class="job-block">
@@ -282,26 +282,27 @@
                         </div>
                     </div>
                 </div>
+
+                <input id="jobid" th:value="${Job.getJobID()}" hidden="hidden"/>
+                <input id="companyid" th:value="${Job.getCompanyID()}" hidden="hidden"/>
+
                 <div class="job-block">
-                    <div class="job_info_title2" style="font-size: 22px;width: 110px;margin-top: 20px;">投递简历：</div>
-                    <dd class="resume resume_web">
-                        <div>
-                            <span> 你已有可投递的在线简历：<a title="刘昊然的简历" target="_blank"
-                                                  href="jianli.html"><strong>刘昊然的简历</strong></a></span><br>
-                            <span>简历更新于2014-07-01 15:53</span>
-                        </div>
-                        <span class="setBtns">
-				                        	<a target="_blank" title="预览" href="h/resume/preview.html">预览</a> |
-				                        	<a title="修改" target="_blank" href="jianli.html">修改</a>
-				                        </span>
-                    </dd>
+                    <div class="job_info_title2" style="font-size: 22px;width: 110px;margin-top: 20px;">申请职位：</div>
 
-                    <dd>
-                        <!-- 用户是否激活 0-否；1-是 -->
-                        <a title="投个简历" class="btn fr btn_apply inline cboxElement" style="background-color: #011d56"
-                           href="#setResumeApply">投个简历</a>
-
-                    </dd>
+                    <div th:if="${session.user} == null" >
+                        <center>
+                        <input type="button" style="padding: 0 22px;font-size: 20px;height: 43px;line-height: 43px;
+                        background-image: none;margin-top: 25px;background-color: #011d56;
+                        color: white; width: 200px; text-align: center" value="申请职位" onclick="NotLogin()"/>
+                        </center>
+                    </div>
+                    <div th:if="${session.user} != null">
+                        <center>
+                        <input type="button" style="padding: 0 22px;font-size: 20px;height: 43px;line-height: 43px;
+                        background-image: none;margin-top: 25px;background-color: #011d56;
+                        color: white; width: 200px; text-align: center" value="申请职位" onclick="jobApply(this)"/>
+                        </center>
+                    </div>
 
                 </div>
 
@@ -378,70 +379,16 @@
 
                     </ul>
 
-                    <!--
-                    <a href="javascript:;" class="btn-direction btn-prev prev"></a>
-                    <a href="javascript:;" class="btn-direction btn-next next"></a>
-                    -->
-                    <!--
-                    <div class="job_page_change_left">
-                        <a href="javascript:;"> <img th:src="@{static/img/arrow-left.png}" width="30" height="30"  alt="vip" /></a>
-                    </div>
-                    <div class="slider-dot" >
-                        <i data-index="1" class="cur"></i>
-
-                        <i data-index="2"></i>
-                        <i data-index="3"></i>
-                        <i data-index="4"></i>
-
-                    </div>
-                    <div class="job_page_change_left" >
-                        <a href="javascript:;"> <img th:src="@{static/img/arrow-right.png}" width="30" height="30"  alt="vip" /></a>
-                    </div>
-                   -->
-
 
                 </div>
             </div>
             <div class="content_bottom_right"></div>
 
 
-            <!-------------------------------------弹窗lightbox  ----------------------------------------->
-
-
             <!------------------------------------- end ----------------------------------------->
 
             <script src="style/js/job_detail.js" type="text/javascript"></script>
             <script src="style/js/count.js" type="text/javascript"></script>
-
-            <!-- <script type="text/javascript">
-            var options = {
-                    "snsId": "snwb",
-                    "uid": "",
-                    "token": "",
-                    "openId": "",
-                    "appKey": "",
-                    "merchantId": "11253",
-                    "merchantType": "news",
-                    "socialLoginUrl_sina": ctx+"/ologin/auth/sina.html",
-                    "socialLoginUrl_qq": "",
-                    "weiboId_sina": "3619164344010985",
-                    "weiboId_qq": "",
-                    "socialAllUrl": ctx+"/user/hbzx.html",
-                    "productId": "22194",
-                    "productCategory": "",
-                    "productName": "产品经理",
-                    "productArea": "广州",
-                    "productPrice": "",
-                    "productUrl": ctx+"/jobs/22194.html",
-                    "productImage": ctx+"/upload/logo/ff8080814356e881014357741e5910f1.jpg",
-                    "excerpt": "广州 / 全职 / 8k-15k / 经验1-3年 / 本科及以上 / 职位诱惑 : 上市公司，快速发展空间，产品的话语权",
-                    "sendContent":"我觉得这个职位不错，你觉得咋样？",
-                    "shareContent":"请输入你对此职位的评论",
-                    "autoSend": false,
-                    "load": true
-            　　}
-            </script>
-            <script src="style/js/common.js" type="text/javascript"></script> -->
             <script>
                 $(function () {
                     $('#weibolist .cookietxte').text('推荐本职位给好友');
@@ -552,29 +499,6 @@
         </div><!-- end #container -->
         <input type="hidden" value="" name="userid" id="userid"/>
 
-        <!-------------------------------------弹窗lightbox  ----------------------------------------->
-        <div style="display:none;">
-            <!-- 登录框 -->
-            <div id="loginPop" class="popup" style="height:240px;">
-                <form id="loginForm">
-                    <input type="text" id="email" name="email" tabindex="1" placeholder="请输入登录邮箱地址"/>
-                    <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码"/>
-                    <span class="error" style="display:none;" id="beError"></span>
-                    <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked"
-                                                            name="autoLogin"/> 记住我</label>
-                    <a href="h/reset.html" class="fr">忘记密码？</a>
-                    <input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录"/>
-                </form>
-                <div class="login_right">
-                    <div>还没有拉勾帐号？</div>
-                    <a href="register.html" class="registor_now">立即注册</a>
-                    <div class="login_others">使用以下帐号直接登录:</div>
-                    <a href="h/ologin/auth/sina.html" target="_blank" id="icon_wb" class="icon_wb"
-                       title="使用新浪微博帐号登录"></a>
-                    <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank" title="使用腾讯QQ帐号登录"></a>
-                </div>
-            </div><!--/#loginPop-->
-        </div>
         <!------------------------------------- end ----------------------------------------->
         <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
         <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
@@ -587,44 +511,6 @@
     <!-- <div id="qrSide"><a></a></div> -->
     <!--  -->
 
-    <!-- <div id="loginToolBar">
-        <div>
-            <em></em>
-            <img src="style/images/footbar_logo.png" width="138" height="45" />
-            <span class="companycount"></span>
-            <span class="positioncount"></span>
-            <a href="#loginPop" class="bar_login inline" title="登录"><i></i></a>
-            <div class="right">
-                <a href="register.html?from=index_footerbar" onclick="_hmt.push(['_trackEvent', 'button', 'click', 'register'])" class="bar_register" id="bar_register" target="_blank"><i></i></a>
-            </div>
-            <input type="hidden" id="cc" value="16002" />
-            <input type="hidden" id="cp" value="96531" />
-        </div>
-    </div>
-     -->
-    <!-------------------------------------弹窗lightbox  ----------------------------------------->
-    <div style="display:none;">
-        <!-- 登录框 -->
-        <div id="loginPop" class="popup" style="height:240px;">
-            <form id="loginForm">
-                <input type="text" id="email" name="email" tabindex="1" placeholder="请输入登录邮箱地址"/>
-                <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码"/>
-                <span class="error" style="display:none;" id="beError"></span>
-                <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked"
-                                                        name="autoLogin"/> 记住我</label>
-                <a href="h/reset.html" class="fr">忘记密码？</a>
-                <input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录"/>
-            </form>
-            <div class="login_right">
-                <div>还没有拉勾帐号？</div>
-                <a href="register.html" class="registor_now">立即注册</a>
-                <div class="login_others">使用以下帐号直接登录:</div>
-                <a href="h/ologin/auth/sina.html" target="_blank" id="icon_wb" class="icon_wb"
-                   title="使用新浪微博帐号登录"></a>
-                <a href="h/ologin/auth/qq.html" class="icon_qq" id="icon_qq" target="_blank" title="使用腾讯QQ帐号登录"></a>
-            </div>
-        </div><!--/#loginPop-->
-    </div>
     <!------------------------------------- end ----------------------------------------->
     <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
@@ -694,6 +580,75 @@
                     window.location.href = "logout";
                 }
             });
+    }
+    function NotLogin() {
+        swal({
+                title: "您还没有登录",
+                text: "登录才能提交申请哦！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#011d56",
+                confirmButtonText: "去登录",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    window.location.href = "redirLogin";
+                }
+            });
+    }
+</script>
+<script type="text/javascript">
+
+    function jobApply(obj) {
+        swal({
+                title: "是否申请该职位？",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#011d56",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    var JobID = $("#jobid").val();
+                    var CompanyID = $("#companyid").val();
+                    console.log(JobID + "-" + CompanyID);
+                    var url = "jobApply";
+                    var data = {
+                        JobID: JobID,
+                        CompanyID: CompanyID
+                    }
+                    $.post(url, data, function (result) {
+                        if(result != null && result.code === 200){
+                            swal({
+                                    title: "申请成功！！",
+                                    type: "success",
+                                    confirmButtonColor: "#011d56",
+                                },
+                                function(isConfirm){
+                                    if (isConfirm) {
+                                        location.reload();
+                                    }
+                                });
+                        }
+                        else{
+                            swal({
+                                title: "申请失败",
+                                text: "请重新申请",
+                                type: "error",
+                                confirmButtonColor: "#011d56"
+                            });
+                        }
+                    })
+                }
+            });
+
+
+
     }
 </script>
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>

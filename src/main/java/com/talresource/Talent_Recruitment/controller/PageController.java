@@ -75,7 +75,7 @@ public class PageController {
                 CompanyList.add(companyService.queryById(job.getCompanyID()));
             }
 
-            Map<Job, Company> map1 = new HashMap<>();
+            Map<Job, Company> map1 = new LinkedHashMap<>();
             for (int i=0;i<JobList.size();i++){
                 map1.put(JobList.get(i), CompanyList.get(i));
             }
@@ -104,7 +104,7 @@ public class PageController {
                 CompanyList.add(companyService.queryById(job.getCompanyID()));
             }
 
-            Map<Job, Company> map1 = new HashMap<>();
+            Map<Job, Company> map1 = new LinkedHashMap<>();
             for (int i=0;i<JobList.size();i++){
                 map1.put(JobList.get(i), CompanyList.get(i));
             }
@@ -174,6 +174,12 @@ public class PageController {
         }
 
         map.addAttribute("UserPostMap", userPostMap);
+
+        if (userPostMap.size() == 0)
+            map.addAttribute("message", "null");
+        else
+            map.addAttribute("message", "notnull");
+
         return "forumSearch";
     }
 

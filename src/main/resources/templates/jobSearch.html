@@ -772,6 +772,7 @@
                 <ul class="hot_pos reset" id="jobList"  th:fragment="jobList">
                     <li id="jobll" class="odd clearfix" style="padding: 10px 20px 10px 10px;width: 690px;"
                         th:each="map : ${JobMap}">
+
                         <div class="job_infor_l">
                             <a th:href="@{/jobInfo(JobID=${map.key.JobID})}" >
                                 <span style="font-size: 20px" th:text="${map.key.JobName}"></span>
@@ -797,9 +798,10 @@
                             <p><em class="c7" th:text="${map.value.CompanyNature} + '公司 | ' + ${map.key.JobPersonNum}"></em></p>
                             <p><em class="c7" style="color: #9f9f9f" th:text="${map.value.CompanyType}">移动互联网/健康医疗</em></p>
 
+
                             <div class="job_button">
-                                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
-                                <input type="submit" value="申请职位" class="p_but">
+                                <a th:href="@{/jobInfo(JobID=${map.key.JobID})}"><input type="button" class="p_but" value="进入申请职位"></a>
+
                             </div>
 
                         </div>
