@@ -11,6 +11,7 @@ public class News {
     private String NewsContent;
     private String NewsImg;
     private String NewsBriefInfo;
+    private int NewsHeat;
 
     public News() {
     }
@@ -30,6 +31,14 @@ public class News {
         NewsContent = newsContent;
         NewsImg = newsImg;
         NewsBriefInfo = newsBriefInfo;
+    }
+
+    public int getNewsHeat() {
+        return NewsHeat;
+    }
+
+    public void setNewsHeat(int newsHeat) {
+        NewsHeat = newsHeat;
     }
 
     public int getNewsID() {

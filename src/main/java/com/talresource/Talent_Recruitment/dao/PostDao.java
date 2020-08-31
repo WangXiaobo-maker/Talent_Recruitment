@@ -34,4 +34,7 @@ public interface PostDao {
     @Update("update post set PostHeat=PostHeat+6 where PostID=#{PostID}")
     boolean updatePostHeat(@Param("PostID") int PostID);
 
+    @Delete("delete from post where PostID=#{PostID}")
+    boolean deletePostByID(@Param("PostID") int PostID);
+
 }

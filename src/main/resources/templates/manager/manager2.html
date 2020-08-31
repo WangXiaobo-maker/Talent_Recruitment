@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无限创想人才招聘平台</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{static/css/amazeui.css}"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{static/css/core.css}"/>
+    <link rel="stylesheet" th:href="@{static/css/menu.css}"/>
+    <link rel="stylesheet" th:href="@{static/css/admin.css}"/>
+    <link rel="stylesheet" th:href="@{static/css/page/typography.css}"/>
+    <link rel="stylesheet" th:href="@{static/css/page/form.css}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
+</head>
+<body style="background-color:#F0F0F0;">
+<div id="header">
+    <div class="wrapper">
+        <a th:href="@{'/home'}" class="logo">
+            <img th:src="@{static/img/logo_home.png}" width="229" height="43"/>
+        </a>
+        <ul class="reset" id="navheader">
+            <li><a th:href="@{'/home'}">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
+            <li><a th:href="@{'/searchJob'}">职位搜索</a></li>
+            <li><a th:href="@{'/redirNews'}">职业资讯</a></li>
+            <li><a th:href="@{'/forum'}" rel="nofollow">交流论坛</a></li>
+            <li class="current"><a th:href="@{'/userInfoPage'}" rel="nofollow">我的信息</a></li>
+        </ul>
+    </div>
+</div><!-- end #header -->
+
+<div class="admin">
+    <!--<div class="am-g">-->
+    <!-- ========== Left Sidebar Start ========== -->
+    <!--<div class="left side-menu am-hide-sm-only am-u-md-1 am-padding-0">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 548px;">
+            <div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 548px;">-->
+    <!-- sidebar start -->
+    <div class="admin-sidebar am-offcanvas am-padding-0" id="admin-offcanvas" style="margin-top: 0;overflow-y: hidden;">
+        <div class="am-offcanvas-bar admin-offcanvas-bar">
+            <!-- User -->
+            <div class="user-box am-hide-sm-only" style="margin-top: 25px;">
+                <div class="user-img">
+                    <img th:src="@{'static/img/admin.png'}" alt="user-img" title="Mat Helme"
+                         class="img-circle img-thumbnail img-responsive">
+                    <div class="user-status offline"><i class="am-icon-dot-circle-o" aria-hidden="true"></i></div>
+                </div>
+                <br/>
+                <span style="font-weight:bold; color:#89b0de">管理员选项</span>
+            </div>
+            <!-- End User -->
+
+            <ul class="am-list admin-sidebar-list">
+                <li class="admin-parent" >
+                    <a th:href="@{'/manager1'}" class="am-cf" data-am-collapse="{target: '#collapse-nav1'}">
+                        <span class="am-icon-file"></span>&nbsp;&nbsp;资讯管理</a>
+                </li>
+                <li class="admin-parent" style="font-size: 20px;font-weight: bold;">
+                    <a th:href="@{'/manager2'}" class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">
+                        <span class="am-icon-table"></span>&nbsp;&nbsp;论坛管理</a>
+                </li>
+                <li class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}" onclick="javascript:logoutC();">
+                        <span class="am-icon-power-off"></span>&nbsp;&nbsp;注销登录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!--</div>
+</div>
+</div>-->
+    <!-- ========== Left Sidebar end ========== -->
+
+
+    <!--	<div class="am-g">-->
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content1">
+            <div class="card-box">
+                <!-- Row start -->
+                <div class="am-g">
+                    <div class="am-u-sm-12">
+                        <form class="am-form">
+                            <table class="am-table am-table-striped am-table-hover table-main table table-striped"
+                                   data-toggle="table" data-search="true"
+                                   data-pagination="true" data-page-size="10" data-striped="true"
+                                   data-classes="table table-no-border">
+                                <thead align="center">
+                                <tr>
+                                    <th class="table-id">ID</th>
+                                    <th class="table-title">资讯标题</th>
+                                    <th class="table-author am-hide-sm-only">发布时间</th>
+                                    <th style="text-align: center" class="table-title">点击量</th>
+                                    <th class="table-set">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="post : ${PostList}">
+                                    <td th:text="${post.getPostID()}"></td>
+                                    <td th:text="${post.getPostTitle()}"></td>
+                                    <td class="am-hide-sm-only" th:text="${post.getPostPublishDate()}"></td>
+                                    <td style="text-align: center" th:text="${post.getPostHeat()}"></td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                                    <a style="color: red" th:href="@{'/deletePost?PostID='+${post.getPostID()}}" onclick="javascript:return delC();">
+                                                        <span class="am-icon-trash-o"></span> 删除
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr/>
+                        </form>
+                    </div>
+                </div>
+                <!-- Row end -->
+            </div>
+        </div>
+
+        <!-- end right Content here -->
+        <!--</div>-->
+    </div>
+</div>
+
+<!-- navbar -->
+<a href="admin-offcanvas" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+   data-am-offcanvas="{target: '#admin-offcanvas'}"><!--<i class="fa fa-bars" aria-hidden="true"></i>--></a>
+
+<script type="text/javascript" th:src="@{static/js/jquery-2.1.0.js}"></script>
+<script type="text/javascript" th:src="@{static/js/amazeui.min.js}"></script>
+<script type="text/javascript" th:src="@{static/js/app.js}"></script>
+<script type="text/javascript" th:src="@{static/js/blockUI.js}"></script>
+<script>
+
+    function delC() {
+        if(confirm("确认删除吗？")){
+            return true;
+        }
+        return false;
+    }
+
+    function logoutC() {
+        swal({
+                title: "确定注销吗？",
+                text: "您将退出登录！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#011d56",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    window.location.href="logout";
+                }
+            });
+    }
+</script>
+</body>
+
+</html>

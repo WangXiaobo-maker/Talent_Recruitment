@@ -158,40 +158,57 @@
         </div>
     </div><!-- end #header -->
 
-    <div id="new_content" style="margin-top: 10px;">
+    <form  th:action="@{'/saveNews?NewsID='+${News.getNewsID()}}" method="post">
+        <div id="new_content" style="margin-top: 10px;">
 
-        <div class="clear"></div>
+            <div class="clear"></div>
 
-        <div style="margin-bottom: 10px; text-align: left;">
+            <div style="margin-bottom: 10px; text-align: left;">
 
-            <p>
-                <img th:src="@{static/img/news.png}" alt="">
-                <span style="font-size: 20px;color: #6b6b6b;text-align: right;font-weight: bold;">修改资讯</span>
-                <span style="float:right;text-align: right;color: #6b6b6b;">修改资讯请务必尊重原文链接,否则有可能被直接删除</span>
-            </p>
-            <span style="font-size: 25px; padding-right: 10px">标题&nbsp;&nbsp;:</span>
-            <input type="text" style="height: 35px;" th:value="${News.NewsTitle}"
-                   placeholder="请输入标题（最多...个字）">
-        </div>
+                <p>
+                    <img th:src="@{static/img/news.png}" alt="">
+                    <span style="font-size: 20px;color: #6b6b6b;text-align: right;font-weight: bold;">添加/修改资讯</span>
+                    <span style="float:right;text-align: right;color: #6b6b6b;">修改资讯请务必尊重原文链接,否则有可能被直接删除</span>
+                </p>
+                <span style="font-size: 25px; padding-right: 10px">标题&nbsp;&nbsp;:</span>
+                <input name="NewsTitle" type="text" style="height: 35px;" th:value="${News.NewsTitle}"
+                       placeholder="请输入标题（最多...个字）">
 
-        <div id="test-editormd">
+            </div>
+
+            <div id="test-editormd">
 
             <textarea style="display:none;" name="NewsContent" th:text="${News.NewsContent}" >
             </textarea>
 
-        </div>
+            </div>
 
-        <div>
-            <p style="font-size: 15px;color: #6b6b6b;text-align: left;">当前输入内容的时间为15：06</p>
-        </div>
+            <div>
+                <p style="font-size: 15px;color: #6b6b6b;text-align: left;"><label id="time" style=" "></label></p>
+            </div>
 
-        <div style="text-align: left;margin-top: 5px;">
-            <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
-            <input type="submit" value="发布" class="p_but" style="height: 40px;width: 180px;font-size: 20px;">
-        </div>
+            <script>
 
-        <div class="clear"></div>
-    </div>
+                function mytime(){
+                    var a = new Date();
+                    var b = a.toLocaleTimeString();
+                    var c = a.toLocaleDateString();
+                    document.getElementById("time").innerHTML = c+"&nbsp;&nbsp;&nbsp;"+b;
+                }
+
+                setInterval(function() {mytime()},1000);
+
+            </script>
+
+            <div style="text-align: left;margin-top: 5px;">
+                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
+                <input type="submit" value="发布" class="p_but" style="height: 40px;width: 180px;font-size: 20px;">
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    </form>
+
     <input type="hidden" value="" name="userid" id="userid"/>
     <!-- <div id="qrSide"><a></a></div> -->
     <!--  -->

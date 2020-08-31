@@ -35,8 +35,8 @@ public class NewsService {
         newsDao.insertNewsTest(NewsContent);
     }
 
-    public boolean insertNews(String NewsTitle, String NewsPublishDate, String NewsContent){
-        return newsDao.insertNews(NewsTitle, NewsPublishDate, NewsContent);
+    public boolean insertNews(String NewsTitle, String NewsPublishDate, String NewsBriefInfo, String NewsContent){
+        return newsDao.insertNews(NewsTitle, NewsPublishDate, NewsBriefInfo, NewsContent);
     }
 
     public boolean updateNewsById(String NewsTitle, String NewsPublishDate, String NewsContent, int NewsID){
@@ -47,4 +47,7 @@ public class NewsService {
         return newsDao.updateNewsHeat(NewsID);
     }
 
+    public boolean deleteNewsByID(int NewsID){
+        return newsDao.deleteNewsByID(NewsID);
+    }
 }

@@ -41,4 +41,8 @@ public class PostService {
     public boolean updatePostHeat(int PostID){
         return postDao.updatePostHeat(PostID);
     }
+
+    public boolean deletePostByID(int PostID){
+        return postDao.deletePostByID(PostID);
+    }
 }

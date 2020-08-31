@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface NewsDao {
 
-    @Select("select * from news")
+    @Select("select * from news where NewsID<>0")
     List<News> selectAllNews();
 
     @Select("select * from news where NewsID<>0 order by NewsPublishDate DESC ")
@@ -24,9 +24,10 @@ public interface NewsDao {
             "value(#{NewsContent})")
     void insertNewsTest(@Param("NewsContent") String NewsContent);
 
-    @Insert("insert into news(NewsTitle ,NewsPublishDate, NewsContent) value(#{NewsTitle} ,#{NewsPublishDate}, #{NewsContent})")
+    @Insert("insert into news(NewsTitle ,NewsPublishDate, NewsBriefInfo, NewsContent) " +
+            "value(#{NewsTitle} ,#{NewsPublishDate}, #{NewsBriefInfo}, #{NewsContent})")
     boolean insertNews(@Param("NewsTitle") String NewsTitle, @Param("NewsPublishDate") String NewsPublishDate,
-                       @Param("NewsContent") String NewsContent);
+                       @Param("NewsBriefInfo") String NewsBriefInfo, @Param("NewsContent") String NewsContent);
 
     @Update("update news set NewsTitle=#{NewsTitle}, NewsPublishDate=#{NewsPublishDate}," +
             "NewsContent=#{NewsContent} where NewsID=#{NewsID}")
@@ -35,5 +36,9 @@ public interface NewsDao {
 
     @Update("update news set NewsHeat=NewsHeat+6 where NewsID=#{NewsID}")
     boolean updateNewsHeat(@Param("NewsID") int NewsID);
+
+    @Delete("delete from news where NewsID=#{NewsID}")
+    boolean deleteNewsByID(@Param("NewsID") int NewsID);
+
 
 }
