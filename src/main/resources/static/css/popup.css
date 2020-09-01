@@ -142,7 +142,7 @@ ol.info-block1{width:200px;height: 200px;margin-bottom: 10px;padding: 10px;margi
 ol.info-block{width:200px;height: 200px;margin-bottom: 10px;padding-left: 50px;border-bottom:1px solid #ccc}
 
 #container{width:1024px;margin:35px auto 0; padding-bottom:20px;}
-.content_l{ float:left; height:1100px;width:740px;margin-top: 22px;background: #ffffff}
+.content_left{ float:left; height:1100px;width:740px;margin-top: 22px;background: #ffffff}
 .content_r{ float:left; width:260px; height:1100px;padding-left: 10px;margin-top: 22px;background:#FFFFFF;margin-left: 10px;}
 #job-body{height: 1600px;width: 1024px;}
 .more_job_title{font-size: 20px;margin: 16px; font-weight: bold;border: #2a2a2a; border-bottom:1px solid #000;}
