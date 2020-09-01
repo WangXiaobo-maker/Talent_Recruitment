@@ -299,8 +299,8 @@
                             <!-- <div class="text"> &nbsp;&nbsp;西安市雁塔区华为西安研究所</div>-->
                             <div style="margin: 5px 15px 10px 15px;">
                                 <div style="float: left;margin-right: 10px;margin-bottom: 10px;">
-                                    <a style="margin-bottom: 20px;font-size: medium" display:block;><img
-                                            th:src="@{static/img/map.png}" width="20" height="23" alt="vip"/></a>
+                                    <a style="margin-bottom: 20px;font-size: medium" display:block;>
+                                        <img th:src="@{'static/img/map/' + ${companyInfo.getCompanyID()} + '.png'}" width="20" height="23" alt="vip"/></a>
                                 </div>
                                 <div style="float: left;margin-right: 30px;font-size: 16px;ma">
                                     <a href="home.html" ka="all-jobs-top">
