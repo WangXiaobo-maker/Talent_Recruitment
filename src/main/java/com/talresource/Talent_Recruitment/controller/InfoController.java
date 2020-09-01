@@ -1,10 +1,7 @@
 package com.talresource.Talent_Recruitment.controller;
 
-import com.talresource.Talent_Recruitment.entity.Company;
-import com.talresource.Talent_Recruitment.entity.Job;
-import com.talresource.Talent_Recruitment.entity.User;
-import com.talresource.Talent_Recruitment.service.JobService;
-import com.talresource.Talent_Recruitment.service.PostService;
+import com.talresource.Talent_Recruitment.entity.*;
+import com.talresource.Talent_Recruitment.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class InfoController {
@@ -23,6 +22,15 @@ public class InfoController {
 
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private JobApplyService jobApplyService;
+
+    @Autowired
+    private CompanyService companyService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/userInfoPage")
     public String userInfoPage(HttpSession session) {
@@ -65,11 +73,63 @@ public class InfoController {
     }
 
     @RequestMapping("/myJobApply")
-    public String myJobApply(HttpSession session){
+    public String myJobApply(HttpSession session, ModelMap map){
         User user = (User)session.getAttribute("user");
+
+        List<JobApply> jobApplyList = jobApplyService.selectJobApplyInfo(user.getUserID());
+
+        Map<JobCombineCompany, JobApply> jobMap = new LinkedHashMap<>();
+
+        for (int i=0;i<jobApplyList.size();i++){
+            JobApply jobApply = jobApplyList.get(i);
+            JobCombineCompany jobCombineCompany = new JobCombineCompany(jobService.selectJobByID(jobApply.getJobID()),
+                    companyService.queryById(jobApply.getCompanyID()));
+            jobMap.put(jobCombineCompany, jobApply);
+        }
+
+        map.addAttribute("JobMap", jobMap);
 
         return "html/myJobApply";
     }
+
+
+    @RequestMapping("/companyCV")
+    public String companyCV(HttpSession session, ModelMap map){
+        Company company = (Company)session.getAttribute("company");
+
+        List<JobApply> jobApplyList = jobApplyService.selectJobApplyInfo2(company.getCompanyID());
+
+        Map<JobCombineUser, JobApply> jobMap = new LinkedHashMap<>();
+
+        for (int i=0;i<jobApplyList.size();i++){
+            JobApply jobApply = jobApplyList.get(i);
+            JobCombineUser jobCombineUser = new JobCombineUser(userService.queryById(jobApply.getUserID()),
+                    jobService.selectJobByID(jobApply.getJobID()));
+            jobMap.put(jobCombineUser, jobApply);
+        }
+
+        map.addAttribute("JobMap", jobMap);
+
+        return "html/companyCV";
+    }
+
+    @RequestMapping("/dealApply")
+    public String dealApply(String state, int JobApplyID){
+
+        if (state.equals("同意")){
+            if (jobApplyService.updateApplyState("已通过", JobApplyID)){
+                return "redirect:companyCV";
+            }
+        }
+        if (state.equals("拒绝")){
+            if (jobApplyService.updateApplyState("已拒绝", JobApplyID)){
+                return "redirect:companyCV";
+            }
+        }
+
+        return "html/companyCV";
+    }
+
 
     @RequestMapping("/myCV")
     public String myCV() {

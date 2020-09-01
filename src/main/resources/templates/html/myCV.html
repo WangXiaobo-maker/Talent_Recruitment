@@ -95,9 +95,11 @@
             <!-- Start content -->
             <div id="gallery-container">
                 <div class="gallery-item" style="width: 500px;margin-left: 20px;">
-                    <a th:href="@{'static/img/CVImg/' + ${session.user.getUserID()} + '.png'}" target="_blank">
-                        <img th:src="@{'static/img/CVImg/' + ${session.user.getUserID()} + '.png'}" alt=""
-                             onerror="this.src='static/img/CVImg/default.png'">
+                    <input id="UserID" th:value="${session.user.getUserID()}" hidden>
+                    <!-- th:href="@{'static/img/CVImg/' + ${session.user.getUserID()} + '.png'}" target="_blank" -->
+                    <a onclick="showCV()">
+                        <img th:src="@{'static/img/CVImg/' + ${session.user.getUserID()} + '.png'}" alt="" id="CVimg"
+                             onerror="this.src='static/img/CVImg/default.png'" style="object-fit: cover;max-height: 700px;">
                     </a>
                 </div>
                 <div class="gallery-item-upLoad" style="width: 480px;margin-top: 30px;">
@@ -165,6 +167,12 @@
                     window.location.href="logout";
                 }
             });
+    }
+    function showCV() {
+        var url = document.getElementById("CVimg").src;
+        var arr = url.split("/");
+        if(arr[arr.length-1] !== "default.png")
+            window.open(url, "_blank");
     }
 </script>
 </body>
