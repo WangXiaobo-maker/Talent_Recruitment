@@ -23,4 +23,12 @@ public interface JobApplyDao {
     @Update("update jobapply set JobReplyState=#{JobReplyState} where JobApplyID=#{JobApplyID}")
     boolean updateApplyState(@Param("JobReplyState") String JobReplyState, @Param("JobApplyID") int JobApplyID);
 
+
+    @Select("select * from jobapply where UserID = #{UserID} order by JobApplyDate DESC limit 5")
+    List<JobApply> selectJobApplyInfolim5(@Param("UserID") int UserID);
+
+    @Select("select * from jobapply where CompanyID = #{CompanyID} order by JobApplyDate DESC limit 5")
+    List<JobApply> selectJobApplyInfo2lim5(@Param("CompanyID") int CompanyID);
+
+
 }

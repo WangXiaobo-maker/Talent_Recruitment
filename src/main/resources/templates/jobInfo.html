@@ -603,7 +603,7 @@
 </script>
 <script type="text/javascript">
 
-    function jobApply(obj) {
+    function jobApply() {
         swal({
                 title: "是否申请该职位？",
                 text: "",
@@ -627,13 +627,30 @@
                     $.post(url, data, function (result) {
                         if(result != null && result.code === 200){
                             swal({
-                                    title: "申请成功！！",
+                                    title: "申请成功",
                                     type: "success",
                                     confirmButtonColor: "#011d56",
                                 },
                                 function(isConfirm){
                                     if (isConfirm) {
                                         location.reload();
+                                    }
+                                });
+                        }
+                        else if(result != null && result.code === -1){
+                            swal({
+                                    title: "未上传简历",
+                                    text: "您还没有上传简历，请上传简历后重新申请",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#011d56",
+                                    confirmButtonText: "去上传",
+                                    cancelButtonText: "取消",
+                                    closeOnConfirm: false,
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location.href = "myCV";
                                     }
                                 });
                         }

@@ -33,13 +33,26 @@ public class InfoController {
     private UserService userService;
 
     @RequestMapping("/userInfoPage")
-    public String userInfoPage(HttpSession session) {
+    public String userInfoPage(HttpSession session, ModelMap map) {
         User user = (User)session.getAttribute("user");
         Company company = (Company)session.getAttribute("company");
         if(user == null && company == null)
             return "redirect:userInfoPageNoLogin";
-        if(user != null)
+
+        if(user != null){
+            List<JobApply> jobApplyList = jobApplyService.selectJobApplyInfolim5(user.getUserID());
+
+            Map<JobCombineCompany, JobApply> jobMap = new LinkedHashMap<>();
+
+            for (int i=0;i<jobApplyList.size();i++){
+                JobApply jobApply = jobApplyList.get(i);
+                JobCombineCompany jobCombineCompany = new JobCombineCompany(jobService.selectJobByID(jobApply.getJobID()),
+                        companyService.queryById(jobApply.getCompanyID()));
+                jobMap.put(jobCombineCompany, jobApply);
+            }
+            map.addAttribute("JobMap", jobMap);
             return "userInfoPage";
+        }
         if(company != null)
             return "redirect:companyInfoPage";
         return "redirect:redirLogin";
@@ -137,7 +150,21 @@ public class InfoController {
     }
 
     @RequestMapping("/companyInfoPage")
-    public String companyInfoPage() {
+    public String companyInfoPage(HttpSession session, ModelMap map) {
+        Company company = (Company)session.getAttribute("company");
+
+        List<JobApply> jobApplyList = jobApplyService.selectJobApplyInfo2lim5(company.getCompanyID());
+
+        Map<JobCombineUser, JobApply> jobMap = new LinkedHashMap<>();
+
+        for (int i=0;i<jobApplyList.size();i++){
+            JobApply jobApply = jobApplyList.get(i);
+            JobCombineUser jobCombineUser = new JobCombineUser(userService.queryById(jobApply.getUserID()),
+                    jobService.selectJobByID(jobApply.getJobID()));
+            jobMap.put(jobCombineUser, jobApply);
+        }
+
+        map.addAttribute("JobMap", jobMap);
         return "companyInfoPage";
     }
 

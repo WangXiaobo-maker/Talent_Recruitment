@@ -109,6 +109,7 @@
                             <th class="col_1">申请人</th>
                             <th class="col_1">申请时间</th>
                             <th> 状态</th>
+                            <th>简历</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -124,6 +125,19 @@
                                       style="font-size: 15px">已拒绝</span>
                                 <span th:if="${map.value.getJobReplyState()} == '已通过'" class="label label-success"
                                       style="font-size: 15px">已通过</span>
+                            </td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"
+                                                style="background: white">
+                                            <a th:href="@{'static/img/CVImg/' + ${map.key.getUser().getUserID()} + '.png'}" target="_blank">
+                                                <span class="am-icon-copy"></span> 查看简历
+                                            </a>
+                                        </button>
+                                    </div>
+                                </div>
+
                             </td>
                             <td>
                                 <div class="am-btn-toolbar">

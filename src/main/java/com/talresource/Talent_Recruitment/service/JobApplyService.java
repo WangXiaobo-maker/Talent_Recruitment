@@ -31,4 +31,12 @@ public class JobApplyService {
         return jobApplyDao.updateApplyState(JobReplyState, JobApplyID);
     }
 
+    public List<JobApply> selectJobApplyInfolim5(int UserID){
+        return jobApplyDao.selectJobApplyInfolim5(UserID);
+    }
+
+    public List<JobApply> selectJobApplyInfo2lim5(int CompanyID){
+        return jobApplyDao.selectJobApplyInfo2lim5(CompanyID);
+    }
+
 }

@@ -375,30 +375,23 @@
                             <table class="am-table am-text-nowrap">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>企业</th>
                                     <th>职位</th>
                                     <th>状态</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>乐推文化传播有限公司</td>
-                                    <td>抖音短视频拍摄</td>
-                                    <td><span class="label label-danger">已拒绝</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>乐推文化传播有限公司</td>
-                                    <td>短视频策划</td>
-                                    <td><span class="label label-success">已回复</span></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>施耐德电气信息技术有限公司</td>
-                                    <td>美工设计</td>
-                                    <td><span class="label label-purple">等待回复</span></td>
+                                <tr th:each="map : ${JobMap}">
+                                    <td th:text="${map.key.getCompany().getCompanyName()}">乐推文化传播有限公司</td>
+                                    <td th:text="${map.key.getJob().getJobName()}">抖音短视频拍摄</td>
+                                    <td>
+                                        <span th:if="${map.value.getJobReplyState()} == '待回复'" class="label label-purple"
+                                              style="font-size: 15px">待回复</span>
+                                        <span th:if="${map.value.getJobReplyState()} == '已拒绝'" class="label label-danger"
+                                              style="font-size: 15px">已拒绝</span>
+                                        <span th:if="${map.value.getJobReplyState()} == '已通过'" class="label label-success"
+                                              style="font-size: 15px">已通过</span>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

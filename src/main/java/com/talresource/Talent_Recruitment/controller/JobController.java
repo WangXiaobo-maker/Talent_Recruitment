@@ -14,6 +14,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -135,7 +137,7 @@ public class JobController {
 
     @RequestMapping("jobApply")
     @ResponseBody
-    public Result jobApply(HttpSession session, String JobID, String CompanyID){
+    public Result jobApply(HttpSession session, String JobID, String CompanyID) throws IOException {
 
         int JobID2 = Integer.parseInt(JobID);
         int CompanyID2 = Integer.parseInt(CompanyID);
@@ -146,12 +148,19 @@ public class JobController {
         Date today = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String JobApplyDate = sdf.format(today);
-
+        File project = new File("");
+        String projectPath = project.getCanonicalPath();
+        String filepath = projectPath + "\\src\\main\\resources\\static\\img\\CVImg\\" + UserID + ".png";
+        File file = new File(filepath);
+        if(!file.exists()){
+            result = new Result(Config.STATUS_ERROR,"没有简历");
+            return result;
+        }
         if (jobApplyService.insertJobApply(UserID, JobID2, CompanyID2, JobApplyDate)){
-            result = new Result(Config.STATUS_SUCCESS,"发表成功");
+            result = new Result(Config.STATUS_SUCCESS,"申请成功");
         }
         else{
-            result = new Result(Config.STATUS_FAILURE,"发表失败");
+            result = new Result(Config.STATUS_FAILURE,"申请失败");
         }
         return result;
     }
