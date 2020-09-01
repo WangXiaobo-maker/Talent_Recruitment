@@ -33,6 +33,10 @@ public class CompanyService {
         return companyDao.queryByEmailAndPasswd(CompanyEmail, CPassword);
     }
 
+    public Company queryByEmPhNa(String CompanyEmail, String CompanyPhone, String CompanyName){
+        return companyDao.queryByEmPhNa(CompanyEmail, CompanyPhone, CompanyName);
+    }
+
     public int insertOneCompany(String CompanyEmail, String CPassword){
         return companyDao.insertOneCompany(CompanyEmail, CPassword);
     }
@@ -45,6 +49,17 @@ public class CompanyService {
     public int updateById2(String CompanyNature, String CompanyType, String CompanyCulture,
                           String CompanyInfo, int CompanyID){
         return companyDao.updateById2(CompanyNature, CompanyType, CompanyCulture, CompanyInfo, CompanyID);
+    }
+
+    public int updateCompany(String CompanyName, String CompanyPhone, String CompanyEmail, String CompanyLegalPerson,
+                             String CompanyNature, String CompanyType, String CompanyAddress, String CompanyCulture,
+                             String CompanyInfo, int CompanyID){
+        return companyDao.updateCompany(CompanyName, CompanyPhone, CompanyEmail, CompanyLegalPerson,
+                CompanyNature, CompanyType, CompanyAddress, CompanyCulture, CompanyInfo, CompanyID);
+    }
+
+    public int updatePasswd(String CPassword, int CompanyID){
+        return companyDao.updatePasswd(CPassword, CompanyID);
     }
 
     public List<Company> selectCompanyByHeat(){

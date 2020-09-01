@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -87,6 +85,53 @@ public class JobController {
 
     }
 
+
+
+    @RequestMapping("deleteJob")
+    @ResponseBody
+    public boolean deleteJob(String JobID) {
+        int jobid = Integer.parseInt(JobID);
+        int delete = jobService.deleteJob(jobid);
+        if(delete <= 0){
+            return false;
+        }
+        return true;
+    }
+
+    @RequestMapping("updateJob")
+    @ResponseBody
+    public boolean updateJob(String JobName, String JobSalary, String JobCity, String JobEduDegree, String JobExperience,
+                             String JobFamily, String JobHr, String JobPersonNum, String JobWelfare1,
+                             String JobWelfare2, String JobWelfare3, String JobInfo, String JobID) {
+        int jobid = Integer.parseInt(JobID);
+        Date today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String JobPublishDate = sdf.format(today);
+        int update = jobService.updateJob(JobName, JobSalary, JobCity, JobEduDegree, JobExperience, JobPublishDate,
+                JobFamily, JobHr, JobPersonNum, JobWelfare1, JobWelfare2, JobWelfare3, JobInfo, jobid);
+        if(update <= 0){
+            return false;
+        }
+        return true;
+    }
+
+    @RequestMapping("addJob")
+    @ResponseBody
+    public boolean addJob(HttpSession session, String JobName, String JobSalary, String JobCity, String JobEduDegree,
+                          String JobExperience, String JobFamily, String JobHr, String JobPersonNum, String JobWelfare1,
+                          String JobWelfare2, String JobWelfare3, String JobInfo) {
+        Company company = (Company)session.getAttribute("company");
+        int CompanyID = company.getCompanyID();
+        Date today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String JobPublishDate = sdf.format(today);
+        int insert = jobService.addJob(CompanyID, JobName, JobSalary, JobCity, JobEduDegree, JobExperience, JobPublishDate,
+                JobFamily, JobHr, JobPersonNum, JobWelfare1, JobWelfare2, JobWelfare3, JobInfo);
+        if(insert <= 0){
+            return false;
+        }
+        return true;
+    }
 
     @RequestMapping("jobApply")
     @ResponseBody

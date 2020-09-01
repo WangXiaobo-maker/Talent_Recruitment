@@ -66,6 +66,11 @@ public class UserController {
         return "redirect:redirRegister";
     }
 
+    @RequestMapping("forgotPwd")
+    public String forgotPwd(){
+        return "forgotPwd";
+    }
+
 
     //------------------------------------------------------数据管理------------------------------------------------------
     @RequestMapping("tologin")
@@ -158,6 +163,93 @@ public class UserController {
             session.setAttribute("user", user1);
             result = new Result(Config.STATUS_SUCCESS,"提交成功", user1);
             session.setAttribute("result", result);
+        }
+        return result;
+    }
+
+    @RequestMapping("updateUser")
+    @ResponseBody
+    public Result updateUser(HttpSession session, String UserName, String Sex, String NickName,
+                             String Birth, String UserPhone, String UserEmail){
+        Result result = null;
+        User user = userService.queryByEmail(UserEmail);
+        User user1 = (User)session.getAttribute("user");
+        if(user != null && user.getUserID() != user1.getUserID()){
+            result = new Result(Config.STATUS_FAILURE,"该邮箱已被使用");
+        }
+        else{
+            int UserID = user.getUserID();
+            int update = userService.updateUser(UserName, Sex, NickName, Birth, UserPhone, UserEmail, UserID);
+            if(update <= 0){
+                result = new Result(Config.STATUS_ERROR,"更新失败");
+            }
+            else{
+                User user2 = userService.queryById(UserID);
+                session.setAttribute("user", user2);
+                result = new Result(Config.STATUS_SUCCESS,"更新成功", user2);
+                session.setAttribute("result", result);
+            }
+        }
+        return result;
+    }
+
+    @RequestMapping("toUpdatePasswd")
+    @ResponseBody
+    public Result toUpdatePasswd(HttpSession session, String OldPassword, String NewPassword){
+        Result result = null;
+        User user = (User)session.getAttribute("user");
+        String UPassword = user.getUPassword();
+        if(!OldPassword.equals(UPassword)){
+            result = new Result(Config.STATUS_FAILURE,"原密码错误");
+        }
+        else {
+            int UserID = user.getUserID();
+            int update = userService.updatePasswd(NewPassword, UserID);
+            System.out.println(update);
+            if(update <= 0){
+                result = new Result(Config.STATUS_ERROR,"密码修改失败");
+            }
+            else{
+                User user1 = userService.queryById(UserID);
+                session.setAttribute("user", user1);
+                result = new Result(Config.STATUS_SUCCESS,"密码修改成功", user1);
+                session.setAttribute("result", result);
+            }
+        }
+        return result;
+    }
+
+    @RequestMapping("toForgotPwd")
+    @ResponseBody
+    public Result toForgotPwd(String email, String phone, String name, String password, String type){
+        Result result = null;
+        if(type.equals("1")){
+            User user = userService.queryByEmPhNa(email, phone, name);
+            if(user == null)
+                result = new Result(Config.STATUS_FAILURE,"用户邮箱/电话/姓名错误");
+            else {
+                int UserID = user.getUserID();
+                int update = userService.updatePasswd(password, UserID);
+                if(update <= 0)
+                    result = new Result(Config.STATUS_ERROR,"用户密码重置失败");
+                else{
+                    result = new Result(Config.STATUS_SUCCESS,"用户密码重置成功");
+                }
+            }
+        }
+        else {
+            Company company = companyService.queryByEmPhNa(email, phone, name);
+            if(company == null)
+                result = new Result(Config.STATUS_FAILURE,"公司邮箱/电话/名称错误");
+            else{
+                int CompanyID = company.getCompanyID();
+                int update = companyService.updatePasswd(password, CompanyID);
+                if(update <= 0)
+                    result = new Result(Config.STATUS_ERROR,"公司密码重置失败");
+                else{
+                    result = new Result(Config.STATUS_SUCCESS,"公司密码重置成功");
+                }
+            }
         }
         return result;
     }

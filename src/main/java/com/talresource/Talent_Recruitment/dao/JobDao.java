@@ -1,10 +1,7 @@
 package com.talresource.Talent_Recruitment.dao;
 
 import com.talresource.Talent_Recruitment.entity.Job;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -49,6 +46,32 @@ public interface JobDao {
 
     @Update("update job set JobHeat=JobHeat+6 where JobID=#{JobID}")
     boolean updateJobHeat(@Param("JobID") int JobID);
+
+    @Delete("delete from job where JobID=#{JobID}")
+    int deleteJob(@Param("JobID") int JobID);
+
+    @Update("update job set JobName=#{JobName},JobSalary=#{JobSalary},JobCity=#{JobCity},JobEduDegree=#{JobEduDegree}," +
+            "JobExperience=#{JobExperience},JobPublishDate=#{JobPublishDate},JobFamily=#{JobFamily},JobHr=#{JobHr}," +
+            "JobPersonNum=#{JobPersonNum},JobWelfare1=#{JobWelfare1},JobWelfare2=#{JobWelfare2}," +
+            "JobWelfare3=#{JobWelfare3},JobInfo=#{JobInfo} where JobID=#{JobID}")
+    int updateJob(@Param("JobName") String JobName,@Param("JobSalary") String JobSalary,@Param("JobCity") String JobCity,
+                  @Param("JobEduDegree") String JobEduDegree,@Param("JobExperience") String JobExperience,
+                  @Param("JobPublishDate") String JobPublishDate, @Param("JobFamily") String JobFamily,
+                  @Param("JobHr") String JobHr,@Param("JobPersonNum") String JobPersonNum,
+                  @Param("JobWelfare1") String JobWelfare1, @Param("JobWelfare2") String JobWelfare2,
+                  @Param("JobWelfare3") String JobWelfare3, @Param("JobInfo") String JobInfo,@Param("JobID") int JobID);
+
+    @Insert("insert into job(CompanyID,JobName,JobSalary,JobCity,JobEduDegree,JobExperience,JobPublishDate,JobFamily," +
+            "JobHr,JobPersonNum,JobWelfare1,JobWelfare2,JobWelfare3,JobInfo) values(#{CompanyID},#{JobName}," +
+            "#{JobSalary},#{JobCity},#{JobEduDegree},#{JobExperience},#{JobPublishDate},#{JobFamily},#{JobHr}," +
+            "#{JobPersonNum},#{JobWelfare1},#{JobWelfare2},#{JobWelfare3},#{JobInfo})")
+    int addJob(@Param("CompanyID") int CompanyID,@Param("JobName") String JobName,@Param("JobSalary") String JobSalary,
+               @Param("JobCity") String JobCity, @Param("JobEduDegree") String JobEduDegree,
+               @Param("JobExperience") String JobExperience, @Param("JobPublishDate") String JobPublishDate,
+               @Param("JobFamily") String JobFamily, @Param("JobHr") String JobHr,
+               @Param("JobPersonNum") String JobPersonNum, @Param("JobWelfare1") String JobWelfare1,
+               @Param("JobWelfare2") String JobWelfare2, @Param("JobWelfare3") String JobWelfare3,
+               @Param("JobInfo") String JobInfo);
 
 }
 //"ORDER BY   REPLACE(JobName,'${JobName}=','')  "

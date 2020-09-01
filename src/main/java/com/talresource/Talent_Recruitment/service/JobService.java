@@ -55,4 +55,22 @@ public class JobService {
     public boolean updateJobHeat(int JobID){
         return jobDao.updateJobHeat(JobID);
     }
+
+    public int deleteJob(int JobID){
+        return jobDao.deleteJob(JobID);
+    }
+
+    public int updateJob(String JobName, String JobSalary, String JobCity, String JobEduDegree, String JobExperience,
+                         String JobPublishDate, String JobFamily, String JobHr, String JobPersonNum, String JobWelfare1,
+                         String JobWelfare2, String JobWelfare3, String JobInfo, int JobID){
+        return jobDao.updateJob(JobName, JobSalary, JobCity, JobEduDegree, JobExperience, JobPublishDate, JobFamily, JobHr,
+                JobPersonNum, JobWelfare1, JobWelfare2, JobWelfare3, JobInfo, JobID);
+    }
+
+    public int addJob(int CompanyID, String JobName, String JobSalary, String JobCity, String JobEduDegree,
+                      String JobExperience, String JobPublishDate, String JobFamily, String JobHr,
+                      String JobPersonNum, String JobWelfare1, String JobWelfare2, String JobWelfare3, String JobInfo){
+        return jobDao.addJob(CompanyID, JobName, JobSalary, JobCity, JobEduDegree, JobExperience, JobPublishDate,
+                JobFamily, JobHr, JobPersonNum, JobWelfare1, JobWelfare2, JobWelfare3, JobInfo);
+    }
 }

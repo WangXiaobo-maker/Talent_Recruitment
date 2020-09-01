@@ -11,8 +11,7 @@
 		var ctx = "h";
 		console.log(1);
 	</script>
-
-	<link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
+	<link rel="Shortcut Icon" href="h/images/favicon.ico">
 	<link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{static/css/index.css}"/>
 	<script src="../static/js/jquery.1.10.1.min.js" th:src="@{static/js/jquery.1.10.1.min.js}" type="text/javascript"></script>
@@ -51,25 +50,19 @@
 				<ul class="register_radio clearfix">
 					<li>
 						企&nbsp;&nbsp;业
-						<input type="radio" value="0" name="type" />
+						<input type="radio" value="0" name="type" id="company"/>
 					</li>
 					<li>
 						个&nbsp;&nbsp;人
-						<input type="radio" value="1" name="type" />
+						<input type="radio" value="1" name="type" id="user"/>
 					</li>
 				</ul>
 				<input type="text" id="email" name="email" tabindex="1" placeholder="请输入登录邮箱地址" />
 				<input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />
-				<span class="error" style="display:none;" id="beError"></span>
 				<label class="fl" for="remember"><input type="checkbox" id="remember" value="" name="autoLogin" /> 记住我</label>
-				<a href="reset" class="fr" target="_blank">忘记密码？</a>
+				<a href="forgotPwd" class="fr">忘记密码？</a>
 
 				<a id="submit" style="color:#fff;margin-left:80px;" class="submitLogin" title="登 &nbsp; &nbsp; 录" onclick="javascript:return formCheck()">登 &nbsp; &nbsp; 录</a>
-
-				<input type="hidden" id="callback" name="callback" value=""/>
-				<input type="hidden" id="authType" name="authType" value=""/>
-				<input type="hidden" id="signature" name="signature" value=""/>
-				<input type="hidden" id="timestamp" name="timestamp" value=""/>
 			</form>
 			<div class="login_right"><br>
 				<img th:src="@{static/img/login_ico.png}" width="130" height="120"/><br>
@@ -79,7 +72,6 @@
 		</div>
 	</div>
 </main>
-
 <script th:src="@{static/js/mouse-click.js}"></script>
 <canvas width="100%" height="100%"
 		style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
@@ -158,18 +150,26 @@
 		return false;
 	}
 
-	function setCookie(email, password) {
+	function setCookie(email, password, type) {
 		var Then = new Date();
 		Then.setTime(Then.getTime() + 7 * 24 * 60 * 60 * 1000);
-		document.cookie = email + ":" + password + ";expires=" + Then.toGMTString();
+		document.cookie = email + ":" + password + ":" + type + ";expires=" + Then.toGMTString();
 	}
 
 	function getCookie() {
 		var cookieString = document.cookie.split(";");
 		var empsd = cookieString[0].split(":");
-		if (empsd[0] !== "" && empsd[1] !== "") {
+		if (empsd[0] !== "" && empsd[1] !== "" && empsd[2] !== "") {
 			$("#email").val(empsd[0]);
 			$("#password").val(empsd[1]);
+			if(empsd[2] === "0"){
+				$('#company').parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
+				$('#company').attr("checked","checked");
+			}
+			else{
+				$('#user').parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
+				$('#user').attr("checked","checked");
+			}
 			document.getElementById("remember").checked = true;
 		}
 	}
@@ -190,7 +190,7 @@
 			$.post(url, data, function (result) {
 				if(result != null && result.code === 200){
 					if(remember === true) {
-						setCookie(email, password);
+						setCookie(email, password, type);
 					}
 					else {
 						setCookie("", "");

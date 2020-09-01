@@ -81,13 +81,8 @@
 					<input type="checkbox" id="checkbox" name="checkbox" class="checkbox valid" />我已阅读并同意<a onclick="javascript:Displayprotocol()">《无限创想用户协议》</a>
 				</label>
 				<a id="submit" style="color:#fff;margin-left:80px;" class="submitLogin" title="注 &nbsp; &nbsp; 册" onclick="javascript:return formCheck()">注 &nbsp; &nbsp; 册</a>
-
-				<input type="hidden" id="callback" name="callback" value=""/>
-				<input type="hidden" id="authType" name="authType" value=""/>
-				<input type="hidden" id="signature" name="signature" value=""/>
-				<input type="hidden" id="timestamp" name="timestamp" value=""/>
 			</form>
-			<div class="login_right"><br>
+			<div class="login_right"><br><br>
 				<img th:src="@{static/img/login_ico.png}" width="130" height="120"/><br>
 				<div>已有帐号</div>
 				<a  th:href="@{'/redirLogin'}"  class="registor_now">直接登录</a>

@@ -15,7 +15,10 @@ public interface UserDao {
     @Select("select * from user where UserEmail=#{UserEmail} and UPassword=#{UPassword}")
     User queryByEmailAndPasswd(@Param("UserEmail") String UserEmail, @Param("UPassword") String UPassword);
 
-    @Insert("insert into user(UserEmail,UPassword) values(#{UserEmail},#{UPassword})")
+    @Select("select * from user where UserEmail=#{UserEmail} and UserPhone=#{UserPhone} and UserName=#{UserName}")
+    User queryByEmPhNa(@Param("UserEmail") String UserEmail, @Param("UserPhone") String UserPhone, @Param("UserName") String UserName);
+
+    @Insert("insert into user(UserEmail,UPassword,NickName) values(#{UserEmail},#{UPassword},'创想用户')")
     int insertOneUser(@Param("UserEmail") String UserEmail, @Param("UPassword") String UPassword);
 
     @Update("update user set UserName=#{UserName},Sex=#{Sex},NickName=#{NickName}," +
@@ -23,4 +26,14 @@ public interface UserDao {
     int updateById(@Param("UserName") String UserName, @Param("Sex") String Sex,
                    @Param("NickName") String NickName, @Param("Birth") String Birth,
                    @Param("UserPhone") String UserPhone, @Param("UserID") int UserID);
+
+    @Update("update user set UserName=#{UserName},Sex=#{Sex},NickName=#{NickName}," +
+            "Birth=#{Birth},UserPhone=#{UserPhone},UserEmail=#{UserEmail} where UserID=#{UserID}")
+    int updateUser(@Param("UserName") String UserName, @Param("Sex") String Sex,
+                   @Param("NickName") String NickName, @Param("Birth") String Birth,
+                   @Param("UserPhone") String UserPhone, @Param("UserEmail") String UserEmail,
+                   @Param("UserID") int UserID);
+
+    @Update("update user set UPassword=#{UPassword} where UserID=#{UserID}")
+    int updatePasswd(@Param("UPassword") String UPassword, @Param("UserID") int UserID);
 }
