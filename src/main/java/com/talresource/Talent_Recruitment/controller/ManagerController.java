@@ -56,7 +56,7 @@ public class ManagerController {
         if (newsService.deleteNewsByID(id)){
             return "redirect:manager1";
         }
-        return "error";
+        return "redirect:manager1";
     }
 
     @RequestMapping("/saveNews")
@@ -82,7 +82,7 @@ public class ManagerController {
                 return "redirect:manager1";
             }
         }
-        return "error";
+        return "redirect:manager1";
     }
 
 
@@ -96,7 +96,7 @@ public class ManagerController {
         if (postService.deletePostByID(id) && commentService.deleteCommentByPost(id)){
             return "redirect:manager2";
         }
-        return "error";
+        return "redirect:manager2";
     }
 
 
