@@ -145,13 +145,13 @@
                                         <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"
                                                 style="background: white">
                                             <a th:href="@{/dealApply(state='同意', JobApplyID=${map.value.getJobApplyID()})}">
-                                                <span class="am-icon-copy"></span> 同意
+                                                <span class="am-icon-check-circle"></span> 同意
                                             </a>
                                         </button>
                                         <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"
                                                 style="background: white">
                                             <a style="color: #cc3333" th:href="@{/dealApply(state='拒绝', JobApplyID=${map.value.getJobApplyID()})}">
-                                                <span class="am-icon-trash-o"></span> 拒绝
+                                                <span class="am-icon-times-circle"></span> 拒绝
                                             </a>
                                         </button>
                                     </div>

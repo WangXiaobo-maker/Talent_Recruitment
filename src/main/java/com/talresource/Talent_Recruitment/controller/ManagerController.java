@@ -54,8 +54,7 @@ public class ManagerController {
             return "redirect:managerCheck";
         int id = Integer.parseInt(NewsID);
         if (newsService.deleteNewsByID(id)){
-            map.addAttribute("NewsList", newsService.selectAllNews());
-            return "manager/manager1";
+            return "redirect:manager1";
         }
         return "error";
     }
@@ -76,13 +75,11 @@ public class ManagerController {
 
         if (NewsID1 == 0){
             if (newsService.insertNews(NewsTitle, NewsPublishDate, NewsBriefInfo, NewsContent)){
-                map.addAttribute("NewsList", newsService.selectAllNews());
-                return "manager/manager1";
+                return "redirect:manager1";
             }
         }else {
             if (newsService.updateNewsById(NewsTitle, NewsPublishDate, NewsContent, NewsID1)){
-                map.addAttribute("NewsList", newsService.selectAllNews());
-                return "manager/manager1";
+                return "redirect:manager1";
             }
         }
         return "error";
@@ -97,8 +94,7 @@ public class ManagerController {
 
         int id = Integer.parseInt(PostID);
         if (postService.deletePostByID(id) && commentService.deleteCommentByPost(id)){
-            map.addAttribute("PostList", postService.selectAllPost());
-            return "manager/manager2";
+            return "redirect:manager2";
         }
         return "error";
     }

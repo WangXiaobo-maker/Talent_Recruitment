@@ -278,7 +278,7 @@
                             <img th:src="@{static/img/address.png}" width="20" height="23" alt="vip"/>&nbsp;
                             西安市 雁塔区 华为西安研究所</span>
                         <div class="job-location-map js-open-map" style="margin-top: 10px;" data-content="西安市 雁塔区 华为西安研究所">
-                            <img src="https://restapi.amap.com/v3/staticmap?size=836*174&markers=mid,0xFF0000,A:108.839257,34.197356&key=21b56a6cc83fad7668dbb0e9564759a7"
+                            <img th:src="@{'static/img/map/' + ${Company.getCompanyID()} + '.png'}"
                                  width="700px" alt="公司地址"/>
 
                         </div>
