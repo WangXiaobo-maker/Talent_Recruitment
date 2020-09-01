@@ -300,7 +300,7 @@
                             <div style="margin: 5px 15px 10px 15px;">
                                 <div style="float: left;margin-right: 10px;margin-bottom: 10px;">
                                     <a style="margin-bottom: 20px;font-size: medium" display:block;>
-                                        <img th:src="@{'static/img/map/' + ${companyInfo.getCompanyID()} + '.png'}" width="20" height="23" alt="vip"/></a>
+                                        <img th:src="@{static/img/map.png}" width="20" height="23" alt="vip"/></a>
                                 </div>
                                 <div style="float: left;margin-right: 30px;font-size: 16px;ma">
                                     <a href="home.html" ka="all-jobs-top">
@@ -312,7 +312,7 @@
 
                             <div class="job-location-map js-open-map" style="margin-top: 10px;" data-content="西安市 雁塔区 华为西安研究所">
 
-                                <img src="https://restapi.amap.com/v3/staticmap?size=836*174&markers=mid,0xFF0000,A:108.839257,34.197356&key=21b56a6cc83fad7668dbb0e9564759a7"
+                                <img th:src="@{'static/img/map/' + ${companyInfo.getCompanyID()} + '.png'}"
                                      width="700px" alt="公司地址"/>
 
                             </div>
