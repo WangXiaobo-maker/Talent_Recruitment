@@ -140,21 +140,7 @@
                 <li><a th:href="@{'/forum'}" rel="nofollow">交流论坛</a></li>
                 <li><a th:href="@{'/userInfoPage'}" rel="nofollow">我的信息</a></li>
             </ul>
-            <ul class="loginTop" th:if="${session.user == null && session.company == null}">
-                <li><a th:href="@{'/redirLogin'}" rel="nofollow">登录</a></li>
-                <li>|</li>
-                <li><a th:href="@{'/redirRegister'}" rel="nofollow">注册</a></li>
-            </ul>
-            <ul class="loginTop" th:if="${session.user != null}">
-                <li><a th:text="${session.user.getNickName()}"></a></li>
-                <li>|</li>
-                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
-            </ul>
-            <ul class="loginTop" th:if="${session.company != null}">
-                <li><a>企业用户</a></li>
-                <li>|</li>
-                <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
-            </ul>
+
         </div>
     </div><!-- end #header -->
 
