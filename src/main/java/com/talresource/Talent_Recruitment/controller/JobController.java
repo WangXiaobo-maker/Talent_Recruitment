@@ -53,7 +53,6 @@ public class JobController {
                 map.addAttribute("message", "null");
             else
                 map.addAttribute("message", "notnull");
-            System.out.println("Search1: " + JobList.size());
         }
 
         else if (searchType.equals("公司")){
@@ -68,23 +67,16 @@ public class JobController {
                     map1.put(companyJobList.get(j), company);
                 }
             }
-
             map.addAttribute("JobMap", map1);
             if (map1.size() == 0)
                 map.addAttribute("message", "null");
             else
                 map.addAttribute("message", "notnull");
-
-            System.out.println("Search1.1: " + JobList.size());
-
         }
-
         else{
             map.addAttribute("message", "null");
         }
-
         return "jobSearch";
-
     }
 
 

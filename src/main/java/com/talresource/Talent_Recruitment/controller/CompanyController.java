@@ -116,5 +116,60 @@ public class CompanyController {
         return result;
     }
 
+    @RequestMapping("updateCompany")
+    @ResponseBody
+    public Result updateCompany(HttpSession session, String CompanyName, String CompanyPhone, String CompanyEmail,
+                                String CompanyLegalPerson, String CompanyNature, String CompanyType,
+                                String CompanyAddress, String CompanyCulture, String CompanyInfo){
+        Result result = null;
+        Company company = companyService.queryByName(CompanyName);
+        Company company1 = companyService.queryByEmail(CompanyEmail);
+        Company company2 = (Company)session.getAttribute("company");
+        if(company != null && company.getCompanyID() != company2.getCompanyID()){
+            result = new Result(Config.STATUS_FAILURE,"该公司已被注册");
+        }
+        else if(company1 != null && company1.getCompanyID() != company2.getCompanyID()){
+            result = new Result(Config.STATUS_FAILURE,"该邮箱已被使用");
+        }
+        else {
+            int CompanyID = company2.getCompanyID();
+            int update = companyService.updateCompany(CompanyName, CompanyPhone, CompanyEmail, CompanyLegalPerson,
+                    CompanyNature, CompanyType, CompanyAddress, CompanyCulture, CompanyInfo, CompanyID);
+            if(update <= 0){
+                result = new Result(Config.STATUS_ERROR,"更新失败");
+            }
+            else{
+                Company company3 = companyService.queryById(CompanyID);
+                session.setAttribute("company", company3);
+                result = new Result(Config.STATUS_SUCCESS,"更新成功", company3);
+                session.setAttribute("result", result);
+            }
+        }
+        return result;
+    }
 
+    @RequestMapping("toCompanyUpdatePasswd")
+    @ResponseBody
+    public Result toCompanyUpdatePasswd(HttpSession session, String OldPassword, String NewPassword){
+        Result result = null;
+        Company company = (Company) session.getAttribute("company");
+        String CPassword = company.getCPassword();
+        if(!OldPassword.equals(CPassword)){
+            result = new Result(Config.STATUS_FAILURE,"原密码错误");
+        }
+        else {
+            int CompanyID = company.getCompanyID();
+            int update = companyService.updatePasswd(NewPassword, CompanyID);
+            if(update <= 0){
+                result = new Result(Config.STATUS_ERROR,"密码修改失败");
+            }
+            else{
+                Company company1 = companyService.queryById(CompanyID);
+                session.setAttribute("company", company1);
+                result = new Result(Config.STATUS_SUCCESS,"密码修改成功", company1);
+                session.setAttribute("result", result);
+            }
+        }
+        return result;
+    }
 }

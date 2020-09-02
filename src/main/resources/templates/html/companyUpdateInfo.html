@@ -17,7 +17,7 @@
     <link rel="stylesheet" th:href="@{static/css/page/typography.css}"/>
     <link rel="stylesheet" th:href="@{static/css/page/form.css}"/>
 </head>
-<body style="background-color:#F0F0F0;" onkeydown="keyLogin()">
+<body style="background-color:#F0F0F0;">
 <div id="header">
     <div class="wrapper">
         <a th:href="@{'/home'}" class="logo">
@@ -226,12 +226,6 @@
             }
         })
     });
-
-    function keyLogin(){
-        if (event.keyCode === 13){
-            document.getElementById("subSubmit").click();
-        }
-    };
 
     function formCheck() {
         var CompanyName = document.getElementById('subCompanyName').value;

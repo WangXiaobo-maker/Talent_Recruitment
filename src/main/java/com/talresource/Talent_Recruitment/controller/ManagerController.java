@@ -103,7 +103,6 @@ public class ManagerController {
     @RequestMapping("/requestkey")
     @ResponseBody
     public boolean requestkey(HttpSession session){
-        System.out.println("1");
         session.setAttribute("key", "true");
 
         return true;

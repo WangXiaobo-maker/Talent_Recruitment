@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class NewsController {
 
@@ -30,7 +32,11 @@ public class NewsController {
     }
 
     @RequestMapping("/redirNewsEdit")
-    public String redirNewsEdit(ModelMap map, int NewsID){
+    public String redirNewsEdit(HttpSession session, ModelMap map, int NewsID){
+
+        if(session.getAttribute("key") == null)
+            return "redirect:managerCheck";
+
         map.addAttribute("News", newsService.selectNewsByID(NewsID));
         return "newsPublish";
     }

@@ -113,14 +113,12 @@ public class PostController {
     @RequestMapping("/publishPost")
     @ResponseBody
     public Result publishPost(HttpSession session, String PostTitle, String PostContent){
-//        System.out.println(PostID + "-" + CommentContent);
         Result result = null;
         User user = (User)session.getAttribute("user");
         int UserID = user.getUserID();
         Date today = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String PostPublishDate = sdf.format(today);
-//        System.out.println(CommentPublishDate);
 
         if (postService.insertPost(PostTitle, PostContent, PostPublishDate, UserID)){
             result = new Result(Config.STATUS_SUCCESS,"发表成功");

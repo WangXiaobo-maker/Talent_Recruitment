@@ -25,7 +25,6 @@ public class CommentController {
     @RequestMapping("publishComment")
     @ResponseBody
     public Result publishComment(HttpSession session, String PostID, String CommentContent){
-//        System.out.println(PostID + "-" + CommentContent);
         Result result = null;
         int PostID1 = Integer.parseInt(PostID);
         User user = (User)session.getAttribute("user");
@@ -33,7 +32,6 @@ public class CommentController {
         Date today = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String CommentPublishDate = sdf.format(today);
-//        System.out.println(CommentPublishDate);
         if (commentService.insertComment(PostID1, UserID, CommentPublishDate,CommentContent)){
             result = new Result(Config.STATUS_SUCCESS,"发表成功");
         }

@@ -205,7 +205,6 @@ public class UserController {
         else {
             int UserID = user.getUserID();
             int update = userService.updatePasswd(NewPassword, UserID);
-            System.out.println(update);
             if(update <= 0){
                 result = new Result(Config.STATUS_ERROR,"密码修改失败");
             }

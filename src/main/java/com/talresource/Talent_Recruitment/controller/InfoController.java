@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -38,7 +37,6 @@ public class InfoController {
         Company company = (Company)session.getAttribute("company");
         if(user == null && company == null)
             return "redirect:userInfoPageNoLogin";
-
         if(user != null){
             List<JobApply> jobApplyList = jobApplyService.selectJobApplyInfolim5(user.getUserID());
 
@@ -109,6 +107,8 @@ public class InfoController {
     @RequestMapping("/companyCV")
     public String companyCV(HttpSession session, ModelMap map){
         Company company = (Company)session.getAttribute("company");
+        if(company == null)
+            return "redirect:userInfoPageNoLogin";
 
         List<JobApply> jobApplyList = jobApplyService.selectJobApplyInfo2(company.getCompanyID());
 
@@ -127,8 +127,10 @@ public class InfoController {
     }
 
     @RequestMapping("/dealApply")
-    public String dealApply(String state, int JobApplyID){
-
+    public String dealApply(HttpSession session, String state, int JobApplyID){
+        Company company = (Company)session.getAttribute("company");
+        if(company == null)
+            return "redirect:userInfoPageNoLogin";
         if (state.equals("同意")){
             if (jobApplyService.updateApplyState("已通过", JobApplyID)){
                 return "redirect:companyCV";
@@ -152,6 +154,8 @@ public class InfoController {
     @RequestMapping("/companyInfoPage")
     public String companyInfoPage(HttpSession session, ModelMap map) {
         Company company = (Company)session.getAttribute("company");
+        if(company == null)
+            return "redirect:userInfoPageNoLogin";
 
         List<JobApply> jobApplyList = jobApplyService.selectJobApplyInfo2lim5(company.getCompanyID());
 
@@ -169,23 +173,26 @@ public class InfoController {
     }
 
     @RequestMapping("/companyInfo")
-    public String companyInfo() {
+    public String companyInfo(HttpSession session) {
+        Company company = (Company)session.getAttribute("company");
+        if(company == null)
+            return "redirect:userInfoPageNoLogin";
         return "html/companyInfo";
     }
 
     @RequestMapping("/companyUpdateInfo")
-    public String companyUpdateInfo() {
+    public String companyUpdateInfo(HttpSession session) {
+        Company company = (Company)session.getAttribute("company");
+        if(company == null)
+            return "redirect:userInfoPageNoLogin";
         return "html/companyUpdateInfo";
-    }
-
-    @RequestMapping("/companyNotice")
-    public String companyNotice() {
-        return "html/companyNotice";
     }
 
     @RequestMapping("/companyJob")
     public String companyNotice(HttpSession session, Model model) {
         Company company = (Company)session.getAttribute("company");
+        if(company == null)
+            return "redirect:userInfoPageNoLogin";
         int CompanyID = company.getCompanyID();
         List<Job> jobs = jobService.selectJobByCompany(CompanyID);
         model.addAttribute("jobs", jobs);
@@ -193,23 +200,30 @@ public class InfoController {
     }
 
     @RequestMapping("/companyJobInfo")
-    public String companyJobInfo(Model model, int JobID) {
+    public String companyJobInfo(HttpSession session, Model model, int JobID) {
+        Company company = (Company)session.getAttribute("company");
+        if(company == null)
+            return "redirect:userInfoPageNoLogin";
         Job job = jobService.selectJobByID(JobID);
         model.addAttribute("job", job);
         return "html/companyJobInfo";
     }
 
     @RequestMapping("/companyAddJob")
-    public String companyAddJob() {
+    public String companyAddJob(HttpSession session) {
+        Company company = (Company)session.getAttribute("company");
+        if(company == null)
+            return "redirect:userInfoPageNoLogin";
         return "html/companyAddJob";
     }
 
     @RequestMapping("/companyUpdatePasswd")
-    public String companyUpdatePasswd() {
+    public String companyUpdatePasswd(HttpSession session) {
+        Company company = (Company)session.getAttribute("company");
+        if(company == null)
+            return "redirect:userInfoPageNoLogin";
         return "html/companyUpdatePasswd";
     }
-
-
 
     @RequestMapping("getSex")
     @ResponseBody

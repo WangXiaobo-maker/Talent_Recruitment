@@ -19,9 +19,6 @@ public class PageController {
     private JobService jobService;
 
     @Autowired
-    private NewsService newsService;
-
-    @Autowired
     private CompanyService companyService;
 
     @Autowired
@@ -93,7 +90,6 @@ public class PageController {
             else
                 map.addAttribute("message", "notnull");
 
-            System.out.println("Search1: " + JobList.size());
             return "jobSearch";
         }else {
 
@@ -114,7 +110,6 @@ public class PageController {
                 map.addAttribute("message", "null");
             else
                 map.addAttribute("message", "notnull");
-            System.out.println("Search1: " + JobList.size());
 
             map.put("JobCity",JobCity);
             map.put("JobSalary",JobSalary);
@@ -129,9 +124,6 @@ public class PageController {
 
             return "jobSearch";
         }
-
-
-
     }
 
 
@@ -156,9 +148,6 @@ public class PageController {
 
         map.addAttribute("PostMapByHeat", userPostMapByHeat);
         map.addAttribute("PostMapByDate", userPostMapByDate);
-
-        System.out.println();
-
         return "forum";
     }
 

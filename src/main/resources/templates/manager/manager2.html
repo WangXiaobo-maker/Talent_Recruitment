@@ -121,7 +121,7 @@
                                 <tbody>
                                 <tr th:each="post : ${PostList}">
                                     <td th:text="${post.getPostID()}"></td>
-                                    <td th:text="${post.getPostTitle()}"></td>
+                                    <td th:text="${post.getPostTitle()}" th:title="${post.getPostContent()}"></td>
                                     <td class="am-hide-sm-only" th:text="${post.getPostPublishDate()}"></td>
                                     <td style="text-align: center" th:text="${post.getPostHeat()}"></td>
                                     <td>

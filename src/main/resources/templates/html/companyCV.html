@@ -108,17 +108,19 @@
                             <th class="col_1">职位</th>
                             <th class="col_1">申请人</th>
                             <th class="col_1">申请时间</th>
-                            <th> 状态</th>
+                            <th>状态</th>
                             <th>简历</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="map : ${JobMap}">
-                            <td th:text="${map.key.getJob().getJobName()}"></td>
+                            <td><a th:href="@{'companyJobInfo?JobID=' + ${map.key.getJob().getJobID()}}"
+                                   th:text="${map.key.getJob().getJobName()}"></a>
+                            </td>
                             <td th:text="${map.key.getUser().getUserName()}"></td>
                             <td th:text="${map.value.getJobApplyDate()}"></td>
-                            <td >
+                            <td>
                                 <span th:if="${map.value.getJobReplyState()} == '待回复'" class="label label-purple"
                                       style="font-size: 15px">待回复</span>
                                 <span th:if="${map.value.getJobReplyState()} == '已拒绝'" class="label label-danger"
