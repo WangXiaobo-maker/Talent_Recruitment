@@ -104,7 +104,6 @@ public class ManagerController {
     @ResponseBody
     public boolean requestkey(HttpSession session){
         session.setAttribute("key", "true");
-
         return true;
     }
 }

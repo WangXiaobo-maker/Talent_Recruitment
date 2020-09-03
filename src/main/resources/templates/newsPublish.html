@@ -1,20 +1,15 @@
 <!DOCTYPE HTML>
-<html xmlns:wb="http://open.weibo.com/wb"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <script id="allmobilize" charset="utf-8" th:src="@{static/js/allmobilize.min.js}"></script>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate" media="handheld"/>
-    <!-- end 云适配 -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>无限创想人才招聘平台</title>
-    <!-- <div class="web_root"  style="display:none">h</div> -->
     <script type="text/javascript">
         var ctx = "h";
-        console.log(1);
     </script>
-
     <link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
@@ -46,7 +41,6 @@
             var index = 1;
             var timer;
 
-            //animate 函数，在当前left值得基础上向右移动 offset px,如果向左移动距离超过图六位置就变为图一位置，向右移动距离超过图二位置就变为图七位置
             function animate(offset) {
                 var newLeft = parseInt(list.style.left) + offset;
                 list.style.left = newLeft + 'px';
@@ -58,19 +52,15 @@
                 }
             }
 
-            //将当前显示图片对应的小圆点样式改变
             function buttonsShow() {
-                //将所有的小圆点的样式清除
                 for (var i = 0; i < buttons.length; i++) {
                     if (buttons[i].className == "on") {
                         buttons[i].className = "";
                     }
                 }
-                //数组从0开始，故index需要-1
                 buttons[index - 1].className = "on";
             }
 
-            //点击产生查看前一张效果，animate移动距离改变，小圆点显示改变，当index=1时还要查看前一张时，index变为5
             prev.onclick = function () {
                 index -= 1;
                 if (index < 1) {
@@ -80,7 +70,6 @@
                 animate(1024);
             };
 
-            //点击产生查看后一张效果，animate移动距离改变，小圆点显示改变
             next.onclick = function () {
                 index += 1;
                 if (index > 5) {
@@ -90,41 +79,33 @@
                 buttonsShow();
             };
 
-            //通过定时器调用next.onclick（）实现每两秒滚动一次
             function play() {
-                //重复执行的定时器
                 timer = setInterval(function () {
                     next.onclick();
                 }, 2000)
             }
 
-            //清除定时器实现停止滚动
             function stop() {
                 clearInterval(timer);
             }
-            container.onmouseover = stop; //在鼠标进入onmouseover时，停止每两秒滚动一次
-            container.onmouseout = play; //在鼠标离开onmouseover时，开始每两秒滚动一次
-            play(); //在onload后就调用play()
+            container.onmouseover = stop;
+            container.onmouseout = play;
+            play();
 
-            //为每个小按钮添加onclick事件，当点击按钮时会跳动到按钮对应的图片
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].onclick = function() {
-                    //当前图片点击当前的小圆点不执行以下代码。
                     if (this.className == "on") {
                         return;
                     }
-                    /* 这里获得鼠标移动到小圆点的位置，用this把index绑定到对象buttons[i]上 */
-                    /* 由于这里的index是自定义属性，需要用到getAttribute()这个DOM2级方法，去获取自定义index的属性*/
                     var clickIndex = parseInt(this.getAttribute('index'));
-                    var offset = 1024 * (clickIndex - index); //这个index是当前图片停留时的index
+                    var offset = 1024 * (clickIndex - index);
                     animate(-offset);
-                    index = clickIndex; //存放鼠标点击后的位置，用于小圆点的正常显示
+                    index = clickIndex;
                     buttonsShow();
                 }
             }
         }
     </script>
-
 </head>
 <body>
 <div id="body" style="background-color: #f0f0f0;">
@@ -142,15 +123,11 @@
             </ul>
 
         </div>
-    </div><!-- end #header -->
-
+    </div>
     <form  th:action="@{'/saveNews?NewsID='+${News.getNewsID()}}" method="post">
         <div id="new_content" style="margin-top: 10px;">
-
             <div class="clear"></div>
-
             <div style="margin-bottom: 10px; text-align: left;">
-
                 <p>
                     <img th:src="@{static/img/news.png}" alt="">
                     <span style="font-size: 20px;color: #6b6b6b;text-align: right;font-weight: bold;">添加/修改资讯</span>
@@ -159,71 +136,37 @@
                 <span style="font-size: 25px; padding-right: 10px">标题&nbsp;&nbsp;:</span>
                 <input name="NewsTitle" type="text" style="height: 35px;" th:value="${News.NewsTitle}"
                        placeholder="请输入标题（最多...个字）">
-
             </div>
-
             <div id="test-editormd">
-
             <textarea style="display:none;" name="NewsContent" th:text="${News.NewsContent}" >
             </textarea>
-
             </div>
-
             <div>
                 <p style="font-size: 15px;color: #6b6b6b;text-align: left;"><label id="time" style=" "></label></p>
             </div>
-
             <script>
-
                 function mytime(){
                     var a = new Date();
                     var b = a.toLocaleTimeString();
                     var c = a.toLocaleDateString();
                     document.getElementById("time").innerHTML = c+"&nbsp;&nbsp;&nbsp;"+b;
                 }
-
                 setInterval(function() {mytime()},1000);
-
             </script>
-
             <div style="text-align: left;margin-top: 5px;">
-                <!--<button track-type="searchTrackButtonClick" event-type="99" trace-name="申请职位-职位下" class="p_but">申请职位</button>-->
                 <input type="submit" value="发布" class="p_but" style="height: 40px;width: 180px;font-size: 20px;">
             </div>
-
             <div class="clear"></div>
         </div>
     </form>
-
-    <input type="hidden" value="" name="userid" id="userid"/>
-    <!-- <div id="qrSide"><a></a></div> -->
-    <!--  -->
-
-    <!-- <div id="loginToolBar">
-        <div>
-            <em></em>
-            <img src="style/images/footbar_logo.png" width="138" height="45" />
-            <span class="companycount"></span>
-            <span class="positioncount"></span>
-            <a href="#loginPop" class="bar_login inline" title="登录"><i></i></a>
-            <div class="right">
-                <a href="register.html?from=index_footerbar" onclick="_hmt.push(['_trackEvent', 'button', 'click', 'register'])" class="bar_register" id="bar_register" target="_blank"><i></i></a>
-            </div>
-            <input type="hidden" id="cc" value="16002" />
-            <input type="hidden" id="cp" value="96531" />
-        </div>
-    </div>
-     -->
-
-    <!------------------------------------- end ----------------------------------------->
     <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/count.js}"></script>
     <div class="clear"></div>
     <input type="hidden" id="resubmitToken" value=""/>
     <a id="backtop" title="回到顶部" rel="nofollow"></a>
-</div><!-- end #container -->
-</div><!-- end #body -->
+</div>
+</div>
 <div id="footer">
     <div id="linkbox">
         <dl>
@@ -237,7 +180,6 @@
                 <a href="http://www.iconfans.com/" target="_blank">iconfans</a> <span>|</span>
                 <a href="http://www.html5dw.com/" target="_blank">html5梦工厂</a> <span>|</span>
                 <a href="http://www.sykong.com/" target="_blank">手游那点事</a>
-
                 <a href="http://www.php100.com/" target="_blank">php100</a> <span>|</span>
                 <a href="http://www.uehtml.com/" target="_blank">uehtml</a> <span>|</span>
                 <a href="http://www.w3cplus.com/" target="_blank">W3CPlus</a> <span>|</span>
@@ -251,7 +193,6 @@
                 <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
                 <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
                 <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
-
             </dd>
         </dl>
     </div>
@@ -266,7 +207,6 @@
 <script src="../static/editormd/editormd.min.js" th:src="@{static/editormd/editormd.min.js}" ></script>
 <script type="text/javascript" th:inline="javascript">
     var testEditor;
-
     $(function() {
         testEditor = editormd("test-editormd", {
             width   : "100%",
@@ -280,18 +220,7 @@
             flowChart       : true,  // 默认不解析
             sequenceDiagram : true,  // 默认不解析
             path    : [[@{static/editormd/lib/}]]
-    });
-        // testEditor.unwatch();
-
-        /*
-        // or
-        testEditor = editormd({
-            id      : "test-editormd",
-            width   : "90%",
-            height  : 640,
-            path    : "../lib/"
         });
-        */
     });
 </script>
 
@@ -320,8 +249,5 @@
             });
     }
 </script>
-<!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
- -->
-
 </body>
 </html>

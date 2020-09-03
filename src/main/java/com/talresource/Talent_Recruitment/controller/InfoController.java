@@ -106,6 +106,7 @@ public class InfoController {
 
     @RequestMapping("/companyCV")
     public String companyCV(HttpSession session, ModelMap map){
+        session.setAttribute("user",null);
         Company company = (Company)session.getAttribute("company");
         if(company == null)
             return "redirect:userInfoPageNoLogin";
@@ -128,6 +129,7 @@ public class InfoController {
 
     @RequestMapping("/dealApply")
     public String dealApply(HttpSession session, String state, int JobApplyID){
+        session.setAttribute("user",null);
         Company company = (Company)session.getAttribute("company");
         if(company == null)
             return "redirect:userInfoPageNoLogin";
@@ -153,6 +155,7 @@ public class InfoController {
 
     @RequestMapping("/companyInfoPage")
     public String companyInfoPage(HttpSession session, ModelMap map) {
+        session.setAttribute("user",null);
         Company company = (Company)session.getAttribute("company");
         if(company == null)
             return "redirect:userInfoPageNoLogin";
@@ -174,6 +177,7 @@ public class InfoController {
 
     @RequestMapping("/companyInfo")
     public String companyInfo(HttpSession session) {
+        session.setAttribute("user",null);
         Company company = (Company)session.getAttribute("company");
         if(company == null)
             return "redirect:userInfoPageNoLogin";
@@ -182,6 +186,7 @@ public class InfoController {
 
     @RequestMapping("/companyUpdateInfo")
     public String companyUpdateInfo(HttpSession session) {
+        session.setAttribute("user",null);
         Company company = (Company)session.getAttribute("company");
         if(company == null)
             return "redirect:userInfoPageNoLogin";
@@ -190,6 +195,7 @@ public class InfoController {
 
     @RequestMapping("/companyJob")
     public String companyNotice(HttpSession session, Model model) {
+        session.setAttribute("user",null);
         Company company = (Company)session.getAttribute("company");
         if(company == null)
             return "redirect:userInfoPageNoLogin";
@@ -201,6 +207,7 @@ public class InfoController {
 
     @RequestMapping("/companyJobInfo")
     public String companyJobInfo(HttpSession session, Model model, int JobID) {
+        session.setAttribute("user",null);
         Company company = (Company)session.getAttribute("company");
         if(company == null)
             return "redirect:userInfoPageNoLogin";
@@ -211,6 +218,7 @@ public class InfoController {
 
     @RequestMapping("/companyAddJob")
     public String companyAddJob(HttpSession session) {
+        session.setAttribute("user",null);
         Company company = (Company)session.getAttribute("company");
         if(company == null)
             return "redirect:userInfoPageNoLogin";
@@ -219,6 +227,7 @@ public class InfoController {
 
     @RequestMapping("/companyUpdatePasswd")
     public String companyUpdatePasswd(HttpSession session) {
+        session.setAttribute("user",null);
         Company company = (Company)session.getAttribute("company");
         if(company == null)
             return "redirect:userInfoPageNoLogin";

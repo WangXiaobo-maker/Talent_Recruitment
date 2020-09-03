@@ -1,21 +1,16 @@
 <!DOCTYPE HTML>
-<html xmlns:wb="http://open.weibo.com/wb"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <script id="allmobilize" charset="utf-8" th:src="@{static/js/allmobilize.min.js}"></script>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate" media="handheld"/>
-    <!-- end 云适配 -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>无限创想人才招聘平台</title>
-    <!-- <div class="web_root"  style="display:none">h</div> -->
     <script type="text/javascript">
         var ctx = "h";
-        console.log(1);
     </script>
     <link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
-
     <link rel="Shortcut Icon" href="h/images/favicon.ico">
     <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
@@ -34,97 +29,6 @@
     <script type="text/javascript" th:src="@{static/js/conv.js}"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
-    <script>
-
-        window.onload = function () {
-            var container = document.getElementById("home_banner");
-            var list = document.getElementById("banner_list");
-            var buttons = document.getElementById("banner_btn").getElementsByTagName("span");
-            var prev = document.getElementById('prev');
-            var next = document.getElementById('next');
-            var index = 1;
-            var timer;
-
-            //animate 函数，在当前left值得基础上向右移动 offset px,如果向左移动距离超过图六位置就变为图一位置，向右移动距离超过图二位置就变为图七位置
-            function animate(offset) {
-                var newLeft = parseInt(list.style.left) + offset;
-                list.style.left = newLeft + 'px';
-                if (newLeft > -0) {
-                    list.style.left = -4096 + 'px';
-                }
-                if (newLeft < -4096) {
-                    list.style.left = -0 + 'px';
-                }
-            }
-
-            //将当前显示图片对应的小圆点样式改变
-            function buttonsShow() {
-                //将所有的小圆点的样式清除
-                for (var i = 0; i < buttons.length; i++) {
-                    if (buttons[i].className == "on") {
-                        buttons[i].className = "";
-                    }
-                }
-                //数组从0开始，故index需要-1
-                buttons[index - 1].className = "on";
-            }
-
-            //点击产生查看前一张效果，animate移动距离改变，小圆点显示改变，当index=1时还要查看前一张时，index变为5
-            prev.onclick = function () {
-                index -= 1;
-                if (index < 1) {
-                    index = 5
-                }
-                buttonsShow();
-                animate(1024);
-            };
-
-            //点击产生查看后一张效果，animate移动距离改变，小圆点显示改变
-            next.onclick = function () {
-                index += 1;
-                if (index > 5) {
-                    index = 1
-                }
-                animate(-1024);
-                buttonsShow();
-            };
-
-            //通过定时器调用next.onclick（）实现每两秒滚动一次
-            function play() {
-                //重复执行的定时器
-                timer = setInterval(function () {
-                    next.onclick();
-                }, 2000)
-            }
-
-            //清除定时器实现停止滚动
-            function stop() {
-                clearInterval(timer);
-            }
-
-            container.onmouseover = stop; //在鼠标进入onmouseover时，停止每两秒滚动一次
-            container.onmouseout = play; //在鼠标离开onmouseover时，开始每两秒滚动一次
-            play(); //在onload后就调用play()
-
-            //为每个小按钮添加onclick事件，当点击按钮时会跳动到按钮对应的图片
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].onclick = function () {
-                    //当前图片点击当前的小圆点不执行以下代码。
-                    if (this.className == "on") {
-                        return;
-                    }
-                    /* 这里获得鼠标移动到小圆点的位置，用this把index绑定到对象buttons[i]上 */
-                    /* 由于这里的index是自定义属性，需要用到getAttribute()这个DOM2级方法，去获取自定义index的属性*/
-                    var clickIndex = parseInt(this.getAttribute('index'));
-                    var offset = 1024 * (clickIndex - index); //这个index是当前图片停留时的index
-                    animate(-offset);
-                    index = clickIndex; //存放鼠标点击后的位置，用于小圆点的正常显示
-                    buttonsShow();
-                }
-            }
-        }
-    </script>
-
 </head>
 <body>
 <div id="body" style="background-color: #f0f0f0;">
@@ -156,11 +60,9 @@
                 <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
             </ul>
         </div>
-    </div><!-- end #header -->
+    </div>
     <div class="content4">
         <div class="content3">
-
-
             <div id="block_job">
                 <div style="height:156px;width: 1024px;margin-top: 20px;">
                     <div style="width: 165px;height: 123px;float: right;text-align: center;margin-top: 70px;">
@@ -169,14 +71,12 @@
                             <b style="font-size: 38px;color: #ffffff; margin-top: 20px; ">立即沟通</b>
                         </a>
                     </span>
-
                     </div>
                     <div style="width: 160px;height: 115px;float:left;text-align: center;margin-top: 30px;">
                         <img th:src="@{'static/img/jobLogo/' + ${Job.getJobID()} + '.jpg'}" width="125" height="115"
                              alt="公司loGO"/>
                     </div>
                     <div style="width: auto;height: 123px;text-indent: 1em;float:left;text-align: center;margin-top: 40px;">
-
                         <h1 class="name" style="color: #FFFFFF" th:text="${Job.JobName}">Java工程师</h1>
                         <p style="color: #FFFFFF; width: 300px">
                             <span th:text="${Job.JobSalary} + ' | '">8K-9K&nbsp;|</span>
@@ -184,12 +84,8 @@
                             <span th:text="${Job.JobExperience} + ' | ' ">&nbsp;3-5年&nbsp;|</span>
                             <span th:text="${Job.JobEduDegree}">&nbsp;本科</span></p>
                     </div>
-
-
                 </div>
-
             </div>
-
             <style>
                 .ui-autocomplete {
                     width: 488px;
@@ -232,9 +128,7 @@
     </div>
 
     <div id="container2">
-        <!-- <div class="clearfix">-->
         <div class="job-box" style="height: auto;">
-
             <div class="content_left" style="height: 1050px;">
                 <dl>
                     <dt>
@@ -251,7 +145,6 @@
                         </div>
                     </dt>
                 </dl>
-
                 <div class="job-block" style="height:auto;">
                     <div class="job_info_title2" style="font-size: 22px;width: 110px;">职位描述：</div>
                     <div class="text" style="margin-top: 20px;font-size: 16px;line-height: 1.5;" >
@@ -259,7 +152,6 @@
                                 -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden;
                                 text-indent: 2em" th:text="${Job.JobInfo}"></p>
                     </div>
-
                 </div>
                 <div class="job-block">
                     <div class="job_info_title2" style="font-size: 22px;width: 110px;">公司介绍：</div>
@@ -272,7 +164,6 @@
                 <div class="job-block">
                     <div class="job_info_title2" style="font-size: 22px;width: 110px;margin-bottom: 10px;">公司地址：</div>
                     <div class="job-location-address">
-                        <!-- <div class="text"> &nbsp;&nbsp;西安市雁塔区华为西安研究所</div>-->
                         <span style="margin-bottom: 20px;font-size: medium;display:block;"
                               th:text="${Company.CompanyAddress}">
                             <img th:src="@{static/img/address.png}" width="20" height="23" alt="vip"/>&nbsp;
@@ -280,17 +171,13 @@
                         <div class="job-location-map js-open-map" style="margin-top: 10px;" data-content="西安市 雁塔区 华为西安研究所">
                             <img th:src="@{'static/img/map/' + ${Company.getCompanyID()} + '.png'}"
                                  width="700px" alt="公司地址"/>
-
                         </div>
                     </div>
                 </div>
-
                 <input id="jobid" th:value="${Job.getJobID()}" hidden="hidden"/>
                 <input id="companyid" th:value="${Job.getCompanyID()}" hidden="hidden"/>
-
                 <div class="job-block">
                     <div class="job_info_title2" style="font-size: 22px;width: 110px;margin-top: 20px;">申请职位：</div>
-
                     <div th:if="${session.user} == null" >
                         <center>
                         <input type="button" style="padding: 0 22px;font-size: 20px;height: 43px;line-height: 43px;
@@ -305,12 +192,8 @@
                         color: white; width: 200px; text-align: center" value="申请职位" onclick="jobApply(this)"/>
                         </center>
                     </div>
-
                 </div>
-
-
             </div>
-
             <div class="content_r" style="height: 1050px;">
                 <div class="more_job_title" style="margin: 0px;text-align: left;border-bottom: 0px;">
                     <h4>
@@ -318,10 +201,8 @@
                            class="more"><strong>更多相似职位</strong></a>
                     </h4>
                 </div>
-
                 <div>
                     <ul style="padding: 0px;">
-
                         <ol class="info-block" style="padding-left: 0px;margin-right: 20px;width: auto;height: auto;"
                             th:each="similarJob : ${similarJobList}">
                             <div class="company-logo" style="padding-left: 60px;">
@@ -339,7 +220,6 @@
                                         大数据解决方案
                                     </a>
                                         <p style="color: red;font-size: 14px;" th:text="${similarJob.getJobSalary()}">15-25K</p>
-
                                 </div>
                                 <p class="gray" style="width: auto;font-size: 14px;">
                                     <a ka="job_sug_brandjob2_custompage"
@@ -350,8 +230,6 @@
                                 </p>
                             </div>
                         </ol>
-
-
                     </ul>
                 </div>
             </div>
@@ -360,7 +238,6 @@
                 <div class="job_info_title"
                      style="font-size: 23px;padding-left: 8px;padding-top: 10px;padding-bottom: 10px;">推荐职位
                 </div>
-
                 <div class="slider-main">
                     <ul class="ul_box">
                         <li class="cur">
@@ -378,150 +255,22 @@
                                     神西电气</p>
                             </a>
                         </li>
-
                     </ul>
-
-
                 </div>
             </div>
             <div class="content_bottom_right"></div>
-
-
-            <!------------------------------------- end ----------------------------------------->
-
-            <script src="style/js/job_detail.js" type="text/javascript"></script>
-            <script src="style/js/count.js" type="text/javascript"></script>
-            <script>
-                $(function () {
-                    $('#weibolist .cookietxte').text('推荐本职位给好友');
-                    $(document).bind('cbox_complete', function () {
-                        hbzxJQ("#gaosutapt .pttui a").trigger("click");
-                        hbzxJQ("#mepingpt .pttui a").trigger("click");
-                    });
-                    $('#cboxOverlay').bind('click', function () {
-                        top.location.reload();
-                    });
-                    $('#colorbox').on('click', '#cboxClose', function () {
-                        if ($(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'deliverResumesSuccess' || $(this).siblings('#cboxLoadedContent').children('div').attr('id') == 'uploadFileSuccess') {
-                            top.location.reload();
-                        }
-                    });
-                    popQR();
-                })
-            </script>
-
-            <script src="http://api.map.baidu.com/api?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602"
-                    type="text/javascript"></script>
-            <script src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=A2c1a1ff1fe0750e3290660295aac602&amp;services=&amp;t=20140617153133"
-                    type="text/javascript"></script>
-            <script type="text/javascript">
-                //百度地图API功能
-                var sMap = new BMap.Map("smallmap");
-                sMap.enableScrollWheelZoom(true);
-
-                if ($('#positionLat').val() &amp;&amp; $('#positionLng').val()) {
-                    var sPoint = new BMap.Point($('#positionLng').val(), $('#positionLat').val());
-                    sMap.centerAndZoom(sPoint, 12);
-                    sMap.addOverlay(new BMap.Marker(sPoint));              // 将标注添加到地图中
-
-                } else {
-                    // 创建地址解析器实例
-                    var sMyGeo = new BMap.Geocoder();
-                    // 将地址解析结果显示在地图上,并调整地图视野
-                    sMyGeo.getPoint("广州市天河区科韵路信息港建中路36号裕桥商务大厦", function (sPoint) {
-                        if (sPoint) {
-                            sMap.centerAndZoom(sPoint, 16);
-                            sMap.addOverlay(new BMap.Marker(sPoint));
-                        }
-                    }, "广州");
-                }
-
-                /*弹窗大地图*/
-                var map = new BMap.Map("allmap");
-                map.addControl(new BMap.NavigationControl());
-                map.addControl(new BMap.MapTypeControl());
-                map.addControl(new BMap.OverviewMapControl());
-                map.enableScrollWheelZoom(true);
-                // 创建地址解析器实例
-                var gc = new BMap.Geocoder();
-                $(function () {
-                    $('#mapPreview').bind('click', function () {
-                        $.colorbox({inline: true, href: "#baiduMap", title: "公司地址"});
-                        var address = "广州市天河区科韵路信息港建中路36号裕桥商务大厦";
-                        var city = "广州";
-                        var lat = $('#positionLat').val();
-                        var lng = $('#positionLng').val();
-                        map.setCurrentCity(city);
-                        map.setZoom(12);
-                        if (lat &amp;&amp; lng) {
-                            var p = new BMap.Point(lng, lat);
-                            var marker = new BMap.Marker(p);  // 创建标注
-                            map.addOverlay(marker);              // 将标注添加到地图中
-                            setTimeout(function () {
-                                map.centerAndZoom(p, 15);
-                            }, 1000);
-                            map.setCenter(p);
-                            map.setZoom(15);
-                            var sContent =
-                                "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;" + city + "&lt;/h4&gt;" +
-                                "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;" + address + "&lt;/p&gt;" +
-                                "&lt;/div&gt;";
-                            var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-                            //图片加载完毕重绘infowindow
-                            marker.openInfoWindow(infoWindow);
-                        } else {
-                            gc.getPoint(address, function (point) {
-                                if (point) {
-                                    var p = new BMap.Point(point.lng, point.lat);
-                                    var marker = new BMap.Marker(p);  // 创建标注
-                                    map.addOverlay(marker);              // 将标注添加到地图中
-                                    setTimeout(function () {
-                                        map.centerAndZoom(p, 15);
-                                    }, 1000);
-                                    map.setZoom(14);
-                                    var sContent =
-                                        "&lt;h4 style='margin:0 0 5px 0;padding:0.2em 0'&gt;" + city + "&lt;/h4&gt;" +
-                                        "&lt;p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'&gt;" + address + "&lt;/p&gt;" +
-                                        "&lt;/div&gt;";
-                                    var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-                                    //图片加载完毕重绘infowindow
-                                    marker.openInfoWindow(infoWindow);
-                                }
-                            }, city);
-                        }
-
-
-                    });
-
-                });
-            </script>
             <div class="clear"></div>
-            <input type="hidden" value="e789f5e7097b4c828e9d40ef39a6baf8" id="resubmitToken">
-            <a rel="nofollow" title="回到顶部" id="backtop" style="display: inline;"></a>
-        </div><!-- end #container -->
-        <input type="hidden" value="" name="userid" id="userid"/>
-
-        <!------------------------------------- end ----------------------------------------->
-        <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
-        <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
-        <script type="text/javascript" th:src="@{static/js/count.js}"></script>
+        </div>
         <div class="clear"></div>
-        <input type="hidden" id="resubmitToken" value=""/>
-        <a id="backtop" title="回到顶部" rel="nofollow"></a>
-    </div><!-- end #container -->
-    <input type="hidden" value="" name="userid" id="userid"/>
-    <!-- <div id="qrSide"><a></a></div> -->
-    <!--  -->
-
-    <!------------------------------------- end ----------------------------------------->
+    </div>
     <script type="text/javascript" th:src="@{static/js/Chart.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/home.min.js}"></script>
     <script type="text/javascript" th:src="@{static/js/count.js}"></script>
     <div class="clear"></div>
     <input type="hidden" id="resubmitToken" value=""/>
     <a id="backtop" title="回到顶部" rel="nofollow"></a>
-</div><!-- end #container -->
-</div><!-- end #body -->
+</div>
+</div>
 <div id="footer">
     <div id="linkbox">
         <dl>
@@ -535,7 +284,6 @@
                 <a href="http://www.iconfans.com/" target="_blank">iconfans</a> <span>|</span>
                 <a href="http://www.html5dw.com/" target="_blank">html5梦工厂</a> <span>|</span>
                 <a href="http://www.sykong.com/" target="_blank">手游那点事</a>
-
                 <a href="http://www.php100.com/" target="_blank">php100</a> <span>|</span>
                 <a href="http://www.uehtml.com/" target="_blank">uehtml</a> <span>|</span>
                 <a href="http://www.w3cplus.com/" target="_blank">W3CPlus</a> <span>|</span>
@@ -549,7 +297,6 @@
                 <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
                 <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
                 <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
-
             </dd>
         </dl>
     </div>
@@ -665,17 +412,7 @@
                     })
                 }
             });
-
-
-
     }
 </script>
-<!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
- -->
-
-<script th:src="@{static/js/mouse-click.js}"></script>
-<canvas width="100%" height="100%"
-        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
-
 </body>
 </html>

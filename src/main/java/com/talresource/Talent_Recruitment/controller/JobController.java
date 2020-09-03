@@ -42,19 +42,16 @@ public class JobController {
                 Job job = JobList.get(i);
                 CompanyList.add(companyService.queryById(job.getCompanyID()));
             }
-
             Map<Job, Company> map1 = new LinkedHashMap<>();
             for (int i=0;i<JobList.size();i++){
                 map1.put(JobList.get(i), CompanyList.get(i));
             }
-
             map.addAttribute("JobMap", map1);
             if (map1.size() == 0)
                 map.addAttribute("message", "null");
             else
                 map.addAttribute("message", "notnull");
         }
-
         else if (searchType.equals("公司")){
             List<Company> CompanyList = companyService.selectCompanyByName(jobInfo);
             List<Job> JobList = new ArrayList<Job>();

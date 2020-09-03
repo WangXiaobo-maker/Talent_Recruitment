@@ -36,12 +36,6 @@
 </div><!-- end #header -->
 
 <div class="admin">
-    <!--<div class="am-g">-->
-    <!-- ========== Left Sidebar Start ========== -->
-    <!--<div class="left side-menu am-hide-sm-only am-u-md-1 am-padding-0">
-        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 548px;">
-            <div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 548px;">-->
-    <!-- sidebar start -->
     <div class="admin-sidebar am-offcanvas  am-padding-0" id="admin-offcanvas" style="margin-top: 0;overflow-y: hidden;">
         <div class="am-offcanvas-bar admin-offcanvas-bar">
             <!-- User -->
@@ -54,8 +48,6 @@
                 <br/>
                 <span style="font-weight:bold; color:#89b0de" th:text="${session.user.getNickName()}"></span>，欢迎你！
             </div>
-            <!-- End User -->
-
             <ul class="am-list admin-sidebar-list">
                 <li><a th:href="@{'/userInfoPage'}"><span class="am-icon-home"></span>&nbsp;&nbsp;个人主页</a></li>
                 <li class="admin-parent">
@@ -81,22 +73,12 @@
             </ul>
         </div>
     </div>
-    <!-- sidebar end -->
-
-    <!-- ========== Left Sidebar end ========== -->
-
-
-    <!--	<div class="am-g">-->
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
     <div class="content-page">
         <div class="gallery-content" style="width: 1060px;height: 850px;">
             <span style="font-weight:bold; font-size:30px; margin:10px;"><img th:src="@{static/img/news.png}">&nbsp;我的简历</span>
-            <!-- Start content -->
             <div id="gallery-container">
                 <div class="gallery-item" style="width: 500px;margin-left: 20px;">
                     <input id="UserID" th:value="${session.user.getUserID()}" hidden>
-                    <!-- th:href="@{'static/img/CVImg/' + ${session.user.getUserID()} + '.png'}" target="_blank" -->
                     <a onclick="showCV()">
                         <img th:src="@{'static/img/CVImg/' + ${session.user.getUserID()} + '.png'}" alt="" id="CVimg"
                              onerror="this.src='static/img/CVImg/default.png'" style="object-fit: cover;max-height: 700px;">
@@ -117,9 +99,8 @@
 <canvas width="100%" height="100%"
         style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 
-<!-- navbar -->
 <a href="admin-offcanvas" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
-   data-am-offcanvas="{target: '#admin-offcanvas'}"><!--<i class="fa fa-bars" aria-hidden="true"></i>--></a>
+   data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
 <script type="text/javascript" th:src="@{static/js/amazeui.min.js}"></script>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>

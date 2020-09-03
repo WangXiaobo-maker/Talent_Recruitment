@@ -5,9 +5,8 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>无限创想人才招聘平台</title>
+
     <link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
-
-
     <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
     <link rel="stylesheet" th:href="@{static/css/amazeui.css}"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -33,15 +32,9 @@
             <li class="current"><a th:href="@{'/userInfoPage'}" rel="nofollow">我的信息</a></li>
         </ul>
     </div>
-</div><!-- end #header -->
+</div>
 
 <div class="admin">
-    <!--<div class="am-g">-->
-    <!-- ========== Left Sidebar Start ========== -->
-    <!--<div class="left side-menu am-hide-sm-only am-u-md-1 am-padding-0">
-        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 548px;">
-            <div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 548px;">-->
-    <!-- sidebar start -->
     <div class="admin-sidebar am-offcanvas am-padding-0" id="admin-offcanvas" style="margin-top: 0;overflow-y: hidden;">
         <div class="am-offcanvas-bar admin-offcanvas-bar">
             <!-- User -->
@@ -79,25 +72,11 @@
             </ul>
         </div>
     </div>
-    <!-- sidebar end -->
-
-    <!--</div>
-</div>
-</div>-->
-    <!-- ========== Left Sidebar end ========== -->
-
-
-    <!--	<div class="am-g">-->
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
     <div class="content-page">
-        <!-- Start content -->
         <div class="content1" style="font-size: 20px;">
             <div class="am-g">
-                <!-- Row start -->
                 <div class="am-u-sm-12">
                     <div class="card-box">
-
                         <form action="" class="am-form" data-am-validator>
                             <fieldset>
                                 <legend style="font-size: 25px;">企业信息</legend>
@@ -167,25 +146,24 @@
 
                     </div>
                 </div>
-                <!-- Row end -->
             </div>
 
 
         </div>
     </div>
-    <!-- end right Content here -->
-    <!--</div>-->
 </div>
 </div>
 
-<!-- navbar -->
 <a href="admin-offcanvas" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
-   data-am-offcanvas="{target: '#admin-offcanvas'}"><!--<i class="fa fa-bars" aria-hidden="true"></i>--></a>
+   data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
 <script type="text/javascript" th:src="@{static/js/jquery-2.1.0.js}"></script>
 <script type="text/javascript" th:src="@{static/js/amazeui.min.js}"></script>
 <script type="text/javascript" th:src="@{static/js/app.js}"></script>
 <script type="text/javascript" th:src="@{static/js/blockUI.js}"></script>
+<script th:src="@{static/js/mouse-click.js}"></script>
+<canvas width="100%" height="100%"
+        style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
 <script>
     function logoutC() {
         swal({

@@ -1,25 +1,19 @@
 <!DOCTYPE HTML>
-<html xmlns:wb="http://open.weibo.com/wb"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <script id="allmobilize" charset="utf-8" th:src="@{static/js/allmobilize.min.js}"></script>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate" media="handheld"/>
-    <!-- end 云适配 -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>无限创想人才招聘平台</title>
-    <!-- <div class="web_root"  style="display:none">h</div> -->
     <script type="text/javascript">
         var ctx = "h";
-        console.log(1);
     </script>
-
     <link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/popup.css}"/>
-
     <script th:src="@{static/js/jquery.1.10.1.min.js}" type="text/javascript"></script>
     <script type="text/javascript" th:src="@{static/js/jquery.lib.min.js}"></script>
     <script th:src="@{static/js/ajaxfileupload.js}" type="text/javascript"></script>
@@ -44,7 +38,6 @@
             var index = 1;
             var timer;
 
-            //animate 函数，在当前left值得基础上向右移动 offset px,如果向左移动距离超过图六位置就变为图一位置，向右移动距离超过图二位置就变为图七位置
             function animate(offset) {
                 var newLeft = parseInt(list.style.left) + offset;
                 list.style.left = newLeft + 'px';
@@ -56,19 +49,15 @@
                 }
             }
 
-            //将当前显示图片对应的小圆点样式改变
             function buttonsShow() {
-                //将所有的小圆点的样式清除
                 for (var i = 0; i < buttons.length; i++) {
                     if (buttons[i].className == "on") {
                         buttons[i].className = "";
                     }
                 }
-                //数组从0开始，故index需要-1
                 buttons[index - 1].className = "on";
             }
 
-            //点击产生查看前一张效果，animate移动距离改变，小圆点显示改变，当index=1时还要查看前一张时，index变为5
             prev.onclick = function () {
                 index -= 1;
                 if (index < 1) {
@@ -78,7 +67,6 @@
                 animate(1024);
             };
 
-            //点击产生查看后一张效果，animate移动距离改变，小圆点显示改变
             next.onclick = function () {
                 index += 1;
                 if (index > 5) {
@@ -88,36 +76,29 @@
                 buttonsShow();
             };
 
-            //通过定时器调用next.onclick（）实现每两秒滚动一次
             function play() {
-                //重复执行的定时器
                 timer = setInterval(function () {
                     next.onclick();
                 }, 2000)
             }
 
-            //清除定时器实现停止滚动
             function stop() {
                 clearInterval(timer);
             }
 
-            container.onmouseover = stop; //在鼠标进入onmouseover时，停止每两秒滚动一次
-            container.onmouseout = play; //在鼠标离开onmouseover时，开始每两秒滚动一次
-            play(); //在onload后就调用play()
+            container.onmouseover = stop;
+            container.onmouseout = play;
+            play();
 
-            //为每个小按钮添加onclick事件，当点击按钮时会跳动到按钮对应的图片
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].onclick = function () {
-                    //当前图片点击当前的小圆点不执行以下代码。
                     if (this.className == "on") {
                         return;
                     }
-                    /* 这里获得鼠标移动到小圆点的位置，用this把index绑定到对象buttons[i]上 */
-                    /* 由于这里的index是自定义属性，需要用到getAttribute()这个DOM2级方法，去获取自定义index的属性*/
                     var clickIndex = parseInt(this.getAttribute('index'));
-                    var offset = 1024 * (clickIndex - index); //这个index是当前图片停留时的index
+                    var offset = 1024 * (clickIndex - index);
                     animate(-offset);
-                    index = clickIndex; //存放鼠标点击后的位置，用于小圆点的正常显示
+                    index = clickIndex;
                     buttonsShow();
                 }
             }
@@ -157,7 +138,6 @@
     </div>
     <div class="content">
         <div id="block">
-
         </div>
         <div id="search_box" align="center">
             <form id="searchForm" name="searchForm">
@@ -168,20 +148,16 @@
                 <div class="searchtype_arrow"></div>
                 <input type="text" id="search_input" name="jobInfo" tabindex="1" value="" style="width:699px; height:23px;"
                        placeholder="请输入职位名称，如：产品经理"/>
-
                 <input type="button" id="search_button" value="搜&nbsp;&nbsp;索" onclick="jobSearch()"/>
-
             </form>
             <script>
                 function jobSearch() {
-                    // var searchType = document.getElementsByClassName("type_selected")[0].var();
                     var searchType=$("#searchType li[class='type_selected']").attr("value");
                     console.log(searchType);
                     var jobInfo = document.getElementById("search_input").value;
                     console.log(jobInfo);
                     url = "searchJob?searchType=" + searchType + "&jobInfo=" + jobInfo;
                     window.location.href = url;
-
                 }
             </script>
         </div>
@@ -258,16 +234,12 @@
             <em id="prev" class="arrow">&lt;</em>
             <em id="next" class="arrow">&gt;</em>
         </div>
-
-
         <div id="hotList">
             <div>
                 <br>
                 <img th:src="@{static/img/home_hotJob.png}" alt="">
                 <br>
             </div>
-
-
             <ul class="hot_pos reset" style="padding: 0px;width: 1050px;">
                 <li class="job_li" th:each="job : ${JobListByHeat}">
                     <div class="job_hot_l">
@@ -288,12 +260,10 @@
                                 <p style="font-size: 20px;color: #bf3c2c;margin-top: 3px;"
                                    th:text="${job.JobSalary}"></p>
                             </a>
-
                         </div>
                     </div>
                 </li>
             </ul>
-
             <div id="ad_type">
                 <div id="ad_a">
                     <table align="center">
@@ -346,8 +316,6 @@
                     </table>
                 </div>
             </div>
-
-
             <div>
                 <br>
                 <img th:src="@{static/img/home_hotCompany.png}" alt="">
@@ -369,12 +337,9 @@
                             <p style="border: solid 1px #e3e7ed; margin: 0 auto; text-align: center; width: 130px">
                                 <span style="color: #cc3333; font-weight: bold" th:text="${company.CompanyJobNum}"></span>个热招职位</p>
                         </a>
-
                     </div>
                 </li>
-
             </ul>
-
             <div>
                 <br>
                 <img th:src="@{static/img/home_hotCity.png}" alt="">
@@ -418,7 +383,6 @@
                             <img th:src="@{static/img/wuhan.png}" alt="">
                         </a>
                     </div>
-
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
@@ -426,7 +390,6 @@
                             <img th:src="@{static/img/chongqing.png}" alt="">
                         </a>
                     </div>
-
                 </li>
                 <li class="job_li">
                     <div class="job_hot">
@@ -450,9 +413,7 @@
                             <img th:src="@{static/img/qingdao.png}" alt="">
                         </a>
                     </div>
-
                 </li>
-
             </ul>
         </div>
         <div class="clear"></div>
@@ -464,7 +425,7 @@
     <input type="hidden" id="resubmitToken" value=""/>
     <a id="backtop" title="回到顶部" rel="nofollow"></a>
 </div>
-</div><!-- end #body -->
+</div>
 <div id="footer">
     <div id="linkbox">
         <dl>
@@ -492,7 +453,6 @@
                 <a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
                 <a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
                 <a href="http://www.ycpai.com" target="_blank">互联网创业</a>
-
             </dd>
         </dl>
     </div>

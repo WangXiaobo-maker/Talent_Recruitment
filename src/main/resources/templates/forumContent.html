@@ -5,11 +5,10 @@
     <script id="allmobilize" charset="utf-8" th:src="@{static/js/allmobilize.min.js}"></script>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="alternate" media="handheld"/>
-    <!-- end 云适配 -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>无限创想人才招聘平台</title>
 
-
+    <link rel="shortcut icon" th:href="@{static/img/html.ico}" type="image/x-icon"/>
     <link rel="stylesheet" href="../static/editormd/css/editormd.css" th:href="@{static/editormd/css/editormd.css}"/>
     <link rel="stylesheet" href="../plugins/editor.md/css/editormd.preview.css"
           th:href="@{static/editormd/css/editormd.preview.css}"/>
@@ -17,7 +16,6 @@
     <script th:src="@{static/editormd/examples/js/jquery.min.js}"></script>
     <script src="../plugins/editor.md/lib/marked.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
     <script src="../plugins/editor.md/lib/prettify.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
-
     <script src="../plugins/editor.md/lib/raphael.min.js" th:src="@{static/editormd/lib/raphael.min.js}"></script>
     <script src="../plugins/editor.md/lib/underscore.min.js" th:src="@{static/editormd/lib/marked.min.js}"></script>
     <script src="../plugins/editor.md/lib/sequence-diagram.min.js"
@@ -28,33 +26,26 @@
     <script src="../plugins/editor.md/editormd.js" th:src="@{static/editormd/editormd.js}"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/sweetalert/1.1.2/sweetalert.min.js"></script>
-
     <script type="text/javascript" th:inline="javascript">
         var testEditormdView;
         $(function () {
             testEditormdView = editormd.markdownToHTML("test-editormd-view", {
-                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                htmlDecode: "style,script,iframe",
                 emoji: true,
                 taskList: true,
-                tex: true,  // 默认不解析
-                flowChart: true,  // 默认不解析
-                sequenceDiagram: true,  // 默认不解析
+                tex: true,
+                flowChart: true,
+                sequenceDiagram: true,
             });
         });
-
     </script>
-
-
-    <!-- <div class="web_root"  style="display:none">h</div> -->
     <script type="text/javascript">
         var ctx = "h";
-        console.log(1);
     </script>
     <link rel="Shortcut Icon" href="h/images/favicon.ico">
     <link rel="stylesheet" type="text/css" th:href="@{static/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/external.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/css/popup.css}"/>
-
     <script th:src="@{static/js/jquery.1.10.1.min.js}" type="text/javascript"></script>
     <script type="text/javascript" th:src="@{static/js/jquery.lib.min.js}"></script>
     <script th:src="@{static/js/ajaxfileupload.js}" type="text/javascript"></script>
@@ -67,7 +58,6 @@
     </script>
     <script type="text/javascript" th:src="@{static/js/homebannner.js}"></script>
     <script type="text/javascript" th:src="@{static/js/conv.js}"></script>
-
     <style type="text/css">
         .hot-news ul {
             list-style-type: none;
@@ -111,8 +101,7 @@
                 <li><a rel="nofollow" onclick="javascript:logoutC();">注销</a></li>
             </ul>
         </div>
-    </div><!-- end #header -->
-
+    </div>
     <div id="forumContent_detail">
         <div id="forumContent_detail-left">
             <div class="forumContent_detail_left_top" style="background-color:#fff;">
@@ -126,9 +115,7 @@
                             </div>
                             <span style="font-weight:bold; text-align:center; color: #0c80ba; font-size:18px;" th:text="${userInfo.NickName}"></span>
                         </div>
-
                     </div>
-
                     <div class="forumContent_detail_r">
                         <div class="detail-main">
                             <div class="detail-content2">
@@ -145,20 +132,16 @@
                             <div id="test-editormd-view" style="padding:20px 0 0 0;">
                                 <p th:text="${postInfo.PostContent}" style="text-indent: 2em;font-size: 20px">
                                 </p>
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
             <div class="forumContent_detail_left_bottom" style="background-color:#fff;">
                 <div style="height: 26px;">
                     <span style="height: 26px;"><img th:src="@{static/img/review.png}" alt=""></span>
                     <span style="font-size:20px;font-weight: bold;color: #6b6b6b">最新评论</span>
                 </div>
-
                 <ul class="articles" style="padding-left: 0px;margin-top: 40px;">
                     <li class="article-entry" th:each="map : ${UserCommentMap}">
                         <h4 style="font-size:15px;">
@@ -172,26 +155,19 @@
                                     <div style="float: left;height: 50px;width: 100px;">
                                             <span style="padding-top: 0px;font-size: 15px;font-weight: bold;margin-bottom: 20px;"
                                                   th:text="${map.key.NickName} + ':'"></span>
-
                                     </div>
-
                                     <div style="float: right;height: 50px;width: 550px;">
                                         <span style="display: inline-block;text-align: left; margin-left: 10px;"
                                               th:text="${map.value.CommentContent}">
                                         </span>
                                     </div>
-
                                 </div>
-
                             </div>
                         </h4>
-                        <span class="like-count2" style="float:right;font-weight: 10;color: #9f9f9f;" th:text="${map.value.CommentPublishDate}"></span>
+                        <span class="like-count2" style="float:right;font-weight: 100;color: #9f9f9f;" th:text="${map.value.CommentPublishDate}"></span>
                     </li>
-
                 </ul>
-
                 <form >
-                    <!--<input type="textarea" style="height: 250px;width: 800px;">-->
                     <textarea id="CommentContent" style="width: 775px;height: 200px;font-size: 15px;" placeholder="请输入评论（最多76个字）..."></textarea>
                     <br>
                     <div th:if="${session.user} == null">
@@ -203,9 +179,7 @@
                                style="height:50px;width:200px;background-color: #011d56; color: #FFFFFF;float: right;margin-top: 20px;font-size: 18px;">
                     </div>
                 </form>
-
             </div>
-
         </div>
         <div id="forumContent_detail-right" style="float: right; height:467px;background-color:#fff;">
             <div class="hot-news">
@@ -214,7 +188,6 @@
                         <img th:src="@{static/img/news_hot.png}" style="height:20px;">&nbsp;&nbsp;论坛热议榜
                     </b>
                 </h3>
-
                 <ul>
                     <li style="border: 0px;" th:each=" userpost : ${userPostMap1}">
                         <span class="forumContent_hot_flag" th:text="${userpost.key}">  </span>
@@ -225,8 +198,6 @@
                         <span class="time" style="float: right;" th:text="${userpost.value.getPost().getPostHeat()}">2492828</span>
 
                     </li>
-
-
                     <li style="border: 0px;" th:each="userpost : ${userPostMap2}">
                         <span class="forumContent_flag" th:text="${userpost.key}"></span>
                         <a th:href="@{/forumContent(PostID=${userpost.value.getPost().getPostID()}, UserID=${userpost.value.getUser().getUserID()})}"
@@ -234,22 +205,12 @@
                             超时加班为何吐槽者众维权者寡？
                         </a>
                         <span class="time" style="float: right;" th:text="${userpost.value.getPost().getPostHeat()}">1219963</span>
-
                     </li>
-
                 </ul>
             </div>
-
-            <!-- 广告链接
-            <div class="side-cooperation"><a href="javascript:;" title="媒体合作" ka="article-detail-media" ><img src="https://static.zhipin.com/v2/web/news/images/cooperation.jpg" alt="" width="200px" height="150px"/></a></div>
-            -->
         </div>
-
-
         <div class="clear" style="height: 10px;"></div>
-
     </div>
-
     <script type="text/javascript">
         (function ($) {
             $.fn.capacityFixed = function (options) {
@@ -298,7 +259,7 @@
                 });
             };
             $.fn.capacityFixed.deflunt = {
-                right: 100,//相对于页面宽度zhi的右边定位
+                right: 100,
                 top: 0,
                 pageWidth: 960
             };
@@ -313,8 +274,8 @@
     <div class="clear"></div>
     <input type="hidden" id="resubmitToken" value=""/>
     <a id="backtop" title="回到顶部" rel="nofollow"></a>
-</div><!-- end #container -->
-</div><!-- end #body -->
+</div>
+</div>
 <div id="footer">
     <div id="linkbox">
         <dl>
@@ -433,8 +394,6 @@
 
     })
 </script>
-<!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
- -->
 <script th:src="@{static/js/mouse-click.js}"></script>
 <canvas width="100%" height="100%"
         style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
